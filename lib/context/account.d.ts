@@ -1,6 +1,6 @@
 import React from 'react';
 import { AccountStoreType, web3ProviderStore } from '../stores/account';
-export declare const AccountContext: AccountStoreType;
+export declare const AccountContext: React.Context<AccountStoreType>;
 export declare function useAccount(): AccountStoreType;
 export declare const Web3ProviderContext: React.Context<{
     block: number;

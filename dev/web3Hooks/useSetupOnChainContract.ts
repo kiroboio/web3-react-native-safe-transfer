@@ -17,7 +17,7 @@ export const useSetupOnChainContract = () => {
   const dispatchContact = useDispatchContract();
 
   const { library, address } = useWeb3();
-  const { onChainWalletDetails, wallet, tokens, chainId, connectCmd } = useAccount();
+  const { onChainWalletDetails, wallet, tokens, chainId } = useAccount();
   const { createWalletTransactionCmd, claimOwnershipCmd } = onChainWalletDetails;
 
   const setupOnChainContract = () => {
@@ -32,6 +32,7 @@ export const useSetupOnChainContract = () => {
     } catch (e) {
       wallet.createWalletCmd.failed({ message: e.message });
     }
+    return undefined;
   };
 
   const __claimOwnershipCmd = useRef(claimOwnershipCmd);

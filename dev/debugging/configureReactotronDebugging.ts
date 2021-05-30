@@ -3,7 +3,7 @@ import { mst } from 'reactotron-mst';
 import { accountStore } from '../stores/account';
 import { ReactotronCore } from 'reactotron-core-client';
 
-export const configureReactotronDebugging = (): undefined => {
+export const configureReactotronDebugging = () => {
   if (process.env.NODE_ENV !== 'development') {
     return;
   }

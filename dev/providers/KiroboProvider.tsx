@@ -10,7 +10,7 @@ export interface KiroboProps {
   customHooks?: (() => void)[];
 }
 
-export const KiroboProvider = (props: KiroboProps) => (
+export const KiroboProvider = (props: KiroboProps): JSX.Element => (
   <AccountContext.Provider value={accountStore}>
     <ContractProvider>
       <Web3Provider customHooks={props.customHooks}/>

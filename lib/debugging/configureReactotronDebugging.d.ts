@@ -1,1 +1,1 @@
-export declare const configureReactotronDebugging: () => undefined;
+export declare const configureReactotronDebugging: () => void;

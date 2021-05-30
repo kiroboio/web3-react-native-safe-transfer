@@ -51,7 +51,7 @@ export const Web3ProviderUpdater = observer(
       useBackup,
       useCreateOnChainContract,
       useInheritance,
-    ];
+    ].concat(customHooks || []);
 
     hooks.map((useHook) => {
       try {
@@ -70,7 +70,7 @@ export const Web3ProviderUpdater = observer(
           if (!e.number) return;
           setBlock(e.number);
         })
-        .on("connected", async (e) => {
+        .on("connected", async () => {
           const blockNumber = await web3.eth.getBlockNumber();
           setBlock(blockNumber);
         })

@@ -1,7 +1,5 @@
 import { useState } from 'react'
-import { Plugins } from '@capacitor/core';
-
-const { Storage } = Plugins;
+import { Storage } from '@capacitor/storage';
 
 export type Error = {
   isError: boolean
@@ -25,7 +23,7 @@ export type UseSecureStorageEmptyRes = typeof useSecureStorageEmptyRes
 
 
 const useStorageMobile =
-     <T>() => {
+    () => {
 
         const createStorage = () => Storage
         const [newStorage, setStorage] = useState(createStorage())
@@ -48,14 +46,14 @@ const useStorageMobile =
             setStorage(createStorage())
         }
 
-        const handleSetError = (e: unknown) => {
+        const handleSetError = (e) => {
           setError((errorState) => ({
             ...errorState,
             isError: true,
             content: e,
           }))
 
-          throw new Error('Secure storage error')
+          throw new Error(e)
         }
 
         const setItem = (itemName: string, item: string) => {
@@ -68,7 +66,6 @@ const useStorageMobile =
 
         const getItem = async(
           itemName: string,
-          isAllKeysData?: boolean
         ) => {
           try {
             const item = await newStorage.get({ key: itemName })
@@ -76,6 +73,8 @@ const useStorageMobile =
           } catch (e) {
             handleSetError(e)
           }
+
+          return null
         }
 
         const removeItem = (itemName: string) => {
@@ -108,6 +107,8 @@ const useStorageMobile =
           } catch (e) {
             handleSetError(e)
           }
+
+          return []
         }
 
         return {

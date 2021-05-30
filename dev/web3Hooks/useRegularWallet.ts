@@ -40,7 +40,6 @@ export const useRegularWallet = () => {
     web3Connector.changeChainId(chainId);
   }, [chainId])
 
-  const prevMnemonic = usePrevious(wallet.mnemonic.data);
   useEffect(() => {
     const setNewMnemonic = __setNewMnemonic.current;
 

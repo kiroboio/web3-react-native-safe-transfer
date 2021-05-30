@@ -31,19 +31,17 @@ export declare type UseSecureStorageRes<T> = {
     getAllKeys: () => string[] | undefined;
     setNewSecureStorageConfig: (encryptionSecret: string, encodingType?: string) => void;
 };
-declare const useSecureStorage: (<T>() => {
+declare const useSecureStorage: (() => {
     error: import("./useStorageMobile").Error;
-    newStorage: {
-        [prop: string]: any;
-    };
+    newStorage: import("@capacitor/storage").StoragePlugin;
     setItem: (itemName: string, item: string) => void;
-    getItem: (itemName: string, isAllKeysData?: boolean | undefined) => Promise<any>;
+    getItem: (itemName: string) => Promise<string | null>;
     removeItem: (itemName: string) => void;
     removeAll: () => void;
     clear: () => void;
-    getAllKeys: () => any;
+    getAllKeys: () => never[] | Promise<import("@capacitor/storage").KeysResult>;
     setNewSecureStorageConfig: () => void;
-}) | (<T_1>(encryptionSecret?: string | undefined, encodingType?: string, encryptionNamespace?: string | undefined) => {
+}) | (<T>(encryptionSecret?: string | undefined, encodingType?: string, encryptionNamespace?: string | undefined) => {
     error: {
         isError: boolean;
         content: undefined;
@@ -57,5 +55,5 @@ declare const useSecureStorage: (<T>() => {
     clear: undefined;
     getAllKeys: undefined;
     setNewSecureStorageConfig: undefined;
-} | UseSecureStorageRes<T_1 & SecureLS>);
+} | UseSecureStorageRes<T & SecureLS>);
 export default useSecureStorage;

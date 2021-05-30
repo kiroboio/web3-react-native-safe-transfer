@@ -31,7 +31,7 @@ addMethod<StringSchema>(yupString, 'ethereumAddress', function (errorMessage) {
   });
 });
 
-addMethod<StringSchema>(yupString, 'ether', function (min, max, minErrorMessage, maxErrorMessage) {
+addMethod<StringSchema>(yupString, 'ether', function (min, minErrorMessage, maxErrorMessage) {
   const { currency, balance, tokenBalance } = useAccount();
   return this.test(`test-ether`, 'ether failed', function (value) {
     const { path, createError } = this;

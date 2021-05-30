@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@capacitor/core": "3.0.0",
+    "@capacitor/storage": "^1.0.0",
     "@metamask/detect-provider": "1.2.0",
     "@myetherwallet/mewconnect-connector": "0.1.8",
     "@simbathesailor/use-what-changed": "1.0.0",
