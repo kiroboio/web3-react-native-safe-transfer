@@ -5,19 +5,9 @@
 /.pnp
 .pnp.js
 
-# testing
-/coverage
+# lib
+/lib
 
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
 
 # debug
 npm-debug.log*
