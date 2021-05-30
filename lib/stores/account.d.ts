@@ -34,7 +34,7 @@ export declare const Transfer: import("mobx-state-tree").IModelType<{
     fees: import("mobx-state-tree").ISimpleType<string>;
     salt: import("mobx-state-tree").ISimpleType<string>;
     secretHash: import("mobx-state-tree").ISimpleType<string>;
-    state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+    state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
     updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
     confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
     message: import("mobx-state-tree").ISimpleType<string>;
@@ -524,7 +524,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -583,7 +583,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: string;
         salt: string;
         secretHash: string;
-        state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+        state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
         updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
         confirmedBlock: number;
         message: string;
@@ -607,7 +607,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -640,7 +640,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: string;
         salt: string;
         secretHash: string;
-        state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+        state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
         updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
         confirmedBlock: number;
         message: string;
@@ -664,7 +664,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -683,7 +683,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: string;
         salt: string;
         secretHash: string;
-        state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+        state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
         updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
         confirmedBlock: number;
         message: string;
@@ -707,7 +707,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -726,7 +726,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -745,7 +745,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -764,7 +764,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: string;
         salt: string;
         secretHash: string;
-        state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+        state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
         updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
         confirmedBlock: number;
         message: string;
@@ -788,7 +788,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -807,7 +807,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -826,7 +826,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -845,7 +845,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -864,7 +864,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -883,7 +883,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: string;
         salt: string;
         secretHash: string;
-        state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+        state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
         updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
         confirmedBlock: number;
         message: string;
@@ -907,7 +907,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -926,7 +926,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: string;
         salt: string;
         secretHash: string;
-        state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+        state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
         updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
         confirmedBlock: number;
         message: string;
@@ -950,7 +950,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -969,7 +969,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -988,7 +988,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -1007,7 +1007,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -1026,7 +1026,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -1045,7 +1045,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -1064,7 +1064,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -1083,7 +1083,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: string;
         salt: string;
         secretHash: string;
-        state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+        state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
         updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
         confirmedBlock: number;
         message: string;
@@ -1107,7 +1107,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -1126,7 +1126,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: string;
         salt: string;
         secretHash: string;
-        state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+        state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
         updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
         confirmedBlock: number;
         message: string;
@@ -1150,7 +1150,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -1169,7 +1169,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: string;
         salt: string;
         secretHash: string;
-        state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+        state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
         updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
         confirmedBlock: number;
         message: string;
@@ -1193,7 +1193,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -1212,7 +1212,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: string;
         salt: string;
         secretHash: string;
-        state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+        state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
         updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
         confirmedBlock: number;
         message: string;
@@ -1236,7 +1236,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -1255,7 +1255,7 @@ export declare const Transfers: import("mobx-state-tree").IModelType<{
         fees: import("mobx-state-tree").ISimpleType<string>;
         salt: import("mobx-state-tree").ISimpleType<string>;
         secretHash: import("mobx-state-tree").ISimpleType<string>;
-        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+        state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
         updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
         confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
         message: import("mobx-state-tree").ISimpleType<string>;
@@ -5869,7 +5869,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
         setTokenBalance(balance: string): void;
         setAccount(account?: string | undefined): void;
     }, import("mobx-state-tree")._NotCustomized, import("mobx-state-tree")._NotCustomized>, [undefined]>;
-    chainId: import("mobx-state-tree").IOptionalIType<import("mobx-state-tree").ISimpleType<"1" | "notSupportedChainId" | "4">, [undefined]>;
+    chainId: import("mobx-state-tree").IOptionalIType<import("mobx-state-tree").ISimpleType<"1" | "4" | "notSupportedChainId">, [undefined]>;
     active: import("mobx-state-tree").IOptionalIType<import("mobx-state-tree").ISimpleType<boolean>, [undefined]>;
     block: import("mobx-state-tree").IOptionalIType<import("mobx-state-tree").ISimpleType<number>, [undefined]>;
     balance: import("mobx-state-tree").IOptionalIType<import("mobx-state-tree").ISimpleType<string>, [undefined]>;
@@ -5888,7 +5888,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -5947,7 +5947,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -5971,7 +5971,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6004,7 +6004,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -6028,7 +6028,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6047,7 +6047,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -6071,7 +6071,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6090,7 +6090,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6109,7 +6109,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6128,7 +6128,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -6152,7 +6152,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6171,7 +6171,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6190,7 +6190,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6209,7 +6209,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6228,7 +6228,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6247,7 +6247,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -6271,7 +6271,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6290,7 +6290,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -6314,7 +6314,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6333,7 +6333,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6352,7 +6352,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6371,7 +6371,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6390,7 +6390,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6409,7 +6409,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6428,7 +6428,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6447,7 +6447,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -6471,7 +6471,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6490,7 +6490,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -6514,7 +6514,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6533,7 +6533,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -6557,7 +6557,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6576,7 +6576,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -6600,7 +6600,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6619,7 +6619,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6643,7 +6643,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6702,7 +6702,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -6726,7 +6726,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6759,7 +6759,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -6783,7 +6783,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6802,7 +6802,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -6826,7 +6826,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6845,7 +6845,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6864,7 +6864,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6883,7 +6883,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -6907,7 +6907,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6926,7 +6926,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6945,7 +6945,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6964,7 +6964,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -6983,7 +6983,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7002,7 +7002,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -7026,7 +7026,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7045,7 +7045,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -7069,7 +7069,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7088,7 +7088,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7107,7 +7107,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7126,7 +7126,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7145,7 +7145,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7164,7 +7164,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7183,7 +7183,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7202,7 +7202,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -7226,7 +7226,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7245,7 +7245,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -7269,7 +7269,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7288,7 +7288,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -7312,7 +7312,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7331,7 +7331,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -7355,7 +7355,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7374,7 +7374,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7398,7 +7398,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7457,7 +7457,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -7481,7 +7481,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7514,7 +7514,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -7538,7 +7538,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7557,7 +7557,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -7581,7 +7581,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7600,7 +7600,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7619,7 +7619,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7638,7 +7638,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -7662,7 +7662,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7681,7 +7681,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7700,7 +7700,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7719,7 +7719,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7738,7 +7738,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7757,7 +7757,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -7781,7 +7781,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7800,7 +7800,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -7824,7 +7824,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7843,7 +7843,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7862,7 +7862,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7881,7 +7881,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7900,7 +7900,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7919,7 +7919,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7938,7 +7938,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -7957,7 +7957,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -7981,7 +7981,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -8000,7 +8000,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -8024,7 +8024,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -8043,7 +8043,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -8067,7 +8067,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -8086,7 +8086,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: string;
             salt: string;
             secretHash: string;
-            state: "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating";
+            state: "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating";
             updatedAt: Date & import("mobx-state-tree").IStateTreeNode<import("mobx-state-tree").IType<number | Date, number, Date>>;
             confirmedBlock: number;
             message: string;
@@ -8110,7 +8110,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
@@ -8129,7 +8129,7 @@ export declare const Account: import("mobx-state-tree").IModelType<{
             fees: import("mobx-state-tree").ISimpleType<string>;
             salt: import("mobx-state-tree").ISimpleType<string>;
             secretHash: import("mobx-state-tree").ISimpleType<string>;
-            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating", "new" | "unknown" | "invalid" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "rejected" | "creating">;
+            state: import("mobx-state-tree").IType<"new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating", "new" | "unknown" | "invalid" | "rejected" | "waiting-for-deposit" | "retrieving" | "retrieved" | "ready" | "collecting" | "collected" | "creating">;
             updatedAt: import("mobx-state-tree").IType<number | Date, number, Date>;
             confirmedBlock: import("mobx-state-tree").ISimpleType<number>;
             message: import("mobx-state-tree").ISimpleType<string>;
