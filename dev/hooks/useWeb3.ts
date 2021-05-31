@@ -1,42 +1,41 @@
-import { useWeb3React } from '@web3-react/core';
-import { AbstractConnector } from '@web3-react/abstract-connector';
-import { InjectedConnector } from '@web3-react/injected-connector';
+import { useWeb3React } from "@web3-react/core";
+import { AbstractConnector } from "@web3-react/abstract-connector";
+import { InjectedConnector } from "@web3-react/injected-connector";
 // import { NetworkConnector } from '@web3-react/network-connector'
-import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
-import { WalletLinkConnector } from '@web3-react/walletlink-connector';
+import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
+import { WalletLinkConnector } from "@web3-react/walletlink-connector";
 // import { LedgerConnector } from '@web3-react/ledger-connector'
 // import { TrezorConnector } from '@web3-react/trezor-connector'
 // import { LatticeConnector } from '@web3-react/lattice-connector'
-import { FrameConnector } from '@web3-react/frame-connector';
+import { FrameConnector } from "@web3-react/frame-connector";
 // import { AuthereumConnector } from '@web3-react/authereum-connector'
 // import { FortmaticConnector } from '@web3-react/fortmatic-connector'
 // import { MagicConnector } from '@web3-react/magic-connector'
 // import { PortisConnector } from '@web3-react/portis-connector'
 // import { TorusConnector } from '@web3-react/torus-connector'
-import { MewConnectConnector } from '@myetherwallet/mewconnect-connector';
-import InAppWalletConnector from '../customConnectors/InAppWalletConnector';
-import { Web3ReactContextInterface } from '@web3-react/core/dist/types';
-import Web3 from 'web3';
-import { useAccount } from '../context/account';
-import { ChainIds, RPC_URLS } from '../stores/account';
+import { MewConnectConnector } from "@myetherwallet/mewconnect-connector";
+import InAppWalletConnector from "../customConnectors/InAppWalletConnector";
+import { Web3ReactContextInterface } from "@web3-react/core/dist/types";
+import Web3 from "web3";
+import { useAccount } from "../context/account";
+import { ChainIds, RPC_URLS } from "../stores/account";
 
 const POLLING_INTERVAL = 12000;
 
 export enum Connectors {
-  InAppWallet = 'InAppWallet',
-  Injected = 'Injected',
-  WalletConnect = 'WalletConnect',
-  WalletLink = 'WalletLink',
-  MyEtherWallet = 'MyEtherWallet',
-  Frame = 'Frame',
+  InAppWallet = "InAppWallet",
+  Injected = "Injected",
+  WalletConnect = "WalletConnect",
+  WalletLink = "WalletLink",
+  MyEtherWallet = "MyEtherWallet",
+  Frame = "Frame",
 }
-
 
 export interface IConnectParams {
   readonly supportedChainIds?: number[];
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ConnectorType = Required<Web3ReactContextInterface>['connector'] & {
+type ConnectorType = Required<Web3ReactContextInterface>["connector"] & {
   addWalletAddress?: () => void;
   removeWalletAddress?: (a: string) => void;
   handleAccountChanged?: (a: string) => void;
@@ -44,7 +43,10 @@ type ConnectorType = Required<Web3ReactContextInterface>['connector'] & {
 };
 
 export interface IWeb3ReactContext<T> {
-  connect: (connectorName: Connectors, params?: IConnectParams) => Promise<void>;
+  connect: (
+    connectorName: Connectors,
+    params?: IConnectParams
+  ) => Promise<void>;
   disconnect: () => void;
   connector?: ConnectorType;
   library: T;
@@ -68,19 +70,23 @@ export const useWeb3 = (): IWeb3ReactContext<Web3> => {
     activate,
     deactivate,
     active,
-    error
+    error,
   } = useWeb3React();
 
   const defaultChainId = useAccount().chainId;
   const inAppWalletConnect = () =>
-    new InAppWalletConnector({ urls: RPC_URLS, defaultChainId: chainId ? chainId : Number(defaultChainId) });
+    new InAppWalletConnector({
+      urls: RPC_URLS,
+      defaultChainId: chainId ? chainId : Number(defaultChainId),
+    });
 
-  const injected = (params: IConnectParams) => new InjectedConnector({ ...params }); // supportedChainIds: [1, 4] })
+  const injected = (params: IConnectParams) =>
+    new InjectedConnector({ ...params }); // supportedChainIds: [1, 4] })
 
   const walletConnect = (params: IConnectParams) =>
     new WalletConnectConnector({
       rpc: { 4: RPC_URLS[4] },
-      bridge: 'https://bridge.walletconnect.org',
+      bridge: "https://bridge.walletconnect.org",
       qrcode: true,
       pollingInterval: POLLING_INTERVAL,
       ...params,
@@ -89,7 +95,7 @@ export const useWeb3 = (): IWeb3ReactContext<Web3> => {
   const walletLink = (params: IConnectParams) =>
     new WalletLinkConnector({
       url: RPC_URLS[4],
-      appName: 'dapp.kirobo.me',
+      appName: "dapp.kirobo.me",
       ...params,
     });
 
@@ -128,7 +134,10 @@ export const useWeb3 = (): IWeb3ReactContext<Web3> => {
 
   const connectors: ConnectorNode[] = [];
 
-  const connect = async (connectorName: Connectors, params: IConnectParams = {}) => {
+  const connect = async (
+    connectorName: Connectors,
+    params: IConnectParams = {}
+  ) => {
     if (!connectors[0]) {
       connectors[0] = { connector: connectorByName[connectorName](params) };
       if (connectors[0].connector) {

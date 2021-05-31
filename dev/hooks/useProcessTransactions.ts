@@ -1,8 +1,12 @@
-import { toWei } from 'web3-utils';
-import { useAccount, useContract } from '..';
-import { ITransaction, ITransactionReceipt, tokens as tokensConfig } from '../stores/account';
-import { useWeb3 } from './useWeb3';
-import { toJS } from 'mobx';
+import { toWei } from "web3-utils";
+import { useAccount, useContract } from "..";
+import {
+  ITransaction,
+  ITransactionReceipt,
+  tokens as tokensConfig,
+} from "../stores/account";
+import { useWeb3 } from "./useWeb3";
+import { toJS } from "mobx";
 
 const useProcessTransactions = () => {
   const web3Connect = useWeb3();
@@ -33,7 +37,10 @@ const useProcessTransactions = () => {
       nonce?: number;
     } = { from };
 
-    const nonce = await web3Connect.library.eth.getTransactionCount(from, 'pending');
+    const nonce = await web3Connect.library.eth.getTransactionCount(
+      from,
+      "pending"
+    );
 
     if (value) web3TransactionSendData.value = value;
     if (data) web3TransactionSendData.data = data;
@@ -42,7 +49,8 @@ const useProcessTransactions = () => {
 
     try {
       web3TransactionSendData.gas =
-        (await web3Connect.library.eth.estimateGas(web3TransactionSendData)) * 2;
+        (await web3Connect.library.eth.estimateGas(web3TransactionSendData)) *
+        2;
     } catch (e) {
       web3TransactionSendData.gas = 40000;
     }
@@ -50,21 +58,27 @@ const useProcessTransactions = () => {
     await new Promise((resolve, reject) => {
       web3Connect.library.eth
         .sendTransaction(web3TransactionSendData)
-        .on('transactionHash', (txHash: string) => {
+        .on("transactionHash", (txHash: string) => {
           currentTransaction.txHash = txHash;
           currentTransaction.timestamp = new Date();
-          transactions.updateTransactionRequest(currentTransaction.id, currentTransaction);
+          transactions.updateTransactionRequest(
+            currentTransaction.id,
+            currentTransaction
+          );
         })
-        .on('receipt', receipt => {
-          const tReceipt = (receipt as unknown) as ITransactionReceipt;
+        .on("receipt", (receipt) => {
+          const tReceipt = receipt as unknown as ITransactionReceipt;
           if (!tReceipt.status) {
-            reject('Transaction failed');
+            reject("Transaction failed");
           }
-          transactions.updateTransactionReceipt(currentTransaction.id, tReceipt);
+          transactions.updateTransactionReceipt(
+            currentTransaction.id,
+            tReceipt
+          );
           trx?.transactionCmd.done();
           resolve(transactions);
         })
-        .on('error', (err: Error) => {
+        .on("error", (err: Error) => {
           trx.transactionCmd.failed({ message: err.message });
           reject(err);
         });
@@ -77,11 +91,15 @@ const useProcessTransactions = () => {
       const currentTransaction = { ...toJS(transaction) };
       let gas;
       try {
-        gas = (await web3Connect.library.eth.estimateGas(currentTransaction)) * 4;
+        gas =
+          (await web3Connect.library.eth.estimateGas(currentTransaction)) * 4;
       } catch (e) {
         gas = 100000;
       }
-      const nonce = await web3Connect.library.eth.getTransactionCount(wallet.account, 'pending');
+      const nonce = await web3Connect.library.eth.getTransactionCount(
+        wallet.account,
+        "pending"
+      );
 
       const txHash = await tokensContract?.methods
         .transfer(currentTransaction.to, currentTransaction.valueInWei)
@@ -90,14 +108,17 @@ const useProcessTransactions = () => {
       currentTransaction.txHash = txHash;
       currentTransaction.timestamp = new Date();
 
-      transactions.updateTransactionRequest(currentTransaction.id, currentTransaction);
-      const receipt = ((await web3Connect.library?.eth?.getTransactionReceipt(
+      transactions.updateTransactionRequest(
+        currentTransaction.id,
+        currentTransaction
+      );
+      const receipt = (await web3Connect.library?.eth?.getTransactionReceipt(
         txHash.transactionHash
-      )) as unknown) as ITransactionReceipt;
+      )) as unknown as ITransactionReceipt;
       currentTransaction.receipt = receipt;
 
       if (!receipt?.status) {
-        transaction?.transactionCmd.failed({ message: 'Transaction failed' });
+        transaction?.transactionCmd.failed({ message: "Transaction failed" });
       }
 
       transactions.updateTransactionReceipt(currentTransaction.id, receipt);
@@ -115,11 +136,15 @@ const useProcessTransactions = () => {
       const currentTransaction = { ...toJS(transaction) };
       let gas;
       try {
-        gas = (await web3Connect.library.eth.estimateGas(currentTransaction)) * 4;
+        gas =
+          (await web3Connect.library.eth.estimateGas(currentTransaction)) * 4;
       } catch (e) {
         gas = 100000;
       }
-      const nonce = await web3Connect.library.eth.getTransactionCount(wallet.account, 'pending');
+      const nonce = await web3Connect.library.eth.getTransactionCount(
+        wallet.account,
+        "pending"
+      );
       const txHash = await onChainWalletContract?.methods
         .transfer20(
           tokensConfig[selectedToken].address[chainId],
@@ -132,23 +157,31 @@ const useProcessTransactions = () => {
       currentTransaction.timestamp = new Date();
 
       try {
-        currentTransaction.gas = await web3Connect.library.eth.estimateGas(currentTransaction);
+        currentTransaction.gas = await web3Connect.library.eth.estimateGas(
+          currentTransaction
+        );
       } catch (e) {
         currentTransaction.gas = 100000;
       }
 
-      transactions.updateTransactionRequest(currentTransaction.id, currentTransaction);
-      const receipt = ((await web3Connect.library?.eth?.getTransactionReceipt(
+      transactions.updateTransactionRequest(
+        currentTransaction.id,
+        currentTransaction
+      );
+      const receipt = (await web3Connect.library?.eth?.getTransactionReceipt(
         txHash.transactionHash
-      )) as unknown) as ITransactionReceipt;
+      )) as unknown as ITransactionReceipt;
 
       currentTransaction.receipt = receipt;
 
       if (!receipt?.status) {
-        transaction?.transactionCmd.failed({ message: 'Transaction failed' });
+        transaction?.transactionCmd.failed({ message: "Transaction failed" });
       }
 
-      transactions.updateTransactionRequest(currentTransaction.id, currentTransaction);
+      transactions.updateTransactionRequest(
+        currentTransaction.id,
+        currentTransaction
+      );
       transactions.updateTransactionReceipt(currentTransaction.id, receipt);
 
       transaction?.transactionCmd.done();

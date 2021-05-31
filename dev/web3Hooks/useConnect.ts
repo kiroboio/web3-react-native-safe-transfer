@@ -7,7 +7,7 @@ import { useCurrentMutableState as useRef } from "../hooks/useCurrentMutableStat
 export const useConnect = () => {
   const { connect: web3Connect } = useWeb3();
   const { connectCmd } = useAccount();
-  const __connectCmd = useRef(connectCmd)
+  const __connectCmd = useRef(connectCmd);
   const __web3Connect = useRef(web3Connect);
 
   useEffect(() => {

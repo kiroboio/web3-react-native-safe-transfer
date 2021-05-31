@@ -1,12 +1,13 @@
-import { useEffect } from 'react';
-import { useAccount, useContract } from '..';
-import { usePrevious } from '../hooks/usePrevious';
-import { useCurrentMutableState as useRef } from '../hooks/useCurrentMutableState';
-import { ITransaction } from '../stores/account';
-import { useProcessTransactions } from '../hooks/useProcessTransactions';
+import { useEffect } from "react";
+import { useAccount, useContract } from "..";
+import { usePrevious } from "../hooks/usePrevious";
+import { useCurrentMutableState as useRef } from "../hooks/useCurrentMutableState";
+import { ITransaction } from "../stores/account";
+import { useProcessTransactions } from "../hooks/useProcessTransactions";
 
 const parseHeir = (heir: string) => {
-  const ZERO_BYTES32 = '0x0000000000000000000000000000000000000000000000000000000000000000';
+  const ZERO_BYTES32 =
+    "0x0000000000000000000000000000000000000000000000000000000000000000";
 
   if (heir === ZERO_BYTES32) {
     return null;
@@ -14,14 +15,15 @@ const parseHeir = (heir: string) => {
 
   return {
     walletAddress: heir.slice(0, 42),
-    isSent: heir.slice(42, 44) !== '00' ? true : false,
+    isSent: heir.slice(42, 44) !== "00" ? true : false,
     percent: parseInt(heir.slice(44, 48), 16) / 100,
     isRegistered: true,
   };
 };
 
 const useInheritance = () => {
-  const { transactions, onChainWalletDetails, inheritance, wallet } = useAccount();
+  const { transactions, onChainWalletDetails, inheritance, wallet } =
+    useAccount();
   const { sendTransaction } = useProcessTransactions();
   const { createTransaction } = transactions;
   const {
@@ -39,11 +41,11 @@ const useInheritance = () => {
   const { walletContract } = useContract();
 
   const INHERITANCE_DATA_METHODS = [
-    { getter: 'getHeirs', setter: inheritance.addHeir },
-    { getter: 'getInheritanceTimestamp', setter: inheritance.setTimestamp },
-    { getter: 'getInheritanceTimeout', setter: inheritance.setTimeout },
-    { getter: 'isInheritanceActivated', setter: inheritance.setIsActivated },
-    { getter: 'getTotalTransfered', setter: inheritance.setTotalTransferred },
+    { getter: "getHeirs", setter: inheritance.addHeir },
+    { getter: "getInheritanceTimestamp", setter: inheritance.setTimestamp },
+    { getter: "getInheritanceTimeout", setter: inheritance.setTimeout },
+    { getter: "isInheritanceActivated", setter: inheritance.setIsActivated },
+    { getter: "getTotalTransfered", setter: inheritance.setTotalTransferred },
   ] as const;
 
   async function setHeirs() {
@@ -66,10 +68,12 @@ const useInheritance = () => {
     const trxRequest: Partial<ITransaction> = {
       from: wallet.account,
       to: onChainWalletDetails.account,
-      type: 'SET HEIRS',
+      type: "SET HEIRS",
     };
 
-    trxRequest.data = await walletContract.methods.setHeirs(addresses, bps).encodeABI();
+    trxRequest.data = await walletContract.methods
+      .setHeirs(addresses, bps)
+      .encodeABI();
 
     const trx = createTransaction(trxRequest);
     await sendTransaction(trx);
@@ -79,10 +83,12 @@ const useInheritance = () => {
     if (!walletContract) return;
     const trxRequest: Partial<ITransaction> = {
       to: onChainWalletDetails.account,
-      type: 'ENABLE INHERITANCE',
+      type: "ENABLE INHERITANCE",
     };
     const seconds = inheritance.timeLeftCurrent;
-    trxRequest.data = await walletContract.methods.setInheritance(seconds).encodeABI();
+    trxRequest.data = await walletContract.methods
+      .setInheritance(seconds)
+      .encodeABI();
 
     const trx = createTransaction(trxRequest);
     await sendTransaction(trx);
@@ -92,10 +98,12 @@ const useInheritance = () => {
     if (!walletContract) return;
     const trxRequest: Partial<ITransaction> = {
       to: onChainWalletDetails.account,
-      type: 'ENABLE INHERITANCE',
+      type: "ENABLE INHERITANCE",
     };
 
-    trxRequest.data = await walletContract.methods.activateInheritance().encodeABI();
+    trxRequest.data = await walletContract.methods
+      .activateInheritance()
+      .encodeABI();
 
     const trx = createTransaction(trxRequest);
     await sendTransaction(trx);
@@ -105,7 +113,7 @@ const useInheritance = () => {
     if (!walletContract) return;
     const trxRequest: Partial<ITransaction> = {
       to: onChainWalletDetails.account,
-      type: 'DISABLE INHERITANCE',
+      type: "DISABLE INHERITANCE",
     };
 
     trxRequest.data = walletContract.methods.clearInheritance().encodeABI();
@@ -120,9 +128,9 @@ const useInheritance = () => {
     if (!walletContract) return;
     try {
       await Promise.all(
-        INHERITANCE_DATA_METHODS.map(async method => {
+        INHERITANCE_DATA_METHODS.map(async (method) => {
           const data = await walletContract.methods[method.getter]().call();
-          if (method.getter === 'getHeirs') {
+          if (method.getter === "getHeirs") {
             if (
               !prevHeirsData ||
               (prevHeirsData &&
@@ -149,16 +157,16 @@ const useInheritance = () => {
         })
       );
     } catch (e) {
-      updateHeirsCmd.failed({ message: e.message})
+      updateHeirsCmd.failed({ message: e.message });
     }
   };
 
   const inheritanceEvents = [
-    'InheritanceActivated',
-    'InheritanceChanged',
-    'InheritanceHeirsChanged',
-    'InheritancePayment',
-    'InheritanceRemoved',
+    "InheritanceActivated",
+    "InheritanceChanged",
+    "InheritanceHeirsChanged",
+    "InheritancePayment",
+    "InheritanceRemoved",
   ];
 
   const __inheritanceEvents = useRef(inheritanceEvents);
@@ -177,17 +185,17 @@ const useInheritance = () => {
 
   useEffect(() => {
     const updateCurrentHeirs = __updateCurrentHeirs.current;
-    const inheritanceEvents = __inheritanceEvents.current
+    const inheritanceEvents = __inheritanceEvents.current;
     if (!walletContract) return;
 
     walletContract.events
       .allEvents()
-      .on('data', (e: unknown) => {
+      .on("data", (e: unknown) => {
         const inheritanceEvent = e as { event: string };
         if (!inheritanceEvents.includes(inheritanceEvent.event)) return;
         updateCurrentHeirs();
       })
-      .on('error', (e: unknown) => {
+      .on("error", (e: unknown) => {
         const inheritanceEvent = e as { event: string };
         if (!inheritanceEvents.includes(inheritanceEvent.event)) return;
         updateCurrentHeirs();

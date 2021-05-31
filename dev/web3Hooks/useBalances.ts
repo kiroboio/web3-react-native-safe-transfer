@@ -1,18 +1,18 @@
-import * as React from 'react';
-import { useContract, useAccount } from '..';
-import BN from 'bn.js';
-import { useWeb3 } from '../hooks/useWeb3';
-import { getRate } from '../services/rates.service';
-import { fromWei } from 'web3-utils';
-import { formatEther } from '../utils/ethereum';
-import { useCurrentMutableState as useRef } from '../hooks/useCurrentMutableState';
-import { usePrevious } from '../hooks/usePrevious';
+import * as React from "react";
+import { useContract, useAccount } from "..";
+import BN from "bn.js";
+import { useWeb3 } from "../hooks/useWeb3";
+import { getRate } from "../services/rates.service";
+import { fromWei } from "web3-utils";
+import { formatEther } from "../utils/ethereum";
+import { useCurrentMutableState as useRef } from "../hooks/useCurrentMutableState";
+import { usePrevious } from "../hooks/usePrevious";
 
 let getRateTimeout: NodeJS.Timeout;
 
 const convertCryptoToFiat = (rate: number, value: string | BN) => {
   let result = value.toString();
-  if (result !== '0') {
+  if (result !== "0") {
     const balanceInString = fromWei(value).toString();
     result = (parseFloat(balanceInString) * rate).toString();
   }
@@ -21,7 +21,15 @@ const convertCryptoToFiat = (rate: number, value: string | BN) => {
 
 export const useBalances = () => {
   const { address: account, library } = useWeb3();
-  const { onChainWalletDetails, wallet, setExchangeToUsdRate, block, transactions, tokens, chainId } = useAccount();
+  const {
+    onChainWalletDetails,
+    wallet,
+    setExchangeToUsdRate,
+    block,
+    transactions,
+    tokens,
+    chainId,
+  } = useAccount();
   const onChain = useContract();
   const onChainWalletContract = onChain.walletContract;
 
@@ -30,7 +38,7 @@ export const useBalances = () => {
   const updateRate = async () => {
     try {
       const rate = await getRate();
-      console.log(rate, "getted rate")
+      console.log(rate, "getted rate");
       setExchangeToUsdRate(rate);
       setRate(rate);
     } catch (e) {
@@ -40,13 +48,17 @@ export const useBalances = () => {
   };
 
   const __updateRate = useRef(updateRate);
-  const __setBalanceInUsdOnChainWallet = useRef(onChainWalletDetails.setBalanceInUsd);
+  const __setBalanceInUsdOnChainWallet = useRef(
+    onChainWalletDetails.setBalanceInUsd
+  );
   const __setBalanceInUsdWallet = useRef(wallet.setBalanceInUsd);
   const __block = useRef(block);
   const __walletBalanceCmd = useRef(wallet.balanceCmd);
   const __walletTokenBalanceCmd = useRef(wallet.tokenBalanceCmd);
   const __onChainWalletBalanceCmd = useRef(onChainWalletDetails.balanceCmd);
-  const __onChainWalletTokenBalanceCmd = useRef(onChainWalletDetails.tokenBalanceCmd);
+  const __onChainWalletTokenBalanceCmd = useRef(
+    onChainWalletDetails.tokenBalanceCmd
+  );
   const __walletAccount = useRef(wallet.account);
   const __onChainWalletDetailsAccount = useRef(onChainWalletDetails.account);
   const __wallet = useRef(wallet);
@@ -61,7 +73,10 @@ export const useBalances = () => {
 
     if (!rate || !onChainWalletDetails.balance) return;
     const convertBalance = async () => {
-      const convertedBalance = convertCryptoToFiat(rate, onChainWalletDetails.balance);
+      const convertedBalance = convertCryptoToFiat(
+        rate,
+        onChainWalletDetails.balance
+      );
       setBalanceInUsd(String(convertedBalance));
     };
     convertBalance();
@@ -82,7 +97,9 @@ export const useBalances = () => {
     const { tokenContract } = onChain;
     if (!tokenContract || !wallet.account) return;
     try {
-      const balance = await tokenContract.methods.balanceOf(wallet.account).call();
+      const balance = await tokenContract.methods
+        .balanceOf(wallet.account)
+        .call();
       wallet.setTokenBalance(balance);
     } catch (err) {
       throw new Error(err);
@@ -93,7 +110,9 @@ export const useBalances = () => {
     const { tokenContract } = onChain;
     if (!tokenContract) return;
     try {
-      const balance = await tokenContract.methods.balanceOf(onChainWalletDetails.account).call();
+      const balance = await tokenContract.methods
+        .balanceOf(onChainWalletDetails.account)
+        .call();
       onChainWalletDetails.setTokenBalance(balance);
     } catch (err) {
       throw new Error(err);
@@ -103,7 +122,9 @@ export const useBalances = () => {
   const setOnChainWalletBalance = async () => {
     if (!onChainWalletContract || !onChainWalletDetails.account) return;
     try {
-      const balance: BN = await onChainWalletContract.methods.getBalance().call();
+      const balance: BN = await onChainWalletContract.methods
+        .getBalance()
+        .call();
       onChainWalletDetails.setBalance(balance.toString());
     } catch (err) {
       throw new Error(err);
@@ -165,7 +186,8 @@ export const useBalances = () => {
     const walletTokenBalanceCmd = __walletTokenBalanceCmd.current;
     const setWalletTokenBalance = __setWalletTokenBalance.current;
 
-    if (!walletTokenBalanceCmd.is.ready || walletTokenBalanceCmd.is.running) return;
+    if (!walletTokenBalanceCmd.is.ready || walletTokenBalanceCmd.is.running)
+      return;
     const getBalanceAsync = async () => {
       try {
         walletTokenBalanceCmd.start();
@@ -183,7 +205,11 @@ export const useBalances = () => {
     const onChainWalletTokenBalanceCmd = __onChainWalletTokenBalanceCmd.current;
     const setOnChainWalletTokenBalance = __setOnChainWalletTokenBalance.current;
 
-    if (!onChainWalletTokenBalanceCmd.is.ready || onChainWalletTokenBalanceCmd.is.running) return;
+    if (
+      !onChainWalletTokenBalanceCmd.is.ready ||
+      onChainWalletTokenBalanceCmd.is.running
+    )
+      return;
     const getBalanceAsync = async () => {
       try {
         onChainWalletTokenBalanceCmd.start();
@@ -205,7 +231,9 @@ export const useBalances = () => {
   };
 
   const __setAllBalances = useRef(setAllBalances);
-  const successTransactions = transactions.items.filter(trx => trx.state === 'success');
+  const successTransactions = transactions.items.filter(
+    (trx) => trx.state === "success"
+  );
 
   const prevBlock = usePrevious(block);
   React.useEffect(() => {
@@ -226,10 +254,10 @@ export const useBalances = () => {
     const wallet = __wallet.current;
     if (!prevChainId) return;
     if (prevChainId === chainId) return;
-    if(chainId === "notSupportedChainId") {
-      wallet.setBalance('0')
-      wallet.setBalanceInUsd('0')
-      wallet.setTokenBalance('0')
+    if (chainId === "notSupportedChainId") {
+      wallet.setBalance("0");
+      wallet.setBalanceInUsd("0");
+      wallet.setTokenBalance("0");
       return;
     }
     updateRate();
@@ -244,27 +272,27 @@ export const useBalances = () => {
   }, [successTransactions.length]);
 
   React.useEffect(() => {
-    if(!wallet.createWalletCmd.is.done) return;
+    if (!wallet.createWalletCmd.is.done) return;
 
     const balanceCmd = __walletBalanceCmd.current;
     balanceCmd.prepare();
   }, [wallet.createWalletCmd.is.done]);
 
   React.useEffect(() => {
-    if(!onChainWalletDetails.createWalletCmd.is.done) return;
+    if (!onChainWalletDetails.createWalletCmd.is.done) return;
     const onChainWalletBalanceCmd = __onChainWalletBalanceCmd.current;
     onChainWalletBalanceCmd.prepare();
   }, [onChainWalletDetails.createWalletCmd.is.done]);
 
   React.useEffect(() => {
-    if(!onChain.tokenContract) return;
+    if (!onChain.tokenContract) return;
     const walletTokenBalanceCmd = __walletTokenBalanceCmd.current;
-   
+
     walletTokenBalanceCmd.prepare();
   }, [onChain.tokenContract]);
 
   React.useEffect(() => {
-    if(!onChainWalletDetails.createTokenWalletCmd.is.done) return;
+    if (!onChainWalletDetails.createTokenWalletCmd.is.done) return;
 
     const onChainWalletTokenBalanceCmd = __onChainWalletTokenBalanceCmd.current;
 
@@ -273,15 +301,15 @@ export const useBalances = () => {
 
   const prevToken = usePrevious(tokens.token);
   React.useEffect(() => {
-    if(prevToken === tokens.token) return;
-    
+    if (prevToken === tokens.token) return;
+
     const walletAccount = __walletAccount.current;
-    if(!walletAccount) return;
+    if (!walletAccount) return;
     const walletTokenBalanceCmd = __walletTokenBalanceCmd.current;
     walletTokenBalanceCmd.prepare();
 
     const onChainWalletDetailsAccount = __onChainWalletDetailsAccount.current;
-    if(!onChainWalletDetailsAccount) return;
+    if (!onChainWalletDetailsAccount) return;
     const onChainWalletTokenBalanceCmd = __onChainWalletTokenBalanceCmd.current;
     onChainWalletTokenBalanceCmd.prepare();
   }, [tokens.token, prevToken]);

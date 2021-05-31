@@ -1,4 +1,3 @@
-
 import React from "react";
 export const LogoBNB = () => {
   return (
@@ -12,4 +11,4 @@ export const LogoBNB = () => {
       </g>
     </svg>
   );
-}
+};

@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { useAccount, useContract } from '..';
-import { useProcessTransactions } from '../hooks/useProcessTransactions';
-import { useCurrentMutableState as useRef } from '../hooks/useCurrentMutableState';
+import { useEffect } from "react";
+import { useAccount, useContract } from "..";
+import { useProcessTransactions } from "../hooks/useProcessTransactions";
+import { useCurrentMutableState as useRef } from "../hooks/useCurrentMutableState";
 
 function useCreateOnChainContract() {
   const { transactions, onChainWalletDetails, wallet } = useAccount();
@@ -16,16 +16,19 @@ function useCreateOnChainContract() {
     const data = createContract.encodeABI();
     let estimatedGas = 0;
     try {
-      estimatedGas = await createContract.estimateGas({ to: wallet.account, data });
+      estimatedGas = await createContract.estimateGas({
+        to: wallet.account,
+        data,
+      });
     } catch (e) {
-      throw new Error('gas estimation failed');
+      throw new Error("gas estimation failed");
     }
 
     const trx = transactions.createTransaction({
       to: contract.options.address,
       gas: estimatedGas,
       data: data,
-      type: 'CREATE SMART WALLET',
+      type: "CREATE SMART WALLET",
     });
     await sendTransaction(trx);
   };

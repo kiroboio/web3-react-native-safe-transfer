@@ -1,4 +1,3 @@
-
 import React from "react";
 export function LogoAnt() {
   return (
@@ -40,8 +39,15 @@ export function LogoAnt() {
           <feOffset dy="12"></feOffset>
           <feGaussianBlur stdDeviation="10"></feGaussianBlur>
           <feColorMatrix values="0 0 0 0 0.813403 0 0 0 0 0.867118 0 0 0 0 0.920833 0 0 0 0.2 0"></feColorMatrix>
-          <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
-          <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend>
+          <feBlend
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow"
+          ></feBlend>
+          <feBlend
+            in="SourceGraphic"
+            in2="effect1_dropShadow"
+            result="shape"
+          ></feBlend>
         </filter>
         <linearGradient
           id="paint0_linear"

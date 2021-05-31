@@ -1,15 +1,15 @@
 type EthTransferState =
-  | 'waiting-for-deposit'
-  | 'retrieving'
-  | 'retrieved'
-  | 'ready'
-  | 'collecting'
-  | 'collected'
-  | 'rejected'
-  | 'invalid'
-  | 'new'
-  | 'creating'
-  | 'unknown';
+  | "waiting-for-deposit"
+  | "retrieving"
+  | "retrieved"
+  | "ready"
+  | "collecting"
+  | "collected"
+  | "rejected"
+  | "invalid"
+  | "new"
+  | "creating"
+  | "unknown";
 
 interface EthCollectInfo {
   /**
@@ -85,7 +85,7 @@ export interface EthTokenInfo {
   address: string;
   decimals: number;
   symbol: string;
-  type: 'ERC20';
+  type: "ERC20";
 }
 
 export interface PaymentRequest {

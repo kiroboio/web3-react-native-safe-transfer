@@ -15,7 +15,8 @@ import {
 } from "../web3Hooks";
 import { KiroboProps } from "./KiroboProvider";
 
-export const Web3ProviderUpdater = observer(({ children, customHooks }: KiroboProps) => {
+export const Web3ProviderUpdater = observer(
+  ({ children, customHooks }: KiroboProps) => {
     const hooks = [
       useRegularWallet,
       useNewBlockSubscribe,

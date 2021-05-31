@@ -1,13 +1,17 @@
-import { useEffect } from 'react';
-import { useAccount } from '../context/account';
-import { useWeb3, Connectors } from '../hooks/useWeb3';
-import useWallet from '../hooks/useWallet';
-import { useCurrentMutableState as useRef } from '../hooks/useCurrentMutableState';
-import InAppWalletConnector from '../customConnectors/InAppWalletConnector';
-import { usePrevious } from '../hooks/usePrevious';
+import { useEffect } from "react";
+import { useAccount } from "../context/account";
+import { useWeb3, Connectors } from "../hooks/useWeb3";
+import useWallet from "../hooks/useWallet";
+import { useCurrentMutableState as useRef } from "../hooks/useCurrentMutableState";
+import InAppWalletConnector from "../customConnectors/InAppWalletConnector";
+import { usePrevious } from "../hooks/usePrevious";
 
 export const useRegularWallet = () => {
-  const { connector: web3Connector, library: web3, address: web3Account } = useWeb3();
+  const {
+    connector: web3Connector,
+    library: web3,
+    address: web3Account,
+  } = useWeb3();
 
   const { connectCmd, disconnectCmd, wallet, chainId } = useAccount();
 
@@ -33,31 +37,31 @@ export const useRegularWallet = () => {
     const web3Connector = __web3Connector.current;
     const connectCmd = __connectCmd.current;
 
-    if(!web3Connector) return;
-    if(connectCmd.connector !== Connectors.InAppWallet) return;
-    if(!web3Connector.changeChainId) return;
+    if (!web3Connector) return;
+    if (connectCmd.connector !== Connectors.InAppWallet) return;
+    if (!web3Connector.changeChainId) return;
 
     web3Connector.changeChainId(chainId);
-  }, [chainId])
+  }, [chainId]);
 
   useEffect(() => {
     const setNewMnemonic = __setNewMnemonic.current;
 
     if (!wallet.mnemonic.data) return;
     setNewMnemonic(wallet.mnemonic.data);
-
   }, [wallet.mnemonic.data]);
 
   useEffect(() => {
     const web3Connector = __web3Connector.current;
     const wallet = __wallet.current;
-    if (!wallet.addAddressCmd.is.ready || wallet.addAddressCmd.is.running) return;
+    if (!wallet.addAddressCmd.is.ready || wallet.addAddressCmd.is.running)
+      return;
 
     try {
       wallet.addAddressCmd.start();
-      if (!wallet.mnemonic.data) throw new Error('no mnemonic');
-      if (!web3Connector) throw new Error('connector not started');
-      if (!web3Connector?.addWalletAddress) throw new Error('wrong connector');
+      if (!wallet.mnemonic.data) throw new Error("no mnemonic");
+      if (!web3Connector) throw new Error("connector not started");
+      if (!web3Connector?.addWalletAddress) throw new Error("wrong connector");
       web3Connector?.addWalletAddress();
 
       wallet.addAddressCmd.done();
@@ -69,14 +73,16 @@ export const useRegularWallet = () => {
   useEffect(() => {
     const web3Connector = __web3Connector.current;
     const wallet = __wallet.current;
-    if (!wallet.removeAddressCmd.is.ready || wallet.removeAddressCmd.is.running) return;
+    if (!wallet.removeAddressCmd.is.ready || wallet.removeAddressCmd.is.running)
+      return;
 
     try {
       wallet.removeAddressCmd.start();
-      if (!wallet.mnemonic.data) throw new Error('no mnemonic');
-      if (!web3Connector) throw new Error('connector not started');
+      if (!wallet.mnemonic.data) throw new Error("no mnemonic");
+      if (!web3Connector) throw new Error("connector not started");
 
-      if (!web3Connector?.removeWalletAddress) throw new Error('wrong connector');
+      if (!web3Connector?.removeWalletAddress)
+        throw new Error("wrong connector");
       web3Connector?.removeWalletAddress(wallet.removeAddressCmd.address);
 
       wallet.removeAddressCmd.done();
@@ -86,16 +92,20 @@ export const useRegularWallet = () => {
   }, [wallet.removeAddressCmd.is.ready]);
 
   useEffect(() => {
-    const getMnemonic = async() => {
+    const getMnemonic = async () => {
       const setNewMnemonic = __setNewMnemonic.current;
       const wallet = __wallet.current;
       const mnemonic = await __getMnemonic.current();
-      if (!wallet.mnemonic.restoreCmd.is.ready || wallet.mnemonic.restoreCmd.is.running) return;
+      if (
+        !wallet.mnemonic.restoreCmd.is.ready ||
+        wallet.mnemonic.restoreCmd.is.running
+      )
+        return;
 
       try {
         wallet.mnemonic.restoreCmd.start();
         if (!mnemonic || mnemonic === "undefined") {
-          throw new Error('no mnemonic');
+          throw new Error("no mnemonic");
         }
         wallet.mnemonic.set(mnemonic);
         setNewMnemonic(mnemonic);
@@ -103,7 +113,7 @@ export const useRegularWallet = () => {
       } catch (e) {
         wallet.mnemonic.restoreCmd.failed({ message: e.message || e.reason });
       }
-    }
+    };
     getMnemonic();
   }, [wallet.mnemonic.restoreCmd.is.ready]);
 
@@ -120,7 +130,7 @@ export const useRegularWallet = () => {
     if (!wallet.mnemonic.data) return;
 
     const accounts = new Set();
-    Object.keys(web3.eth.accounts.wallet).forEach(key => {
+    Object.keys(web3.eth.accounts.wallet).forEach((key) => {
       if (!web3.eth.accounts.wallet[parseInt(key)]?.address) return;
       accounts.add(web3.eth.accounts.wallet[parseInt(key)].address);
     });
@@ -137,15 +147,15 @@ export const useRegularWallet = () => {
   }, [web3WalletAddressesAmount]);
 
   useEffect(() => {
-    const getActiveAccount = async() => {
+    const getActiveAccount = async () => {
       const wallet = __wallet.current;
 
-      const activeAccount = await  __getActiveAccountFromStorage.current();
+      const activeAccount = await __getActiveAccountFromStorage.current();
       if (!activeAccount) return;
       wallet.setActiveAccount(activeAccount);
       InAppWalletConnector.setActiveAccount(activeAccount);
-    }
-    getActiveAccount()
+    };
+    getActiveAccount();
   }, []);
 
   useEffect(() => {
@@ -165,7 +175,7 @@ export const useRegularWallet = () => {
   }, [connectCmd.is.ready, web3Account]);
 
   const prevAccount = usePrevious(web3Account);
-  
+
   useEffect(() => {
     const setAccount = __setAccount.current;
 
@@ -179,7 +189,7 @@ export const useRegularWallet = () => {
     const disconnectCmd = __disconnectCmd.current;
     const wallet = __wallet.current;
 
-    if(!disconnectCmd.is.done) return;
+    if (!disconnectCmd.is.done) return;
     setAccount("");
     wallet.setMnemonic(undefined);
   }, [disconnectCmd.is.done]);

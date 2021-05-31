@@ -1,19 +1,19 @@
-export * from './useConnect';
+export * from "./useConnect";
 
-export * from './useNewBlockSubscribe';
+export * from "./useNewBlockSubscribe";
 
-export * from './useBalances';
+export * from "./useBalances";
 
-export * from './useBackup';
+export * from "./useBackup";
 
-export * from './useCreateOnChainContract';
+export * from "./useCreateOnChainContract";
 
-export * from './useInheritance';
+export * from "./useInheritance";
 
-export * from './useTransactions';
+export * from "./useTransactions";
 
-export * from './useSetupOnChainContract';
+export * from "./useSetupOnChainContract";
 
-export * from './useRegularWallet';
+export * from "./useRegularWallet";
 
-export * from './useDisconnect';
+export * from "./useDisconnect";

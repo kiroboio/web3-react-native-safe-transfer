@@ -1,9 +1,9 @@
-import Web3 from 'web3';
-import { utils } from 'ethers';
-import { AbstractConnector } from '@web3-react/abstract-connector';
-import { Connectors } from '../hooks/useWeb3';
-import SecureLS from 'secure-ls';
-import { ChainIds } from '../stores/account';
+import Web3 from "web3";
+import { utils } from "ethers";
+import { AbstractConnector } from "@web3-react/abstract-connector";
+import { Connectors } from "../hooks/useWeb3";
+import SecureLS from "secure-ls";
+import { ChainIds } from "../stores/account";
 
 export interface NetworkConnectorArguments {
   urls: {
@@ -24,7 +24,10 @@ interface IInAppWalletConnector extends AbstractConnector {
   changeChainId(chainId: ChainIds): void;
 }
 
-class InAppWalletConnector extends AbstractConnector implements IInAppWalletConnector {
+class InAppWalletConnector
+  extends AbstractConnector
+  implements IInAppWalletConnector
+{
   private secureStorage = new SecureLS();
   public static DEFAULT_PATH = "m/44'/60'/0'/0/0";
 
@@ -32,7 +35,7 @@ class InAppWalletConnector extends AbstractConnector implements IInAppWalletConn
 
   private getPaths = () => {
     try {
-      return this.secureStorage.get('paths') || {};
+      return this.secureStorage.get("paths") || {};
     } catch (e) {
       return {};
     }
@@ -61,10 +64,10 @@ class InAppWalletConnector extends AbstractConnector implements IInAppWalletConn
   private hdNode: utils.HDNode | undefined = undefined;
 
   public getPrivateKeys = (): string[] => {
-    if (!InAppWalletConnector.mnemonic) throw new Error('mnemonic not found');
+    if (!InAppWalletConnector.mnemonic) throw new Error("mnemonic not found");
     const privateKeys: string[] = [];
     const hdNode = this.hdNode;
-    if(!hdNode) return [];
+    if (!hdNode) return [];
     const walletFirst = hdNode.derivePath(InAppWalletConnector.DEFAULT_PATH);
     if (this.paths[walletFirst.address]) {
       Object.keys(this.paths[walletFirst.address]).map((key: string) =>
@@ -77,7 +80,10 @@ class InAppWalletConnector extends AbstractConnector implements IInAppWalletConn
     return privateKeys;
   };
 
-  constructor({ urls, defaultChainId }: NetworkConnectorArguments & { path?: string }) {
+  constructor({
+    urls,
+    defaultChainId,
+  }: NetworkConnectorArguments & { path?: string }) {
     super();
     this.providers = urls;
     this.chainId = defaultChainId || 4;
@@ -85,9 +91,11 @@ class InAppWalletConnector extends AbstractConnector implements IInAppWalletConn
   }
 
   public setWeb3 = () => {
-    if (!InAppWalletConnector.mnemonic) throw new Error('mnemonic not found');
+    if (!InAppWalletConnector.mnemonic) throw new Error("mnemonic not found");
     this.hdNode = utils.HDNode.fromMnemonic(InAppWalletConnector.mnemonic);
-    const provider = new Web3.providers.WebsocketProvider(this.providers[this.chainId || 4])
+    const provider = new Web3.providers.WebsocketProvider(
+      this.providers[this.chainId || 4]
+    );
     const web3 = new Web3(provider);
     const privateKeys = this.getPrivateKeys();
 
@@ -103,12 +111,13 @@ class InAppWalletConnector extends AbstractConnector implements IInAppWalletConn
     }
 
     this.addresses = Array.from(addresses);
-    InAppWalletConnector.activeAccount = InAppWalletConnector.activeAccount || this.addresses[0];
+    InAppWalletConnector.activeAccount =
+      InAppWalletConnector.activeAccount || this.addresses[0];
     this.web3 = web3;
   };
 
   public handleAccountChanged(account?: string): void {
-    console.log("handleAccountChanged", account)
+    console.log("handleAccountChanged", account);
     InAppWalletConnector.setActiveAccount(account);
     if (!account) return;
     this.emitUpdate({ account });
@@ -116,21 +125,26 @@ class InAppWalletConnector extends AbstractConnector implements IInAppWalletConn
 
   public addWalletAddress = (): void => {
     const hdNode = this.hdNode;
-    if(!hdNode) return;
-    const walletFirstAddress = hdNode.derivePath(InAppWalletConnector.DEFAULT_PATH).address;
+    if (!hdNode) return;
+    const walletFirstAddress = hdNode.derivePath(
+      InAppWalletConnector.DEFAULT_PATH
+    ).address;
 
     const setNewAddress = (privateKey: string) => {
-      const { address } = this.web3.eth.accounts.privateKeyToAccount(privateKey);
+      const { address } =
+        this.web3.eth.accounts.privateKeyToAccount(privateKey);
       this.web3.eth.accounts.wallet.add({
         privateKey,
         address,
       });
       this.addresses.push(address);
-      this.secureStorage.set('paths', this.paths);
+      this.secureStorage.set("paths", this.paths);
     };
 
     const onEmptyKeyNotFounded = () => {
-      const keysAmount: number = Object.keys(this.paths[walletFirstAddress]).length;
+      const keysAmount: number = Object.keys(
+        this.paths[walletFirstAddress]
+      ).length;
       const walletAccount = hdNode.derivePath(`m/44'/60'/0'/0/${keysAmount}`);
       this.paths[walletFirstAddress][keysAmount] = walletAccount.address;
       const privateKey = walletAccount.privateKey;
@@ -147,7 +161,10 @@ class InAppWalletConnector extends AbstractConnector implements IInAppWalletConn
 
         setNewAddress(privateKey);
         break;
-      } else if (index === Object.keys(this.paths[walletFirstAddress]).length - 1) {
+      } else if (
+        index ===
+        Object.keys(this.paths[walletFirstAddress]).length - 1
+      ) {
         onEmptyKeyNotFounded();
       }
       index++;
@@ -156,14 +173,16 @@ class InAppWalletConnector extends AbstractConnector implements IInAppWalletConn
 
   public removeWalletAddress = (address: string): void => {
     const hdNode = this.hdNode;
-    if(!hdNode) return;
+    if (!hdNode) return;
     this.web3.eth.accounts.wallet.remove(address);
-    this.addresses = this.addresses.filter(a => a !== address);
-    const walletFirstAddress = hdNode.derivePath(InAppWalletConnector.DEFAULT_PATH).address;
+    this.addresses = this.addresses.filter((a) => a !== address);
+    const walletFirstAddress = hdNode.derivePath(
+      InAppWalletConnector.DEFAULT_PATH
+    ).address;
     Object.keys(this.paths[walletFirstAddress]).forEach((key: string) => {
       if (this.paths[walletFirstAddress][Number(key)] === address) {
         delete this.paths[walletFirstAddress][Number(key)];
-        this.secureStorage.set('paths', this.paths);
+        this.secureStorage.set("paths", this.paths);
       }
     });
   };

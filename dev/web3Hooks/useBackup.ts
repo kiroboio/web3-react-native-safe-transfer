@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-import { useAccount, useContract } from '..';
-import { useCurrentMutableState as useRef } from '../hooks/useCurrentMutableState';
-import { ITransaction, ITransactionType } from '../stores/account';
-import { useProcessTransactions } from '../hooks/useProcessTransactions';
+import { useEffect } from "react";
+import { useAccount, useContract } from "..";
+import { useCurrentMutableState as useRef } from "../hooks/useCurrentMutableState";
+import { ITransaction, ITransactionType } from "../stores/account";
+import { useProcessTransactions } from "../hooks/useProcessTransactions";
 
 const useBackup = () => {
   const { onChainWalletDetails, transactions, backup, wallet } = useAccount();
@@ -18,21 +18,21 @@ const useBackup = () => {
     createCmd,
     resetTimerCmd,
     activateByTimerCmd,
-    state
+    state,
   } = backup;
   const { claimOwnershipCmd } = onChainWalletDetails;
 
   const onChainWalletAccount = onChainWalletDetails.account;
   const onChainWalletContract = walletContract;
   const backupEvents = [
-    'BackupActivated',
-    'BackupChanged',
-    'BackupEnabled',
-    'BackupPayment',
-    'BackupRegistered',
-    'BackupRemoved',
-    'OwnershipReclaimed',
-    'OwnershipTransferred'
+    "BackupActivated",
+    "BackupChanged",
+    "BackupEnabled",
+    "BackupPayment",
+    "BackupRegistered",
+    "BackupRemoved",
+    "OwnershipReclaimed",
+    "OwnershipTransferred",
   ];
 
   const removeBackup = async () => {
@@ -40,8 +40,8 @@ const useBackup = () => {
     const trxRequest: Partial<ITransaction> = {
       to: onChainWalletAccount,
       from: wallet.account,
-      value: '0',
-      type: 'REMOVE BACKUP',
+      value: "0",
+      type: "REMOVE BACKUP",
     };
 
     trxRequest.data = onChainWalletContract.methods.removeBackup().encodeABI();
@@ -55,41 +55,52 @@ const useBackup = () => {
 
     const trxRequest: Partial<ITransaction> = {
       to: onChainWalletAccount,
-      type: 'SET BACKUP',
+      type: "SET BACKUP",
       from: wallet.account,
-      value: '0',
+      value: "0",
     };
-    const setBackup = onChainWalletContract.methods.setBackup(address, formTimeout);
+    const setBackup = onChainWalletContract.methods.setBackup(
+      address,
+      formTimeout
+    );
     trxRequest.data = setBackup.encodeABI();
     const trx = createTransaction(trxRequest);
     await sendTransaction(trx);
   };
 
-  const backupStates = ['PENDING', 'REGISTERED', 'ENABLED', 'ACTIVATED'] as const;
+  const backupStates = [
+    "PENDING",
+    "REGISTERED",
+    "ENABLED",
+    "ACTIVATED",
+  ] as const;
 
   const GET_BACKUP_DATA_METHODS = [
     {
-      name: 'getBackupState',
-      setter: (stateIndex: string) => backup.setState(backupStates[Number(stateIndex)]),
+      name: "getBackupState",
+      setter: (stateIndex: string) =>
+        backup.setState(backupStates[Number(stateIndex)]),
     },
-    { name: 'getBackupWallet', setter: backup.setWalletAddress },
-    { name: 'owner', setter: backup.setOwnerAddress },
-    { name: 'isOwner', setter: backup.setIsOwner },
-    { name: 'getBackupTimeout', setter: backup.setTimeout },
-    { name: 'getBackupTimestamp', setter: backup.setTimestamp },
+    { name: "getBackupWallet", setter: backup.setWalletAddress },
+    { name: "owner", setter: backup.setOwnerAddress },
+    { name: "isOwner", setter: backup.setIsOwner },
+    { name: "getBackupTimeout", setter: backup.setTimeout },
+    { name: "getBackupTimestamp", setter: backup.setTimestamp },
   ];
 
   const updateBackupData = async () => {
     if (!onChainWalletContract) return;
     await Promise.all(
-      GET_BACKUP_DATA_METHODS.map(async method => {
-        const someData = await onChainWalletContract.methods[method.name]().call();
+      GET_BACKUP_DATA_METHODS.map(async (method) => {
+        const someData = await onChainWalletContract.methods[
+          method.name
+        ]().call();
         method.setter(someData);
       })
     );
   };
 
-  const __backupEvents = useRef(backupEvents)
+  const __backupEvents = useRef(backupEvents);
   const __createBackup = useRef(createBackup);
   const __updateBackupData = useRef(updateBackupData);
   const __updateBackupDataCmd = useRef(updateBackupDataCmd);
@@ -109,13 +120,13 @@ const useBackup = () => {
 
     walletContract.events
       .allEvents()
-      .on('data', (e: unknown) => {
-        const backupEvent = e as { event: string }
+      .on("data", (e: unknown) => {
+        const backupEvent = e as { event: string };
         if (!backupEvents.includes(backupEvent.event)) return;
         updateBackupData();
       })
-      .on('error', (e: unknown) => {
-        const backupEvent = e as { event: string }
+      .on("error", (e: unknown) => {
+        const backupEvent = e as { event: string };
         if (!backupEvents.includes(backupEvent.event)) return;
         updateBackupData();
       });
@@ -133,14 +144,13 @@ const useBackup = () => {
     activateByTimerCmd.done();
   }, [state]);
 
-
   async function approveBackup() {
     if (!onChainWalletContract) return;
     const trxRequest: Partial<ITransaction> = {
       from: wallet.account,
       to: onChainWalletAccount,
-      type: 'SET BACKUP',
-      value: '0',
+      type: "SET BACKUP",
+      value: "0",
     };
 
     trxRequest.data = onChainWalletContract.methods.accept().encodeABI();
@@ -153,7 +163,7 @@ const useBackup = () => {
     if (!onChainWalletContract) return;
     let trxRequest: Partial<ITransaction> = {
       to: onChainWalletAccount,
-      type: 'DECLINE BACKUP',
+      type: "DECLINE BACKUP",
     };
 
     trxRequest = onChainWalletContract.methods.decline().encodeABI();
@@ -168,10 +178,12 @@ const useBackup = () => {
 
     const trxRequest: Partial<ITransaction> = {
       to: onChainWalletAccount,
-      type: 'RESET BACKUP TIMER',
+      type: "RESET BACKUP TIMER",
     };
 
-    trxRequest.data = onChainWalletContract.methods.setBackup(walletAddress, timeout).encodeABI();
+    trxRequest.data = onChainWalletContract.methods
+      .setBackup(walletAddress, timeout)
+      .encodeABI();
 
     const trx = createTransaction(trxRequest);
     await sendTransaction(trx);
@@ -182,8 +194,8 @@ const useBackup = () => {
     const trxRequest: Partial<ITransaction> = {
       to: onChainWalletAccount,
       from: wallet.account,
-      type: 'START TIMER',
-      value: '0',
+      type: "START TIMER",
+      value: "0",
     };
 
     trxRequest.data = await onChainWalletContract.methods.enable().encodeABI();
@@ -360,9 +372,13 @@ const useBackup = () => {
     };
 
     if (backup.isBackup(wallet.account)) {
-      trxRequest.data = onChainWalletContract.methods.claimOwnership().encodeABI();
+      trxRequest.data = onChainWalletContract.methods
+        .claimOwnership()
+        .encodeABI();
     } else {
-      trxRequest.data = onChainWalletContract.methods.reclaimOwnership().encodeABI();
+      trxRequest.data = onChainWalletContract.methods
+        .reclaimOwnership()
+        .encodeABI();
     }
     const trx = createTransaction(trxRequest);
     await sendTransaction(trx);
@@ -379,7 +395,7 @@ const useBackup = () => {
     const claimReclaimOwnershipAsync = async () => {
       try {
         claimOwnershipCmd.start();
-        await claimReclaimOwnership('CLAIM OWNERSHIP');
+        await claimReclaimOwnership("CLAIM OWNERSHIP");
         claimOwnershipCmd.done();
         updateBackupDataCmd.prepare();
       } catch (e) {

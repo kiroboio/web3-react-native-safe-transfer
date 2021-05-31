@@ -7,8 +7,8 @@ export const useDisconnect = () => {
   const { disconnect: web3Disconnect, library: web3 } = useWeb3();
   const { disconnectCmd, connectCmd } = useAccount();
 
-  const __connectCmd = useRef(connectCmd)
-  const __disconnectCmd = useRef(disconnectCmd)
+  const __connectCmd = useRef(connectCmd);
+  const __disconnectCmd = useRef(disconnectCmd);
   const __web3Disconnect = useRef(web3Disconnect);
   const __web3 = useRef(web3);
 

@@ -669,20 +669,6 @@ export const Transfers = types
     },
   }));
 
-export const Web3Provider = types
-  .model("Web3Provider", {
-    block: types.optional(types.number, -1),
-    balance: types.optional(types.string, ""),
-  })
-  .actions((self) => ({
-    setBlock(block: number) {
-      self.block = block;
-    },
-    setBalance(balance: string) {
-      self.balance = balance;
-    },
-  }));
-
 const Mnemonic = types
   .model("Mnemonic", {
     data: types.optional(types.string, ""),
@@ -1868,15 +1854,12 @@ onSnapshot(store, (snapshot) => {
   prevAddress = snapshot.wallet.account;
 });
 
-
 export const accountStore: AccountStoreType = store;
 
 let prevAddress: string | undefined;
 const onAddressChangeActions: (() => void)[] = [];
 
 export type IAccountStore = Instance<typeof accountStore>;
-
-export const web3ProviderStore = Web3Provider.create();
 
 export type ITransfers = Instance<typeof Transfers>;
 /*

@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import useSecureStorage, { UseSecureStorageRes } from './useSecureStorage';
-import InAppWalletConnector from '../customConnectors/InAppWalletConnector';
-import { generateMnemonic } from 'bip39';
+import { useState } from "react";
+import useSecureStorage, { UseSecureStorageRes } from "./useSecureStorage";
+import InAppWalletConnector from "../customConnectors/InAppWalletConnector";
+import { generateMnemonic } from "bip39";
 
 type Error = {
   isError: boolean;
   content: unknown;
 };
 
-const initError = { isError: false, content: '' };
+const initError = { isError: false, content: "" };
 
 const useWallet = (): {
   error: Error;
@@ -23,7 +23,6 @@ const useWallet = (): {
   getActiveAccountFromStorage: typeof getActiveAccountFromStorage;
   setActiveAccount: typeof setActiveAccount;
 } => {
-
   const [provider, setProvider] = useState<string>();
   const [mnemonic, setMnemonic] = useState<string>();
 
@@ -31,7 +30,7 @@ const useWallet = (): {
 
   const storage = useSecureStorage();
 
-  const getCredentialsFromStorage = async() => {
+  const getCredentialsFromStorage = async () => {
     if (storage.error.isError) {
       setError({ isError: true, content: storage.error.content });
       return { mnemonic: undefined, rpc: undefined };
@@ -39,8 +38,8 @@ const useWallet = (): {
     const secureStorageSuccess = storage as UseSecureStorageRes<{
       mnemonic: string;
     }>;
-    const storageMnemonic = await secureStorageSuccess.getItem('mnemonic');
-    const storageRpc = await secureStorageSuccess.getItem('rpc');
+    const storageMnemonic = await secureStorageSuccess.getItem("mnemonic");
+    const storageRpc = await secureStorageSuccess.getItem("rpc");
     return { mnemonic: storageMnemonic, rpc: storageRpc };
   };
 
@@ -53,8 +52,8 @@ const useWallet = (): {
       rpc: string;
       mnemonic: string;
     }>;
-    secureStorageSuccess.setItem('mnemonic', mnemonic);
-    secureStorageSuccess.setItem('rpc', rpc);
+    secureStorageSuccess.setItem("mnemonic", mnemonic);
+    secureStorageSuccess.setItem("rpc", rpc);
 
     setError({ isError: false, content: undefined });
   };
@@ -72,11 +71,11 @@ const useWallet = (): {
     const secureStorageSuccess = storage as UseSecureStorageRes<{
       mnemonic: string;
     }>;
-    secureStorageSuccess.setItem('mnemonic', mnemonic);
+    secureStorageSuccess.setItem("mnemonic", mnemonic);
     setMnemonic(mnemonic);
   };
 
-  const getActiveAccountFromStorage = async() => {
+  const getActiveAccountFromStorage = async () => {
     if (storage.error.isError) {
       setError({ isError: true, content: storage.error.content });
       return;
@@ -85,7 +84,7 @@ const useWallet = (): {
     const secureStorageSuccess = storage as UseSecureStorageRes<{
       activeAccount: string;
     }>;
-    return await secureStorageSuccess.getItem('activeAccount');
+    return await secureStorageSuccess.getItem("activeAccount");
   };
 
   const setActiveAccount = (account: string) => {
@@ -99,7 +98,7 @@ const useWallet = (): {
     const secureStorageSuccess = storage as UseSecureStorageRes<{
       activeAccountIndex: number;
     }>;
-    secureStorageSuccess.setItem('activeAccount', account);
+    secureStorageSuccess.setItem("activeAccount", account);
   };
 
   const generateNewMnemonic = () => {
@@ -112,11 +111,11 @@ const useWallet = (): {
     const secureStorageSuccess = storage as UseSecureStorageRes<{
       mnemonic: string;
     }>;
-    secureStorageSuccess.setItem('mnemonic', mnemonic);
+    secureStorageSuccess.setItem("mnemonic", mnemonic);
     setMnemonic(mnemonic);
   };
 
-  const getMnemonic = async() => {
+  const getMnemonic = async () => {
     if (storage.error.isError) {
       setError({ isError: true, content: storage.error.content });
       return;
@@ -124,7 +123,7 @@ const useWallet = (): {
     const secureStorageSuccess = storage as UseSecureStorageRes<{
       mnemonic: string;
     }>;
-    const storageMnemonic = await secureStorageSuccess.getItem('mnemonic');
+    const storageMnemonic = await secureStorageSuccess.getItem("mnemonic");
     return storageMnemonic;
   };
 

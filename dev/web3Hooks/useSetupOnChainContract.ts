@@ -1,32 +1,36 @@
-import { useEffect } from 'react';
-import FactoryJSON from '../abi/Factory.json';
-import WalletJSON from '../abi/Wallet.json';
-import { useAccount } from '..';
-import { useWeb3 } from '../hooks/useWeb3';
-import { AbiItem } from 'web3-utils';
-import { useDispatchContract } from '..';
-import erc20Abi from '../abi/erc20.json';
-import { isValidAddress } from '../utils/address';
-import { useCurrentMutableState as useRef } from '../hooks/useCurrentMutableState';
-import { tokens as tokensConfig } from '../stores/account';
-import { usePrevious } from '../hooks/usePrevious';
+import { useEffect } from "react";
+import FactoryJSON from "../abi/Factory.json";
+import WalletJSON from "../abi/Wallet.json";
+import { useAccount } from "..";
+import { useWeb3 } from "../hooks/useWeb3";
+import { AbiItem } from "web3-utils";
+import { useDispatchContract } from "..";
+import erc20Abi from "../abi/erc20.json";
+import { isValidAddress } from "../utils/address";
+import { useCurrentMutableState as useRef } from "../hooks/useCurrentMutableState";
+import { tokens as tokensConfig } from "../stores/account";
+import { usePrevious } from "../hooks/usePrevious";
 
-const OnChainWalletAddress = '0xC97Bf7C8f20D32BD28e92845Eb18cA4462160110';
+const OnChainWalletAddress = "0xC97Bf7C8f20D32BD28e92845Eb18cA4462160110";
 
 export const useSetupOnChainContract = () => {
   const dispatchContact = useDispatchContract();
 
   const { library, address } = useWeb3();
   const { onChainWalletDetails, wallet, tokens, chainId } = useAccount();
-  const { createWalletTransactionCmd, claimOwnershipCmd } = onChainWalletDetails;
+  const { createWalletTransactionCmd, claimOwnershipCmd } =
+    onChainWalletDetails;
 
   const setupOnChainContract = () => {
     try {
       wallet.createWalletCmd.start();
       const factoryJsonAbi = FactoryJSON.abi as AbiItem[];
-      const contract = new library.eth.Contract(factoryJsonAbi, OnChainWalletAddress);
+      const contract = new library.eth.Contract(
+        factoryJsonAbi,
+        OnChainWalletAddress
+      );
 
-      dispatchContact({ payload: contract, type: 'setOnChainContract' });
+      dispatchContact({ payload: contract, type: "setOnChainContract" });
       wallet.createWalletCmd.done();
       return contract;
     } catch (e) {
@@ -42,35 +46,40 @@ export const useSetupOnChainContract = () => {
     if (!address || !library) return;
     try {
       const onChainContract = setupOnChainContract();
-      const walletAccount = await onChainContract?.methods.getWallet(wallet.account).call();
+      const walletAccount = await onChainContract?.methods
+        .getWallet(wallet.account)
+        .call();
       if (isValidAddress(walletAccount)) {
         onChainWalletDetails.setAccount(walletAccount);
         const walletJsonAbi = WalletJSON.abi as AbiItem[];
         const contract = new library.eth.Contract(walletJsonAbi, walletAccount);
         onChainWalletDetails.setIsNoWallet(false);
-        dispatchContact({ payload: contract, type: 'setOnChainWalletContract' });
+        dispatchContact({
+          payload: contract,
+          type: "setOnChainWalletContract",
+        });
       } else {
-        onChainWalletDetails.setAccount('');
+        onChainWalletDetails.setAccount("");
         onChainWalletDetails.setIsNoWallet(true);
       }
     } catch (err) {
-      onChainWalletDetails.setAccount('');
+      onChainWalletDetails.setAccount("");
       onChainWalletDetails.setIsNoWallet(true);
       throw new Error(err);
     }
   };
 
   const tryToSetupTokenContract = async () => {
-    if (tokens.token === 'none') return;
+    if (tokens.token === "none") return;
     try {
       const erc20AbiItem = erc20Abi as AbiItem[];
       const contract = new library.eth.Contract(
         erc20AbiItem,
         tokensConfig[tokens.token].address[chainId]
       );
-      dispatchContact({ payload: contract, type: 'setOnChainTokenContract' });
+      dispatchContact({ payload: contract, type: "setOnChainTokenContract" });
     } catch (err) {
-      dispatchContact({ payload: undefined, type: 'setOnChainTokenContract' });
+      dispatchContact({ payload: undefined, type: "setOnChainTokenContract" });
       throw new Error(err);
     }
   };
@@ -103,7 +112,11 @@ export const useSetupOnChainContract = () => {
     const tryToSetupContractsAsync = __tryToSetupContractsAsync.current;
     const createWalletTransactionCmd = __createWalletTransactionCmd.current;
 
-    if (!createWalletTransactionCmd.is.done || createWalletTransactionCmd.is.running) return;
+    if (
+      !createWalletTransactionCmd.is.done ||
+      createWalletTransactionCmd.is.running
+    )
+      return;
     tryToSetupContractsAsync();
   }, [createWalletTransactionCmd.is.done]);
 
@@ -134,14 +147,16 @@ export const useSetupOnChainContract = () => {
   useEffect(() => {
     if (prevToken === tokens.token) return;
 
-    const tryToSetupTokenContractsAsync = __tryToSetupTokenContractsAsync.current;
+    const tryToSetupTokenContractsAsync =
+      __tryToSetupTokenContractsAsync.current;
     tryToSetupTokenContractsAsync();
   }, [tokens.token, prevToken]);
 
   useEffect(() => {
     if (!onChainWalletDetails.createWalletCmd.is.done) return;
 
-    const tryToSetupTokenContractsAsync = __tryToSetupTokenContractsAsync.current;
+    const tryToSetupTokenContractsAsync =
+      __tryToSetupTokenContractsAsync.current;
     tryToSetupTokenContractsAsync();
   }, [onChainWalletDetails.createWalletCmd.is.done]);
 

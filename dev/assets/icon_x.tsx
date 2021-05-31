@@ -1,4 +1,3 @@
-
 import React from "react";
 export function IconX() {
   return (
@@ -10,7 +9,12 @@ export function IconX() {
       clipRule="evenodd"
       viewBox="0 0 14 14"
     >
-      <path fill="none" stroke="" strokeWidth="" d="M13 1L1 13M1 1l12 12"></path>
+      <path
+        fill="none"
+        stroke=""
+        strokeWidth=""
+        d="M13 1L1 13M1 1l12 12"
+      ></path>
     </svg>
   );
 }

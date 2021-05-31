@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React from "react";
 
 interface Props {
   color?: string;
@@ -22,7 +22,11 @@ export function IconLogoWithTagline(props: Props) {
           fillRule="nonzero"
           d="M244.1 44.6h-21.9l-11 19 11 19h21.9l11-19-11-19z"
         ></path>
-        <path fill="#EE499A" fillRule="nonzero" d="M255.1 63.6l-11-19h-21.9l10.9 19h22z"></path>
+        <path
+          fill="#EE499A"
+          fillRule="nonzero"
+          d="M255.1 63.6l-11-19h-21.9l10.9 19h22z"
+        ></path>
         <path
           fill="#DB207A"
           fillRule="nonzero"
@@ -39,7 +43,11 @@ export function IconLogoWithTagline(props: Props) {
           d="M9.3 61.9h.1l15.3-26.1h9.5L18 62.7l18.2 33.4h-9.8L9.2 66.9"
         ></path>
         <path fill="none" d="M13.3 60.2v1.7"></path>
-        <path fill={color} fillRule="nonzero" d="M39.5 35.8H49V96.1H39.5z"></path>
+        <path
+          fill={color}
+          fillRule="nonzero"
+          d="M39.5 35.8H49V96.1H39.5z"
+        ></path>
         <path
           fill={color}
           fillRule="nonzero"
