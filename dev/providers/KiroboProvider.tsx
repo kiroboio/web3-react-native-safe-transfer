@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React from "react";
 import { AccountContext } from '../context/account';
 import { accountStore } from '../stores/account';
 import { Web3Provider } from './Web3Provider';

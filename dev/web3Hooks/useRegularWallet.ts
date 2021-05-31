@@ -152,7 +152,7 @@ export const useRegularWallet = () => {
     const wallet = __wallet.current;
     const web3Connector = __web3Connector.current;
     const setActiveAccount = __setActiveAccount.current;
-
+    console.log("regulat wallet sset new active account", wallet.activeAccount);
     if (!web3Connector?.handleAccountChanged) return;
     web3Connector.handleAccountChanged(wallet.activeAccount);
     setActiveAccount(wallet.activeAccount);
@@ -160,7 +160,6 @@ export const useRegularWallet = () => {
 
   useEffect(() => {
     const setAccount = __setAccount.current;
-
     if (!web3Account) return;
     setAccount(web3Account);
   }, [connectCmd.is.ready, web3Account]);

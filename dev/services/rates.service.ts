@@ -9,7 +9,6 @@ export const getRate = () =>
     })
     .then(response => {
       const eth = response.data?.rates?.eth?.value;
-
       const usd = response.data?.rates?.usd?.value;
 
       if (Boolean(eth) && Boolean(usd)) return Math.round((usd / eth) * 10000) / 10000;

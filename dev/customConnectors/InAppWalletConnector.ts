@@ -81,13 +81,14 @@ class InAppWalletConnector extends AbstractConnector implements IInAppWalletConn
     super();
     this.providers = urls;
     this.chainId = defaultChainId || 4;
+    this.setWeb3();
   }
 
   public setWeb3 = () => {
     if (!InAppWalletConnector.mnemonic) throw new Error('mnemonic not found');
-
     this.hdNode = utils.HDNode.fromMnemonic(InAppWalletConnector.mnemonic);
-    const web3 = new Web3(new Web3.providers.WebsocketProvider(this.providers[this.chainId || 4]));
+    const provider = new Web3.providers.WebsocketProvider(this.providers[this.chainId || 4])
+    const web3 = new Web3(provider);
     const privateKeys = this.getPrivateKeys();
 
     const addresses = new Set<string>();
@@ -97,6 +98,7 @@ class InAppWalletConnector extends AbstractConnector implements IInAppWalletConn
         privateKey: privateKey,
         address,
       });
+
       addresses.add(address);
     }
 
@@ -106,6 +108,7 @@ class InAppWalletConnector extends AbstractConnector implements IInAppWalletConn
   };
 
   public handleAccountChanged(account?: string): void {
+    console.log("handleAccountChanged", account)
     InAppWalletConnector.setActiveAccount(account);
     if (!account) return;
     this.emitUpdate({ account });

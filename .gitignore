@@ -6,8 +6,7 @@
 .pnp.js
 
 # lib
-/lib
-
+/kirobo-web3-lib*
 
 # debug
 npm-debug.log*

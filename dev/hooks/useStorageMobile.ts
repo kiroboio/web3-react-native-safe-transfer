@@ -46,14 +46,14 @@ const useStorageMobile =
             setStorage(createStorage())
         }
 
-        const handleSetError = (e) => {
+        const handleSetError = (e: { message: string }) => {
           setError((errorState) => ({
             ...errorState,
             isError: true,
             content: e,
           }))
 
-          throw new Error(e)
+          throw new Error(e.message)
         }
 
         const setItem = (itemName: string, item: string) => {

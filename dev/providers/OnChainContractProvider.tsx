@@ -1,5 +1,5 @@
 import React, { useContext, useReducer } from 'react';
-import { Contract } from 'web3-eth-contract';
+import { Contract } from 'web3-eth/node_modules/web3-eth-contract';
 
 export type OnChainContractState = {
   contract?: Contract;

@@ -130,13 +130,6 @@ export const useSetupOnChainContract = () => {
     tryToSetupContractsAsync();
   }, [prevChainId, chainId]);
 
-  // useEffect(() => {
-  //   if(!connectCmd.is.done) return;
-
-  //   const tryToSetupContractsAsync = __tryToSetupContractsAsync.current;
-  //   tryToSetupContractsAsync();
-  // }, [connectCmd.is.done]);
-
   const prevToken = usePrevious(tokens.token);
   useEffect(() => {
     if (prevToken === tokens.token) return;
@@ -144,19 +137,6 @@ export const useSetupOnChainContract = () => {
     const tryToSetupTokenContractsAsync = __tryToSetupTokenContractsAsync.current;
     tryToSetupTokenContractsAsync();
   }, [tokens.token, prevToken]);
-
-  // useEffect(() => {
-  //   if (prevChainId === chainId) return;
-
-  //   const tryToSetupTokenContractsAsync = __tryToSetupTokenContractsAsync.current;
-  //   tryToSetupTokenContractsAsync();
-  // }, [prevChainId, chainId]);
-
-  // useEffect(() => {
-  //   if (!wallet.createWalletCmd.is.done) return;
-  //   const tryToSetupTokenContractsAsync = __tryToSetupTokenContractsAsync.current;
-  //   tryToSetupTokenContractsAsync();
-  // }, [wallet.createWalletCmd.is.done]);
 
   useEffect(() => {
     if (!onChainWalletDetails.createWalletCmd.is.done) return;

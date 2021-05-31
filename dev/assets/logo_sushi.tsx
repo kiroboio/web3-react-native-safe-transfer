@@ -1,5 +1,5 @@
-import React from 'react';
 
+import React from "react";
 export const LogoSUSHI = () => {
   return (
     <svg viewBox="0 0 32 36" xmlns="http://www.w3.org/2000/svg">
