@@ -19,7 +19,7 @@ declare const useSecureStorageEmptyRes: {
     setNewSecureStorageConfig: undefined;
 };
 export declare type UseSecureStorageEmptyRes = typeof useSecureStorageEmptyRes;
-declare const useStorageMobile: () => {
+export declare const useStorageMobile: () => {
     error: Error;
     newStorage: import("@capacitor/storage").StoragePlugin;
     setItem: (itemName: string, item: string) => void;
@@ -30,4 +30,4 @@ declare const useStorageMobile: () => {
     getAllKeys: () => never[] | Promise<import("@capacitor/storage").KeysResult>;
     setNewSecureStorageConfig: () => void;
 };
-export default useStorageMobile;
+export {};

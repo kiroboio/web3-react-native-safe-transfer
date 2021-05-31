@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useAccount } from "../context/account";
 import { useWeb3, Connectors } from "../hooks/useWeb3";
-import useWallet from "../hooks/useWallet";
+import { useWallet } from "../hooks/useWallet";
 import { useCurrentMutableState as useRef } from "../hooks/useCurrentMutableState";
-import InAppWalletConnector from "../customConnectors/InAppWalletConnector";
+import { InAppWalletConnector } from "../customConnectors/InAppWalletConnector";
 import { usePrevious } from "../hooks/usePrevious";
 
 export const useRegularWallet = () => {

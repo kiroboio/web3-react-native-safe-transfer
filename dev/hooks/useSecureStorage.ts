@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SecureLS from "secure-ls";
 import isMobile from "ismobilejs";
-import useStorageMobile from "./useStorageMobile";
+import { useStorageMobile } from "./useStorageMobile";
 
 export type Error = {
   isError: boolean;
@@ -38,7 +38,7 @@ export type UseSecureStorageRes<T> = {
   ) => void;
 };
 
-const useSecureStorage = isMobile(window.navigator).any
+export const useSecureStorage = isMobile(window.navigator).any
   ? useStorageMobile
   : <T>(
       encryptionSecret?: string,
@@ -173,4 +173,3 @@ const useSecureStorage = isMobile(window.navigator).any
       };
     };
 
-export default useSecureStorage;

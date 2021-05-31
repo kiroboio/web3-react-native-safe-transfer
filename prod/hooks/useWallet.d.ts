@@ -3,7 +3,7 @@ declare type Error = {
     isError: boolean;
     content: unknown;
 };
-declare const useWallet: () => {
+export declare const useWallet: () => {
     error: Error;
     mnemonic: string | undefined;
     provider: string | undefined;
@@ -22,4 +22,4 @@ declare const useWallet: () => {
     getActiveAccountFromStorage: () => Promise<string | undefined>;
     setActiveAccount: (account: string) => void;
 };
-export default useWallet;
+export {};

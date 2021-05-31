@@ -9,7 +9,7 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import React, { useContext, useReducer } from 'react';
+import React, { useContext, useReducer } from "react";
 var initContract = {
     contract: undefined,
     tokenContract: undefined,
@@ -17,13 +17,13 @@ var initContract = {
 };
 var contractReducer = function (state, action) {
     switch (action.type) {
-        case 'setOnChainContract':
+        case "setOnChainContract":
             return __assign(__assign({}, state), { contract: action.payload });
-        case 'setOnChainWalletContract':
+        case "setOnChainWalletContract":
             return __assign(__assign({}, state), { walletContract: action.payload });
-        case 'setOnChainTokenContract':
+        case "setOnChainTokenContract":
             return __assign(__assign({}, state), { tokenContract: action.payload });
-        case 'cleanContracts':
+        case "cleanContracts":
             return initContract;
         default:
             return state;
@@ -40,7 +40,7 @@ export var ContractProvider = function (_a) {
 export var useDispatchContract = function () {
     var context = React.useContext(DispatchContext);
     if (context === undefined) {
-        throw new Error('useOnChainContract context is missing');
+        throw new Error("useOnChainContract context is missing");
     }
     return context;
 };

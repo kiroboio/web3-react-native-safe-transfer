@@ -49,11 +49,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import Web3 from 'web3';
-import { utils } from 'ethers';
-import { AbstractConnector } from '@web3-react/abstract-connector';
-import { Connectors } from '../hooks/useWeb3';
-import SecureLS from 'secure-ls';
+import Web3 from "web3";
+import { utils } from "ethers";
+import { AbstractConnector } from "@web3-react/abstract-connector";
+import { Connectors } from "../hooks/useWeb3";
+import SecureLS from "secure-ls";
 var InAppWalletConnector = /** @class */ (function (_super) {
     __extends(InAppWalletConnector, _super);
     function InAppWalletConnector(_a) {
@@ -62,7 +62,7 @@ var InAppWalletConnector = /** @class */ (function (_super) {
         _this.secureStorage = new SecureLS();
         _this.getPaths = function () {
             try {
-                return _this.secureStorage.get('paths') || {};
+                return _this.secureStorage.get("paths") || {};
             }
             catch (e) {
                 return {};
@@ -75,7 +75,7 @@ var InAppWalletConnector = /** @class */ (function (_super) {
         _this.hdNode = undefined;
         _this.getPrivateKeys = function () {
             if (!InAppWalletConnector.mnemonic)
-                throw new Error('mnemonic not found');
+                throw new Error("mnemonic not found");
             var privateKeys = [];
             var hdNode = _this.hdNode;
             if (!hdNode)
@@ -94,7 +94,7 @@ var InAppWalletConnector = /** @class */ (function (_super) {
         };
         _this.setWeb3 = function () {
             if (!InAppWalletConnector.mnemonic)
-                throw new Error('mnemonic not found');
+                throw new Error("mnemonic not found");
             _this.hdNode = utils.HDNode.fromMnemonic(InAppWalletConnector.mnemonic);
             var provider = new Web3.providers.WebsocketProvider(_this.providers[_this.chainId || 4]);
             var web3 = new Web3(provider);
@@ -110,7 +110,8 @@ var InAppWalletConnector = /** @class */ (function (_super) {
                 addresses.add(address);
             }
             _this.addresses = Array.from(addresses);
-            InAppWalletConnector.activeAccount = InAppWalletConnector.activeAccount || _this.addresses[0];
+            InAppWalletConnector.activeAccount =
+                InAppWalletConnector.activeAccount || _this.addresses[0];
             _this.web3 = web3;
         };
         _this.addWalletAddress = function () {
@@ -125,7 +126,7 @@ var InAppWalletConnector = /** @class */ (function (_super) {
                     address: address,
                 });
                 _this.addresses.push(address);
-                _this.secureStorage.set('paths', _this.paths);
+                _this.secureStorage.set("paths", _this.paths);
             };
             var onEmptyKeyNotFounded = function () {
                 var keysAmount = Object.keys(_this.paths[walletFirstAddress]).length;
@@ -144,7 +145,8 @@ var InAppWalletConnector = /** @class */ (function (_super) {
                     setNewAddress(privateKey);
                     break;
                 }
-                else if (index === Object.keys(_this.paths[walletFirstAddress]).length - 1) {
+                else if (index ===
+                    Object.keys(_this.paths[walletFirstAddress]).length - 1) {
                     onEmptyKeyNotFounded();
                 }
                 index++;
@@ -160,7 +162,7 @@ var InAppWalletConnector = /** @class */ (function (_super) {
             Object.keys(_this.paths[walletFirstAddress]).forEach(function (key) {
                 if (_this.paths[walletFirstAddress][Number(key)] === address) {
                     delete _this.paths[walletFirstAddress][Number(key)];
-                    _this.secureStorage.set('paths', _this.paths);
+                    _this.secureStorage.set("paths", _this.paths);
                 }
             });
         };
@@ -227,4 +229,4 @@ var InAppWalletConnector = /** @class */ (function (_super) {
     };
     return InAppWalletConnector;
 }(AbstractConnector));
-export default InAppWalletConnector;
+export { InAppWalletConnector };

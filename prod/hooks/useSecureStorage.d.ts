@@ -1,4 +1,4 @@
-import SecureLS from 'secure-ls';
+import SecureLS from "secure-ls";
 export declare type Error = {
     isError: boolean;
     content: unknown;
@@ -31,7 +31,7 @@ export declare type UseSecureStorageRes<T> = {
     getAllKeys: () => string[] | undefined;
     setNewSecureStorageConfig: (encryptionSecret: string, encodingType?: string) => void;
 };
-declare const useSecureStorage: (() => {
+export declare const useSecureStorage: (() => {
     error: import("./useStorageMobile").Error;
     newStorage: import("@capacitor/storage").StoragePlugin;
     setItem: (itemName: string, item: string) => void;
@@ -56,4 +56,4 @@ declare const useSecureStorage: (() => {
     getAllKeys: undefined;
     setNewSecureStorageConfig: undefined;
 } | UseSecureStorageRes<T & SecureLS>);
-export default useSecureStorage;
+export {};

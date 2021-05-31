@@ -34,18 +34,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import { useContract, useAccount } from '..';
-import { useWeb3 } from '../hooks/useWeb3';
-import { getRate } from '../services/rates.service';
-import { fromWei } from 'web3-utils';
-import { formatEther } from '../utils/ethereum';
-import { useCurrentMutableState as useRef } from '../hooks/useCurrentMutableState';
-import { usePrevious } from '../hooks/usePrevious';
+import * as React from "react";
+import { useContract, useAccount } from "..";
+import { useWeb3 } from "../hooks/useWeb3";
+import { getRate } from "../services/rates.service";
+import { fromWei } from "web3-utils";
+import { formatEther } from "../utils/ethereum";
+import { useCurrentMutableState as useRef } from "../hooks/useCurrentMutableState";
+import { usePrevious } from "../hooks/usePrevious";
 var getRateTimeout;
 var convertCryptoToFiat = function (rate, value) {
     var result = value.toString();
-    if (result !== '0') {
+    if (result !== "0") {
         var balanceInString = fromWei(value).toString();
         result = (parseFloat(balanceInString) * rate).toString();
     }
@@ -133,7 +133,9 @@ export var useBalances = function () {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, tokenContract.methods.balanceOf(wallet.account).call()];
+                    return [4 /*yield*/, tokenContract.methods
+                            .balanceOf(wallet.account)
+                            .call()];
                 case 2:
                     balance = _a.sent();
                     wallet.setTokenBalance(balance);
@@ -156,7 +158,9 @@ export var useBalances = function () {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, tokenContract.methods.balanceOf(onChainWalletDetails.account).call()];
+                    return [4 /*yield*/, tokenContract.methods
+                            .balanceOf(onChainWalletDetails.account)
+                            .call()];
                 case 2:
                     balance = _a.sent();
                     onChainWalletDetails.setTokenBalance(balance);
@@ -178,7 +182,9 @@ export var useBalances = function () {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, onChainWalletContract.methods.getBalance().call()];
+                    return [4 /*yield*/, onChainWalletContract.methods
+                            .getBalance()
+                            .call()];
                 case 2:
                     balance = _a.sent();
                     onChainWalletDetails.setBalance(balance.toString());
@@ -300,7 +306,8 @@ export var useBalances = function () {
     React.useEffect(function () {
         var onChainWalletTokenBalanceCmd = __onChainWalletTokenBalanceCmd.current;
         var setOnChainWalletTokenBalance = __setOnChainWalletTokenBalance.current;
-        if (!onChainWalletTokenBalanceCmd.is.ready || onChainWalletTokenBalanceCmd.is.running)
+        if (!onChainWalletTokenBalanceCmd.is.ready ||
+            onChainWalletTokenBalanceCmd.is.running)
             return;
         var getBalanceAsync = function () { return __awaiter(void 0, void 0, void 0, function () {
             var e_5;
@@ -334,7 +341,7 @@ export var useBalances = function () {
         });
     }); };
     var __setAllBalances = useRef(setAllBalances);
-    var successTransactions = transactions.items.filter(function (trx) { return trx.state === 'success'; });
+    var successTransactions = transactions.items.filter(function (trx) { return trx.state === "success"; });
     var prevBlock = usePrevious(block);
     React.useEffect(function () {
         var block = __block.current;
@@ -357,9 +364,9 @@ export var useBalances = function () {
         if (prevChainId === chainId)
             return;
         if (chainId === "notSupportedChainId") {
-            wallet.setBalance('0');
-            wallet.setBalanceInUsd('0');
-            wallet.setTokenBalance('0');
+            wallet.setBalance("0");
+            wallet.setBalanceInUsd("0");
+            wallet.setTokenBalance("0");
             return;
         }
         updateRate();

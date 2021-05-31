@@ -34,11 +34,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { toWei } from 'web3-utils';
-import { useAccount, useContract } from '..';
-import { useEffect } from 'react';
-import { useProcessTransactions } from '../hooks/useProcessTransactions';
-import { useCurrentMutableState as useRef } from '../hooks/useCurrentMutableState';
+import { toWei } from "web3-utils";
+import { useAccount, useContract } from "..";
+import { useEffect } from "react";
+import { useProcessTransactions } from "../hooks/useProcessTransactions";
+import { useCurrentMutableState as useRef } from "../hooks/useCurrentMutableState";
 function useTransactions() {
     var _this = this;
     var _a = useAccount(), transactions = _a.transactions, transfer = _a.transfer, onChainWalletDetails = _a.onChainWalletDetails, wallet = _a.wallet, tokens = _a.tokens;
@@ -63,10 +63,10 @@ function useTransactions() {
                             from: wallet.account,
                             valueToDisplay: transaction.value + " ETH",
                             valueInWei: valueInWei,
-                            value: '0',
+                            value: "0",
                             data: data,
-                            type: 'VALUE TRANSFER',
-                            wallet: 'onChain',
+                            type: "VALUE TRANSFER",
+                            wallet: "onChain",
                         });
                         return [4 /*yield*/, sendTransaction(trx)];
                     case 1:
@@ -84,13 +84,13 @@ function useTransactions() {
                     trx = transactions.createTransaction({
                         to: transaction.to,
                         from: transaction.from,
-                        value: transaction.value || '0',
+                        value: transaction.value || "0",
                         valueToDisplay: transaction.value + " " + (parseFloat(transaction.value) > 1 ? tokens.token + "'s" : tokens.token),
                         valueInWei: toWei(transaction.value),
-                        type: 'SEND TOKENS',
+                        type: "SEND TOKENS",
                         wallet: transfer.wallet,
                     });
-                    if (!(transfer.wallet === 'onChain')) return [3 /*break*/, 2];
+                    if (!(transfer.wallet === "onChain")) return [3 /*break*/, 2];
                     return [4 /*yield*/, sendOnChainTokenTransaction(trx)];
                 case 1:
                     _a.sent();
@@ -115,8 +115,8 @@ function useTransactions() {
                             value: transaction.value,
                             valueToDisplay: transaction.value + " ETH",
                             valueInWei: toWei(transaction.value),
-                            type: 'VALUE TRANSFER',
-                            wallet: 'regular',
+                            type: "VALUE TRANSFER",
+                            wallet: "regular",
                         });
                         return [4 /*yield*/, sendTransaction(trx)];
                     case 1:
@@ -140,7 +140,7 @@ function useTransactions() {
                     return [2 /*return*/];
                 try {
                     sendCmd.start();
-                    if (transfer.wallet === 'onChain') {
+                    if (transfer.wallet === "onChain") {
                         createTransactionFromOnChainWallet({
                             to: transfer.to,
                             from: transfer.from,
@@ -148,7 +148,11 @@ function useTransactions() {
                         });
                     }
                     else {
-                        createTransaction({ to: transfer.to, from: transfer.from, value: transfer.amount });
+                        createTransaction({
+                            to: transfer.to,
+                            from: transfer.from,
+                            value: transfer.amount,
+                        });
                     }
                     sendCmd.done();
                 }
@@ -170,7 +174,11 @@ function useTransactions() {
                     return [2 /*return*/];
                 try {
                     sendTokenCmd.start();
-                    createTokenTransaction({ to: transfer.to, from: transfer.from, value: transfer.amount });
+                    createTokenTransaction({
+                        to: transfer.to,
+                        from: transfer.from,
+                        value: transfer.amount,
+                    });
                     sendTokenCmd.done();
                 }
                 catch (e) {

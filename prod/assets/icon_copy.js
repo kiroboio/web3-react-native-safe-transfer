@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 export function IconCopy() {
     return (React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", fillRule: "evenodd", strokeLinecap: "round", strokeLinejoin: "round", clipRule: "evenodd", viewBox: "0 0 6 6" },
         React.createElement("g", { fill: "none", stroke: "", strokeWidth: "" },

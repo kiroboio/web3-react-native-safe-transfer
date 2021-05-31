@@ -34,12 +34,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { useState } from 'react';
-import useSecureStorage from './useSecureStorage';
-import InAppWalletConnector from '../customConnectors/InAppWalletConnector';
-import { generateMnemonic } from 'bip39';
-var initError = { isError: false, content: '' };
-var useWallet = function () {
+import { useState } from "react";
+import { useSecureStorage } from "./useSecureStorage";
+import { InAppWalletConnector } from "../customConnectors/InAppWalletConnector";
+import { generateMnemonic } from "bip39";
+var initError = { isError: false, content: "" };
+export var useWallet = function () {
     var _a = useState(), provider = _a[0], setProvider = _a[1];
     var _b = useState(), mnemonic = _b[0], setMnemonic = _b[1];
     var _c = useState(initError), error = _c[0], setError = _c[1];
@@ -54,10 +54,10 @@ var useWallet = function () {
                         return [2 /*return*/, { mnemonic: undefined, rpc: undefined }];
                     }
                     secureStorageSuccess = storage;
-                    return [4 /*yield*/, secureStorageSuccess.getItem('mnemonic')];
+                    return [4 /*yield*/, secureStorageSuccess.getItem("mnemonic")];
                 case 1:
                     storageMnemonic = _a.sent();
-                    return [4 /*yield*/, secureStorageSuccess.getItem('rpc')];
+                    return [4 /*yield*/, secureStorageSuccess.getItem("rpc")];
                 case 2:
                     storageRpc = _a.sent();
                     return [2 /*return*/, { mnemonic: storageMnemonic, rpc: storageRpc }];
@@ -70,8 +70,8 @@ var useWallet = function () {
             return;
         }
         var secureStorageSuccess = storage;
-        secureStorageSuccess.setItem('mnemonic', mnemonic);
-        secureStorageSuccess.setItem('rpc', rpc);
+        secureStorageSuccess.setItem("mnemonic", mnemonic);
+        secureStorageSuccess.setItem("rpc", rpc);
         setError({ isError: false, content: undefined });
     };
     var setNewMnemonic = function (mnemonic) {
@@ -86,7 +86,7 @@ var useWallet = function () {
             InAppWalletConnector.setMnemonic(mnemonic);
         }
         var secureStorageSuccess = storage;
-        secureStorageSuccess.setItem('mnemonic', mnemonic);
+        secureStorageSuccess.setItem("mnemonic", mnemonic);
         setMnemonic(mnemonic);
     };
     var getActiveAccountFromStorage = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -99,7 +99,7 @@ var useWallet = function () {
                         return [2 /*return*/];
                     }
                     secureStorageSuccess = storage;
-                    return [4 /*yield*/, secureStorageSuccess.getItem('activeAccount')];
+                    return [4 /*yield*/, secureStorageSuccess.getItem("activeAccount")];
                 case 1: return [2 /*return*/, _a.sent()];
             }
         });
@@ -111,7 +111,7 @@ var useWallet = function () {
         }
         InAppWalletConnector.setActiveAccount(account);
         var secureStorageSuccess = storage;
-        secureStorageSuccess.setItem('activeAccount', account);
+        secureStorageSuccess.setItem("activeAccount", account);
     };
     var generateNewMnemonic = function () {
         if (storage.error.isError) {
@@ -121,7 +121,7 @@ var useWallet = function () {
         var mnemonic = generateMnemonic();
         InAppWalletConnector.setMnemonic(mnemonic);
         var secureStorageSuccess = storage;
-        secureStorageSuccess.setItem('mnemonic', mnemonic);
+        secureStorageSuccess.setItem("mnemonic", mnemonic);
         setMnemonic(mnemonic);
     };
     var getMnemonic = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -134,7 +134,7 @@ var useWallet = function () {
                         return [2 /*return*/];
                     }
                     secureStorageSuccess = storage;
-                    return [4 /*yield*/, secureStorageSuccess.getItem('mnemonic')];
+                    return [4 /*yield*/, secureStorageSuccess.getItem("mnemonic")];
                 case 1:
                     storageMnemonic = _a.sent();
                     return [2 /*return*/, storageMnemonic];
@@ -155,4 +155,3 @@ var useWallet = function () {
         setActiveAccount: setActiveAccount,
     };
 };
-export default useWallet;

@@ -45,24 +45,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { useWeb3React } from '@web3-react/core';
-import { InjectedConnector } from '@web3-react/injected-connector';
+import { useWeb3React } from "@web3-react/core";
+import { InjectedConnector } from "@web3-react/injected-connector";
 // import { NetworkConnector } from '@web3-react/network-connector'
-import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
-import { WalletLinkConnector } from '@web3-react/walletlink-connector';
+import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
+import { WalletLinkConnector } from "@web3-react/walletlink-connector";
 // import { LedgerConnector } from '@web3-react/ledger-connector'
 // import { TrezorConnector } from '@web3-react/trezor-connector'
 // import { LatticeConnector } from '@web3-react/lattice-connector'
-import { FrameConnector } from '@web3-react/frame-connector';
+import { FrameConnector } from "@web3-react/frame-connector";
 // import { AuthereumConnector } from '@web3-react/authereum-connector'
 // import { FortmaticConnector } from '@web3-react/fortmatic-connector'
 // import { MagicConnector } from '@web3-react/magic-connector'
 // import { PortisConnector } from '@web3-react/portis-connector'
 // import { TorusConnector } from '@web3-react/torus-connector'
-import { MewConnectConnector } from '@myetherwallet/mewconnect-connector';
-import InAppWalletConnector from '../customConnectors/InAppWalletConnector';
-import { useAccount } from '../context/account';
-import { RPC_URLS } from '../stores/account';
+import { MewConnectConnector } from "@myetherwallet/mewconnect-connector";
+import { InAppWalletConnector } from "../customConnectors/InAppWalletConnector";
+import { useAccount } from "../context/account";
+import { RPC_URLS } from "../stores/account";
 var POLLING_INTERVAL = 12000;
 export var Connectors;
 (function (Connectors) {
@@ -78,14 +78,19 @@ export var useWeb3 = function () {
     var _b = useWeb3React(), connector = _b.connector, library = _b.library, chainId = _b.chainId, account = _b.account, activate = _b.activate, deactivate = _b.deactivate, active = _b.active, error = _b.error;
     var defaultChainId = useAccount().chainId;
     var inAppWalletConnect = function () {
-        return new InAppWalletConnector({ urls: RPC_URLS, defaultChainId: chainId ? chainId : Number(defaultChainId) });
+        return new InAppWalletConnector({
+            urls: RPC_URLS,
+            defaultChainId: chainId ? chainId : Number(defaultChainId),
+        });
     };
-    var injected = function (params) { return new InjectedConnector(__assign({}, params)); }; // supportedChainIds: [1, 4] })
+    var injected = function (params) {
+        return new InjectedConnector(__assign({}, params));
+    }; // supportedChainIds: [1, 4] })
     var walletConnect = function (params) {
-        return new WalletConnectConnector(__assign({ rpc: { 4: RPC_URLS[4] }, bridge: 'https://bridge.walletconnect.org', qrcode: true, pollingInterval: POLLING_INTERVAL }, params));
+        return new WalletConnectConnector(__assign({ rpc: { 4: RPC_URLS[4] }, bridge: "https://bridge.walletconnect.org", qrcode: true, pollingInterval: POLLING_INTERVAL }, params));
     };
     var walletLink = function (params) {
-        return new WalletLinkConnector(__assign({ url: RPC_URLS[4], appName: 'dapp.kirobo.me' }, params));
+        return new WalletLinkConnector(__assign({ url: RPC_URLS[4], appName: "dapp.kirobo.me" }, params));
     };
     var myEtherWallet = function (params) {
         return new MewConnectConnector(__assign({ url: RPC_URLS[1] }, params));

@@ -21,7 +21,7 @@ const useSecureStorageEmptyRes = {
 
 export type UseSecureStorageEmptyRes = typeof useSecureStorageEmptyRes;
 
-const useStorageMobile = () => {
+export const useStorageMobile = () => {
   const createStorage = () => Storage;
   const [newStorage, setStorage] = useState(createStorage());
 
@@ -30,14 +30,6 @@ const useStorageMobile = () => {
     content: undefined,
     isLocalStorageExist: true,
   });
-
-  // const secureStorageError = newStorage as UseSecureStorageEmptyRes
-
-  // if (secureStorageError.error.isError) {
-  //   return secureStorageError
-  // }
-
-  // const secureStorage = newStorage as T & SecureLS
 
   const setNewSecureStorageConfig = () => {
     setStorage(createStorage());
@@ -118,5 +110,3 @@ const useStorageMobile = () => {
     setNewSecureStorageConfig,
   };
 };
-
-export default useStorageMobile;

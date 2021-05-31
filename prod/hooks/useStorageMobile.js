@@ -45,8 +45,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { useState } from 'react';
-import { Storage } from '@capacitor/storage';
+import { useState } from "react";
+import { Storage } from "@capacitor/storage";
 var useSecureStorageEmptyRes = {
     error: { isError: true, content: undefined, isLocalStorageExist: false },
     secureStorage: undefined,
@@ -58,7 +58,7 @@ var useSecureStorageEmptyRes = {
     getAllKeys: undefined,
     setNewSecureStorageConfig: undefined,
 };
-var useStorageMobile = function () {
+export var useStorageMobile = function () {
     var createStorage = function () { return Storage; };
     var _a = useState(createStorage()), newStorage = _a[0], setStorage = _a[1];
     var _b = useState({
@@ -66,11 +66,6 @@ var useStorageMobile = function () {
         content: undefined,
         isLocalStorageExist: true,
     }), error = _b[0], setError = _b[1];
-    // const secureStorageError = newStorage as UseSecureStorageEmptyRes
-    // if (secureStorageError.error.isError) {
-    //   return secureStorageError
-    // }
-    // const secureStorage = newStorage as T & SecureLS
     var setNewSecureStorageConfig = function () {
         setStorage(createStorage());
     };
@@ -149,4 +144,3 @@ var useStorageMobile = function () {
         setNewSecureStorageConfig: setNewSecureStorageConfig,
     };
 };
-export default useStorageMobile;

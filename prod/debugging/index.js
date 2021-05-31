@@ -1,1 +1,2 @@
-export { useWhatChangedDev } from './useWhatChangedDev';
+export * from "./useWhatChangedDev";
+export * from "./configureReactotronDebugging";

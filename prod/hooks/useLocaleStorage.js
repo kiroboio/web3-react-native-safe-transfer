@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 export var useLocalStorage = function (key, initialValue) {
     var _a = useState(function () {
         var item = window.localStorage.getItem(key);

@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from "axios";
 export var getRate = function () {
     return axios
-        .get('https://api.coingecko.com/api/v3/exchange_rates', {
+        .get("https://api.coingecko.com/api/v3/exchange_rates", {
         headers: {
-            'Access-Control-Allow-Origin': '*',
+            "Access-Control-Allow-Origin": "*",
         },
     })
         .then(function (response) {
@@ -12,7 +12,7 @@ export var getRate = function () {
         var usd = (_f = (_e = (_d = response.data) === null || _d === void 0 ? void 0 : _d.rates) === null || _e === void 0 ? void 0 : _e.usd) === null || _f === void 0 ? void 0 : _f.value;
         if (Boolean(eth) && Boolean(usd))
             return Math.round((usd / eth) * 10000) / 10000;
-        throw new Error('rate error');
+        throw new Error("rate error");
     })
         .catch(function (err) {
         throw new Error(err);

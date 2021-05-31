@@ -34,10 +34,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { useEffect } from 'react';
-import { useAccount, useContract } from '..';
-import { useProcessTransactions } from '../hooks/useProcessTransactions';
-import { useCurrentMutableState as useRef } from '../hooks/useCurrentMutableState';
+import { useEffect } from "react";
+import { useAccount, useContract } from "..";
+import { useProcessTransactions } from "../hooks/useProcessTransactions";
+import { useCurrentMutableState as useRef } from "../hooks/useCurrentMutableState";
 function useCreateOnChainContract() {
     var _this = this;
     var _a = useAccount(), transactions = _a.transactions, onChainWalletDetails = _a.onChainWalletDetails, wallet = _a.wallet;
@@ -57,19 +57,22 @@ function useCreateOnChainContract() {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, createContract.estimateGas({ to: wallet.account, data: data })];
+                    return [4 /*yield*/, createContract.estimateGas({
+                            to: wallet.account,
+                            data: data,
+                        })];
                 case 2:
                     estimatedGas = _a.sent();
                     return [3 /*break*/, 4];
                 case 3:
                     e_1 = _a.sent();
-                    throw new Error('gas estimation failed');
+                    throw new Error("gas estimation failed");
                 case 4:
                     trx = transactions.createTransaction({
                         to: contract.options.address,
                         gas: estimatedGas,
                         data: data,
-                        type: 'CREATE SMART WALLET',
+                        type: "CREATE SMART WALLET",
                     });
                     return [4 /*yield*/, sendTransaction(trx)];
                 case 5:

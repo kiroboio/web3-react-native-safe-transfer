@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React from "react";
 export function IconLogoWithTagline(props) {
     var color = props.color;
     return (React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", fillRule: "evenodd", strokeLinejoin: "round", strokeMiterlimit: "2", clipRule: "evenodd", viewBox: "0 0 286 121" },

@@ -34,19 +34,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { useEffect } from 'react';
-import { useAccount, useContract } from '..';
-import { usePrevious } from '../hooks/usePrevious';
-import { useCurrentMutableState as useRef } from '../hooks/useCurrentMutableState';
-import { useProcessTransactions } from '../hooks/useProcessTransactions';
+import { useEffect } from "react";
+import { useAccount, useContract } from "..";
+import { usePrevious } from "../hooks/usePrevious";
+import { useCurrentMutableState as useRef } from "../hooks/useCurrentMutableState";
+import { useProcessTransactions } from "../hooks/useProcessTransactions";
 var parseHeir = function (heir) {
-    var ZERO_BYTES32 = '0x0000000000000000000000000000000000000000000000000000000000000000';
+    var ZERO_BYTES32 = "0x0000000000000000000000000000000000000000000000000000000000000000";
     if (heir === ZERO_BYTES32) {
         return null;
     }
     return {
         walletAddress: heir.slice(0, 42),
-        isSent: heir.slice(42, 44) !== '00' ? true : false,
+        isSent: heir.slice(42, 44) !== "00" ? true : false,
         percent: parseInt(heir.slice(44, 48), 16) / 100,
         isRegistered: true,
     };
@@ -58,11 +58,11 @@ var useInheritance = function () {
     var isActivated = inheritance.isActivated, isEnabled = inheritance.isEnabled, heirs = inheritance.heirs, setHeirsCmd = inheritance.setHeirsCmd, setInheritanceCmd = inheritance.setInheritanceCmd, clearInheritanceCmd = inheritance.clearInheritanceCmd, updateHeirsCmd = inheritance.updateHeirsCmd, activateCmd = inheritance.activateCmd, activateByTimerCmd = inheritance.activateByTimerCmd;
     var walletContract = useContract().walletContract;
     var INHERITANCE_DATA_METHODS = [
-        { getter: 'getHeirs', setter: inheritance.addHeir },
-        { getter: 'getInheritanceTimestamp', setter: inheritance.setTimestamp },
-        { getter: 'getInheritanceTimeout', setter: inheritance.setTimeout },
-        { getter: 'isInheritanceActivated', setter: inheritance.setIsActivated },
-        { getter: 'getTotalTransfered', setter: inheritance.setTotalTransferred },
+        { getter: "getHeirs", setter: inheritance.addHeir },
+        { getter: "getInheritanceTimestamp", setter: inheritance.setTimestamp },
+        { getter: "getInheritanceTimeout", setter: inheritance.setTimeout },
+        { getter: "isInheritanceActivated", setter: inheritance.setIsActivated },
+        { getter: "getTotalTransfered", setter: inheritance.setTotalTransferred },
     ];
     function setHeirs() {
         return __awaiter(this, void 0, void 0, function () {
@@ -80,10 +80,12 @@ var useInheritance = function () {
                         trxRequest = {
                             from: wallet.account,
                             to: onChainWalletDetails.account,
-                            type: 'SET HEIRS',
+                            type: "SET HEIRS",
                         };
                         _b = trxRequest;
-                        return [4 /*yield*/, walletContract.methods.setHeirs(addresses, bps).encodeABI()];
+                        return [4 /*yield*/, walletContract.methods
+                                .setHeirs(addresses, bps)
+                                .encodeABI()];
                     case 1:
                         _b.data = _c.sent();
                         trx = createTransaction(trxRequest);
@@ -105,11 +107,13 @@ var useInheritance = function () {
                             return [2 /*return*/];
                         trxRequest = {
                             to: onChainWalletDetails.account,
-                            type: 'ENABLE INHERITANCE',
+                            type: "ENABLE INHERITANCE",
                         };
                         seconds = inheritance.timeLeftCurrent;
                         _a = trxRequest;
-                        return [4 /*yield*/, walletContract.methods.setInheritance(seconds).encodeABI()];
+                        return [4 /*yield*/, walletContract.methods
+                                .setInheritance(seconds)
+                                .encodeABI()];
                     case 1:
                         _a.data = _b.sent();
                         trx = createTransaction(trxRequest);
@@ -130,10 +134,12 @@ var useInheritance = function () {
                         return [2 /*return*/];
                     trxRequest = {
                         to: onChainWalletDetails.account,
-                        type: 'ENABLE INHERITANCE',
+                        type: "ENABLE INHERITANCE",
                     };
                     _a = trxRequest;
-                    return [4 /*yield*/, walletContract.methods.activateInheritance().encodeABI()];
+                    return [4 /*yield*/, walletContract.methods
+                            .activateInheritance()
+                            .encodeABI()];
                 case 1:
                     _a.data = _b.sent();
                     trx = createTransaction(trxRequest);
@@ -154,7 +160,7 @@ var useInheritance = function () {
                             return [2 /*return*/];
                         trxRequest = {
                             to: onChainWalletDetails.account,
-                            type: 'DISABLE INHERITANCE',
+                            type: "DISABLE INHERITANCE",
                         };
                         trxRequest.data = walletContract.methods.clearInheritance().encodeABI();
                         trx = createTransaction(trxRequest);
@@ -184,7 +190,7 @@ var useInheritance = function () {
                                     case 0: return [4 /*yield*/, walletContract.methods[method.getter]().call()];
                                     case 1:
                                         data = _a.sent();
-                                        if (method.getter === 'getHeirs') {
+                                        if (method.getter === "getHeirs") {
                                             if (!prevHeirsData ||
                                                 (prevHeirsData &&
                                                     Boolean(data.find(function (item, i) {
@@ -221,11 +227,11 @@ var useInheritance = function () {
         });
     }); };
     var inheritanceEvents = [
-        'InheritanceActivated',
-        'InheritanceChanged',
-        'InheritanceHeirsChanged',
-        'InheritancePayment',
-        'InheritanceRemoved',
+        "InheritanceActivated",
+        "InheritanceChanged",
+        "InheritanceHeirsChanged",
+        "InheritancePayment",
+        "InheritanceRemoved",
     ];
     var __inheritanceEvents = useRef(inheritanceEvents);
     var __updateCurrentHeirs = useRef(updateCurrentHeirs);
@@ -247,13 +253,13 @@ var useInheritance = function () {
             return;
         walletContract.events
             .allEvents()
-            .on('data', function (e) {
+            .on("data", function (e) {
             var inheritanceEvent = e;
             if (!inheritanceEvents.includes(inheritanceEvent.event))
                 return;
             updateCurrentHeirs();
         })
-            .on('error', function (e) {
+            .on("error", function (e) {
             var inheritanceEvent = e;
             if (!inheritanceEvents.includes(inheritanceEvent.event))
                 return;

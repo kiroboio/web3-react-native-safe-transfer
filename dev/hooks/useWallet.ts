@@ -1,6 +1,6 @@
 import { useState } from "react";
-import useSecureStorage, { UseSecureStorageRes } from "./useSecureStorage";
-import InAppWalletConnector from "../customConnectors/InAppWalletConnector";
+import { UseSecureStorageRes, useSecureStorage } from "./useSecureStorage";
+import { InAppWalletConnector } from "../customConnectors/InAppWalletConnector";
 import { generateMnemonic } from "bip39";
 
 type Error = {
@@ -10,7 +10,7 @@ type Error = {
 
 const initError = { isError: false, content: "" };
 
-const useWallet = (): {
+export const useWallet = (): {
   error: Error;
   mnemonic: string | undefined;
   provider: string | undefined;
@@ -142,4 +142,3 @@ const useWallet = (): {
   };
 };
 
-export default useWallet;

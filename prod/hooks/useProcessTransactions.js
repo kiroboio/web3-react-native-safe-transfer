@@ -45,11 +45,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { toWei } from 'web3-utils';
-import { useAccount, useContract } from '..';
-import { tokens as tokensConfig } from '../stores/account';
-import { useWeb3 } from './useWeb3';
-import { toJS } from 'mobx';
+import { toWei } from "web3-utils";
+import { useAccount, useContract } from "..";
+import { tokens as tokensConfig, } from "../stores/account";
+import { useWeb3 } from "./useWeb3";
+import { toJS } from "mobx";
 var useProcessTransactions = function () {
     var web3Connect = useWeb3();
     var onChain = useContract();
@@ -72,7 +72,7 @@ var useProcessTransactions = function () {
                         currentTransaction.from = web3Connect.address;
                     from = currentTransaction.from, to = currentTransaction.to, value = currentTransaction.value, data = currentTransaction.data;
                     web3TransactionSendData = { from: from };
-                    return [4 /*yield*/, web3Connect.library.eth.getTransactionCount(from, 'pending')];
+                    return [4 /*yield*/, web3Connect.library.eth.getTransactionCount(from, "pending")];
                 case 1:
                     nonce = _b.sent();
                     if (value)
@@ -90,7 +90,8 @@ var useProcessTransactions = function () {
                     return [4 /*yield*/, web3Connect.library.eth.estimateGas(web3TransactionSendData)];
                 case 3:
                     _a.gas =
-                        (_b.sent()) * 2;
+                        (_b.sent()) *
+                            2;
                     return [3 /*break*/, 5];
                 case 4:
                     e_1 = _b.sent();
@@ -99,21 +100,21 @@ var useProcessTransactions = function () {
                 case 5: return [4 /*yield*/, new Promise(function (resolve, reject) {
                         web3Connect.library.eth
                             .sendTransaction(web3TransactionSendData)
-                            .on('transactionHash', function (txHash) {
+                            .on("transactionHash", function (txHash) {
                             currentTransaction.txHash = txHash;
                             currentTransaction.timestamp = new Date();
                             transactions.updateTransactionRequest(currentTransaction.id, currentTransaction);
                         })
-                            .on('receipt', function (receipt) {
+                            .on("receipt", function (receipt) {
                             var tReceipt = receipt;
                             if (!tReceipt.status) {
-                                reject('Transaction failed');
+                                reject("Transaction failed");
                             }
                             transactions.updateTransactionReceipt(currentTransaction.id, tReceipt);
                             trx === null || trx === void 0 ? void 0 : trx.transactionCmd.done();
                             resolve(transactions);
                         })
-                            .on('error', function (err) {
+                            .on("error", function (err) {
                             trx.transactionCmd.failed({ message: err.message });
                             reject(err);
                         });
@@ -139,13 +140,14 @@ var useProcessTransactions = function () {
                     _c.trys.push([1, 3, , 4]);
                     return [4 /*yield*/, web3Connect.library.eth.estimateGas(currentTransaction)];
                 case 2:
-                    gas = (_c.sent()) * 4;
+                    gas =
+                        (_c.sent()) * 4;
                     return [3 /*break*/, 4];
                 case 3:
                     e_2 = _c.sent();
                     gas = 100000;
                     return [3 /*break*/, 4];
-                case 4: return [4 /*yield*/, web3Connect.library.eth.getTransactionCount(wallet.account, 'pending')];
+                case 4: return [4 /*yield*/, web3Connect.library.eth.getTransactionCount(wallet.account, "pending")];
                 case 5:
                     nonce = _c.sent();
                     return [4 /*yield*/, (tokensContract === null || tokensContract === void 0 ? void 0 : tokensContract.methods.transfer(currentTransaction.to, currentTransaction.valueInWei).send({ from: wallet.account, gas: gas, nonce: nonce }))];
@@ -159,7 +161,7 @@ var useProcessTransactions = function () {
                     receipt = (_c.sent());
                     currentTransaction.receipt = receipt;
                     if (!(receipt === null || receipt === void 0 ? void 0 : receipt.status)) {
-                        transaction === null || transaction === void 0 ? void 0 : transaction.transactionCmd.failed({ message: 'Transaction failed' });
+                        transaction === null || transaction === void 0 ? void 0 : transaction.transactionCmd.failed({ message: "Transaction failed" });
                     }
                     transactions.updateTransactionReceipt(currentTransaction.id, receipt);
                     transaction === null || transaction === void 0 ? void 0 : transaction.transactionCmd.done();
@@ -187,13 +189,14 @@ var useProcessTransactions = function () {
                     _d.trys.push([1, 3, , 4]);
                     return [4 /*yield*/, web3Connect.library.eth.estimateGas(currentTransaction)];
                 case 2:
-                    gas = (_d.sent()) * 4;
+                    gas =
+                        (_d.sent()) * 4;
                     return [3 /*break*/, 4];
                 case 3:
                     e_4 = _d.sent();
                     gas = 100000;
                     return [3 /*break*/, 4];
-                case 4: return [4 /*yield*/, web3Connect.library.eth.getTransactionCount(wallet.account, 'pending')];
+                case 4: return [4 /*yield*/, web3Connect.library.eth.getTransactionCount(wallet.account, "pending")];
                 case 5:
                     nonce = _d.sent();
                     return [4 /*yield*/, (onChainWalletContract === null || onChainWalletContract === void 0 ? void 0 : onChainWalletContract.methods.transfer20(tokensConfig[selectedToken].address[chainId], currentTransaction.to, currentTransaction.valueInWei).send({ from: wallet.account, gas: gas, nonce: nonce }))];
@@ -220,7 +223,7 @@ var useProcessTransactions = function () {
                     receipt = (_d.sent());
                     currentTransaction.receipt = receipt;
                     if (!(receipt === null || receipt === void 0 ? void 0 : receipt.status)) {
-                        transaction === null || transaction === void 0 ? void 0 : transaction.transactionCmd.failed({ message: 'Transaction failed' });
+                        transaction === null || transaction === void 0 ? void 0 : transaction.transactionCmd.failed({ message: "Transaction failed" });
                     }
                     transactions.updateTransactionRequest(currentTransaction.id, currentTransaction);
                     transactions.updateTransactionReceipt(currentTransaction.id, receipt);

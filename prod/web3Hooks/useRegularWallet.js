@@ -34,13 +34,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { useEffect } from 'react';
-import { useAccount } from '../context/account';
-import { useWeb3, Connectors } from '../hooks/useWeb3';
-import useWallet from '../hooks/useWallet';
-import { useCurrentMutableState as useRef } from '../hooks/useCurrentMutableState';
-import InAppWalletConnector from '../customConnectors/InAppWalletConnector';
-import { usePrevious } from '../hooks/usePrevious';
+import { useEffect } from "react";
+import { useAccount } from "../context/account";
+import { useWeb3, Connectors } from "../hooks/useWeb3";
+import { useWallet } from "../hooks/useWallet";
+import { useCurrentMutableState as useRef } from "../hooks/useCurrentMutableState";
+import { InAppWalletConnector } from "../customConnectors/InAppWalletConnector";
+import { usePrevious } from "../hooks/usePrevious";
 export var useRegularWallet = function () {
     var _a;
     var _b = useWeb3(), web3Connector = _b.connector, web3 = _b.library, web3Account = _b.address;
@@ -81,11 +81,11 @@ export var useRegularWallet = function () {
         try {
             wallet.addAddressCmd.start();
             if (!wallet.mnemonic.data)
-                throw new Error('no mnemonic');
+                throw new Error("no mnemonic");
             if (!web3Connector)
-                throw new Error('connector not started');
+                throw new Error("connector not started");
             if (!(web3Connector === null || web3Connector === void 0 ? void 0 : web3Connector.addWalletAddress))
-                throw new Error('wrong connector');
+                throw new Error("wrong connector");
             web3Connector === null || web3Connector === void 0 ? void 0 : web3Connector.addWalletAddress();
             wallet.addAddressCmd.done();
         }
@@ -101,11 +101,11 @@ export var useRegularWallet = function () {
         try {
             wallet.removeAddressCmd.start();
             if (!wallet.mnemonic.data)
-                throw new Error('no mnemonic');
+                throw new Error("no mnemonic");
             if (!web3Connector)
-                throw new Error('connector not started');
+                throw new Error("connector not started");
             if (!(web3Connector === null || web3Connector === void 0 ? void 0 : web3Connector.removeWalletAddress))
-                throw new Error('wrong connector');
+                throw new Error("wrong connector");
             web3Connector === null || web3Connector === void 0 ? void 0 : web3Connector.removeWalletAddress(wallet.removeAddressCmd.address);
             wallet.removeAddressCmd.done();
         }
@@ -124,12 +124,13 @@ export var useRegularWallet = function () {
                         return [4 /*yield*/, __getMnemonic.current()];
                     case 1:
                         mnemonic = _a.sent();
-                        if (!wallet.mnemonic.restoreCmd.is.ready || wallet.mnemonic.restoreCmd.is.running)
+                        if (!wallet.mnemonic.restoreCmd.is.ready ||
+                            wallet.mnemonic.restoreCmd.is.running)
                             return [2 /*return*/];
                         try {
                             wallet.mnemonic.restoreCmd.start();
                             if (!mnemonic || mnemonic === "undefined") {
-                                throw new Error('no mnemonic');
+                                throw new Error("no mnemonic");
                             }
                             wallet.mnemonic.set(mnemonic);
                             setNewMnemonic(mnemonic);

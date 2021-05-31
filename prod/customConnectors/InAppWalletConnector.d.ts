@@ -1,14 +1,14 @@
-import Web3 from 'web3';
-import { AbstractConnector } from '@web3-react/abstract-connector';
-import { Connectors } from '../hooks/useWeb3';
-import { ChainIds } from '../stores/account';
+import Web3 from "web3";
+import { AbstractConnector } from "@web3-react/abstract-connector";
+import { Connectors } from "../hooks/useWeb3";
+import { ChainIds } from "../stores/account";
 export interface NetworkConnectorArguments {
     urls: {
         [chainId: number]: string;
     };
     defaultChainId?: number;
 }
-interface IInAppWalletConnector extends AbstractConnector {
+export interface IInAppWalletConnector extends AbstractConnector {
     name: string;
     web3: Web3;
     activate(): Promise<{
@@ -23,7 +23,7 @@ interface IInAppWalletConnector extends AbstractConnector {
     setWeb3(): void;
     changeChainId(chainId: ChainIds): void;
 }
-declare class InAppWalletConnector extends AbstractConnector implements IInAppWalletConnector {
+export declare class InAppWalletConnector extends AbstractConnector implements IInAppWalletConnector {
     private secureStorage;
     static DEFAULT_PATH: string;
     static activeAccount: string | undefined;
@@ -44,7 +44,7 @@ declare class InAppWalletConnector extends AbstractConnector implements IInAppWa
     static setMnemonic(mnemonic: string): void;
     private hdNode;
     getPrivateKeys: () => string[];
-    constructor({ urls, defaultChainId }: NetworkConnectorArguments & {
+    constructor({ urls, defaultChainId, }: NetworkConnectorArguments & {
         path?: string;
     });
     setWeb3: () => void;
@@ -63,5 +63,3 @@ declare class InAppWalletConnector extends AbstractConnector implements IInAppWa
     deactivate(): undefined;
     changeChainId(chainId: ChainIds): void;
 }
-export default InAppWalletConnector;
-export type { IInAppWalletConnector };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 export function IconLogoOnly(_a) {
     var classes = _a.classes;
     return (React.createElement("svg", { className: classes, xmlns: "http://www.w3.org/2000/svg", fillRule: "evenodd", strokeLinejoin: "round", strokeMiterlimit: "2", clipRule: "evenodd", viewBox: "0 0 99 100" },

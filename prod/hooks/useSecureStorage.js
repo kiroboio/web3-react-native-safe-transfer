@@ -45,10 +45,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { useState } from 'react';
-import SecureLS from 'secure-ls';
-import isMobile from 'ismobilejs';
-import useStorageMobile from "./useStorageMobile";
+import { useState } from "react";
+import SecureLS from "secure-ls";
+import isMobile from "ismobilejs";
+import { useStorageMobile } from "./useStorageMobile";
 var useSecureStorageEmptyRes = {
     error: { isError: true, content: undefined, isLocalStorageExist: false },
     secureStorage: undefined,
@@ -60,11 +60,12 @@ var useSecureStorageEmptyRes = {
     getAllKeys: undefined,
     setNewSecureStorageConfig: undefined,
 };
-var useSecureStorage = isMobile(window.navigator).any ? useStorageMobile :
-    function (encryptionSecret, encodingType, encryptionNamespace) {
-        if (encodingType === void 0) { encodingType = 'aes'; }
+export var useSecureStorage = isMobile(window.navigator).any
+    ? useStorageMobile
+    : function (encryptionSecret, encodingType, encryptionNamespace) {
+        if (encodingType === void 0) { encodingType = "aes"; }
         var createNewSecureSecureStorage = function (encryptionSecret, encodingType) {
-            if (encodingType === void 0) { encodingType = 'aes'; }
+            if (encodingType === void 0) { encodingType = "aes"; }
             var createNewSecureLS = function () {
                 return new SecureLS({
                     encodingType: encodingType,
@@ -100,7 +101,7 @@ var useSecureStorage = isMobile(window.navigator).any ? useStorageMobile :
         }
         var secureStorage = newSecureStorage;
         var setNewSecureStorageConfig = function (encryptionSecret, encodingType) {
-            if (encodingType === void 0) { encodingType = 'aes'; }
+            if (encodingType === void 0) { encodingType = "aes"; }
             setSecureStorageConfig(createNewSecureSecureStorage(encryptionSecret, encodingType));
         };
         var handleSetError = function (e) {
@@ -171,4 +172,3 @@ var useSecureStorage = isMobile(window.navigator).any ? useStorageMobile :
             setNewSecureStorageConfig: setNewSecureStorageConfig,
         };
     };
-export default useSecureStorage;

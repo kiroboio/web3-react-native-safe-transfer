@@ -14,7 +14,7 @@ import { FrameConnector } from "@web3-react/frame-connector";
 // import { PortisConnector } from '@web3-react/portis-connector'
 // import { TorusConnector } from '@web3-react/torus-connector'
 import { MewConnectConnector } from "@myetherwallet/mewconnect-connector";
-import InAppWalletConnector from "../customConnectors/InAppWalletConnector";
+import { InAppWalletConnector } from "../customConnectors/InAppWalletConnector";
 import { Web3ReactContextInterface } from "@web3-react/core/dist/types";
 import Web3 from "web3";
 import { useAccount } from "../context/account";

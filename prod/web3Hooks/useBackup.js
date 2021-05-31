@@ -34,10 +34,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { useEffect } from 'react';
-import { useAccount, useContract } from '..';
-import { useCurrentMutableState as useRef } from '../hooks/useCurrentMutableState';
-import { useProcessTransactions } from '../hooks/useProcessTransactions';
+import { useEffect } from "react";
+import { useAccount, useContract } from "..";
+import { useCurrentMutableState as useRef } from "../hooks/useCurrentMutableState";
+import { useProcessTransactions } from "../hooks/useProcessTransactions";
 var useBackup = function () {
     var _a = useAccount(), onChainWalletDetails = _a.onChainWalletDetails, transactions = _a.transactions, backup = _a.backup, wallet = _a.wallet;
     var sendTransaction = useProcessTransactions().sendTransaction;
@@ -48,14 +48,14 @@ var useBackup = function () {
     var onChainWalletAccount = onChainWalletDetails.account;
     var onChainWalletContract = walletContract;
     var backupEvents = [
-        'BackupActivated',
-        'BackupChanged',
-        'BackupEnabled',
-        'BackupPayment',
-        'BackupRegistered',
-        'BackupRemoved',
-        'OwnershipReclaimed',
-        'OwnershipTransferred'
+        "BackupActivated",
+        "BackupChanged",
+        "BackupEnabled",
+        "BackupPayment",
+        "BackupRegistered",
+        "BackupRemoved",
+        "OwnershipReclaimed",
+        "OwnershipTransferred",
     ];
     var removeBackup = function () { return __awaiter(void 0, void 0, void 0, function () {
         var trxRequest, trx;
@@ -67,8 +67,8 @@ var useBackup = function () {
                     trxRequest = {
                         to: onChainWalletAccount,
                         from: wallet.account,
-                        value: '0',
-                        type: 'REMOVE BACKUP',
+                        value: "0",
+                        type: "REMOVE BACKUP",
                     };
                     trxRequest.data = onChainWalletContract.methods.removeBackup().encodeABI();
                     trx = createTransaction(trxRequest);
@@ -89,9 +89,9 @@ var useBackup = function () {
                         return [2 /*return*/];
                     trxRequest = {
                         to: onChainWalletAccount,
-                        type: 'SET BACKUP',
+                        type: "SET BACKUP",
                         from: wallet.account,
-                        value: '0',
+                        value: "0",
                     };
                     setBackup = onChainWalletContract.methods.setBackup(address, formTimeout);
                     trxRequest.data = setBackup.encodeABI();
@@ -103,17 +103,24 @@ var useBackup = function () {
             }
         });
     }); };
-    var backupStates = ['PENDING', 'REGISTERED', 'ENABLED', 'ACTIVATED'];
+    var backupStates = [
+        "PENDING",
+        "REGISTERED",
+        "ENABLED",
+        "ACTIVATED",
+    ];
     var GET_BACKUP_DATA_METHODS = [
         {
-            name: 'getBackupState',
-            setter: function (stateIndex) { return backup.setState(backupStates[Number(stateIndex)]); },
+            name: "getBackupState",
+            setter: function (stateIndex) {
+                return backup.setState(backupStates[Number(stateIndex)]);
+            },
         },
-        { name: 'getBackupWallet', setter: backup.setWalletAddress },
-        { name: 'owner', setter: backup.setOwnerAddress },
-        { name: 'isOwner', setter: backup.setIsOwner },
-        { name: 'getBackupTimeout', setter: backup.setTimeout },
-        { name: 'getBackupTimestamp', setter: backup.setTimestamp },
+        { name: "getBackupWallet", setter: backup.setWalletAddress },
+        { name: "owner", setter: backup.setOwnerAddress },
+        { name: "isOwner", setter: backup.setIsOwner },
+        { name: "getBackupTimeout", setter: backup.setTimeout },
+        { name: "getBackupTimestamp", setter: backup.setTimestamp },
     ];
     var updateBackupData = function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -158,13 +165,13 @@ var useBackup = function () {
             return;
         walletContract.events
             .allEvents()
-            .on('data', function (e) {
+            .on("data", function (e) {
             var backupEvent = e;
             if (!backupEvents.includes(backupEvent.event))
                 return;
             updateBackupData();
         })
-            .on('error', function (e) {
+            .on("error", function (e) {
             var backupEvent = e;
             if (!backupEvents.includes(backupEvent.event))
                 return;
@@ -192,8 +199,8 @@ var useBackup = function () {
                         trxRequest = {
                             from: wallet.account,
                             to: onChainWalletAccount,
-                            type: 'SET BACKUP',
-                            value: '0',
+                            type: "SET BACKUP",
+                            value: "0",
                         };
                         trxRequest.data = onChainWalletContract.methods.accept().encodeABI();
                         trx = createTransaction(trxRequest);
@@ -215,7 +222,7 @@ var useBackup = function () {
                             return [2 /*return*/];
                         trxRequest = {
                             to: onChainWalletAccount,
-                            type: 'DECLINE BACKUP',
+                            type: "DECLINE BACKUP",
                         };
                         trxRequest = onChainWalletContract.methods.decline().encodeABI();
                         trx = createTransaction(trxRequest);
@@ -238,9 +245,11 @@ var useBackup = function () {
                         walletAddress = backup.walletAddress, timeout = backup.timeout;
                         trxRequest = {
                             to: onChainWalletAccount,
-                            type: 'RESET BACKUP TIMER',
+                            type: "RESET BACKUP TIMER",
                         };
-                        trxRequest.data = onChainWalletContract.methods.setBackup(walletAddress, timeout).encodeABI();
+                        trxRequest.data = onChainWalletContract.methods
+                            .setBackup(walletAddress, timeout)
+                            .encodeABI();
                         trx = createTransaction(trxRequest);
                         return [4 /*yield*/, sendTransaction(trx)];
                     case 1:
@@ -260,8 +269,8 @@ var useBackup = function () {
                     trxRequest = {
                         to: onChainWalletAccount,
                         from: wallet.account,
-                        type: 'START TIMER',
-                        value: '0',
+                        type: "START TIMER",
+                        value: "0",
                     };
                     _a = trxRequest;
                     return [4 /*yield*/, onChainWalletContract.methods.enable().encodeABI()];
@@ -511,10 +520,14 @@ var useBackup = function () {
                             type: type,
                         };
                         if (backup.isBackup(wallet.account)) {
-                            trxRequest.data = onChainWalletContract.methods.claimOwnership().encodeABI();
+                            trxRequest.data = onChainWalletContract.methods
+                                .claimOwnership()
+                                .encodeABI();
                         }
                         else {
-                            trxRequest.data = onChainWalletContract.methods.reclaimOwnership().encodeABI();
+                            trxRequest.data = onChainWalletContract.methods
+                                .reclaimOwnership()
+                                .encodeABI();
                         }
                         trx = createTransaction(trxRequest);
                         return [4 /*yield*/, sendTransaction(trx)];
@@ -539,7 +552,7 @@ var useBackup = function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         claimOwnershipCmd.start();
-                        return [4 /*yield*/, claimReclaimOwnership('CLAIM OWNERSHIP')];
+                        return [4 /*yield*/, claimReclaimOwnership("CLAIM OWNERSHIP")];
                     case 1:
                         _a.sent();
                         claimOwnershipCmd.done();

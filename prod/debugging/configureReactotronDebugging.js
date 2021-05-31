@@ -1,8 +1,8 @@
-import Reactotron from 'reactotron-react-js';
-import { mst } from 'reactotron-mst';
-import { accountStore } from '../stores/account';
+import Reactotron from "reactotron-react-js";
+import { mst } from "reactotron-mst";
+import { accountStore } from "../stores/account";
 export var configureReactotronDebugging = function () {
-    if (process.env.NODE_ENV !== 'development') {
+    if (process.env.NODE_ENV !== "development") {
         return;
     }
     var connectedReactotron = Reactotron.use(mst())
@@ -20,7 +20,7 @@ export var configureReactotronDebugging = function () {
                 args[_i - 1] = arguments[_i];
             }
             Reactotron.display({
-                name: 'LOG',
+                name: "LOG",
                 preview: message,
                 value: { message: message, args: args },
             });
@@ -31,7 +31,7 @@ export var configureReactotronDebugging = function () {
                 args[_i - 1] = arguments[_i];
             }
             Reactotron.display({
-                name: 'WARN',
+                name: "WARN",
                 preview: message,
                 value: { message: message, args: args },
                 important: true,
@@ -43,7 +43,7 @@ export var configureReactotronDebugging = function () {
                 args[_i - 1] = arguments[_i];
             }
             Reactotron.display({
-                name: 'ERROR',
+                name: "ERROR",
                 preview: message,
                 value: { message: message, args: args },
                 important: true,
@@ -52,7 +52,7 @@ export var configureReactotronDebugging = function () {
         return ConsoleTron;
     }());
     var consoleToReactotron = function () {
-        if (process.env.REACT_APP_LOG_LEVEL !== 'reactotron')
+        if (process.env.REACT_APP_LOG_LEVEL !== "reactotron")
             return;
         console.error = ConsoleTron.error;
         console.warn = ConsoleTron.warn;

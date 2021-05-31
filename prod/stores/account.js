@@ -534,19 +534,6 @@ export var Transfers = types
         return count;
     },
 }); });
-export var Web3Provider = types
-    .model("Web3Provider", {
-    block: types.optional(types.number, -1),
-    balance: types.optional(types.string, ""),
-})
-    .actions(function (self) { return ({
-    setBlock: function (block) {
-        self.block = block;
-    },
-    setBalance: function (balance) {
-        self.balance = balance;
-    },
-}); });
 var Mnemonic = types
     .model("Mnemonic", {
     data: types.optional(types.string, ""),
@@ -1581,7 +1568,6 @@ onSnapshot(store, function (snapshot) {
 export var accountStore = store;
 var prevAddress;
 var onAddressChangeActions = [];
-export var web3ProviderStore = Web3Provider.create();
 /*
     Transfer
     API: v1/eth/networks ==> SafeTransfer Address, Fees & Reward formula
