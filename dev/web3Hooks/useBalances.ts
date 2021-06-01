@@ -38,7 +38,6 @@ export const useBalances = () => {
   const updateRate = async () => {
     try {
       const rate = await getRate();
-      console.log(rate, "getted rate");
       setExchangeToUsdRate(rate);
       setRate(rate);
     } catch (e) {

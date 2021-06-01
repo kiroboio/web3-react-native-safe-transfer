@@ -178,7 +178,6 @@ var InAppWalletConnector = /** @class */ (function (_super) {
         InAppWalletConnector.mnemonic = mnemonic;
     };
     InAppWalletConnector.prototype.handleAccountChanged = function (account) {
-        console.log("handleAccountChanged", account);
         InAppWalletConnector.setActiveAccount(account);
         if (!account)
             return;

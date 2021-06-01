@@ -16,21 +16,34 @@ import {
 import { KiroboProps } from "./KiroboProvider";
 
 export const Web3ProviderUpdater = observer(
-  ({ children, customHooks }: KiroboProps) => {
-    const hooks = [
-      useRegularWallet,
-      useNewBlockSubscribe,
-      useBalances,
-      useSetupOnChainContract,
-      useTransactions,
-      useBackup,
-      useCreateOnChainContract,
-      useInheritance,
-      useConnect,
-      useDisconnect,
-    ].concat(customHooks || []);
+  ({ children, customHooks, features }: KiroboProps) => {
+    const optionalHooks: Set<() => void> = new Set();
 
-    hooks.map((useHook) => {
+    const hooks = React.useRef<(() => void)[] | undefined>(undefined);
+    if(!hooks.current) {
+      if(features?.includes("onChainWallet")) {  
+          optionalHooks.add(useCreateOnChainContract).add(useSetupOnChainContract)
+      }
+      if(features?.includes("backup")) {  
+          optionalHooks.add(useCreateOnChainContract).add(useSetupOnChainContract).add(useBackup)
+      }
+      if(features?.includes("inheritance")) {  
+          optionalHooks.add(useCreateOnChainContract).add(useSetupOnChainContract).add(useInheritance)
+      }
+
+      hooks.current = [
+        useRegularWallet,
+        useNewBlockSubscribe,
+        useBalances,
+        useTransactions,
+        useConnect,
+        useDisconnect,
+      ]
+      .concat(Array.from(optionalHooks))
+      .concat(customHooks || [])
+    }
+
+    hooks.current.map((useHook) => {
       try {
         return useHook();
       } catch (e) {

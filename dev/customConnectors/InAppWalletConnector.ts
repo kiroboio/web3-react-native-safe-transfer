@@ -117,7 +117,6 @@ export class InAppWalletConnector
   };
 
   public handleAccountChanged(account?: string): void {
-    console.log("handleAccountChanged", account);
     InAppWalletConnector.setActiveAccount(account);
     if (!account) return;
     this.emitUpdate({ account });

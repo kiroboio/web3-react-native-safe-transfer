@@ -162,7 +162,6 @@ export const useRegularWallet = () => {
     const wallet = __wallet.current;
     const web3Connector = __web3Connector.current;
     const setActiveAccount = __setActiveAccount.current;
-    console.log("regulat wallet sset new active account", wallet.activeAccount);
     if (!web3Connector?.handleAccountChanged) return;
     web3Connector.handleAccountChanged(wallet.activeAccount);
     setActiveAccount(wallet.activeAccount);

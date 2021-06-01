@@ -66,7 +66,6 @@ export var useBalances = function () {
                     return [4 /*yield*/, getRate()];
                 case 1:
                     rate_1 = _a.sent();
-                    console.log(rate_1, "getted rate");
                     setExchangeToUsdRate(rate_1);
                     setRate(rate_1);
                     return [3 /*break*/, 3];

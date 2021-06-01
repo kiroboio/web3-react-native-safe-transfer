@@ -25,7 +25,7 @@ const getLibrary = (
 export const Web3Provider = observer((props: KiroboProps) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
-      <Web3ProviderUpdater customHooks={props.customHooks} />
+      <Web3ProviderUpdater {...props} />
     </Web3ReactProvider>
   );
 });
