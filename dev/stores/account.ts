@@ -21,13 +21,13 @@ import Web3 from "web3";
 import { Connectors } from "../hooks/useWeb3";
 import { isValidAddress } from "../utils/address";
 import {
-  LogoChainlink,
-  LogoBNB,
-  LogoUSDT,
-  IconLogoOnly,
-  LogoUNI,
-  LogoSUSHI,
-} from "../assets";
+  Chainlink,
+  BNB,
+  USDT,
+  Kirobo,
+  UNI,
+  SUSHI,
+} from "../icons";
 
 const getChainName = (chainId: ChainIds) => {
   if (chainId === "1") return "main";
@@ -1168,7 +1168,7 @@ export const tokens = {
     address: { "4": "", "1": "", notSupportedChainId: "" },
   },
   KIRO: {
-    icon: IconLogoOnly,
+    icon: Kirobo,
     label: "KIRO",
     address: {
       "4": "0xB678E95F83aF08E7598EC21533F7585E83272799",
@@ -1177,7 +1177,7 @@ export const tokens = {
     },
   },
   LINK: {
-    icon: LogoChainlink,
+    icon: Chainlink,
     label: "LINK",
     address: {
       "4": "0x01be23585060835e02b77ef475b0cc51aa1e0709",
@@ -1186,7 +1186,7 @@ export const tokens = {
     },
   },
   USDT: {
-    icon: LogoUSDT,
+    icon: USDT,
     label: "Tether",
     address: {
       "4": "0xb19ed150325db38b397cb134533cb45a2b2b62a3",
@@ -1195,7 +1195,7 @@ export const tokens = {
     },
   },
   BNB: {
-    icon: LogoBNB,
+    icon: BNB,
     label: "Binance Coin",
     address: {
       "4": "0x2211dc5e1b4c34efe0027561e2f36c2d63fbd01c",
@@ -1204,7 +1204,7 @@ export const tokens = {
     },
   },
   UNI: {
-    icon: LogoUNI,
+    icon: UNI,
     label: "Uniswap",
     address: {
       "4": "0x7f0fae34de2b34d13da640afc2273366919cd0b2",
@@ -1213,7 +1213,7 @@ export const tokens = {
     },
   },
   SUSHI: {
-    icon: LogoSUSHI,
+    icon: SUSHI,
     label: "Sushi Token",
     address: {
       "4": "0x1bfc4d6b40591b8c8e1ef8a36e4f15d54d760110",

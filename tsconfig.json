@@ -19,7 +19,8 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "skipLibCheck": true,
+    "baseUrl": "./"
   },
-  "include": ["dev"],
+  "include": ["dev", "docz"],
   "exclude": ["node_modules", "prod"]
 }

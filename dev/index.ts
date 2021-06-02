@@ -5,7 +5,7 @@ export * from "./stores";
 export * from "./services";
 export * from "./web3Hooks";
 export * from "./hooks";
-export * from "./assets";
+export * from "./icons";
 export * from "./context";
 export * from "./customConnectors";
 export * from "./debugging";
