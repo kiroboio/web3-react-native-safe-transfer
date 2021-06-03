@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Storage } from "@capacitor/storage";
+import { Storage, StoragePlugin } from "@capacitor/storage";
 
 export type Error = {
   isError: boolean;
@@ -7,21 +7,19 @@ export type Error = {
   isLocalStorageExist: boolean;
 };
 
-const useSecureStorageEmptyRes = {
-  error: { isError: true, content: undefined, isLocalStorageExist: false },
-  secureStorage: undefined,
-  setItem: undefined,
-  getItem: undefined,
-  removeItem: undefined,
-  removeAll: undefined,
-  clear: undefined,
-  getAllKeys: undefined,
-  setNewSecureStorageConfig: undefined,
-};
+export type UseMobileStorageRes = {
+  error: Error;
+  storage: StoragePlugin;
+  setItem: (itemName: string, item: string) => void;
+  getItem: (itemName: string) => Promise<string>;
+  removeItem: (itemName: string) => void;
+  removeAll: () => void;
+  clear: () => void;
+  getAllKeys: () => ReturnType<StoragePlugin["keys"]>
+  setNewSecureStorageConfig: () => void;
+}
 
-export type UseSecureStorageEmptyRes = typeof useSecureStorageEmptyRes;
-
-export const useStorageMobile = () => {
+export const useStorageMobile = (): UseMobileStorageRes => {
   const createStorage = () => Storage;
   const [newStorage, setStorage] = useState(createStorage());
 
@@ -94,13 +92,11 @@ export const useStorageMobile = () => {
     } catch (e) {
       handleSetError(e);
     }
-
-    return [];
   };
 
   return {
     error,
-    newStorage,
+    storage: newStorage,
     setItem,
     getItem,
     removeItem,

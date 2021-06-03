@@ -8,7 +8,7 @@ export * from "./usePreviousExisted";
 
 export * from "./useProcessTransactions";
 
-export * from "./useSecureStorage";
+export * from "./useSecureStorageWeb";
 
 export * from "./useWallet";
 

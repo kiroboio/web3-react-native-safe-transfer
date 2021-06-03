@@ -1,7 +1,5 @@
 import { useState } from "react";
 import SecureLS from "secure-ls";
-import isMobile from "ismobilejs";
-import { useStorageMobile } from "./useStorageMobile";
 
 export type Error = {
   isError: boolean;
@@ -11,7 +9,7 @@ export type Error = {
 
 const useSecureStorageEmptyRes = {
   error: { isError: true, content: undefined, isLocalStorageExist: false },
-  secureStorage: undefined,
+  storage: undefined,
   setItem: undefined,
   getItem: undefined,
   removeItem: undefined,
@@ -21,11 +19,11 @@ const useSecureStorageEmptyRes = {
   setNewSecureStorageConfig: undefined,
 };
 
-export type UseSecureStorageEmptyRes = typeof useSecureStorageEmptyRes;
+type UseSecureStorageEmptyRes = typeof useSecureStorageEmptyRes;
 
-export type UseSecureStorageRes<T> = {
+export type UseSecureStorageRes = {
   error: Error;
-  secureStorage: T & SecureLS;
+  storage: SecureLS;
   setItem: (itemName: string, item: unknown) => void;
   getItem: (itemName: string) => Promise<string>;
   removeItem: (itemName: string) => void;
@@ -38,13 +36,11 @@ export type UseSecureStorageRes<T> = {
   ) => void;
 };
 
-export const useSecureStorage = isMobile(window.navigator).any
-  ? useStorageMobile
-  : <T>(
+export const useSecureStorageWeb = (
       encryptionSecret?: string,
       encodingType = "aes",
       encryptionNamespace?: string
-    ): UseSecureStorageRes<T & SecureLS> | UseSecureStorageEmptyRes => {
+    ): UseSecureStorageRes | UseSecureStorageEmptyRes => {
       const createNewSecureSecureStorage = (
         encryptionSecret?: string,
         encodingType = "aes"
@@ -58,7 +54,7 @@ export const useSecureStorage = isMobile(window.navigator).any
           });
         };
         try {
-          const newSecureLS = createNewSecureLS() as T &
+          const newSecureLS = createNewSecureLS() as 
             SecureLS & { error: Error };
           newSecureLS.error = {
             isError: false,
@@ -75,7 +71,7 @@ export const useSecureStorage = isMobile(window.navigator).any
       };
 
       const [newSecureStorage, setSecureStorageConfig] = useState<
-        (T & SecureLS) | UseSecureStorageEmptyRes
+        SecureLS | UseSecureStorageEmptyRes
       >(createNewSecureSecureStorage(encryptionSecret, encodingType));
 
       const [error, setError] = useState<Error>({
@@ -90,7 +86,7 @@ export const useSecureStorage = isMobile(window.navigator).any
         return secureStorageError;
       }
 
-      const secureStorage = newSecureStorage as T & SecureLS;
+      const secureStorage = newSecureStorage as SecureLS;
 
       const setNewSecureStorageConfig = (
         encryptionSecret: string,
@@ -162,7 +158,7 @@ export const useSecureStorage = isMobile(window.navigator).any
 
       return {
         error,
-        secureStorage,
+        storage: secureStorage,
         setItem,
         getItem,
         removeItem,

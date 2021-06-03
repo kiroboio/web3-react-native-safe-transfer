@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UseSecureStorageRes, useSecureStorage } from "./useSecureStorage";
+import { useStorage, UseSecureStorageType } from "./useStorage";
 import { InAppWalletConnector } from "../customConnectors/InAppWalletConnector";
 import { generateMnemonic } from "bip39";
 
@@ -28,16 +28,14 @@ export const useWallet = (): {
 
   const [error, setError] = useState<Error>(initError);
 
-  const storage = useSecureStorage();
+  const storage = useStorage();
 
   const getCredentialsFromStorage = async () => {
     if (storage.error.isError) {
       setError({ isError: true, content: storage.error.content });
       return { mnemonic: undefined, rpc: undefined };
     }
-    const secureStorageSuccess = storage as UseSecureStorageRes<{
-      mnemonic: string;
-    }>;
+    const secureStorageSuccess = storage as UseSecureStorageType;
     const storageMnemonic = await secureStorageSuccess.getItem("mnemonic");
     const storageRpc = await secureStorageSuccess.getItem("rpc");
     return { mnemonic: storageMnemonic, rpc: storageRpc };
@@ -48,10 +46,7 @@ export const useWallet = (): {
       setError({ isError: true, content: storage.error.content });
       return;
     }
-    const secureStorageSuccess = storage as UseSecureStorageRes<{
-      rpc: string;
-      mnemonic: string;
-    }>;
+    const secureStorageSuccess = storage as UseSecureStorageType;
     secureStorageSuccess.setItem("mnemonic", mnemonic);
     secureStorageSuccess.setItem("rpc", rpc);
 
@@ -68,9 +63,7 @@ export const useWallet = (): {
     } else {
       InAppWalletConnector.setMnemonic(mnemonic);
     }
-    const secureStorageSuccess = storage as UseSecureStorageRes<{
-      mnemonic: string;
-    }>;
+    const secureStorageSuccess = storage as UseSecureStorageType;
     secureStorageSuccess.setItem("mnemonic", mnemonic);
     setMnemonic(mnemonic);
   };
@@ -81,9 +74,7 @@ export const useWallet = (): {
       return;
     }
 
-    const secureStorageSuccess = storage as UseSecureStorageRes<{
-      activeAccount: string;
-    }>;
+    const secureStorageSuccess = storage as UseSecureStorageType;
     return await secureStorageSuccess.getItem("activeAccount");
   };
 
@@ -95,9 +86,7 @@ export const useWallet = (): {
 
     InAppWalletConnector.setActiveAccount(account);
 
-    const secureStorageSuccess = storage as UseSecureStorageRes<{
-      activeAccountIndex: number;
-    }>;
+    const secureStorageSuccess = storage as UseSecureStorageType;
     secureStorageSuccess.setItem("activeAccount", account);
   };
 
@@ -108,9 +97,7 @@ export const useWallet = (): {
     }
     const mnemonic = generateMnemonic();
     InAppWalletConnector.setMnemonic(mnemonic);
-    const secureStorageSuccess = storage as UseSecureStorageRes<{
-      mnemonic: string;
-    }>;
+    const secureStorageSuccess = storage as UseSecureStorageType;
     secureStorageSuccess.setItem("mnemonic", mnemonic);
     setMnemonic(mnemonic);
   };
@@ -120,9 +107,7 @@ export const useWallet = (): {
       setError({ isError: true, content: storage.error.content });
       return;
     }
-    const secureStorageSuccess = storage as UseSecureStorageRes<{
-      mnemonic: string;
-    }>;
+    const secureStorageSuccess = storage as UseSecureStorageType;
     const storageMnemonic = await secureStorageSuccess.getItem("mnemonic");
     return storageMnemonic;
   };
