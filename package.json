@@ -24,6 +24,7 @@
     "axios": "0.21.1",
     "bip39": "^3.0.3",
     "bn.js": "5.2.0",
+    "ethereum-input-data-decoder": "^0.3.2",
     "ethers": "^5.0.30",
     "ismobilejs": "1.1.1",
     "mobx": "6.1.8",

@@ -10,8 +10,8 @@ export type Error = {
 const useSecureStorageEmptyRes = {
   error: { isError: true, content: undefined, isLocalStorageExist: false },
   storage: undefined,
-  setItem: undefined,
-  getItem: undefined,
+  setItem: () => ({}),
+  getItem: () => "",
   removeItem: undefined,
   removeAll: undefined,
   clear: undefined,

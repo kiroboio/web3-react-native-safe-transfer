@@ -15,7 +15,7 @@ export type UseMobileStorageRes = {
   removeItem: (itemName: string) => void;
   removeAll: () => void;
   clear: () => void;
-  getAllKeys: () => ReturnType<StoragePlugin["keys"]>
+  getAllKeys: () => ReturnType<StoragePlugin["keys"]> | null
   setNewSecureStorageConfig: () => void;
 }
 
@@ -54,12 +54,12 @@ export const useStorageMobile = (): UseMobileStorageRes => {
   const getItem = async (itemName: string) => {
     try {
       const item = await newStorage.get({ key: itemName });
-      return item.value;
+      return item.value || "";
     } catch (e) {
       handleSetError(e);
     }
 
-    return null;
+    return "";
   };
 
   const removeItem = (itemName: string) => {
@@ -92,6 +92,8 @@ export const useStorageMobile = (): UseMobileStorageRes => {
     } catch (e) {
       handleSetError(e);
     }
+
+    return null
   };
 
   return {
