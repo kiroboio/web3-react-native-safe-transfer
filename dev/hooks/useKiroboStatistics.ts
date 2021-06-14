@@ -27,18 +27,19 @@ const provider = () =>
   );
 const web3 = new Web3(provider());
 
-const uniqueHolders: Set<string> = new Set([
-  "0xb1191f691a355b43542bea9b8847bc73e7abb137",
-]);
 export const useKiroboStatistics = () => {
   let endTokensRewardsBlock = useRef(0);
   let endEthCollectsBlock = useRef(0);
   let endErc20CollectsBlock = useRef(0);
+  
+  const uniqueHolders:  React.MutableRefObject<Set<string>> = useRef(new Set([]));
 
   const { block } = useAccount();
   const { setItem, getItem } = useStorage();
 
   const [lastBlockTo, setLastBlockTo] = useState(0);
+
+  const [uniqueHoldersAmount, setUniqueHoldersAmount] = useState(0)
 
   const [totalTokensRewards, setTotalTokensRewards] = useState(0);
   const [tokenRewardsTotalAmount, setTokenRewardsTotalAmount] = useState(0);
@@ -49,31 +50,8 @@ export const useKiroboStatistics = () => {
   const [totalErc20Collects, setTotalErc20Collects] = useState(0);
   const [erc20TotalCollectedAmount, setErc20TotalCollectedAmount] = useState(0);
 
-  const subCollect = async (
-    func:
-      | typeof collectTokenHolders
-      | typeof collectTokenRewardsEvents
-      | typeof collectCollectedEvents
-      | typeof collectCollectedErc20Events,
-    fromBlock: number,
-    toBlock: number,
-    factor: number
-  ) => {
-    web3.setProvider(provider());
-    await web3.eth
-      .getBlockNumber()
-      .then(async () => {
-        const from = fromBlock;
-        const to = toBlock;
-        const segment = Math.ceil((to - from) / factor) + 1;
-        for (let i = from; i <= to; i += segment) {
-          await func({ fromBlock: i, toBlock: Math.min(to, i + segment - 1) });
-        }
-      })
-      .catch((e) => {
-        console.error("Too much data and ws reset failed", e);
-      });
-  };
+  const [isFetching, setIsFetching] = useState(false);
+
   const tokenAbi = erc20Abi as any;
   var tokenInst = new web3.eth.Contract(
     tokenAbi,
@@ -86,64 +64,59 @@ export const useKiroboStatistics = () => {
     fromBlock: number;
     toBlock: number;
   }) => {
-    const nextBlock = toBlock;
-    await web3.eth
-      .getPastLogs({
+    for (let i = fromBlock; i <= toBlock; i++) {
+      const events = await web3.eth.getPastLogs({
         address: "0xb1191f691a355b43542bea9b8847bc73e7abb137",
-        fromBlock,
-        toBlock,
+        fromBlock: i,
+        toBlock: i,
         topics: [
           web3.utils.sha3("Transfer(address,address,uint256)"),
           null,
           null,
         ],
-      })
-      .then(async (events: Array<any>) => {
-        if (events.length > 0) {
-          for (let i = 0; i < events.length; ++i) {
-            const transaction = await web3.eth.getTransaction(
-              events[i].transactionHash
-            );
-            console.log("token not decoded transaction", transaction);
-            if (transaction.to && !uniqueHolders.has(transaction.to)) {
-              const balanceTo = await tokenInst.methods
-                .balanceOf(transaction.to)
-                .call();
-              if (balanceTo > 0) {
-                uniqueHolders.add(transaction.to);
-                console.log("token decoded data balanceTo", balanceTo);
-              }
-            }
-            if (transaction.from && !uniqueHolders.has(transaction.from)) {
-              const balanceFrom = await tokenInst.methods
-                .balanceOf(transaction.from)
-                .call();
-              if (balanceFrom > 0) {
-                uniqueHolders.add(transaction.from);
-                console.log("token decoded data balanceFrom", balanceFrom);
-              }
-            }
-            console.log(
-              "token decoded data holders",
-              Array.from(uniqueHolders).length
-            );
-
-            //const decodedData = decoder.decodeData(transaction.input);
-          }
-          setTokenRewardsTotalAmount((amount) => amount + events.length);
-        }
-        if (toBlock === endTokensRewardsBlock.current) {
-          console.log("total:", totalTokensRewards);
-          console.timeEnd("collect");
-          console.log(tokenRewardsTotalAmount);
-        }
-
-        setItem("holdersLastFetchedBlock", toBlock.toString());
-      })
-      .catch(async () => {
-        await subCollect(collectTokenHolders, fromBlock, toBlock, 8);
       });
-    return nextBlock;
+
+      for (let i = 0; i < events.length; ++i) {
+        const transaction = await web3.eth.getTransaction(
+          events[i].transactionHash
+        );
+        if (transaction.to && !uniqueHolders.current.has(transaction.to)) {
+          const balanceTo = await tokenInst.methods
+            .balanceOf(transaction.to)
+            .call();
+          if (balanceTo > 0) {
+            uniqueHolders.current.add(transaction.to);
+          }
+        }
+        if (transaction.from && !uniqueHolders.current.has(transaction.from)) {
+          const balanceFrom = await tokenInst.methods
+            .balanceOf(transaction.from)
+            .call();
+          if (balanceFrom > 0) {
+            uniqueHolders.current.add(transaction.from);
+          }
+        }
+        
+        console.log(Array.from(uniqueHolders.current), "array of uniqueHolders");
+        //const decodedData = decoder.decodeData(transaction.input);
+      }
+      
+      if (toBlock === endTokensRewardsBlock.current) {
+        console.log("total:", totalTokensRewards);
+        console.timeEnd("collect");
+        console.log(tokenRewardsTotalAmount);
+      }
+      
+      const uniqueHoldersArray = Array.from(uniqueHolders.current);
+      console.log(
+        "token decoded data holders",
+        uniqueHoldersArray.length
+      );
+
+      setUniqueHoldersAmount(uniqueHoldersArray.length);
+      setItem("uniqueHolders", uniqueHoldersArray.join(","));
+      setItem("holdersLastFetchedBlock", toBlock.toString());
+    }
   };
 
   const collectTokenRewardsEvents = async ({
@@ -153,53 +126,65 @@ export const useKiroboStatistics = () => {
     fromBlock: number;
     toBlock: number;
   }) => {
-    const nextBlock = toBlock;
-    await web3.eth
-      .getPastLogs({
+    for (let i = fromBlock; i <= toBlock; i++) {
+      const events = await web3.eth.getPastLogs({
         address: "0xb1191f691a355b43542bea9b8847bc73e7abb137",
-        fromBlock,
-        toBlock,
+        fromBlock: i,
+        toBlock: i,
         topics: [
           web3.utils.sha3("Transfer(address,address,uint256)"),
           null,
           null,
         ],
-      })
-      .then(async (events: Array<any>) => {
-        if (events.length > 0) {
-          for (let i = 0; i < events.length; ++i) {
-            const transaction = await web3.eth.getTransaction(
-              events[i].transactionHash
-            );
-            console.log("token not decoded transaction", transaction);
-            const decodedData = decoder.decodeData(transaction.input);
-            if (
-              decodedData &&
-              decodedData.inputs &&
-              decodedData.inputs.length &&
-              web3.utils.isBN(decodedData.inputs[1])
-            ) {
-              setTotalTokensRewards(
-                (amount) =>
-                  amount + parseInt(fromWei(decodedData.inputs[1].toString()))
-              );
+      });
+
+      for (let i = 0; i < events.length; ++i) {
+        const transaction = await web3.eth.getTransaction(
+          events[i].transactionHash
+        );
+        console.log("token not decoded transaction", transaction);
+        const decodedData = decoder.decodeData(transaction.input);
+        if (
+          decodedData &&
+          decodedData.inputs &&
+          decodedData.inputs.length &&
+          web3.utils.isBN(decodedData.inputs[1])
+        ) {
+          setTotalTokensRewards(
+            (amount) =>
+              amount + parseInt(fromWei(decodedData.inputs[1].toString()))
+          );
+          if(decodedData.inputs[0]) {
+            const balanceTo = await tokenInst.methods
+              .balanceOf(decodedData.inputs[0])
+              .call();
+            if (balanceTo > 0) {
+              uniqueHolders.current.add(decodedData.inputs[0]);
             }
           }
-          setTokenRewardsTotalAmount((amount) => amount + events.length);
         }
+      }
 
-        if (toBlock === endTokensRewardsBlock.current) {
-          console.log("total:", totalTokensRewards);
-          console.timeEnd("collect");
-          console.log(tokenRewardsTotalAmount);
-        }
+      console.log(Array.from(uniqueHolders.current), "array of uniqueHolders");
+      setTokenRewardsTotalAmount((amount) => amount + events.length);
+    }
 
-        setItem("rewardsLastFetchedBlock", toBlock.toString());
-      })
-      .catch(async () => {
-        await subCollect(collectTokenRewardsEvents, fromBlock, toBlock, 8);
-      });
-    return nextBlock;
+    if (toBlock === endTokensRewardsBlock.current) {
+      console.log("total:", totalTokensRewards);
+      console.timeEnd("collect");
+      console.log(tokenRewardsTotalAmount);
+    }
+    const uniqueHoldersArray = Array.from(uniqueHolders.current);
+    console.log(
+      "token decoded data holders",
+      uniqueHoldersArray.length
+    );
+    
+    setUniqueHoldersAmount(uniqueHoldersArray.length);
+    setItem("uniqueHolders", uniqueHoldersArray.join(","));
+    setItem("rewardsLastFetchedBlock", toBlock.toString());
+    setItem("totalTokensRewards", totalTokensRewards.toString());
+    setItem("tokenRewardsTotalAmount", tokenRewardsTotalAmount.toString());
   };
 
   const collectCollectedEvents = async ({
@@ -209,53 +194,46 @@ export const useKiroboStatistics = () => {
     fromBlock: number;
     toBlock: number;
   }) => {
-    const nextBlock = toBlock;
-    await web3.eth
-      .getPastLogs({
+    for (let i = fromBlock; i <= toBlock; i++) {
+      const events = await web3.eth.getPastLogs({
         address: "0xd8133A158d4A45e230560656fe5Cd2C209ef7a72",
-        fromBlock,
-        toBlock,
+        fromBlock: i,
+        toBlock: i,
         topics: [
           web3.utils.sha3("Collected(address,address,bytes32,uint256)"),
           null,
           null,
         ],
-      })
-      .then(async (events: Array<any>) => {
-        if (events.length > 0) {
-          for (let i = 0; i < events.length; ++i) {
-            const transaction = await web3.eth.getTransaction(
-              events[i].transactionHash
-            );
-            const decodedData = saferTransferDecoder.decodeData(
-              transaction.input
-            );
-            if (
-              decodedData &&
-              decodedData.inputs &&
-              decodedData.inputs.length &&
-              web3.utils.isBN(decodedData.inputs[2])
-            ) {
-              setTotalEthCollects(
-                (amount) =>
-                  amount + parseInt(fromWei(decodedData.inputs[2].toString()))
-              );
-            }
-          }
-          setEthTotalCollectedAmount((amount) => amount + events.length);
-        }
-        if (toBlock === endEthCollectsBlock.current) {
-          console.log("total collected eths:", totalEthCollects);
-          console.timeEnd("collect");
-          console.log("collectedEthTotalAmount", ethTotalCollectedAmount);
-        }
-
-        setItem("collectedEvents", toBlock.toString());
-      })
-      .catch(async (err: { message: string }) => {
-        await subCollect(collectCollectedEvents, fromBlock, toBlock, 8);
       });
-    return nextBlock;
+
+      for (let i = 0; i < events.length; ++i) {
+        const transaction = await web3.eth.getTransaction(
+          events[i].transactionHash
+        );
+        const decodedData = saferTransferDecoder.decodeData(transaction.input);
+        if (
+          decodedData &&
+          decodedData.inputs &&
+          decodedData.inputs.length &&
+          web3.utils.isBN(decodedData.inputs[2])
+        ) {
+          setTotalEthCollects(
+            (amount) =>
+              amount + parseInt(fromWei(decodedData.inputs[2].toString()))
+          );
+        }
+      }
+      setEthTotalCollectedAmount((amount) => amount + events.length);
+    }
+    if (toBlock === endEthCollectsBlock.current) {
+      console.log("total collected eths:", totalEthCollects);
+      console.timeEnd("collect");
+      console.log("collectedEthTotalAmount", ethTotalCollectedAmount);
+    }
+
+    setItem("totalEthCollects", totalEthCollects.toString());
+    setItem("ethTotalCollectedAmount", ethTotalCollectedAmount.toString());
+    setItem("collectedEvents", toBlock.toString());
   };
 
   const collectCollectedErc20Events = async ({
@@ -265,9 +243,8 @@ export const useKiroboStatistics = () => {
     fromBlock: number;
     toBlock: number;
   }) => {
-    const nextBlock = toBlock;
-    await web3.eth
-      .getPastLogs({
+    for (let i = fromBlock; i <= toBlock; i++) {
+      const events = await web3.eth.getPastLogs({
         address: "0xd8133A158d4A45e230560656fe5Cd2C209ef7a72",
         fromBlock,
         toBlock,
@@ -278,42 +255,36 @@ export const useKiroboStatistics = () => {
           null,
           null,
         ],
-      })
-      .then(async (events: Array<any>) => {
-        if (events.length > 0) {
-          for (let i = 0; i < events.length; ++i) {
-            const transaction = await web3.eth.getTransaction(
-              events[i].transactionHash
-            );
-            const decodedData = saferTransferDecoder.decodeData(
-              transaction.input
-            );
-            if (
-              decodedData &&
-              decodedData.inputs &&
-              decodedData.inputs.length &&
-              web3.utils.isBN(decodedData.inputs[4])
-            ) {
-              setTotalErc20Collects(
-                (amount) =>
-                  amount + parseInt(fromWei(decodedData.inputs[4].toString()))
-              );
-            }
-          }
-          setErc20TotalCollectedAmount((amount) => amount + events.length);
-        }
-        if (toBlock === endErc20CollectsBlock.current) {
-          console.log("total erc20 collected:", totalErc20Collects);
-          console.timeEnd("collect");
-          console.log("collected erc 20TotalAmount", erc20TotalCollectedAmount);
-        }
-
-        setItem("erc20CollectedEvents", toBlock.toString());
-      })
-      .catch(async () => {
-        await subCollect(collectCollectedEvents, fromBlock, toBlock, 8);
       });
-    return nextBlock;
+
+      for (let i = 0; i < events.length; ++i) {
+        const transaction = await web3.eth.getTransaction(
+          events[i].transactionHash
+        );
+        const decodedData = saferTransferDecoder.decodeData(transaction.input);
+        if (
+          decodedData &&
+          decodedData.inputs &&
+          decodedData.inputs.length &&
+          web3.utils.isBN(decodedData.inputs[4])
+        ) {
+          setTotalErc20Collects(
+            (amount) =>
+              amount + parseInt(fromWei(decodedData.inputs[4].toString()))
+          );
+        }
+      }
+      setErc20TotalCollectedAmount((amount) => amount + events.length);
+    }
+    if (toBlock === endErc20CollectsBlock.current) {
+      console.log("total erc20 collected:", totalErc20Collects);
+      console.timeEnd("collect");
+      console.log("collected erc 20TotalAmount", erc20TotalCollectedAmount);
+    }
+
+    setItem("totalErc20Collects", totalErc20Collects.toString());
+    setItem("erc20TotalCollectedAmount", erc20TotalCollectedAmount.toString());
+    setItem("erc20CollectedEvents", toBlock.toString());
   };
   type BlockBounders = {
     fromBlock: number;
@@ -326,7 +297,10 @@ export const useKiroboStatistics = () => {
   }: BlockBounders) => {
     endTokensRewardsBlock.current = toBlock;
     const lastSavedBlock = parseInt(await getItem("holdersLastFetchedBlock"));
-    const currentFromBlock = lastSavedBlock > 0 && lastSavedBlock > fromBlock ? lastSavedBlock : fromBlock;
+    const currentFromBlock =
+      lastSavedBlock > 0 && lastSavedBlock > fromBlock
+        ? lastSavedBlock
+        : fromBlock;
 
     await collectTokenHolders({ fromBlock: currentFromBlock, toBlock });
   };
@@ -337,11 +311,13 @@ export const useKiroboStatistics = () => {
   }: BlockBounders) => {
     endTokensRewardsBlock.current = toBlock;
     const lastSavedBlock = parseInt(await getItem("rewardsLastFetchedBlock"));
-    const currentFromBlock = lastSavedBlock > 0 && lastSavedBlock > fromBlock ? lastSavedBlock : fromBlock;
+    const currentFromBlock =
+      lastSavedBlock > 0 && lastSavedBlock > fromBlock
+        ? lastSavedBlock
+        : fromBlock;
 
     await collectTokenRewardsEvents({ fromBlock: currentFromBlock, toBlock });
   };
-
 
   const getCollectedEventsHistory = async ({
     fromBlock,
@@ -349,7 +325,10 @@ export const useKiroboStatistics = () => {
   }: BlockBounders) => {
     endEthCollectsBlock.current = toBlock;
     const lastSavedBlock = parseInt(await getItem("collectedEvents"));
-    const currentFromBlock = lastSavedBlock > 0 && lastSavedBlock > fromBlock ? lastSavedBlock : fromBlock;
+    const currentFromBlock =
+      lastSavedBlock > 0 && lastSavedBlock > fromBlock
+        ? lastSavedBlock
+        : fromBlock;
 
     await collectCollectedEvents({ fromBlock: currentFromBlock, toBlock });
   };
@@ -360,30 +339,84 @@ export const useKiroboStatistics = () => {
   }: BlockBounders) => {
     endErc20CollectsBlock.current = toBlock;
     const lastSavedBlock = parseInt(await getItem("erc20CollectedEvents"));
-    const currentFromBlock = lastSavedBlock > 0 && lastSavedBlock > fromBlock ? lastSavedBlock : fromBlock;
+    const currentFromBlock =
+      lastSavedBlock > 0 && lastSavedBlock > fromBlock
+        ? lastSavedBlock
+        : fromBlock;
 
     await collectCollectedErc20Events({ fromBlock: currentFromBlock, toBlock });
   };
 
+
   useEffect(() => {
     if (block < 1) return;
     const getAllEventsAsync = async () => {
-      setLastBlockTo(block);
-      
-      await getTokenHoldersHistory({ fromBlock: lastBlockTo, toBlock: block });
-      await getTokenRewardsHistory({ fromBlock: lastBlockTo, toBlock: block });
-      await getCollectedEventsHistory({ fromBlock: lastBlockTo, toBlock: block });
-      await getCollectedErc20EventsHistory({ fromBlock: lastBlockTo, toBlock: block });
+      if(isFetching) return;
 
+      setIsFetching(true);
+      
+      const currentLastBlockTo = lastBlockTo;
+      setLastBlockTo(block);
+
+      const storedUniqueHolders = await getItem("uniqueHolders");
+      if(storedUniqueHolders) {
+        uniqueHolders.current = new Set(storedUniqueHolders.split(","));
+      }
+
+      const storedTotalTokensRewards = parseInt(await getItem("totalTokensRewards"));
+      if(storedTotalTokensRewards && storedTotalTokensRewards > 0) {
+        setTotalTokensRewards(storedTotalTokensRewards)
+      }
+
+      const storedTokenRewardsTotalAmount = parseInt(await getItem("tokenRewardsTotalAmount"));
+      if(storedTokenRewardsTotalAmount && storedTokenRewardsTotalAmount > 0) {
+        setTotalTokensRewards(storedTokenRewardsTotalAmount)
+      }
+
+      const storedTotalEthCollects = parseInt(await getItem("totalEthCollects"));
+      if(storedTotalEthCollects && storedTotalEthCollects > 0) {
+        setTotalTokensRewards(storedTotalEthCollects)
+      }
+
+      const storedEthTotalCollectedAmount = parseInt(await getItem("ethTotalCollectedAmount"));
+      if(storedEthTotalCollectedAmount && storedEthTotalCollectedAmount > 0) {
+        setTotalTokensRewards(storedEthTotalCollectedAmount)
+      }
+
+      const storedTotalErc20Collects = parseInt(await getItem("totalErc20Collects"));
+      if(storedTotalErc20Collects && storedTotalErc20Collects > 0) {
+        setTotalTokensRewards(storedTotalErc20Collects)
+      }
+
+      const storedErc20TotalCollectedAmount = parseInt(await getItem("erc20TotalCollectedAmount"));
+      if(storedErc20TotalCollectedAmount && storedErc20TotalCollectedAmount > 0) {
+        setTotalTokensRewards(storedErc20TotalCollectedAmount)
+      }
+
+      await getTokenHoldersHistory({
+        fromBlock: currentLastBlockTo,
+        toBlock: block,
+      });
+      await getTokenRewardsHistory({
+        fromBlock: currentLastBlockTo,
+        toBlock: block,
+      });
+      await getCollectedEventsHistory({
+        fromBlock: currentLastBlockTo,
+        toBlock: block,
+      });
+      await getCollectedErc20EventsHistory({
+        fromBlock: currentLastBlockTo,
+        toBlock: block,
+      });
+
+      setIsFetching(false);
     };
     getAllEventsAsync();
   }, [block]);
 
-  return { totalTokensRewards, totalErc20Collects, totalEthCollects };
+  return { totalTokensRewards, totalErc20Collects, totalEthCollects, uniqueHoldersAmount };
 };
-
-
-
 
 /*
      private watchSafeTransferEvents(fromBlock: number) {
