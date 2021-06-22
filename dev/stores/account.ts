@@ -93,7 +93,14 @@ export const Transfer = types.model({
   confirmedBlock: types.number,
   message: types.string,
   token: types.optional(Token, {}),
-});
+})
+  .actions((self) => ({
+    updateState(state: EthTransferResponseDto['state']){
+      self.updatedAt = new Date()
+      self.state = state
+    }
+  }))
+
 
 export interface SendCmdParams {
   to: string;
@@ -411,10 +418,9 @@ export const ERC20Tokens = types
   }));
 
 export interface DeviceInfoData {
-  type: string;
   haveMetaMask: boolean;
   ethereumProvider: boolean;
-  ready: boolean;
+  isMobile: boolean;
 }
 
 export const DeviceInfo = types
@@ -560,59 +566,62 @@ export const CollectCmd = CmdBase.named("CollectCmd")
       }
     },
   }));
-
-export const Transfers = types
-  .model("Transfers", {
+  export const Transfers = types
+  .model('Transfers', {
     name: types.string,
     map: types.map(Transfer),
     count: types.optional(types.number, 0),
     fetched: types.optional(types.number, 0),
-    address: types.optional(types.string, ""),
+    address: types.optional(types.string, ''),
     fetchCmd: types.optional(FetchCmd, {}),
   })
   .views((self) => ({
     get list() {
-      return Array.from(self.map.values());
+      return Array.from(self.map.values())
     },
   }))
   .actions((self) => ({
     setFetched(count: number) {
-      self.fetched = count;
+      self.fetched = count
     },
     add({
       address,
       transfers,
       count,
     }: {
-      address: string;
-      transfers: ITransferItem[];
-      count: number;
+      address: string
+      transfers: ITransferItem[]
+      count: number
     }) {
       if (!self.address) {
-        self.address = address;
+        self.address = address
       } else if (self.address !== address) {
-        return;
+        return
       }
       for (const transfer of transfers) {
-        self.map.put(Transfer.create(transfer));
+        self.map.put(Transfer.create(transfer))
       }
-      self.count = count;
+      self.count = count
     },
     upsert(address: string, transfer: ITransferItem) {
       if (!self.address) {
-        self.address = address;
-      } else if (self.address !== address) {
-        return;
-      }
+        self.address = address
+      } else if (self.address !== address) return
       if (!self.map.has(transfer.id)) {
-        self.count = self.count + 1;
+        self.count = self.count + 1
       }
-      self.map.set(transfer.id, Transfer.create(transfer));
+      self.map.set(transfer.id, Transfer.create(transfer))
+    },
+    update(address: string, transfer: {id: string, state: EthTransferResponseDto['state']}) {
+      if (!self.address) {
+        self.address = address
+      } else if (self.address !== address) return;
+      self.map.get(transfer.id)?.updateState(transfer.state)
     },
     delete(address: string, id: string) {
       if (self.address === address) {
         if (self.map.delete(id)) {
-          self.count = self.count - 1;
+          self.count = self.count - 1
         }
       }
     },
@@ -620,29 +629,29 @@ export const Transfers = types
       address: string,
       filter: (item: ITransferItem) => boolean
     ): ITransferItem[] {
-      const res: ITransferItem[] = [];
+      const res: ITransferItem[] = []
       if (self.address === address) {
         self.map.forEach((transfer) => {
           if (filter(transfer as ITransferItem)) {
-            res.push(castToSnapshot(getSnapshot(transfer)));
+            res.push(castToSnapshot(getSnapshot(transfer)))
             if (self.map.delete(transfer.id)) {
-              self.count = self.count - 1;
+              self.count = self.count - 1
             }
           }
-        });
+        })
       }
-      return res;
+      return res
     },
     clear() {
-      self.map.clear();
-      self.fetched = 0;
-      self.count = 0;
+      self.map.clear()
+      self.fetched = 0
+      self.count = 0
       // self.fetchId = self.fetchId + 1
-      self.address = "";
-      self.fetchCmd.clear();
+      self.address = ''
+      self.fetchCmd.clear()
     },
     fetch(amount: number) {
-      self.fetchCmd.prepare({ list: self.name, amount });
+      self.fetchCmd.prepare({ list: self.name, amount })
     },
   }))
   .views((self) => ({
@@ -656,18 +665,19 @@ export const Transfers = types
               ? 1
               : a.updatedAt.getTime() === b.updatedAt.getTime()
               ? 0
-              : -1;
+              : -1
           })
-      );
+      )
     },
     get activeCount() {
-      let count = 0;
+      let count = 0
       self.map.forEach((item) => {
-        if (item.state === "new") count += 1;
-      });
-      return count;
+        if (item.state === 'new') count += 1
+      })
+      return count
     },
-  }));
+  }))
+
 
 const Mnemonic = types
   .model("Mnemonic", {
