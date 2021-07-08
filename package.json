@@ -1,5 +1,5 @@
 {
-  "name": "kirobo-web3-lib",
+  "name": "@kiroboio/web3-react-safe-transfer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,8 +11,7 @@
     "build-docz": "docz build"
   },
   "dependencies": {
-    "@capacitor/core": "^3.0.0",
-    "@capacitor/storage": "^1.0.0",
+    "@ionic/react": "^5.6.11",
     "@kiroboio/safe-transfer-lib-lite": "github:kiroboio/ki-safe-transfer-lib#develop-lite",
     "@metamask/detect-provider": "1.2.0",
     "@myetherwallet/mewconnect-connector": "0.1.8",
@@ -43,8 +42,8 @@
     "yup": "0.32.9"
   },
   "peerDependencies": {
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "typescript": "^4.2.3"
   },
   "devDependencies": {

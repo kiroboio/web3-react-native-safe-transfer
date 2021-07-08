@@ -1,15 +1,15 @@
 type EthTransferState =
-  | "waiting-for-deposit"
-  | "retrieving"
-  | "retrieved"
-  | "ready"
-  | "collecting"
-  | "collected"
-  | "rejected"
-  | "invalid"
-  | "new"
-  | "creating"
-  | "unknown";
+  | 'waiting-for-deposit'
+  | 'retrieving'
+  | 'retrieved'
+  | 'ready'
+  | 'collecting'
+  | 'collected'
+  | 'rejected'
+  | 'invalid'
+  | 'new'
+  | 'creating'
+  | 'unknown'
 
 interface EthCollectInfo {
   /**
@@ -17,19 +17,19 @@ interface EthCollectInfo {
    *
    * @TJS-type number
    */
-  broadcasted: number;
+  broadcasted: number
   /**
    * block number of confirmed transaction
    *
    * @TJS-type number
    */
-  confirmed: number;
+  confirmed: number
   /**
    * the tx id of the transaction
    *
    * @TJS-type string
    */
-  txid: string;
+  txid: string
 }
 
 interface EthRetrieveInfo {
@@ -38,19 +38,19 @@ interface EthRetrieveInfo {
    *
    * @TJS-type number
    */
-  broadcasted: number;
+  broadcasted: number
   /**
    * block number of confirmed transaction
    *
    * @TJS-type number
    */
-  confirmed: number;
+  confirmed: number
   /**
    * the tx id of the transaction
    *
    * @TJS-type string
    */
-  txid: string;
+  txid: string
 }
 
 interface EthDepositInfo {
@@ -59,59 +59,59 @@ interface EthDepositInfo {
    *
    * @TJS-type number
    */
-  broadcasted: number;
+  broadcasted: number
   /**
    * block number of confirmed transaction
    *
    * @TJS-type number
    */
-  confirmed: number;
+  confirmed: number
   /**
    * the tx id of the transaction
    *
    * @TJS-type string
    */
-  txid: string;
+  txid: string
 }
 
 interface EthTransactionInfo {
-  inputs: { txid: string; vout: number }[];
-  coins: { value: number; address: string }[];
-  txid: string;
-  hex: string;
+  inputs: { txid: string; vout: number }[]
+  coins: { value: number; address: string }[]
+  txid: string
+  hex: string
 }
 
 export interface EthTokenInfo {
-  address: string;
-  decimals: number;
-  symbol: string;
-  type: "ERC20";
+  address: string
+  decimals: number
+  symbol: string
+  type: 'ERC20'
 }
 
 export interface PaymentRequest {
-  from: string;
-  value: string;
-  v: string;
-  r: string;
-  s: string;
+  from: string
+  value: string
+  v: string
+  r: string
+  s: string
 }
 
 export interface TransferFees {
   kiro?: {
-    from: string;
-    value: string;
-    v: string;
-    r: string;
-    s: string;
-  };
+    from: string
+    value: string
+    v: string
+    r: string
+    s: string
+  }
   eth?: {
-    to: string;
-    value: number;
-  };
+    to: string
+    value: number
+  }
 }
 
 // tslint:disable-next-line: no-empty-interface
-export type EthTransactionInformation = EthTransactionInfo;
+export type EthTransactionInformation = EthTransactionInfo
 
 export interface EthTransferCreateRequestDto {
   /**
@@ -119,56 +119,56 @@ export interface EthTransferCreateRequestDto {
    *
    * @TJS-type string
    */
-  from: string;
+  from: string
 
   /**
    * the destination address
    *
    * @TJS-type string
    */
-  to: string;
+  to: string
 
   /**
    * the transfer amount in wei
    *
    * @TJS-type string
    */
-  value: string;
+  value: string
 
-  token?: EthTokenInfo;
+  token?: EthTokenInfo
 
   /**
    * the transfer fees in wei
    *
    * @TJS-type string
    */
-  fees: string;
+  fees: string
 
   /**
    * hash use to verify recipient pass code
    *
    * @TJS-type string
    */
-  secretHash: string;
+  secretHash: string
 
   /**
    * free text to be attached to this transfer
    *
    * @TJS-type string
    */
-  message: string;
+  message: string
 
-  salt: string;
-  state: EthTransferState;
-  txid: string;
+  salt: string
+  state: EthTransferState
+  txid: string
 
   /**
    * update date-time
    *
    * @TJS-type Date
    */
-  updatedAt: Date;
-  deposit: EthDepositInfo;
+  updatedAt: Date
+  deposit: EthDepositInfo
 }
 
 export interface EthTransferCreateDto extends EthTransferCreateRequestDto {
@@ -183,12 +183,12 @@ export interface EthTransferCreateDto extends EthTransferCreateRequestDto {
    * create date-time
    *
    */
-  createdAt: Date;
+  createdAt: Date
 
   expires: {
-    at?: Date;
-    block?: number;
-  };
+    at?: Date
+    block?: number
+  }
 
   // apiKey?: string,
   // origin?: string,
@@ -201,34 +201,34 @@ export interface EthTransferUpdateRequestDto extends EthTransferCreateDto {
    *
    * @TJS-type EthTransferState
    */
-  state: EthTransferState;
-  collect: EthCollectInfo;
-  retrieve: EthRetrieveInfo;
-  _id: string;
+  state: EthTransferState
+  collect: EthCollectInfo
+  retrieve: EthRetrieveInfo
+  _id: string
 }
 
 export interface EthTransferUpdateDto extends EthTransferUpdateRequestDto {
-  state: EthTransferState;
-  updatedAt: Date;
+  state: EthTransferState
+  updatedAt: Date
 }
 
 export interface EthTransferPatchDto {
-  state: EthTransferState;
-  deposit?: EthDepositInfo;
-  collect?: EthCollectInfo;
-  retrieve?: EthRetrieveInfo;
+  state: EthTransferState
+  deposit?: EthDepositInfo
+  collect?: EthCollectInfo
+  retrieve?: EthRetrieveInfo
   expires?: {
-    at?: Date;
-    block?: number;
-  };
-  updatedAt: Date;
+    at?: Date
+    block?: number
+  }
+  updatedAt: Date
 }
 
 export interface EthTransferData extends EthTransferCreateDto {
-  _id: string;
-  deposit: EthDepositInfo;
-  collect: EthCollectInfo;
-  retrieve: EthRetrieveInfo;
+  _id: string
+  deposit: EthDepositInfo
+  collect: EthCollectInfo
+  retrieve: EthRetrieveInfo
   /**
    * salt use to encrypt collect transaction
    *
@@ -242,7 +242,7 @@ export interface EthTransferSearchRequestDto {
    *
    * @TJS-type string
    */
-  id: string;
+  id: string
 }
 
 export interface EthTransferResponseDto {
@@ -251,84 +251,84 @@ export interface EthTransferResponseDto {
    *
    * @TJS-type string
    */
-  from: string;
+  from: string
 
   /**
    * the destination address
    *
    * @TJS-type string
    */
-  to: string;
+  to: string
 
   /**
    * the transfer amount in wei
    *
    * @TJS-type string
    */
-  value: string;
+  value: string
 
   /**
    * the coin used (wei if not exist)
    *
    */
-  token?: EthTokenInfo;
+  token?: EthTokenInfo
 
   /**
    * the transfer fees in wei
    *
    * @TJS-type string
    */
-  fees: string;
+  fees: string
 
   /**
    * salt use to encrypt collect transaction
    *
    * @TJS-type string
    */
-  salt: string;
+  salt: string
 
   /**
    * hash use to verify recipient pass code
    *
    * @TJS-type string
    */
-  secretHash: string;
+  secretHash: string
 
   /**
    * free text to be attached to this transfer
    *
    * @TJS-type string
    */
-  message: string;
+  message: string
 
   /**
    * hints for the id generator in the format 'algorithm;data'
    *
    * @TJS-type string
    */
-  id: string;
+  id: string
 
   /**
    * create date-time
    *
    */
-  createdAt: Date;
+  createdAt: Date
 
   /**
    * update date-time
    *
    * @TJS-type Date
    */
-  updatedAt: Date;
+  updatedAt: Date
 
-  state: EthTransferState;
-  deposit: EthDepositInfo;
-  collect: EthCollectInfo;
-  retrieve: EthRetrieveInfo;
+  state: EthTransferState
+  deposit: EthDepositInfo
+  collect: EthCollectInfo
+  retrieve: EthRetrieveInfo
 
   expires: {
-    at?: Date;
-    block?: number;
-  };
-  txid: string;
+    at?: Date
+    block?: number
+  }
+  txid: string
 }

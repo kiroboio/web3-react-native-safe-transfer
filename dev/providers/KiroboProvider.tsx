@@ -1,23 +1,12 @@
-import React from "react";
-import { AccountContext } from "../context/account";
-import { accountStore } from "../stores/account";
-import { Web3Provider } from "./Web3Provider";
-import { ContractProvider } from "./OnChainContractProvider";
-import { SafeTransferContractProvider } from "./SafeTransferContractProvider";
+import React from 'react'
 
-export interface KiroboProps {
-  children?: React.ReactNode;
-  customHooks?: (() => void)[];
-  features?: ("onChainWallet" | "backup" | "inheritance")[];
-}
+import { AccountContext } from '../context/account'
+import { accountStore } from '../stores/account'
+import { Web3Provider } from './Web3Provider'
 
-export const KiroboProvider = (props: KiroboProps): JSX.Element => (
+export const KiroboProvider: React.FC = (props) => (
   <AccountContext.Provider value={accountStore}>
-    <SafeTransferContractProvider>
-      <ContractProvider>
-        <Web3Provider {...props} />
-      </ContractProvider>
-    </SafeTransferContractProvider>
+    <Web3Provider />
     {props.children}
   </AccountContext.Provider>
-);
+)

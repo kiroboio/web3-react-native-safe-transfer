@@ -1,2 +1,2 @@
-export * from "./useWhatChangedDev";
-export * from "./configureReactotronDebugging";
+export { configureReactotronDebugging } from './configureReactotronDebugging'
+export { useWhatChangedDev } from './useWhatChangedDev'
