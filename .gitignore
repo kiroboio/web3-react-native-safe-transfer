@@ -7,6 +7,7 @@
 
 # lib
 /kirobo-web3-lib*
+/lib
 
 # debug
 npm-debug.log*
@@ -20,8 +21,6 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-build
-dist
 
 # vercel
 .vercel

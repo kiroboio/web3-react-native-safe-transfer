@@ -5,10 +5,20 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "test": "react-scripts test --detectOpenHandles",
+    "test": "jest --config jest.config.js",
     "format": "prettier --write ./dev",
     "dev": "docz dev",
-    "build-docz": "docz build"
+    "build-docz": "docz build",
+    "prepare": "npm run build",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags",
+    "lint": "npm run eslint",
+    "lint:fix": "npm run eslint:fix",
+    "lint:check": "npm run eslint:check",
+    "eslint": "tsc --noemit && eslint --max-warnings=0 --ext .ts,.tsx dev",
+    "eslint:fix": "tsc --noemit && eslint --max-warnings=0 --fix --ext .ts,.tsx dev",
+    "eslint:check": "eslint-config-prettier src/index.tsx"
   },
   "dependencies": {
     "@ionic/react": "^5.6.11",
@@ -50,7 +60,7 @@
     "@emotion/react": "^11.1.1",
     "@emotion/styled": "^11.0.0",
     "@types/eslint-config-prettier": "^6.11.0",
-    "@types/jest": "^26.0.21",
+    "@types/jest": "^26.0.24",
     "@types/mdx-js__react": "^1.5.3",
     "@types/node": "^14.14.35",
     "@types/numeral": "^2.0.1",
@@ -61,12 +71,18 @@
     "@typescript-eslint/eslint-plugin": "^4.22.1",
     "@typescript-eslint/parser": "^4.22.1",
     "eslint-config-prettier": "^8.3.0",
+    "jest": "^27.0.6",
     "prettier": "^2.2.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-scripts": "4.0.3",
+    "ts-jest": "^27.0.3",
     "typescript": "^4.2.3"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "keywords": ["kirobo", "kiroboio", "web3", "web3-react", "safe-transfer", "web3-provider-connector", "web3-connector"],
+  "files": [
+    "lib/**/*"
+  ]
 }

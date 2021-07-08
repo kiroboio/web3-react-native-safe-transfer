@@ -241,7 +241,7 @@ export const SafeTransfer = types
           const formula = JSON.parse(data.feesFormula)
           self.fees = (value: string) =>
             new Function(formula.arguments, formula.body)(
-              (Web3.utils as any).BN,
+              (Web3.utils).toBN,
               toBN,
               value
             )
@@ -255,7 +255,7 @@ export const SafeTransfer = types
           const formula = JSON.parse(data.rewardFormula)
           self.reward = (value: string, stakingValue: string, fees: string) =>
             new Function(formula.arguments, formula.body)(
-              (Web3.utils as any).BN,
+              (Web3.utils).toBN,
               toBN,
               value,
               stakingValue,

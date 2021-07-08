@@ -8,13 +8,14 @@ import { observer } from 'mobx-react-lite'
 import { ERC20TokenItem, ITransferItem, ITransfers } from '../stores/account'
 import safeTransferABI from '../abi/safeTransfer.json'
 import erc20ABI from '../abi/erc20.json'
-import { EthTokenInfo, EthTransferResponseDto } from '../dto/EthTransfersDto'
+import { EthTokenInfo, EthTransferResponseDto, EthTransferState } from '../dto/EthTransfersDto'
 import { Connectors } from '../hooks/useWeb3'
-import { EthErc20ResponseDto } from '../dto/EthErc20Dto'
-import useWallet  from '../hooks/useWallet'
+import { EthErc20ResponseDto,  } from '../dto/EthErc20Dto'
+import useWallet from '../hooks/useWallet'
 import '@metamask/detect-provider'
 import InAppWalletConnector from '../customConnectors/InAppWalletConnector'
 import { UAParser } from 'ua-parser-js'
+
 
 const MAX_CONFIRMS = 30
 
@@ -233,6 +234,8 @@ const removeFromStore = ({ store, address, filter }: RemoveFromStoreParams) => {
   return store.remove(address, filter)
 }
 
+export type ErrorType = { message?: string; reason: string }
+
 export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
   const {
     connect: web3Connect,
@@ -286,7 +289,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     setAllowance,
     setDeviceInfo,
     wallet,
-    gasPriceMap
+    gasPriceMap,
   } = useAccount()
 
   const {
@@ -540,7 +543,8 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
 
       wallet.addAddressCmd.done()
     } catch (e) {
-      wallet.addAddressCmd.failed({ message: e.message || e.reason })
+      const error = e as ErrorType
+      wallet.addAddressCmd.failed({ message: error.message || error.reason })
     }
   }, [wallet.addAddressCmd.is.ready])
 
@@ -561,7 +565,8 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
 
       wallet.removeAddressCmd.done()
     } catch (e) {
-      wallet.removeAddressCmd.failed({ message: e.message || e.reason })
+      const error = e as ErrorType
+      wallet.removeAddressCmd.failed({ message: error.message || error.reason })
     }
   }, [wallet.removeAddressCmd.is.ready])
 
@@ -585,7 +590,10 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
       setNewMnemonic(mnemonic)
       wallet.mnemonic.restoreCmd.done()
     } catch (e) {
-      wallet.mnemonic.restoreCmd.failed({ message: e.message || e.reason })
+      const error = e as ErrorType
+      wallet.mnemonic.restoreCmd.failed({
+        message: error.message || error.reason,
+      })
     }
   }, [wallet.mnemonic.restoreCmd.is.ready])
 
@@ -663,13 +671,17 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           if (!service) throw new Error('service not started')
           if (!__active.current) throw new Error('web3 not connected')
           if (!network) throw new Error('chain is not supported')
-          if (!erc20TokenContractWeb3) throw new Error('erc20Token contract not found')
+          if (!erc20TokenContractWeb3)
+            throw new Error('erc20Token contract not found')
           const allowance = await erc20TokenContractWeb3.methods
             .allowance(address, safeTransferContract?.address)
             .call()
           __setAllowance.current(allowance)
         } catch (e) {
-          console.log(`check allowance failed: ${e.message || e.reason}`)
+          const error = e as ErrorType
+          console.log(
+            `check allowance failed: ${error.message || error.reason}`
+          )
         }
       })()
     }
@@ -684,6 +696,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     const erc20TokenContractWeb3 = __erc20TokenContractWeb3.current
     const currency = __currency.current
     const safeTransferContract = __safeTransferContract.current
+    const gasPriceMap = __gasPriceMap.current
     if (
       approvedCmd.is.ready &&
       !approvedCmd.is.running &&
@@ -704,10 +717,14 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
 
           const gasPrice = gasPriceMap.get(network)
 
-          const gas = toBN( await erc20TokenContractWeb3.methods.approve(
-                safeTransferContract?.address, web3.utils.toBN(amount)
-              ).estimateGas({ from: address }) 
-          ).mul(toBN(11)).div(toBN(10)).toString()
+          const gas = toBN(
+            await erc20TokenContractWeb3.methods
+              .approve(safeTransferContract?.address, web3.utils.toBN(amount))
+              .estimateGas({ from: address })
+          )
+            .mul(toBN(11))
+            .div(toBN(10))
+            .toString()
 
           const approve = await erc20TokenContractWeb3.methods
             .approve(safeTransferContract?.address, web3.utils.toBN(amount))
@@ -720,13 +737,15 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           }
           approvedCmd.done()
         } catch (e) {
-          approvedCmd.failed({ message: e.message || e.reason })
+          const error = e as ErrorType
+          approvedCmd.failed({ message: error.message || error.reason })
         }
       })()
     }
   }, [approvedCmd.is.ready])
 
   // on account.deposit command
+ type SendPayloadType = { from: string; gasPrice?: string; gas: string, nonce?: number } ;
 
   useEffect(() => {
     const active = __active.current
@@ -734,6 +753,9 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     const chainId = __chainId.current
     const depositCmd = __depositCmd.current
     const safeTransferContractWeb3 = __safeTransferContractWeb3.current
+    const gasPriceMap = __gasPriceMap.current;
+    const connectCmd = __connectCmd.current;
+
     if (depositCmd.is.ready && !depositCmd.is.running) {
       depositCmd.start()
       ;(async function runDepositCmd() {
@@ -794,25 +816,32 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           const total = toBN(value).add(toBN(request.fees))
           const gasPrice = gasPriceMap.get(network)
           const gas = toBN(
-            currency.symbol !== 'ETH' 
-              ? await safeTransferContractWeb3.methods.depositERC20(
-                  currency.address,
-                  currency.symbol,
-                  to,
-                  value,
-                  request.fees,
-                  secretHash
-              ).estimateGas({ from: address, value: request.fees }) 
-              : await safeTransferContractWeb3.methods.deposit(to, value, request.fees, secretHash).estimateGas({from: address, value: total})
-          ).mul(toBN(11)).div(toBN(10)).toString()
+            currency.symbol !== 'ETH'
+              ? await safeTransferContractWeb3.methods
+                  .depositERC20(
+                    currency.address,
+                    currency.symbol,
+                    to,
+                    value,
+                    request.fees,
+                    secretHash
+                  )
+                  .estimateGas({ from: address, value: request.fees })
+              : await safeTransferContractWeb3.methods
+                  .deposit(to, value, request.fees, secretHash)
+                  .estimateGas({ from: address, value: total })
+          )
+            .mul(toBN(11))
+            .div(toBN(10))
+            .toString()
 
-          const sendPayload: any = {
-            from, 
+          const sendPayload: SendPayloadType = {
+            from,
             gasPrice,
-            gas
+            gas,
           }
 
-          if(connectCmd.connector !== Connectors.InAppWallet) {
+          if (connectCmd.connector !== Connectors.InAppWallet) {
             sendPayload.nonce = await __web3.current.eth.getTransactionCount(
               address,
               'pending'
@@ -831,37 +860,37 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
                       request.fees,
                       secretHash
                     )
-                    .send({...sendPayload, value: request.fees})
+                    .send({ ...sendPayload, value: request.fees })
                     .on('transactionHash', (hash: string) => resolve(hash))
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    .on('error', (err: any) => reject(err))
+                    .on('error', (err: ErrorType) => reject(err))
                 })
               : await new Promise((resolve, reject) => {
                   safeTransferContractWeb3.methods
                     .deposit(to, value, request.fees, secretHash)
-                    .send({...sendPayload,  value: total})
+                    .send({ ...sendPayload, value: total })
                     .on('transactionHash', (hash: string) => resolve(hash))
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    .on('error', (err: any) => reject(err))
+                    .on('error', (err: ErrorType) => reject(err))
                 })
 
-                const hex = currency.symbol !== 'ETH' 
-                  ? safeTransferContractWeb3.methods
-                      .depositERC20(
-                        currency.address,
-                        currency.symbol,
-                        to,
-                        value,
-                        request.fees,
-                        secretHash
-                        ).encodeABI()
-                  : safeTransferContractWeb3.methods
-                      .deposit(to, value, request.fees, secretHash)
-                      .encodeABI()
-          
+          const hex =
+            currency.symbol !== 'ETH'
+              ? safeTransferContractWeb3.methods
+                  .depositERC20(
+                    currency.address,
+                    currency.symbol,
+                    to,
+                    value,
+                    request.fees,
+                    secretHash
+                  )
+                  .encodeABI()
+              : safeTransferContractWeb3.methods
+                  .deposit(to, value, request.fees, secretHash)
+                  .encodeABI()
+
           await service.getService(SERVICE.FOLLOW(network)).create({
             txid,
-            hex
+            hex,
           })
 
           depositCmd.done()
@@ -892,7 +921,8 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           })
         } catch (e) {
           console.error('fees: error', 4, e)
-          depositCmd.failed({ message: e.message || e.reason })
+          const error = e as ErrorType
+          depositCmd.failed({ message: error.message || error.reason })
         }
       })()
     }
@@ -906,6 +936,9 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     const outgoing = __outgoing.current
     const retrieveCmd = __retrieveCmd.current
     const safeTransferContractWeb3 = __safeTransferContractWeb3.current
+    const gasPriceMap = __gasPriceMap.current;
+    const connectCmd = __connectCmd.current;
+
     if (retrieveCmd.is.ready && !retrieveCmd.is.running) {
       retrieveCmd.start()
       ;(async function runRetrieveCmd() {
@@ -928,24 +961,31 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           const gasPrice = gasPriceMap.get(network)
           const gas = toBN(
             token.symbol && token.symbol !== 'ETH'
-              ? await safeTransferContractWeb3.methods.retrieveERC20(
-                  token.address,
-                  token.symbol,
-                  to,
-                  value,
-                  fees,
-                  secretHash
-              ).estimateGas({ from: address })
-              : await safeTransferContractWeb3.methods.retrieve(to, value, fees, secretHash).estimateGas({from: address})
-          ).mul(toBN(11)).div(toBN(10)).toString()
+              ? await safeTransferContractWeb3.methods
+                  .retrieveERC20(
+                    token.address,
+                    token.symbol,
+                    to,
+                    value,
+                    fees,
+                    secretHash
+                  )
+                  .estimateGas({ from: address })
+              : await safeTransferContractWeb3.methods
+                  .retrieve(to, value, fees, secretHash)
+                  .estimateGas({ from: address })
+          )
+            .mul(toBN(11))
+            .div(toBN(10))
+            .toString()
 
-          const sendPayload: any = {
-            from, 
+          const sendPayload:SendPayloadType = {
+            from,
             gasPrice,
-            gas
+            gas,
           }
 
-          if(connectCmd.connector !== Connectors.InAppWallet) {
+          if (connectCmd.connector !== Connectors.InAppWallet) {
             sendPayload.nonce = await __web3.current.eth.getTransactionCount(
               address,
               'pending'
@@ -977,35 +1017,37 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
                     .on('error', (err: any) => reject(err))
                 })
 
-              const hex = (token.symbol && token.symbol !== 'ETH')
-                ? safeTransferContractWeb3.methods
-                    .retrieveERC20(
-                      token.address,
-                      token.symbol,
-                      to,
-                      value,
-                      fees,
-                      secretHash
-                    ).encodeABI()
-                : safeTransferContractWeb3.methods
-                    .retrieve(to, value, fees, secretHash)
-                    .encodeABI()
-                
+          const hex =
+            token.symbol && token.symbol !== 'ETH'
+              ? safeTransferContractWeb3.methods
+                  .retrieveERC20(
+                    token.address,
+                    token.symbol,
+                    to,
+                    value,
+                    fees,
+                    secretHash
+                  )
+                  .encodeABI()
+              : safeTransferContractWeb3.methods
+                  .retrieve(to, value, fees, secretHash)
+                  .encodeABI()
+
           await service.getService(SERVICE.FOLLOW(network)).create({
             txid,
-            hex
+            hex,
           })
 
-          const payload: any = {
+          const payload: { id: string, state: EthTransferState, txid?: string} = {
             id: transfer.id,
-            state: 'retrieving'
+            state: 'retrieving',
           }
-          if(txid) payload.txid = txid
+          if (txid) payload.txid = txid as string
           __outgoing.current.update(address, payload)
           retrieveCmd.done()
         } catch (e) {
-          console.error('fees: error undo', 4, e)
-          retrieveCmd.failed({ message: e.message || e.reason })
+          const error = e as ErrorType
+          retrieveCmd.failed({ message: error.message || error.reason })
         }
       })()
     }
@@ -1030,13 +1072,15 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           if (!service) throw new Error('service not started')
           if (!active) throw new Error('web3 not connected')
           if (!network) throw new Error('chain is not supported')
-          if (!safeTransferContractWeb3) throw new Error('safeTransfer contract not found')
+          if (!safeTransferContractWeb3)
+            throw new Error('safeTransfer contract not found')
 
           await service.getService(SERVICE.COLLECT(network)).create({ id, key })
           __incoming.current.update(address, { id, state: 'collecting' })
           collectCmd.done()
         } catch (e) {
-          collectCmd.failed({ message: e.name })
+          const error = e as ErrorType
+          collectCmd.failed({ message: error.message || error.reason })
         }
       })()
     }
@@ -1066,8 +1110,8 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           })
           sendCmd.done()
         } catch (e) {
-          console.error(`err = ${JSON.stringify(e.message)}`)
-          sendCmd.failed({ message: e.message })
+          const error = e as ErrorType
+          sendCmd.failed({ message: error.message || error.reason })
         }
       })()
     }
@@ -1081,7 +1125,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
         isMobile: parser.getResult().device.type === 'mobile',
         haveMetaMask: false,
         ethereumProvider: false,
-        loggedIn: false
+        loggedIn: false,
       })
       window.addEventListener('ethereum#initialized', handleEthereum, {
         once: true,
@@ -1090,13 +1134,14 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     }
 
     async function handleEthereum() {
-      const { ethereum } = window
-      let  loggedIn = false 
-      if(ethereum && ethereum.isMetaMask) {
+      const { ethereum } = window as unknown as { ethereum: { isMetaMask: boolean, request: (m: { method: string}) => Promise<string[]> }}
+      let loggedIn = false
+      if (ethereum && ethereum.isMetaMask) {
         try {
-          loggedIn = !!(await (ethereum as any)?.request({ method: 'eth_accounts' }))?.length
-        }
-        catch {
+          loggedIn = !!(
+            await (ethereum)?.request({ method: 'eth_accounts' })
+          )?.length
+        } catch {
           loggedIn = false
         }
       }
@@ -1104,7 +1149,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
         isMobile: parser.getResult().device.type === 'mobile',
         haveMetaMask: !!(ethereum && ethereum.isMetaMask),
         ethereumProvider: !!ethereum,
-        loggedIn
+        loggedIn,
       })
     }
   }
@@ -1243,7 +1288,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
             tokens.unshift(eth)
             __setERC20TokenContract.current(network.netId, tokens)
           }
-         })
+        })
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       networkService.on('patched', (network: any) => {
@@ -1446,15 +1491,13 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           .then((response: any) => {
             const rewardParams = response.data[0]
-            if(rewardParams && rewardParams.address === address) {
+            if (rewardParams && rewardParams.address === address) {
               __setRewardsParams.current(rewardParams.factor, rewardParams.left)
-            }
-            else __setRewardsParams.current(1, 10)
+            } else __setRewardsParams.current(1, 10)
           })
           .catch((reason: JSON) => {
             console.warn(`error: ${JSON.stringify(reason)}`)
           })
-
       } else {
         __setBalance.current('')
         __setTokenBalance.current('')
