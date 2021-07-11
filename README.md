@@ -149,6 +149,21 @@ const {
     disconnect,
   } = useAccount(
 ```
+#### Observer
+
+Use `observer` for enabling the React component to re-render if any of it's observed data changes. 
+
+```typescript
+import { observer } from '@kiroboio/web3-react-safe-transfer'
+
+export const Address = observer(() => {
+    const {
+    	address,
+  	} = useAccount()
+    
+    return address
+})
+```
 
 #### Commands
 
@@ -172,18 +187,17 @@ useEffect(() => {
 }, [depositCmd.is.ready])
 ```
 
-#### Observer
 
-Use `observer` for enabling the React component to re-render if any of it's observed data changes. 
 
-```typescript
-import { observer } from '@kiroboio/web3-react-safe-transfer'
+#### Lists
 
-export const App = observer(() => {
-    const {
-    	address,
-  	} = useAccount()
-    return address
-})
+ Lists of transactions 
+
+```
+  const {
+    transfers,
+    incoming,
+    outgoing,
+  } = useAccount()
 ```
 
