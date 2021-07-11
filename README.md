@@ -122,11 +122,9 @@ Since our App component was observing everything, it was re-rendering whenever y
 
 
 
-## Introduction
-
 For state management we use [Mobx State Tree]: https://mobx-state-tree.js.org/intro/welcome
 
-### Main concepts
+## Main concepts
 
 #### State
 
@@ -194,10 +192,86 @@ useEffect(() => {
  Lists of transactions 
 
 ```
-  const {
-    transfers,
-    incoming,
-    outgoing,
-  } = useAccount()
+const {
+  transfers,
+  incoming,
+  outgoing,
+ = useAccount()
 ```
+
+
+
+## Connect
+
+
+
+## Transactions
+
+To create a retrievable transfer that can be collected firstly we have to do `deposit`
+
+```typescript
+deposit({ to, value, passcode, message, }: {
+    to: string;
+    value: string;
+    passcode: string;
+    message?: string | undefined;
+}): void
+
+@param to — ethereum address to send
+@param value — value to send in wei
+@param passcode — secure code to collect or retrieve transaction
+@param message — optional message to send
+```
+
+
+
+### Deposit
+
+```typescript
+import { useAccount, etherToWei } from '@kiroboio/web3-react-safe-transfer
+
+const {
+    deposit,
+    depositCmd,
+    currency,
+} = useAccount()
+
+useEffect(() => {
+    if (!depositCmd.is.ready || depositCmd.is.running) return;
+    deposit({
+        to,
+        value: etherToWei(amount, currency.decimals),
+        passcode,
+        message,
+    })
+}, [depositCmd.is.ready])
+```
+
+
+
+### Retrieve
+
+### Collect
+
+### Swap
+
+
+
+## Lists
+
+
+
+### Incoming
+
+### Outgoing
+
+### Transfers
+
+### Swaps
+
+### History
+
+
+
+## Utils
 
