@@ -89,3 +89,5 @@ declare module 'yup' {
     emptyAsUndefined(): NumberSchema<TType, TContext>
   }
 }
+
+export * from 'yup';

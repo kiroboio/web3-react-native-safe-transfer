@@ -10,6 +10,7 @@ import {
 import { useLocalStorage } from './hooks/useLocaleStorage'
 import { KiroboProvider } from './providers/KiroboProvider'
 import { weiToEther, etherToWei, formatEther } from './utils/ethereum'
+import * as yupEth from './utils/form'
 import { configureReactotronDebugging } from './debugging/configureReactotronDebugging'
 import { useWhatChangedDev } from './debugging/useWhatChangedDev'
 import InAppWalletConnector from './customConnectors/InAppWalletConnector'
@@ -33,6 +34,7 @@ export {
   useLocalStorage,
   useWallet,
   InAppWalletConnector,
+  yupEth
 }
 
 export type {

@@ -1,1 +1,1 @@
-export * from "./prod"
+export * from "./lib"
