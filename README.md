@@ -16,7 +16,7 @@ yarn add @kiroboio/web3-react-safe-transfer
 
 
 
-###  Peer Dependencies
+#### Peer Dependencies
 
 ```json
 {
@@ -93,8 +93,6 @@ export const Wallet = observer(() => {
 
 For view `Safe Transfer` state & actions install and configure [Reactotron]: https://github.com/infinitered/reactotron
 
-
-
 ```typescript
 import React, { useEffect } from 'react'
 import { configureReactotronDebugging, useAccount, observer, Connectors  } from '@kiroboio/web3-react-safe-transfer'
@@ -121,8 +119,6 @@ export const App = observer(() => {
 Since our App component was observing everything, it was re-rendering whenever you changed something.![](![image-20210711155028840](/home/sergey/.config/Typora/typora-user-images/image-20210711155028840.png)
 
 
-
-For state management we use [Mobx State Tree]: https://mobx-state-tree.js.org/intro/welcome
 
 ## Main concepts
 
@@ -203,7 +199,7 @@ is: {
     failed: boolean;
     withFailMessage: string;
     withId: number;
-``}
+}
 ```
 
 ```typescript
@@ -230,15 +226,17 @@ const {
 
 ## Connect
 
+## Disconnect
+
 
 
 ## Transactions
 
-To create a retrievable transfer that can be collected use `deposit` 
+### Deposit
+
+To create a retrievable transfer that can be collected use:
 
 `const { deposit } = useAccount()`
-
-### Deposit
 
 #### Set
 
@@ -257,14 +255,14 @@ deposit.set: ({ from, to, value, passcode, message, }: {
 
 @param value — value to send in wei
 
-@param passcode — secure code to collect or retrieve transaction
+@param passcode — secure code to collect transaction
 
 @param message — optional message to send
 
 @returns
 void
 
-After setting the values deposit transaction will started
+After setting the values deposit transaction will be started
 ```
 
 
@@ -303,7 +301,99 @@ const setDeposit = ({
 
 ### Retrieve
 
+To retrieve transfer use: 
+
+`const { retrieve } = useAccount()`
+
+#### Set
+
+id: [transfer.id](#Transfers)
+
+```typescript
+retrieve.set: ({ id }: {
+    id: string;
+}) => void
+
+@param id — id of retrievable transfer
+
+@returns
+void
+
+After setting the values retrieve transaction will be started
+```
+
+```typescript
+import { useAccount } from '@kiroboio/web3-react-safe-transfer
+
+const {
+    retrieve,
+} = useAccount()
+
+const { transfer } = props;
+
+const setCollect = ({
+        id,
+    }: RetrieveParams) => {
+    
+   retrieve({ id: transfer.id })
+}
+```
+
+
+
+#### Status
+
+[retrieve.is](#Web3 Action Status)
+
 ### Collect
+
+To collect transfer use:
+
+`const { collect } = useAccount()`
+
+#### Set
+
+id: [transfer.id](#Transfers)
+
+```typescript
+collect.set: ({ id }: {
+    id: string;
+    passcode: string;
+}) => void
+
+@param id — id of retrievable transfer
+
+@param passcode — secure code to collect transaction
+
+@returns
+void
+
+After setting the values collect transaction will be started
+```
+
+```typescript
+import { useAccount } from '@kiroboio/web3-react-safe-transfer
+
+const {
+    collect,
+} = useAccount()
+
+const { transfer } = props;
+
+const setCollect = ({
+        id,
+        passcode,
+    }: CollectParams) => {
+    
+   collect({ id: transfer.id, passcode })
+}
+```
+
+
+
+#### Status
+
+[collect.is](#Web3 Action Status)
 
 ### Swap
 

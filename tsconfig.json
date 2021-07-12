@@ -21,6 +21,6 @@
     "skipLibCheck": true,
     "baseUrl": "./"
   },
-  "include": ["dev", "docz"],
+  "include": ["dev"],
   "exclude": ["node_modules", "lib"]
 }
