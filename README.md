@@ -126,7 +126,7 @@ For state management we use [Mobx State Tree]: https://mobx-state-tree.js.org/in
 
 ## Main concepts
 
-#### State
+### State
 
 Get `Safe Transfer` current state with `useAccount` hook
 
@@ -137,7 +137,7 @@ const {
   } = useAccount()
 ```
 
-#### Actions
+### Actions
 
 Change `Safe Transfer`  state with **actions**
 
@@ -147,7 +147,7 @@ const {
     disconnect,
   } = useAccount(
 ```
-#### Observer
+### Observer
 
 Use `observer` for enabling the React component to re-render if any of it's observed data changes. 
 
@@ -163,31 +163,58 @@ export const Address = observer(() => {
 })
 ```
 
-#### Commands
+### Web3 Actions
 
-Run `web3` actions with `cmd` commands
+Run `web3` actions with `name.set()`
 
 ```typescript
 const {
+    address,
     deposit,
-    depositCmd,
-  } = useAccount()
+    currency,
+} = useAccount()
   
-
-useEffect(() => {
-    if (!depositCmd.is.ready || depositCmd.is.running) return;
-    deposit({
-      to,
-      value,
-      passcode,
-      message,
+const setDeposit = ({
+        to,
+        value,
+        passcode,
+        message,
+    }: DepositParams) => {
+    
+    deposit.set({
+        from: address,
+        to,
+        value: etherToWei(value, currency.decimals),
+        passcode,
+        message,
     })
-}, [depositCmd.is.ready])
+}
+```
+
+### Web3 Action Status
+
+Check `web3` action status `name.is`
+
+```typescript
+is: {  
+ 	ready: boolean;
+    running: boolean;
+    done: boolean;
+    failed: boolean;
+    withFailMessage: string;
+    withId: number;
+``}
+```
+
+```typescript
+const { deposit } = useAccount()
+
+return <Spinner isLoading={deposit.is.running} />
 ```
 
 
 
-#### Lists
+### Lists
 
  Lists of transactions 
 
@@ -207,47 +234,72 @@ const {
 
 ## Transactions
 
-To create a retrievable transfer that can be collected firstly we have to do `deposit`
+To create a retrievable transfer that can be collected use `deposit` 
+
+`const { deposit } = useAccount()`
+
+### Deposit
+
+#### Set
 
 ```typescript
-deposit({ to, value, passcode, message, }: {
+deposit.set: ({ from, to, value, passcode, message, }: {
+    from: string;
     to: string;
     value: string;
     passcode: string;
     message?: string | undefined;
-}): void
+}) => void
 
-@param to — ethereum address to send
+@param from — ethereum address from
+
+@param to — ethereum address to
+
 @param value — value to send in wei
+
 @param passcode — secure code to collect or retrieve transaction
+
 @param message — optional message to send
+
+@returns
+void
+
+After setting the values deposit transaction will started
 ```
 
 
-
-### Deposit
 
 ```typescript
 import { useAccount, etherToWei } from '@kiroboio/web3-react-safe-transfer
 
 const {
+    address,
     deposit,
-    depositCmd,
     currency,
 } = useAccount()
 
-useEffect(() => {
-    if (!depositCmd.is.ready || depositCmd.is.running) return;
-    deposit({
+const setDeposit = ({
         to,
-        value: etherToWei(amount, currency.decimals),
+        value,
+        passcode,
+        message,
+    }: DepositParams) => {
+    
+    deposit.set({
+        from: address,
+        to,
+        value: etherToWei(value, currency.decimals),
         passcode,
         message,
     })
-}, [depositCmd.is.ready])
+}
 ```
 
 
+
+#### Status
+
+[deposit.is](#Web3 Action Status)
 
 ### Retrieve
 
@@ -274,4 +326,6 @@ useEffect(() => {
 
 
 ## Utils
+
+
 
