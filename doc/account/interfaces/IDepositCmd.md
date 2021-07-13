@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- `Instance`<typeof [`DepositCmd`](../modules.md#depositcmd)\>
+- `MobxClearInstance`<typeof [`DepositCmd`](../modules.md#depositcmd)\>
 
   ↳ **`IDepositCmd`**
 
@@ -12,8 +12,6 @@
 
 ### Properties
 
-- [[$nonEmptyObject]](IDepositCmd.md#[$nonemptyobject])
-- [[$stateTreeNodeType]](IDepositCmd.md#[$statetreenodetype])
 - [from](IDepositCmd.md#from)
 - [is](IDepositCmd.md#is)
 - [message](IDepositCmd.md#message)
@@ -34,41 +32,13 @@
 
 ## Properties
 
-### [$nonEmptyObject]
-
-• `Optional` **[$nonEmptyObject]**: `any`
-
-#### Inherited from
-
-Instance.\_\_@$nonEmptyObject@1525
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/types/complex-types/model.d.ts:46
-
-___
-
-### [$stateTreeNodeType]
-
-• `Optional` `Readonly` **[$stateTreeNodeType]**: [`any`] \| [`IModelType`<{ `is`: `IOptionalIType`<`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>, [`undefined`]\>  } & { `from`: `IOptionalIType`<`ISimpleType`<`string`\>, [`undefined`]\> ; `message`: `IOptionalIType`<`ISimpleType`<`string`\>, [`undefined`]\> ; `privateSalt`: `IOptionalIType`<`ISimpleType`<`string`\>, [`undefined`]\> ; `publicSalt`: `IOptionalIType`<`ISimpleType`<`string`\>, [`undefined`]\> ; `secretHash`: `IOptionalIType`<`ISimpleType`<`string`\>, [`undefined`]\> ; `to`: `IOptionalIType`<`ISimpleType`<`string`\>, [`undefined`]\> ; `value`: `IOptionalIType`<`ISimpleType`<`string`\>, [`undefined`]\>  }, { `clear`: () => `void` ; `clearErrors`: () => `void` ; `done`: () => `void` ; `failed`: (`__namedParameters`: { `message`: `string`  }) => `void` ; `start`: () => `void`  } & { `prepare`: (`params`: [`DepositCmdParams`](DepositCmdParams.md)) => `void`  }, `_NotCustomized`, `_NotCustomized`\>]
-
-#### Inherited from
-
-Instance.\_\_@$stateTreeNodeType@1528
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/core/node/node-utils.d.ts:9
-
-___
-
 ### from
 
 • **from**: `string`
 
 #### Inherited from
 
-Instance.from
+MobxClearInstance.from
 
 ___
 
@@ -78,7 +48,7 @@ ___
 
 #### Inherited from
 
-Instance.is
+MobxClearInstance.is
 
 ___
 
@@ -88,7 +58,7 @@ ___
 
 #### Inherited from
 
-Instance.message
+MobxClearInstance.message
 
 ___
 
@@ -98,7 +68,7 @@ ___
 
 #### Inherited from
 
-Instance.privateSalt
+MobxClearInstance.privateSalt
 
 ___
 
@@ -108,7 +78,7 @@ ___
 
 #### Inherited from
 
-Instance.publicSalt
+MobxClearInstance.publicSalt
 
 ___
 
@@ -118,7 +88,7 @@ ___
 
 #### Inherited from
 
-Instance.secretHash
+MobxClearInstance.secretHash
 
 ___
 
@@ -128,7 +98,7 @@ ___
 
 #### Inherited from
 
-Instance.to
+MobxClearInstance.to
 
 ___
 
@@ -138,7 +108,7 @@ ___
 
 #### Inherited from
 
-Instance.value
+MobxClearInstance.value
 
 ## Methods
 
@@ -152,11 +122,11 @@ Instance.value
 
 #### Inherited from
 
-Instance.clear
+MobxClearInstance.clear
 
 #### Defined in
 
-dev/stores/account.ts:172
+dev/stores/account.ts:174
 
 ___
 
@@ -170,11 +140,11 @@ ___
 
 #### Inherited from
 
-Instance.clearErrors
+MobxClearInstance.clearErrors
 
 #### Defined in
 
-dev/stores/account.ts:168
+dev/stores/account.ts:170
 
 ___
 
@@ -188,11 +158,11 @@ ___
 
 #### Inherited from
 
-Instance.done
+MobxClearInstance.done
 
 #### Defined in
 
-dev/stores/account.ts:162
+dev/stores/account.ts:164
 
 ___
 
@@ -213,11 +183,11 @@ ___
 
 #### Inherited from
 
-Instance.failed
+MobxClearInstance.failed
 
 #### Defined in
 
-dev/stores/account.ts:165
+dev/stores/account.ts:167
 
 ___
 
@@ -237,11 +207,11 @@ ___
 
 #### Inherited from
 
-Instance.prepare
+MobxClearInstance.prepare
 
 #### Defined in
 
-dev/stores/account.ts:464
+dev/stores/account.ts:466
 
 ___
 
@@ -255,8 +225,8 @@ ___
 
 #### Inherited from
 
-Instance.start
+MobxClearInstance.start
 
 #### Defined in
 
-dev/stores/account.ts:159
+dev/stores/account.ts:161

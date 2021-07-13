@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- `Instance`<typeof [`Account`](../modules.md#account)\>
+- `MobxClearInstance`<typeof [`Account`](../modules.md#account)\>
 
   ↳ **`IAccount`**
 
@@ -12,9 +12,8 @@
 
 ### Properties
 
+- [ERC20TokensContract](IAccount.md#erc20tokenscontract)
 - [ERC20TokensMap](IAccount.md#erc20tokensmap)
-- [[$nonEmptyObject]](IAccount.md#[$nonemptyobject])
-- [[$stateTreeNodeType]](IAccount.md#[$statetreenodetype])
 - [active](IAccount.md#active)
 - [address](IAccount.md#address)
 - [allowance](IAccount.md#allowance)
@@ -29,28 +28,24 @@
 - [deviceInfo](IAccount.md#deviceinfo)
 - [disconnectCmd](IAccount.md#disconnectcmd)
 - [factor](IAccount.md#factor)
+- [gasPrice](IAccount.md#gasprice)
 - [gasPriceMap](IAccount.md#gaspricemap)
 - [incoming](IAccount.md#incoming)
+- [kiroTokenContract](IAccount.md#kirotokencontract)
 - [kiroTokenMap](IAccount.md#kirotokenmap)
 - [left](IAccount.md#left)
 - [maxRewards](IAccount.md#maxrewards)
 - [outgoing](IAccount.md#outgoing)
 - [rate](IAccount.md#rate)
 - [retrieveCmd](IAccount.md#retrievecmd)
+- [safeTransferContract](IAccount.md#safetransfercontract)
 - [safeTransferMap](IAccount.md#safetransfermap)
 - [stakingBalance](IAccount.md#stakingbalance)
+- [stakingContract](IAccount.md#stakingcontract)
 - [stakingMap](IAccount.md#stakingmap)
 - [tokenBalance](IAccount.md#tokenbalance)
 - [transfers](IAccount.md#transfers)
 - [wallet](IAccount.md#wallet)
-
-### Accessors
-
-- [ERC20TokensContract](IAccount.md#erc20tokenscontract)
-- [gasPrice](IAccount.md#gasprice)
-- [kiroTokenContract](IAccount.md#kirotokencontract)
-- [safeTransferContract](IAccount.md#safetransfercontract)
-- [stakingContract](IAccount.md#stakingcontract)
 
 ### Methods
 
@@ -89,41 +84,23 @@
 
 ## Properties
 
+### ERC20TokensContract
+
+• **ERC20TokensContract**: { `address`: `string` ; `balance`: `string` ; `decimals`: `number` ; `name`: `string` ; `rate`: `number` ; `symbol`: `string`  } & `NonEmptyObject` & { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>[]
+
+#### Inherited from
+
+MobxClearInstance.ERC20TokensContract
+
+___
+
 ### ERC20TokensMap
 
 • **ERC20TokensMap**: `IMSTMap`<`IModelType`<`Object`, { `list`:   } & { `addToken`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `clearBalances`: () => `void` ; `setBalance`: (`address`: `string`, `balance`: `string`) => `void` ; `setRate`: (`address`: `string`, `rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\> & `IStateTreeNode`<`IMapType`<`IModelType`<`Object`, { `list`:   } & { `addToken`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `clearBalances`: () => `void` ; `setBalance`: (`address`: `string`, `balance`: `string`) => `void` ; `setRate`: (`address`: `string`, `rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>\>
 
 #### Inherited from
 
-Instance.ERC20TokensMap
-
-___
-
-### [$nonEmptyObject]
-
-• `Optional` **[$nonEmptyObject]**: `any`
-
-#### Inherited from
-
-Instance.\_\_@$nonEmptyObject@1525
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/types/complex-types/model.d.ts:46
-
-___
-
-### [$stateTreeNodeType]
-
-• `Optional` `Readonly` **[$stateTreeNodeType]**: [`any`] \| [`IModelType`<`Object`, { `ERC20TokensContract`:  ; `gasPrice`:  ; `kiroTokenContract`:  ; `safeTransferContract`:  ; `stakingContract`:  ; `ERC20TokenList`: (`chainName`: `string`) => { `address`: `string` ; `balance`: `string` ; `decimals`: `number` ; `name`: `string` ; `rate`: `number` ; `symbol`: `string`  } & `NonEmptyObject` & { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>[] ; `approvedToken`: (`symbol`: `string`, `amount`: `string`) => `boolean` ; `transferFees`: (`amount`: `string`) => ``""`` \| ``"0"`` ; `transferReward`: (`amount`: `string`, `fees`: `string`) => `number` \| ``""``  } & { `approve`: () => `void` ; `clearERC20TokenBalances`: (`chainName?`: `string`) => `void` ; `collect`: (`__namedParameters`: { `id`: `string` ; `passcode`: `string`  }) => `void` ; `connect`: (`connector`: `Connectors`) => `void` ; `deposit`: (`__namedParameters`: { `message?`: `string` ; `passcode`: `string` ; `to`: `string` ; `value`: `string`  }) => `void` ; `disconnect`: () => `void` ; `retrieve`: (`__namedParameters`: { `id`: `string`  }) => `void` ; `setActive`: (`newActive`: `boolean`) => `void` ; `setAddress`: (`address`: `string`) => `void` ; `setAllowance`: (`allowance`: `string`) => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setBlock`: (`block`: `number`) => `void` ; `setChainId`: (`chainId`: `number`) => `void` ; `setCurrency`: (`currency`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `setCurrencyBalance`: (`balance`: `string`) => `void` ; `setDeviceInfo`: (`deviceInfo`: [`DeviceInfoData`](DeviceInfoData.md)) => `void` ; `setERC20TokenBalance`: (`chainName`: `string`, `address`: `string`, `balance`: `string`) => `void` ; `setERC20TokenContract`: (`chainName`: `string`, `data`: [`ERC20TokenItem`](ERC20TokenItem.md)[]) => `void` ; `setErc20TokenRate`: (`chainName`: `string`, `address`: `string`, `rate`: `number`) => `void` ; `setGasPrice`: (`chainName`: `string`, `gasPrice`: `string`) => `void` ; `setKiroTokenContract`: (`chainName`: `string`, `data`: [`IKiroTokenItem`](IKiroTokenItem.md)) => `void` ; `setMaxRewards`: (`maxRewards`: `number`) => `void` ; `setRate`: (`newRate`: `number`) => `void` ; `setRewardsParams`: (`factor`: `number`, `left`: `number`) => `void` ; `setSafeTransferContract`: (`chainName`: `string`, `data`: [`ISafeTransferItem`](ISafeTransferItem.md)) => `void` ; `setStakingBalance`: (`balance`: `string`) => `void` ; `setStakingContract`: (`chainName`: `string`, `data`: [`IStakingItem`](IStakingItem.md)) => `void` ; `setTokenBalance`: (`balance`: `string`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>]
-
-#### Inherited from
-
-Instance.\_\_@$stateTreeNodeType@1528
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/core/node/node-utils.d.ts:9
+MobxClearInstance.ERC20TokensMap
 
 ___
 
@@ -133,7 +110,7 @@ ___
 
 #### Inherited from
 
-Instance.active
+MobxClearInstance.active
 
 ___
 
@@ -143,7 +120,7 @@ ___
 
 #### Inherited from
 
-Instance.address
+MobxClearInstance.address
 
 ___
 
@@ -153,7 +130,7 @@ ___
 
 #### Inherited from
 
-Instance.allowance
+MobxClearInstance.allowance
 
 ___
 
@@ -163,7 +140,7 @@ ___
 
 #### Inherited from
 
-Instance.approvedCmd
+MobxClearInstance.approvedCmd
 
 ___
 
@@ -173,7 +150,7 @@ ___
 
 #### Inherited from
 
-Instance.balance
+MobxClearInstance.balance
 
 ___
 
@@ -183,7 +160,7 @@ ___
 
 #### Inherited from
 
-Instance.block
+MobxClearInstance.block
 
 ___
 
@@ -193,7 +170,7 @@ ___
 
 #### Inherited from
 
-Instance.chainId
+MobxClearInstance.chainId
 
 ___
 
@@ -203,7 +180,7 @@ ___
 
 #### Inherited from
 
-Instance.collectCmd
+MobxClearInstance.collectCmd
 
 ___
 
@@ -213,7 +190,7 @@ ___
 
 #### Inherited from
 
-Instance.connectCmd
+MobxClearInstance.connectCmd
 
 ___
 
@@ -223,7 +200,7 @@ ___
 
 #### Inherited from
 
-Instance.currency
+MobxClearInstance.currency
 
 ___
 
@@ -233,7 +210,7 @@ ___
 
 #### Inherited from
 
-Instance.depositCmd
+MobxClearInstance.depositCmd
 
 ___
 
@@ -243,7 +220,7 @@ ___
 
 #### Inherited from
 
-Instance.deviceInfo
+MobxClearInstance.deviceInfo
 
 ___
 
@@ -253,7 +230,7 @@ ___
 
 #### Inherited from
 
-Instance.disconnectCmd
+MobxClearInstance.disconnectCmd
 
 ___
 
@@ -263,7 +240,17 @@ ___
 
 #### Inherited from
 
-Instance.factor
+MobxClearInstance.factor
+
+___
+
+### gasPrice
+
+• **gasPrice**: `string`
+
+#### Inherited from
+
+MobxClearInstance.gasPrice
 
 ___
 
@@ -273,7 +260,7 @@ ___
 
 #### Inherited from
 
-Instance.gasPriceMap
+MobxClearInstance.gasPriceMap
 
 ___
 
@@ -283,7 +270,17 @@ ___
 
 #### Inherited from
 
-Instance.incoming
+MobxClearInstance.incoming
+
+___
+
+### kiroTokenContract
+
+• **kiroTokenContract**: `undefined` \| { `address`: `string`  } & `NonEmptyObject` & { `setData`: (`__namedParameters`: [`IKiroTokenItem`](IKiroTokenItem.md)) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>\>
+
+#### Inherited from
+
+MobxClearInstance.kiroTokenContract
 
 ___
 
@@ -293,7 +290,7 @@ ___
 
 #### Inherited from
 
-Instance.kiroTokenMap
+MobxClearInstance.kiroTokenMap
 
 ___
 
@@ -303,7 +300,7 @@ ___
 
 #### Inherited from
 
-Instance.left
+MobxClearInstance.left
 
 ___
 
@@ -313,7 +310,7 @@ ___
 
 #### Inherited from
 
-Instance.maxRewards
+MobxClearInstance.maxRewards
 
 ___
 
@@ -323,7 +320,7 @@ ___
 
 #### Inherited from
 
-Instance.outgoing
+MobxClearInstance.outgoing
 
 ___
 
@@ -333,7 +330,7 @@ ___
 
 #### Inherited from
 
-Instance.rate
+MobxClearInstance.rate
 
 ___
 
@@ -343,7 +340,17 @@ ___
 
 #### Inherited from
 
-Instance.retrieveCmd
+MobxClearInstance.retrieveCmd
+
+___
+
+### safeTransferContract
+
+• **safeTransferContract**: `undefined` \| { `address`: `string` ; `feesFormula`: `string` ; `rewardFormula`: `string` ; `synced`: `boolean`  } & `NonEmptyObject` & { `fees`: (`_value`: `string`) => ``"0"`` ; `reward`: (`_value`: `string`, `_stakingValue`: `string`, `_fees`: `string`) => ``"0"``  } & { `setData`: (`data`: [`ISafeTransferItem`](ISafeTransferItem.md)) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `fees`: (`_value`: `string`) => ``"0"`` ; `reward`: (`_value`: `string`, `_stakingValue`: `string`, `_fees`: `string`) => ``"0"``  } & { `setData`: (`data`: [`ISafeTransferItem`](ISafeTransferItem.md)) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>
+
+#### Inherited from
+
+MobxClearInstance.safeTransferContract
 
 ___
 
@@ -353,7 +360,7 @@ ___
 
 #### Inherited from
 
-Instance.safeTransferMap
+MobxClearInstance.safeTransferMap
 
 ___
 
@@ -363,7 +370,17 @@ ___
 
 #### Inherited from
 
-Instance.stakingBalance
+MobxClearInstance.stakingBalance
+
+___
+
+### stakingContract
+
+• **stakingContract**: `undefined` \| { `address`: `string` ; `balance`: `string`  } & `NonEmptyObject` & { `setData`: (`__namedParameters`: [`IStakingItem`](IStakingItem.md)) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>\>
+
+#### Inherited from
+
+MobxClearInstance.stakingContract
 
 ___
 
@@ -373,7 +390,7 @@ ___
 
 #### Inherited from
 
-Instance.stakingMap
+MobxClearInstance.stakingMap
 
 ___
 
@@ -383,7 +400,7 @@ ___
 
 #### Inherited from
 
-Instance.tokenBalance
+MobxClearInstance.tokenBalance
 
 ___
 
@@ -393,7 +410,7 @@ ___
 
 #### Inherited from
 
-Instance.transfers
+MobxClearInstance.transfers
 
 ___
 
@@ -403,77 +420,7 @@ ___
 
 #### Inherited from
 
-Instance.wallet
-
-## Accessors
-
-### ERC20TokensContract
-
-• `get` **ERC20TokensContract**(): { `address`: `string` ; `balance`: `string` ; `decimals`: `number` ; `name`: `string` ; `rate`: `number` ; `symbol`: `string`  } & `NonEmptyObject` & { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>[]
-
-#### Returns
-
-{ `address`: `string` ; `balance`: `string` ; `decimals`: `number` ; `name`: `string` ; `rate`: `number` ; `symbol`: `string`  } & `NonEmptyObject` & { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>[]
-
-#### Defined in
-
-dev/stores/account.ts:794
-
-___
-
-### gasPrice
-
-• `get` **gasPrice**(): `string`
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-dev/stores/account.ts:804
-
-___
-
-### kiroTokenContract
-
-• `get` **kiroTokenContract**(): `undefined` \| { `address`: `string`  } & `NonEmptyObject` & { `setData`: (`__namedParameters`: [`IKiroTokenItem`](IKiroTokenItem.md)) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>\>
-
-#### Returns
-
-`undefined` \| { `address`: `string`  } & `NonEmptyObject` & { `setData`: (`__namedParameters`: [`IKiroTokenItem`](IKiroTokenItem.md)) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>\>
-
-#### Defined in
-
-dev/stores/account.ts:791
-
-___
-
-### safeTransferContract
-
-• `get` **safeTransferContract**(): `undefined` \| { `address`: `string` ; `feesFormula`: `string` ; `rewardFormula`: `string` ; `synced`: `boolean`  } & `NonEmptyObject` & { `fees`: (`_value`: `string`) => ``"0"`` ; `reward`: (`_value`: `string`, `_stakingValue`: `string`, `_fees`: `string`) => ``"0"``  } & { `setData`: (`data`: [`ISafeTransferItem`](ISafeTransferItem.md)) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `fees`: (`_value`: `string`) => ``"0"`` ; `reward`: (`_value`: `string`, `_stakingValue`: `string`, `_fees`: `string`) => ``"0"``  } & { `setData`: (`data`: [`ISafeTransferItem`](ISafeTransferItem.md)) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>
-
-#### Returns
-
-`undefined` \| { `address`: `string` ; `feesFormula`: `string` ; `rewardFormula`: `string` ; `synced`: `boolean`  } & `NonEmptyObject` & { `fees`: (`_value`: `string`) => ``"0"`` ; `reward`: (`_value`: `string`, `_stakingValue`: `string`, `_fees`: `string`) => ``"0"``  } & { `setData`: (`data`: [`ISafeTransferItem`](ISafeTransferItem.md)) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `fees`: (`_value`: `string`) => ``"0"`` ; `reward`: (`_value`: `string`, `_stakingValue`: `string`, `_fees`: `string`) => ``"0"``  } & { `setData`: (`data`: [`ISafeTransferItem`](ISafeTransferItem.md)) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>
-
-#### Defined in
-
-dev/stores/account.ts:788
-
-___
-
-### stakingContract
-
-• `get` **stakingContract**(): `undefined` \| { `address`: `string` ; `balance`: `string`  } & `NonEmptyObject` & { `setData`: (`__namedParameters`: [`IStakingItem`](IStakingItem.md)) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>\>
-
-#### Returns
-
-`undefined` \| { `address`: `string` ; `balance`: `string`  } & `NonEmptyObject` & { `setData`: (`__namedParameters`: [`IStakingItem`](IStakingItem.md)) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>\>
-
-#### Defined in
-
-dev/stores/account.ts:801
+MobxClearInstance.wallet
 
 ## Methods
 
@@ -493,11 +440,11 @@ dev/stores/account.ts:801
 
 #### Inherited from
 
-Instance.ERC20TokenList
+MobxClearInstance.ERC20TokenList
 
 #### Defined in
 
-dev/stores/account.ts:844
+dev/stores/account.ts:846
 
 ___
 
@@ -511,11 +458,11 @@ ___
 
 #### Inherited from
 
-Instance.approve
+MobxClearInstance.approve
 
 #### Defined in
 
-dev/stores/account.ts:850
+dev/stores/account.ts:852
 
 ___
 
@@ -536,11 +483,11 @@ ___
 
 #### Inherited from
 
-Instance.approvedToken
+MobxClearInstance.approvedToken
 
 #### Defined in
 
-dev/stores/account.ts:811
+dev/stores/account.ts:813
 
 ___
 
@@ -560,11 +507,11 @@ ___
 
 #### Inherited from
 
-Instance.clearERC20TokenBalances
+MobxClearInstance.clearERC20TokenBalances
 
 #### Defined in
 
-dev/stores/account.ts:1000
+dev/stores/account.ts:1002
 
 ___
 
@@ -586,11 +533,11 @@ ___
 
 #### Inherited from
 
-Instance.collect
+MobxClearInstance.collect
 
 #### Defined in
 
-dev/stores/account.ts:897
+dev/stores/account.ts:899
 
 ___
 
@@ -610,11 +557,11 @@ ___
 
 #### Inherited from
 
-Instance.connect
+MobxClearInstance.connect
 
 #### Defined in
 
-dev/stores/account.ts:904
+dev/stores/account.ts:906
 
 ___
 
@@ -638,11 +585,11 @@ ___
 
 #### Inherited from
 
-Instance.deposit
+MobxClearInstance.deposit
 
 #### Defined in
 
-dev/stores/account.ts:862
+dev/stores/account.ts:864
 
 ___
 
@@ -656,11 +603,11 @@ ___
 
 #### Inherited from
 
-Instance.disconnect
+MobxClearInstance.disconnect
 
 #### Defined in
 
-dev/stores/account.ts:908
+dev/stores/account.ts:910
 
 ___
 
@@ -681,11 +628,11 @@ ___
 
 #### Inherited from
 
-Instance.retrieve
+MobxClearInstance.retrieve
 
 #### Defined in
 
-dev/stores/account.ts:894
+dev/stores/account.ts:896
 
 ___
 
@@ -705,11 +652,11 @@ ___
 
 #### Inherited from
 
-Instance.setActive
+MobxClearInstance.setActive
 
 #### Defined in
 
-dev/stores/account.ts:914
+dev/stores/account.ts:916
 
 ___
 
@@ -729,11 +676,11 @@ ___
 
 #### Inherited from
 
-Instance.setAddress
+MobxClearInstance.setAddress
 
 #### Defined in
 
-dev/stores/account.ts:911
+dev/stores/account.ts:913
 
 ___
 
@@ -753,11 +700,11 @@ ___
 
 #### Inherited from
 
-Instance.setAllowance
+MobxClearInstance.setAllowance
 
 #### Defined in
 
-dev/stores/account.ts:941
+dev/stores/account.ts:943
 
 ___
 
@@ -777,11 +724,11 @@ ___
 
 #### Inherited from
 
-Instance.setBalance
+MobxClearInstance.setBalance
 
 #### Defined in
 
-dev/stores/account.ts:920
+dev/stores/account.ts:922
 
 ___
 
@@ -801,11 +748,11 @@ ___
 
 #### Inherited from
 
-Instance.setBlock
+MobxClearInstance.setBlock
 
 #### Defined in
 
-dev/stores/account.ts:929
+dev/stores/account.ts:931
 
 ___
 
@@ -825,11 +772,11 @@ ___
 
 #### Inherited from
 
-Instance.setChainId
+MobxClearInstance.setChainId
 
 #### Defined in
 
-dev/stores/account.ts:917
+dev/stores/account.ts:919
 
 ___
 
@@ -849,11 +796,11 @@ ___
 
 #### Inherited from
 
-Instance.setCurrency
+MobxClearInstance.setCurrency
 
 #### Defined in
 
-dev/stores/account.ts:935
+dev/stores/account.ts:937
 
 ___
 
@@ -873,11 +820,11 @@ ___
 
 #### Inherited from
 
-Instance.setCurrencyBalance
+MobxClearInstance.setCurrencyBalance
 
 #### Defined in
 
-dev/stores/account.ts:938
+dev/stores/account.ts:940
 
 ___
 
@@ -897,11 +844,11 @@ ___
 
 #### Inherited from
 
-Instance.setDeviceInfo
+MobxClearInstance.setDeviceInfo
 
 #### Defined in
 
-dev/stores/account.ts:944
+dev/stores/account.ts:946
 
 ___
 
@@ -923,11 +870,11 @@ ___
 
 #### Inherited from
 
-Instance.setERC20TokenBalance
+MobxClearInstance.setERC20TokenBalance
 
 #### Defined in
 
-dev/stores/account.ts:994
+dev/stores/account.ts:996
 
 ___
 
@@ -948,11 +895,11 @@ ___
 
 #### Inherited from
 
-Instance.setERC20TokenContract
+MobxClearInstance.setERC20TokenContract
 
 #### Defined in
 
-dev/stores/account.ts:980
+dev/stores/account.ts:982
 
 ___
 
@@ -974,11 +921,11 @@ ___
 
 #### Inherited from
 
-Instance.setErc20TokenRate
+MobxClearInstance.setErc20TokenRate
 
 #### Defined in
 
-dev/stores/account.ts:997
+dev/stores/account.ts:999
 
 ___
 
@@ -999,11 +946,11 @@ ___
 
 #### Inherited from
 
-Instance.setGasPrice
+MobxClearInstance.setGasPrice
 
 #### Defined in
 
-dev/stores/account.ts:1012
+dev/stores/account.ts:1014
 
 ___
 
@@ -1024,11 +971,11 @@ ___
 
 #### Inherited from
 
-Instance.setKiroTokenContract
+MobxClearInstance.setKiroTokenContract
 
 #### Defined in
 
-dev/stores/account.ts:972
+dev/stores/account.ts:974
 
 ___
 
@@ -1048,11 +995,11 @@ ___
 
 #### Inherited from
 
-Instance.setMaxRewards
+MobxClearInstance.setMaxRewards
 
 #### Defined in
 
-dev/stores/account.ts:1009
+dev/stores/account.ts:1011
 
 ___
 
@@ -1072,11 +1019,11 @@ ___
 
 #### Inherited from
 
-Instance.setRate
+MobxClearInstance.setRate
 
 #### Defined in
 
-dev/stores/account.ts:932
+dev/stores/account.ts:934
 
 ___
 
@@ -1097,11 +1044,11 @@ ___
 
 #### Inherited from
 
-Instance.setRewardsParams
+MobxClearInstance.setRewardsParams
 
 #### Defined in
 
-dev/stores/account.ts:1005
+dev/stores/account.ts:1007
 
 ___
 
@@ -1122,11 +1069,11 @@ ___
 
 #### Inherited from
 
-Instance.setSafeTransferContract
+MobxClearInstance.setSafeTransferContract
 
 #### Defined in
 
-dev/stores/account.ts:947
+dev/stores/account.ts:949
 
 ___
 
@@ -1146,11 +1093,11 @@ ___
 
 #### Inherited from
 
-Instance.setStakingBalance
+MobxClearInstance.setStakingBalance
 
 #### Defined in
 
-dev/stores/account.ts:926
+dev/stores/account.ts:928
 
 ___
 
@@ -1171,11 +1118,11 @@ ___
 
 #### Inherited from
 
-Instance.setStakingContract
+MobxClearInstance.setStakingContract
 
 #### Defined in
 
-dev/stores/account.ts:964
+dev/stores/account.ts:966
 
 ___
 
@@ -1195,11 +1142,11 @@ ___
 
 #### Inherited from
 
-Instance.setTokenBalance
+MobxClearInstance.setTokenBalance
 
 #### Defined in
 
-dev/stores/account.ts:923
+dev/stores/account.ts:925
 
 ___
 
@@ -1219,11 +1166,11 @@ ___
 
 #### Inherited from
 
-Instance.transferFees
+MobxClearInstance.transferFees
 
 #### Defined in
 
-dev/stores/account.ts:819
+dev/stores/account.ts:821
 
 ___
 
@@ -1244,8 +1191,8 @@ ___
 
 #### Inherited from
 
-Instance.transferReward
+MobxClearInstance.transferReward
 
 #### Defined in
 
-dev/stores/account.ts:827
+dev/stores/account.ts:829

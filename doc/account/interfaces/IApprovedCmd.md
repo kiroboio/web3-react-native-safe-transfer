@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- `Instance`<typeof [`ApprovedCmd`](../modules.md#approvedcmd)\>
+- `MobxClearInstance`<typeof [`ApprovedCmd`](../modules.md#approvedcmd)\>
 
   ↳ **`IApprovedCmd`**
 
@@ -12,8 +12,6 @@
 
 ### Properties
 
-- [[$nonEmptyObject]](IApprovedCmd.md#[$nonemptyobject])
-- [[$stateTreeNodeType]](IApprovedCmd.md#[$statetreenodetype])
 - [amount](IApprovedCmd.md#amount)
 - [is](IApprovedCmd.md#is)
 
@@ -28,41 +26,13 @@
 
 ## Properties
 
-### [$nonEmptyObject]
-
-• `Optional` **[$nonEmptyObject]**: `any`
-
-#### Inherited from
-
-Instance.\_\_@$nonEmptyObject@1525
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/types/complex-types/model.d.ts:46
-
-___
-
-### [$stateTreeNodeType]
-
-• `Optional` `Readonly` **[$stateTreeNodeType]**: [`any`] \| [`IModelType`<{ `is`: `IOptionalIType`<`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>, [`undefined`]\>  } & { `amount`: `IOptionalIType`<`ISimpleType`<`string`\>, [`undefined`]\>  }, { `clear`: () => `void` ; `clearErrors`: () => `void` ; `done`: () => `void` ; `failed`: (`__namedParameters`: { `message`: `string`  }) => `void` ; `start`: () => `void`  } & { `prepare`: () => `void`  }, `_NotCustomized`, `_NotCustomized`\>]
-
-#### Inherited from
-
-Instance.\_\_@$stateTreeNodeType@1528
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/core/node/node-utils.d.ts:9
-
-___
-
 ### amount
 
 • **amount**: `string`
 
 #### Inherited from
 
-Instance.amount
+MobxClearInstance.amount
 
 ___
 
@@ -72,7 +42,7 @@ ___
 
 #### Inherited from
 
-Instance.is
+MobxClearInstance.is
 
 ## Methods
 
@@ -86,11 +56,11 @@ Instance.is
 
 #### Inherited from
 
-Instance.clear
+MobxClearInstance.clear
 
 #### Defined in
 
-dev/stores/account.ts:172
+dev/stores/account.ts:174
 
 ___
 
@@ -104,11 +74,11 @@ ___
 
 #### Inherited from
 
-Instance.clearErrors
+MobxClearInstance.clearErrors
 
 #### Defined in
 
-dev/stores/account.ts:168
+dev/stores/account.ts:170
 
 ___
 
@@ -122,11 +92,11 @@ ___
 
 #### Inherited from
 
-Instance.done
+MobxClearInstance.done
 
 #### Defined in
 
-dev/stores/account.ts:162
+dev/stores/account.ts:164
 
 ___
 
@@ -147,11 +117,11 @@ ___
 
 #### Inherited from
 
-Instance.failed
+MobxClearInstance.failed
 
 #### Defined in
 
-dev/stores/account.ts:165
+dev/stores/account.ts:167
 
 ___
 
@@ -165,11 +135,11 @@ ___
 
 #### Inherited from
 
-Instance.prepare
+MobxClearInstance.prepare
 
 #### Defined in
 
-dev/stores/account.ts:435
+dev/stores/account.ts:437
 
 ___
 
@@ -183,8 +153,8 @@ ___
 
 #### Inherited from
 
-Instance.start
+MobxClearInstance.start
 
 #### Defined in
 
-dev/stores/account.ts:159
+dev/stores/account.ts:161

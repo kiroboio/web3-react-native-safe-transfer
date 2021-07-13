@@ -38,7 +38,7 @@
 ### Type aliases
 
 - [Currency](modules.md#currency)
-- [ITransfers](modules.md#itransfers)
+- [ITransferItems](modules.md#itransferitems)
 
 ### Variables
 
@@ -72,17 +72,17 @@
 
 #### Defined in
 
-dev/stores/account.ts:37
+dev/stores/account.ts:39
 
 ___
 
-### ITransfers
+### ITransferItems
 
-Ƭ **ITransfers**: `Instance`<typeof [`Transfers`](modules.md#transfers)\>
+Ƭ **ITransferItems**: `MobxClearInstance`<typeof [`Transfers`](modules.md#transfers)\>
 
 #### Defined in
 
-dev/stores/account.ts:1025
+dev/stores/account.ts:1028
 
 ## Variables
 
@@ -92,7 +92,7 @@ dev/stores/account.ts:1025
 
 #### Defined in
 
-dev/stores/account.ts:749
+dev/stores/account.ts:751
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:427
+dev/stores/account.ts:429
 
 ___
 
@@ -112,7 +112,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:105
+dev/stores/account.ts:107
 
 ___
 
@@ -122,7 +122,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:522
+dev/stores/account.ts:524
 
 ___
 
@@ -132,7 +132,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:181
+dev/stores/account.ts:183
 
 ___
 
@@ -142,7 +142,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:453
+dev/stores/account.ts:455
 
 ___
 
@@ -152,7 +152,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:386
+dev/stores/account.ts:388
 
 ___
 
@@ -162,7 +162,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:203
+dev/stores/account.ts:205
 
 ___
 
@@ -172,7 +172,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:310
+dev/stores/account.ts:312
 
 ___
 
@@ -182,7 +182,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:343
+dev/stores/account.ts:345
 
 ___
 
@@ -192,7 +192,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:484
+dev/stores/account.ts:486
 
 ___
 
@@ -202,7 +202,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:289
+dev/stores/account.ts:291
 
 ___
 
@@ -212,7 +212,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:504
+dev/stores/account.ts:506
 
 ___
 
@@ -222,7 +222,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:220
+dev/stores/account.ts:222
 
 ___
 
@@ -232,7 +232,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:273
+dev/stores/account.ts:275
 
 ___
 
@@ -242,7 +242,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:70
+dev/stores/account.ts:72
 
 ___
 
@@ -252,7 +252,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:79
+dev/stores/account.ts:81
 
 ___
 
@@ -262,7 +262,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:538
+dev/stores/account.ts:540
 
 ___
 
@@ -272,7 +272,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:657
+dev/stores/account.ts:659
 
 ___
 
@@ -282,7 +282,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:1017
+dev/stores/account.ts:1019
 
 ___
 
@@ -292,4 +292,4 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:1018
+dev/stores/account.ts:1020

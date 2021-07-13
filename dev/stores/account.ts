@@ -12,6 +12,8 @@ import { sha3, toBN } from "web3-utils";
 import Web3 from "web3";
 import { Connectors } from "../hooks/useWeb3";
 
+type MobxClearInstance<T> = Omit<Instance<T>, symbol>
+
 const getChainName = (chainId: number | undefined) => {
   if (chainId === 1) return "main";
   if (chainId === 4) return "rinkeby";
@@ -74,7 +76,7 @@ export const Token = types.model({
   type: types.optional(types.string, ""),
 });
 
-export interface ITransferToken extends Instance<typeof Token> {}
+export interface ITransferToken extends MobxClearInstance<typeof Token> {}
 
 export const Transfer = types
   .model({
@@ -100,7 +102,7 @@ export const Transfer = types
     },
   }));
 
-export interface ITransfer extends Instance<typeof Transfer> {}
+export interface ITransfer extends MobxClearInstance<typeof Transfer> {}
 
 export const CmdStatus = types
   .model({
@@ -149,13 +151,13 @@ export const CmdStatus = types
     },
   }));
 
-export interface ICmdStatus extends Instance<typeof CmdStatus> {}
+export interface ICmdStatus extends MobxClearInstance<typeof CmdStatus> {}
 
 const CmdModel = {
   is: types.optional(CmdStatus, {}),
 };
 
-const CmdActions = (self: { is: Instance<typeof CmdStatus> }) => ({
+const CmdActions = (self: { is: MobxClearInstance<typeof CmdStatus> }) => ({
   start() {
     self.is.started();
   },
@@ -174,7 +176,7 @@ const CmdActions = (self: { is: Instance<typeof CmdStatus> }) => ({
   },
 });
 
-export interface ICmdActions extends Instance<typeof CmdActions> {}
+export interface ICmdActions extends MobxClearInstance<typeof CmdActions> {}
 
 const CmdBase = types.model("CMDBase", CmdModel).actions(CmdActions);
 
@@ -198,7 +200,7 @@ export const ConnectCmd = CmdBase.named("ConnectCmd")
     },
   }));
 
-export interface IConnectCmd extends Instance<typeof ConnectCmd> {}
+export interface IConnectCmd extends MobxClearInstance<typeof ConnectCmd> {}
 
 export const DisconnectCmd = CmdBase.named("DisconnectCmd").actions((self) => ({
   prepare() {
@@ -208,7 +210,7 @@ export const DisconnectCmd = CmdBase.named("DisconnectCmd").actions((self) => ({
   },
 }));
 
-export interface IDisconnectCmd extends Instance<typeof DisconnectCmd> {}
+export interface IDisconnectCmd extends MobxClearInstance<typeof DisconnectCmd> {}
 
 export interface ISafeTransferItem {
   address: string;
@@ -265,7 +267,7 @@ export const SafeTransfer = types
     },
   }));
 
-export interface ISafeTransfer extends Instance<typeof SafeTransfer> {}
+export interface ISafeTransfer extends MobxClearInstance<typeof SafeTransfer> {}
 export interface IStakingItem {
   address: string;
 }
@@ -281,7 +283,7 @@ export const Staking = types
     },
   }));
 
-export interface IStaking extends Instance<typeof Staking> {}
+export interface IStaking extends MobxClearInstance<typeof Staking> {}
 export interface IKiroTokenItem {
   address: string;
 }
@@ -296,7 +298,7 @@ export const KiroToken = types
     },
   }));
 
-export interface IKiroToken extends Instance<typeof KiroToken> {}
+export interface IKiroToken extends MobxClearInstance<typeof KiroToken> {}
 
 export interface ERC20TokenItem {
   address: string;
@@ -374,7 +376,7 @@ export const ERC20Tokens = types
     },
   }));
 
-export interface IERC20Tokens extends Instance<typeof ERC20Tokens> {}
+export interface IERC20Tokens extends MobxClearInstance<typeof ERC20Tokens> {}
 
 export interface DeviceInfoData {
   isMobile: boolean;
@@ -404,7 +406,7 @@ export const DeviceInfo = types
     },
   }));
 
-export interface IDeviceInfo extends Instance<typeof DeviceInfo> {}
+export interface IDeviceInfo extends MobxClearInstance<typeof DeviceInfo> {}
 
 const EthAddressPrimitive = types.custom<string, string>({
   name: "Eth Address",
@@ -439,7 +441,7 @@ export const ApprovedCmd = CmdBase.named("ApprovedCmd")
     },
   }));
 
-export interface IApprovedCmd extends Instance<typeof ApprovedCmd> {}
+export interface IApprovedCmd extends MobxClearInstance<typeof ApprovedCmd> {}
 export interface DepositCmdParams {
   from: string;
   to: string;
@@ -475,7 +477,7 @@ export const DepositCmd = CmdBase.named("DepositCmd")
     },
   }));
 
-export interface IDepositCmd extends Instance<typeof DepositCmd> {}
+export interface IDepositCmd extends MobxClearInstance<typeof DepositCmd> {}
 export interface FetchCmdParams {
   list: string;
   amount: number;
@@ -496,7 +498,7 @@ export const FetchCmd = CmdBase.named("FetchCmd")
     },
   }));
 
-export interface IFetchCmd extends Instance<typeof FetchCmd> {}
+export interface IFetchCmd extends MobxClearInstance<typeof FetchCmd> {}
 export interface RetrieveCmdParams {
   id: string;
 }
@@ -534,7 +536,7 @@ export const CollectCmd = CmdBase.named("CollectCmd")
     },
   }));
 
-export interface ICollectCmd extends Instance<typeof CollectCmd> {}
+export interface ICollectCmd extends MobxClearInstance<typeof CollectCmd> {}
 export const Transfers = types
   .model("Transfers", {
     name: types.string,
@@ -745,7 +747,7 @@ const Wallet = types
       self.mnemonic.set(mnemonic);
     },
   }));
-export interface IWallet extends Instance<typeof Wallet> {}
+export interface IWallet extends MobxClearInstance<typeof Wallet> {}
 export const Account = types
   .model("Account", {
     allowance: types.optional(types.string, "-1"),
@@ -1018,12 +1020,12 @@ export const accountStore = Account.create();
 export const web3ProviderStore = Web3Provider.create();
 
 
-export interface IWeb3Provider extends Instance<typeof Web3Provider> {}
-export interface IAccount extends Instance<typeof Account> {}
+export interface IWeb3Provider extends MobxClearInstance<typeof Web3Provider> {}
+export interface IAccount extends MobxClearInstance<typeof Account> {}
 
 
 //onSnapshot(accountStore, (snapshot) => console.log('zxc', snapshot))
-export type ITransfers = Instance<typeof Transfers>;
+export type ITransferItems = MobxClearInstance<typeof Transfers>;
 /*
     Transfer
     API: v1/eth/networks ==> SafeTransfer Address, Fees & Reward formula

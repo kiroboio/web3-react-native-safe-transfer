@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- `Instance`<typeof [`ConnectCmd`](../modules.md#connectcmd)\>
+- `MobxClearInstance`<typeof [`ConnectCmd`](../modules.md#connectcmd)\>
 
   ↳ **`IConnectCmd`**
 
@@ -12,8 +12,6 @@
 
 ### Properties
 
-- [[$nonEmptyObject]](IConnectCmd.md#[$nonemptyobject])
-- [[$stateTreeNodeType]](IConnectCmd.md#[$statetreenodetype])
 - [connector](IConnectCmd.md#connector)
 - [is](IConnectCmd.md#is)
 - [isConnected](IConnectCmd.md#isconnected)
@@ -29,41 +27,13 @@
 
 ## Properties
 
-### [$nonEmptyObject]
-
-• `Optional` **[$nonEmptyObject]**: `any`
-
-#### Inherited from
-
-Instance.\_\_@$nonEmptyObject@1525
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/types/complex-types/model.d.ts:46
-
-___
-
-### [$stateTreeNodeType]
-
-• `Optional` `Readonly` **[$stateTreeNodeType]**: [`any`] \| [`IModelType`<{ `is`: `IOptionalIType`<`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>, [`undefined`]\>  } & { `connector`: `IOptionalIType`<`ISimpleType`<`string`\>, [`undefined`]\> ; `isConnected`: `IOptionalIType`<`ISimpleType`<`boolean`\>, [`undefined`]\>  }, { `clear`: () => `void` ; `clearErrors`: () => `void` ; `done`: () => `void` ; `failed`: (`__namedParameters`: { `message`: `string`  }) => `void` ; `start`: () => `void`  } & { `prepare`: (`connector`: `undefined` \| `Connectors`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>]
-
-#### Inherited from
-
-Instance.\_\_@$stateTreeNodeType@1528
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/core/node/node-utils.d.ts:9
-
-___
-
 ### connector
 
 • **connector**: `string`
 
 #### Inherited from
 
-Instance.connector
+MobxClearInstance.connector
 
 ___
 
@@ -73,7 +43,7 @@ ___
 
 #### Inherited from
 
-Instance.is
+MobxClearInstance.is
 
 ___
 
@@ -83,7 +53,7 @@ ___
 
 #### Inherited from
 
-Instance.isConnected
+MobxClearInstance.isConnected
 
 ## Methods
 
@@ -97,11 +67,11 @@ Instance.isConnected
 
 #### Inherited from
 
-Instance.clear
+MobxClearInstance.clear
 
 #### Defined in
 
-dev/stores/account.ts:172
+dev/stores/account.ts:174
 
 ___
 
@@ -115,11 +85,11 @@ ___
 
 #### Inherited from
 
-Instance.clearErrors
+MobxClearInstance.clearErrors
 
 #### Defined in
 
-dev/stores/account.ts:168
+dev/stores/account.ts:170
 
 ___
 
@@ -133,11 +103,11 @@ ___
 
 #### Inherited from
 
-Instance.done
+MobxClearInstance.done
 
 #### Defined in
 
-dev/stores/account.ts:162
+dev/stores/account.ts:164
 
 ___
 
@@ -158,11 +128,11 @@ ___
 
 #### Inherited from
 
-Instance.failed
+MobxClearInstance.failed
 
 #### Defined in
 
-dev/stores/account.ts:165
+dev/stores/account.ts:167
 
 ___
 
@@ -182,11 +152,11 @@ ___
 
 #### Inherited from
 
-Instance.prepare
+MobxClearInstance.prepare
 
 #### Defined in
 
-dev/stores/account.ts:187
+dev/stores/account.ts:189
 
 ___
 
@@ -200,8 +170,8 @@ ___
 
 #### Inherited from
 
-Instance.start
+MobxClearInstance.start
 
 #### Defined in
 
-dev/stores/account.ts:159
+dev/stores/account.ts:161

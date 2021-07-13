@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- `Instance`<typeof [`ERC20Tokens`](../modules.md#erc20tokens)\>
+- `MobxClearInstance`<typeof [`ERC20Tokens`](../modules.md#erc20tokens)\>
 
   ↳ **`IERC20Tokens`**
 
@@ -12,13 +12,8 @@
 
 ### Properties
 
-- [[$nonEmptyObject]](IERC20Tokens.md#[$nonemptyobject])
-- [[$stateTreeNodeType]](IERC20Tokens.md#[$statetreenodetype])
-- [map](IERC20Tokens.md#map)
-
-### Accessors
-
 - [list](IERC20Tokens.md#list)
+- [map](IERC20Tokens.md#map)
 
 ### Methods
 
@@ -29,31 +24,13 @@
 
 ## Properties
 
-### [$nonEmptyObject]
+### list
 
-• `Optional` **[$nonEmptyObject]**: `any`
-
-#### Inherited from
-
-Instance.\_\_@$nonEmptyObject@1525
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/types/complex-types/model.d.ts:46
-
-___
-
-### [$stateTreeNodeType]
-
-• `Optional` `Readonly` **[$stateTreeNodeType]**: [`any`] \| [`IModelType`<`Object`, { `list`:   } & { `addToken`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `clearBalances`: () => `void` ; `setBalance`: (`address`: `string`, `balance`: `string`) => `void` ; `setRate`: (`address`: `string`, `rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>]
+• **list**: { `address`: `string` ; `balance`: `string` ; `decimals`: `number` ; `name`: `string` ; `rate`: `number` ; `symbol`: `string`  } & `NonEmptyObject` & { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>[]
 
 #### Inherited from
 
-Instance.\_\_@$stateTreeNodeType@1528
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/core/node/node-utils.d.ts:9
+MobxClearInstance.list
 
 ___
 
@@ -63,21 +40,7 @@ ___
 
 #### Inherited from
 
-Instance.map
-
-## Accessors
-
-### list
-
-• `get` **list**(): { `address`: `string` ; `balance`: `string` ; `decimals`: `number` ; `name`: `string` ; `rate`: `number` ; `symbol`: `string`  } & `NonEmptyObject` & { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>[]
-
-#### Returns
-
-{ `address`: `string` ; `balance`: `string` ; `decimals`: `number` ; `name`: `string` ; `rate`: `number` ; `symbol`: `string`  } & `NonEmptyObject` & { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`ERC20TokenItem`](ERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>[]
-
-#### Defined in
-
-dev/stores/account.ts:348
+MobxClearInstance.map
 
 ## Methods
 
@@ -97,11 +60,11 @@ dev/stores/account.ts:348
 
 #### Inherited from
 
-Instance.addToken
+MobxClearInstance.addToken
 
 #### Defined in
 
-dev/stores/account.ts:353
+dev/stores/account.ts:355
 
 ___
 
@@ -115,11 +78,11 @@ ___
 
 #### Inherited from
 
-Instance.clearBalances
+MobxClearInstance.clearBalances
 
 #### Defined in
 
-dev/stores/account.ts:369
+dev/stores/account.ts:371
 
 ___
 
@@ -140,11 +103,11 @@ ___
 
 #### Inherited from
 
-Instance.setBalance
+MobxClearInstance.setBalance
 
 #### Defined in
 
-dev/stores/account.ts:366
+dev/stores/account.ts:368
 
 ___
 
@@ -165,8 +128,8 @@ ___
 
 #### Inherited from
 
-Instance.setRate
+MobxClearInstance.setRate
 
 #### Defined in
 
-dev/stores/account.ts:372
+dev/stores/account.ts:374

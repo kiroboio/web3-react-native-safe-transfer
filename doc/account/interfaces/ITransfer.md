@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- `Instance`<typeof [`Transfer`](../modules.md#transfer)\>
+- `MobxClearInstance`<typeof [`Transfer`](../modules.md#transfer)\>
 
   ↳ **`ITransfer`**
 
@@ -12,8 +12,6 @@
 
 ### Properties
 
-- [[$nonEmptyObject]](ITransfer.md#[$nonemptyobject])
-- [[$stateTreeNodeType]](ITransfer.md#[$statetreenodetype])
 - [confirmedBlock](ITransfer.md#confirmedblock)
 - [fees](ITransfer.md#fees)
 - [from](ITransfer.md#from)
@@ -34,41 +32,13 @@
 
 ## Properties
 
-### [$nonEmptyObject]
-
-• `Optional` **[$nonEmptyObject]**: `any`
-
-#### Inherited from
-
-Instance.\_\_@$nonEmptyObject@1525
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/types/complex-types/model.d.ts:46
-
-___
-
-### [$stateTreeNodeType]
-
-• `Optional` `Readonly` **[$stateTreeNodeType]**: [`any`] \| [`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>]
-
-#### Inherited from
-
-Instance.\_\_@$stateTreeNodeType@1528
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/core/node/node-utils.d.ts:9
-
-___
-
 ### confirmedBlock
 
 • **confirmedBlock**: `number`
 
 #### Inherited from
 
-Instance.confirmedBlock
+MobxClearInstance.confirmedBlock
 
 ___
 
@@ -78,7 +48,7 @@ ___
 
 #### Inherited from
 
-Instance.fees
+MobxClearInstance.fees
 
 ___
 
@@ -88,7 +58,7 @@ ___
 
 #### Inherited from
 
-Instance.from
+MobxClearInstance.from
 
 ___
 
@@ -98,7 +68,7 @@ ___
 
 #### Inherited from
 
-Instance.id
+MobxClearInstance.id
 
 ___
 
@@ -108,7 +78,7 @@ ___
 
 #### Inherited from
 
-Instance.message
+MobxClearInstance.message
 
 ___
 
@@ -118,7 +88,7 @@ ___
 
 #### Inherited from
 
-Instance.salt
+MobxClearInstance.salt
 
 ___
 
@@ -128,7 +98,7 @@ ___
 
 #### Inherited from
 
-Instance.secretHash
+MobxClearInstance.secretHash
 
 ___
 
@@ -138,7 +108,7 @@ ___
 
 #### Inherited from
 
-Instance.state
+MobxClearInstance.state
 
 ___
 
@@ -148,7 +118,7 @@ ___
 
 #### Inherited from
 
-Instance.to
+MobxClearInstance.to
 
 ___
 
@@ -158,7 +128,7 @@ ___
 
 #### Inherited from
 
-Instance.token
+MobxClearInstance.token
 
 ___
 
@@ -168,7 +138,7 @@ ___
 
 #### Inherited from
 
-Instance.txid
+MobxClearInstance.txid
 
 ___
 
@@ -178,7 +148,7 @@ ___
 
 #### Inherited from
 
-Instance.updatedAt
+MobxClearInstance.updatedAt
 
 ___
 
@@ -188,7 +158,7 @@ ___
 
 #### Inherited from
 
-Instance.value
+MobxClearInstance.value
 
 ## Methods
 
@@ -209,8 +179,8 @@ Instance.value
 
 #### Inherited from
 
-Instance.update
+MobxClearInstance.update
 
 #### Defined in
 
-dev/stores/account.ts:96
+dev/stores/account.ts:98

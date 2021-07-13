@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- `SnapshotOut`<typeof [`Web3Provider`](../modules.md#web3provider)\>
+- `MobxClearInstance`<typeof [`Web3Provider`](../modules.md#web3provider)\>
 
   ↳ **`IWeb3Provider`**
 
@@ -12,25 +12,15 @@
 
 ### Properties
 
-- [[$nonEmptyObject]](IWeb3Provider.md#[$nonemptyobject])
 - [balance](IWeb3Provider.md#balance)
 - [block](IWeb3Provider.md#block)
 
+### Methods
+
+- [setBalance](IWeb3Provider.md#setbalance)
+- [setBlock](IWeb3Provider.md#setblock)
+
 ## Properties
-
-### [$nonEmptyObject]
-
-• `Optional` **[$nonEmptyObject]**: `any`
-
-#### Inherited from
-
-SnapshotOut.\_\_@$nonEmptyObject@1525
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/types/complex-types/model.d.ts:46
-
-___
 
 ### balance
 
@@ -38,7 +28,7 @@ ___
 
 #### Inherited from
 
-SnapshotOut.balance
+MobxClearInstance.balance
 
 ___
 
@@ -48,4 +38,52 @@ ___
 
 #### Inherited from
 
-SnapshotOut.block
+MobxClearInstance.block
+
+## Methods
+
+### setBalance
+
+▸ **setBalance**(`balance`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `balance` | `string` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+MobxClearInstance.setBalance
+
+#### Defined in
+
+dev/stores/account.ts:668
+
+___
+
+### setBlock
+
+▸ **setBlock**(`block`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `block` | `number` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+MobxClearInstance.setBlock
+
+#### Defined in
+
+dev/stores/account.ts:665

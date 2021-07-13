@@ -5,7 +5,7 @@ import { useAccount, useWeb3Provider } from '../context/account'
 import { useWeb3 } from '../hooks/useWeb3'
 import KiroboService from '@kiroboio/safe-transfer-lib-lite'
 import { observer } from 'mobx-react-lite'
-import { ERC20TokenItem, ITransferItem, ITransfers } from '../stores/account'
+import { ERC20TokenItem, ITransferItem, ITransferItems } from '../stores/account'
 import safeTransferABI from '../abi/safeTransfer.json'
 import erc20ABI from '../abi/erc20.json'
 import { EthTokenInfo, EthTransferResponseDto, EthTransferState } from '../dto/EthTransfersDto'
@@ -62,19 +62,19 @@ const getChainName = (chainId: number | undefined) => {
 }
 
 interface PutInStoreParams {
-  store: ITransfers
+  store: ITransferItems
   address: string
   item: EthTransferResponseDto
 }
 
 interface MoveToStoreParams {
-  store: ITransfers
+  store: ITransferItems
   address: string
   item: ITransferItem
 }
 
 interface AddToStoreParams {
-  store: ITransfers
+  store: ITransferItems
   address: string
   items: EthTransferResponseDto[]
   count: number
@@ -215,13 +215,13 @@ const historyQuery = ({
 })
 
 interface DeleteFromStoreParams {
-  store: ITransfers
+  store: ITransferItems
   address: string
   id: string
 }
 
 interface RemoveFromStoreParams {
-  store: ITransfers
+  store: ITransferItems
   address: string
   filter: (item: ITransferItem) => boolean
 }

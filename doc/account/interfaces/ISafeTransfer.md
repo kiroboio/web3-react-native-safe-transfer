@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- `Instance`<typeof [`SafeTransfer`](../modules.md#safetransfer)\>
+- `MobxClearInstance`<typeof [`SafeTransfer`](../modules.md#safetransfer)\>
 
   ↳ **`ISafeTransfer`**
 
@@ -12,8 +12,6 @@
 
 ### Properties
 
-- [[$nonEmptyObject]](ISafeTransfer.md#[$nonemptyobject])
-- [[$stateTreeNodeType]](ISafeTransfer.md#[$statetreenodetype])
 - [address](ISafeTransfer.md#address)
 - [fees](ISafeTransfer.md#fees)
 - [feesFormula](ISafeTransfer.md#feesformula)
@@ -27,41 +25,13 @@
 
 ## Properties
 
-### [$nonEmptyObject]
-
-• `Optional` **[$nonEmptyObject]**: `any`
-
-#### Inherited from
-
-Instance.\_\_@$nonEmptyObject@1525
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/types/complex-types/model.d.ts:46
-
-___
-
-### [$stateTreeNodeType]
-
-• `Optional` `Readonly` **[$stateTreeNodeType]**: [`any`] \| [`IModelType`<`Object`, { `fees`: (`_value`: `string`) => ``"0"`` ; `reward`: (`_value`: `string`, `_stakingValue`: `string`, `_fees`: `string`) => ``"0"``  } & { `setData`: (`data`: [`ISafeTransferItem`](ISafeTransferItem.md)) => `void`  }, `_NotCustomized`, `_NotCustomized`\>]
-
-#### Inherited from
-
-Instance.\_\_@$stateTreeNodeType@1528
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/core/node/node-utils.d.ts:9
-
-___
-
 ### address
 
 • **address**: `string`
 
 #### Inherited from
 
-Instance.address
+MobxClearInstance.address
 
 ___
 
@@ -85,7 +55,7 @@ ___
 
 #### Inherited from
 
-Instance.fees
+MobxClearInstance.fees
 
 ___
 
@@ -95,7 +65,7 @@ ___
 
 #### Inherited from
 
-Instance.feesFormula
+MobxClearInstance.feesFormula
 
 ___
 
@@ -121,7 +91,7 @@ ___
 
 #### Inherited from
 
-Instance.reward
+MobxClearInstance.reward
 
 ___
 
@@ -131,7 +101,7 @@ ___
 
 #### Inherited from
 
-Instance.rewardFormula
+MobxClearInstance.rewardFormula
 
 ___
 
@@ -141,7 +111,7 @@ ___
 
 #### Inherited from
 
-Instance.synced
+MobxClearInstance.synced
 
 ## Methods
 
@@ -161,8 +131,8 @@ Instance.synced
 
 #### Inherited from
 
-Instance.setData
+MobxClearInstance.setData
 
 #### Defined in
 
-dev/stores/account.ts:232
+dev/stores/account.ts:234

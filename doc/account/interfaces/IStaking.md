@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- `Instance`<typeof [`Staking`](../modules.md#staking)\>
+- `MobxClearInstance`<typeof [`Staking`](../modules.md#staking)\>
 
   ↳ **`IStaking`**
 
@@ -12,8 +12,6 @@
 
 ### Properties
 
-- [[$nonEmptyObject]](IStaking.md#[$nonemptyobject])
-- [[$stateTreeNodeType]](IStaking.md#[$statetreenodetype])
 - [address](IStaking.md#address)
 - [balance](IStaking.md#balance)
 
@@ -23,41 +21,13 @@
 
 ## Properties
 
-### [$nonEmptyObject]
-
-• `Optional` **[$nonEmptyObject]**: `any`
-
-#### Inherited from
-
-Instance.\_\_@$nonEmptyObject@1525
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/types/complex-types/model.d.ts:46
-
-___
-
-### [$stateTreeNodeType]
-
-• `Optional` `Readonly` **[$stateTreeNodeType]**: [`any`] \| [`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>]
-
-#### Inherited from
-
-Instance.\_\_@$stateTreeNodeType@1528
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/core/node/node-utils.d.ts:9
-
-___
-
 ### address
 
 • **address**: `string`
 
 #### Inherited from
 
-Instance.address
+MobxClearInstance.address
 
 ___
 
@@ -67,7 +37,7 @@ ___
 
 #### Inherited from
 
-Instance.balance
+MobxClearInstance.balance
 
 ## Methods
 
@@ -87,8 +57,8 @@ Instance.balance
 
 #### Inherited from
 
-Instance.setData
+MobxClearInstance.setData
 
 #### Defined in
 
-dev/stores/account.ts:279
+dev/stores/account.ts:281

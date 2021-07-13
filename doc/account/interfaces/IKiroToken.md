@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- `Instance`<typeof [`KiroToken`](../modules.md#kirotoken)\>
+- `MobxClearInstance`<typeof [`KiroToken`](../modules.md#kirotoken)\>
 
   ↳ **`IKiroToken`**
 
@@ -12,8 +12,6 @@
 
 ### Properties
 
-- [[$nonEmptyObject]](IKiroToken.md#[$nonemptyobject])
-- [[$stateTreeNodeType]](IKiroToken.md#[$statetreenodetype])
 - [address](IKiroToken.md#address)
 
 ### Methods
@@ -22,41 +20,13 @@
 
 ## Properties
 
-### [$nonEmptyObject]
-
-• `Optional` **[$nonEmptyObject]**: `any`
-
-#### Inherited from
-
-Instance.\_\_@$nonEmptyObject@1525
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/types/complex-types/model.d.ts:46
-
-___
-
-### [$stateTreeNodeType]
-
-• `Optional` `Readonly` **[$stateTreeNodeType]**: [`any`] \| [`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>]
-
-#### Inherited from
-
-Instance.\_\_@$stateTreeNodeType@1528
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/core/node/node-utils.d.ts:9
-
-___
-
 ### address
 
 • **address**: `string`
 
 #### Inherited from
 
-Instance.address
+MobxClearInstance.address
 
 ## Methods
 
@@ -76,8 +46,8 @@ Instance.address
 
 #### Inherited from
 
-Instance.setData
+MobxClearInstance.setData
 
 #### Defined in
 
-dev/stores/account.ts:294
+dev/stores/account.ts:296
