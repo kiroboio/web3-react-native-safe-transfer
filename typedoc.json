@@ -1,4 +1,4 @@
 {
-    "entryPoints": ["./dev/stores/account.ts"],
-    "out": "./doc/account"
-  }
+    "entryPoints": ["./dev/hooks/index.ts"],
+    "out": "./doc/hooks"
+}

@@ -147,3 +147,7 @@ const useWallet = (): {
 }
 
 export default useWallet
+
+
+export interface IUseWalletState extends ReturnType<typeof useWallet> {}
+export type UseWalletHook = () => IUseWalletState

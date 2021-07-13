@@ -373,13 +373,49 @@ const setCollect = ({
 
 ## Lists
 
+### Transfers
+
+#### Transfer State
+
+```
+  | 'waiting-for-deposit'
+  | 'retrieving'
+  | 'retrieved'
+  | 'ready'
+  | 'collecting'
+  | 'collected'
+  | 'rejected'
+  | 'invalid'
+  | 'new'
+  | 'creating'
+  | 'unknown'
+```
+
+#### Transfer
+
+[transferState]: (#Transfer State)
+
+```typescript
+{
+    id: string,
+    txid: string,
+    from: string,
+    to: string,
+    value: string,
+    fees: string,
+    salt: string,
+    secretHash: string,
+    state: <pre><a href="my-url">Something</a></pre>,
+    updatedAt: Date | number,
+    confirmedBlock: number,
+    message: string,
+    token?: types.optional(Token, {}),
+}
+```
+
 ### Incoming
 
 ### Outgoing
-
-### Transfers
-
-[ITransfer](./account/interfaces/ITransfer.md)
 
 ### Swaps
 

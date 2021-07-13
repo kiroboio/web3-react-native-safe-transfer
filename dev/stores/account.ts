@@ -1025,7 +1025,7 @@ export interface IAccount extends MobxClearInstance<typeof Account> {}
 
 
 //onSnapshot(accountStore, (snapshot) => console.log('zxc', snapshot))
-export type ITransferItems = MobxClearInstance<typeof Transfers>;
+export interface ITransferItems extends MobxClearInstance<typeof Transfers>{}
 /*
     Transfer
     API: v1/eth/networks ==> SafeTransfer Address, Fees & Reward formula

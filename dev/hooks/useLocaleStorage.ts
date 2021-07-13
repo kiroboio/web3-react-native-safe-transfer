@@ -14,3 +14,5 @@ export const useLocalStorage = <T>(
   }
   return [storedValue, setValue] as const
 }
+
+export type UseLocalStorageType = typeof useLocalStorage;

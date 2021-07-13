@@ -180,3 +180,5 @@ const useSecureStorage =
       }
 
 export default useSecureStorage
+
+export type UseSecureStorage = typeof useSecureStorage

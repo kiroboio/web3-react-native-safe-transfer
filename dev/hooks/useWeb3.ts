@@ -162,3 +162,6 @@ export const useWeb3 = (): IWeb3ReactContext<Web3> => {
     activate,
   }
 }
+
+export interface IUseWeb3State extends ReturnType<typeof useWeb3> {}
+export type UseWeb3Hook = () => IUseWeb3State

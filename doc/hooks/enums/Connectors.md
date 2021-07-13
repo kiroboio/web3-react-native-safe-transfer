@@ -21,7 +21,7 @@
 
 #### Defined in
 
-dev/hooks/useWeb3.ts:29
+useWeb3.ts:29
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 #### Defined in
 
-dev/hooks/useWeb3.ts:24
+useWeb3.ts:24
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 #### Defined in
 
-dev/hooks/useWeb3.ts:25
+useWeb3.ts:25
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 #### Defined in
 
-dev/hooks/useWeb3.ts:28
+useWeb3.ts:28
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 #### Defined in
 
-dev/hooks/useWeb3.ts:26
+useWeb3.ts:26
 
 ___
 
@@ -71,4 +71,4 @@ ___
 
 #### Defined in
 
-dev/hooks/useWeb3.ts:27
+useWeb3.ts:27

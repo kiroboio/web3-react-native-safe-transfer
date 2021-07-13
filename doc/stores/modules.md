@@ -30,6 +30,7 @@
 - [IStakingItem](interfaces/IStakingItem.md)
 - [ITransfer](interfaces/ITransfer.md)
 - [ITransferItem](interfaces/ITransferItem.md)
+- [ITransferItems](interfaces/ITransferItems.md)
 - [ITransferToken](interfaces/ITransferToken.md)
 - [IWallet](interfaces/IWallet.md)
 - [IWeb3Provider](interfaces/IWeb3Provider.md)
@@ -38,7 +39,6 @@
 ### Type aliases
 
 - [Currency](modules.md#currency)
-- [ITransferItems](modules.md#itransferitems)
 
 ### Variables
 
@@ -73,16 +73,6 @@
 #### Defined in
 
 dev/stores/account.ts:39
-
-___
-
-### ITransferItems
-
-Ƭ **ITransferItems**: `MobxClearInstance`<typeof [`Transfers`](modules.md#transfers)\>
-
-#### Defined in
-
-dev/stores/account.ts:1028
 
 ## Variables
 
