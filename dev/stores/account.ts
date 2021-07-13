@@ -5,7 +5,7 @@ import { generateMnemonic } from "bip39";
 
 import { isPlatform } from "@ionic/react";
 
-import { castToSnapshot, getSnapshot, Instance, types } from "mobx-state-tree";
+import { castToSnapshot, getSnapshot, Instance, types} from "mobx-state-tree";
 
 import { sha3, toBN } from "web3-utils";
 
@@ -74,6 +74,8 @@ export const Token = types.model({
   type: types.optional(types.string, ""),
 });
 
+export interface ITransferToken extends Instance<typeof Token> {}
+
 export const Transfer = types
   .model({
     id: types.identifier,
@@ -98,10 +100,7 @@ export const Transfer = types
     },
   }));
 
-export interface SendCmdParams {
-  to: string;
-  value: string;
-}
+export interface ITransfer extends Instance<typeof Transfer> {}
 
 export const CmdStatus = types
   .model({
@@ -134,7 +133,9 @@ export const CmdStatus = types
       self.done = false;
       self.failed = false;
     },
-    finished(err?: { err: { message: string } }) {
+    finished(err?: {
+      err: { message: string };
+    }) {
       self.ready = false;
       self.running = false;
       if (err) {
@@ -147,6 +148,8 @@ export const CmdStatus = types
       }
     },
   }));
+
+export interface ICmdStatus extends Instance<typeof CmdStatus> {}
 
 const CmdModel = {
   is: types.optional(CmdStatus, {}),
@@ -171,22 +174,9 @@ const CmdActions = (self: { is: Instance<typeof CmdStatus> }) => ({
   },
 });
 
-const CmdBase = types.model("CMDBase", CmdModel).actions(CmdActions);
+export interface ICmdActions extends Instance<typeof CmdActions> {}
 
-export const SendCmd = CmdBase.named("SendCmd")
-  .props({
-    to: types.optional(types.string, ""),
-    value: types.optional(types.string, ""),
-  })
-  .actions((self) => ({
-    prepare(params: SendCmdParams) {
-      if (!self.is.running) {
-        self.to = params.to;
-        self.value = params.value;
-        self.is.prepared();
-      }
-    },
-  }));
+const CmdBase = types.model("CMDBase", CmdModel).actions(CmdActions);
 
 export const ConnectCmd = CmdBase.named("ConnectCmd")
   .props({
@@ -208,6 +198,8 @@ export const ConnectCmd = CmdBase.named("ConnectCmd")
     },
   }));
 
+export interface IConnectCmd extends Instance<typeof ConnectCmd> {}
+
 export const DisconnectCmd = CmdBase.named("DisconnectCmd").actions((self) => ({
   prepare() {
     if (!self.is.running) {
@@ -215,6 +207,8 @@ export const DisconnectCmd = CmdBase.named("DisconnectCmd").actions((self) => ({
     }
   },
 }));
+
+export interface IDisconnectCmd extends Instance<typeof DisconnectCmd> {}
 
 export interface ISafeTransferItem {
   address: string;
@@ -271,6 +265,7 @@ export const SafeTransfer = types
     },
   }));
 
+export interface ISafeTransfer extends Instance<typeof SafeTransfer> {}
 export interface IStakingItem {
   address: string;
 }
@@ -286,6 +281,7 @@ export const Staking = types
     },
   }));
 
+export interface IStaking extends Instance<typeof Staking> {}
 export interface IKiroTokenItem {
   address: string;
 }
@@ -299,6 +295,8 @@ export const KiroToken = types
       self.address = address;
     },
   }));
+
+export interface IKiroToken extends Instance<typeof KiroToken> {}
 
 export interface ERC20TokenItem {
   address: string;
@@ -375,6 +373,9 @@ export const ERC20Tokens = types
       self.map.get(address)?.setRate(rate);
     },
   }));
+
+export interface IERC20Tokens extends Instance<typeof ERC20Tokens> {}
+
 export interface DeviceInfoData {
   isMobile: boolean;
   haveMetaMask: boolean;
@@ -402,6 +403,8 @@ export const DeviceInfo = types
       self.loggedIn = loggedIn;
     },
   }));
+
+export interface IDeviceInfo extends Instance<typeof DeviceInfo> {}
 
 const EthAddressPrimitive = types.custom<string, string>({
   name: "Eth Address",
@@ -436,6 +439,7 @@ export const ApprovedCmd = CmdBase.named("ApprovedCmd")
     },
   }));
 
+export interface IApprovedCmd extends Instance<typeof ApprovedCmd> {}
 export interface DepositCmdParams {
   from: string;
   to: string;
@@ -471,6 +475,7 @@ export const DepositCmd = CmdBase.named("DepositCmd")
     },
   }));
 
+export interface IDepositCmd extends Instance<typeof DepositCmd> {}
 export interface FetchCmdParams {
   list: string;
   amount: number;
@@ -491,6 +496,7 @@ export const FetchCmd = CmdBase.named("FetchCmd")
     },
   }));
 
+export interface IFetchCmd extends Instance<typeof FetchCmd> {}
 export interface RetrieveCmdParams {
   id: string;
 }
@@ -528,6 +534,7 @@ export const CollectCmd = CmdBase.named("CollectCmd")
     },
   }));
 
+export interface ICollectCmd extends Instance<typeof CollectCmd> {}
 export const Transfers = types
   .model("Transfers", {
     name: types.string,
@@ -738,7 +745,7 @@ const Wallet = types
       self.mnemonic.set(mnemonic);
     },
   }));
-
+export interface IWallet extends Instance<typeof Wallet> {}
 export const Account = types
   .model("Account", {
     allowance: types.optional(types.string, "-1"),
@@ -754,7 +761,6 @@ export const Account = types
     transfers: types.optional(Transfers, { name: "transfers" }),
     incoming: types.optional(Transfers, { name: "incoming" }),
     outgoing: types.optional(Transfers, { name: "outgoing" }),
-    sendCmd: types.optional(SendCmd, {}),
     approvedCmd: types.optional(ApprovedCmd, {}),
     depositCmd: types.optional(DepositCmd, {}),
     retrieveCmd: types.optional(RetrieveCmd, {}),
@@ -841,21 +847,18 @@ export const Account = types
     },
   }))
   .actions((self) => ({
-    send(to: string, value: string) {
-      self.sendCmd.prepare({ to, value });
-    },
     approve() {
       self.approvedCmd.prepare();
     },
     /**
-     * 
+     *
      * @param {string} params.to ethereum address to send
      * @param {string} params.value value to send in wei
      * @param {string} params.passcode secure code to collect or retrieve transaction
      * @param {string} params.message optional message to send
-     * 
+     *
      * @returns {void}
-    */
+     */
     deposit({
       to,
       value,
@@ -1014,8 +1017,12 @@ export const Account = types
 export const accountStore = Account.create();
 export const web3ProviderStore = Web3Provider.create();
 
-//onSnapshot(accountStore, (snapshot) => console.log('zxc', snapshot))
 
+export interface IWeb3Provider extends Instance<typeof Web3Provider> {}
+export interface IAccount extends Instance<typeof Account> {}
+
+
+//onSnapshot(accountStore, (snapshot) => console.log('zxc', snapshot))
 export type ITransfers = Instance<typeof Transfers>;
 /*
     Transfer

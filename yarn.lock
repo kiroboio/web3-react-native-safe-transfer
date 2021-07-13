@@ -15814,7 +15814,14 @@
   "resolved" "https://registry.npmjs.org/typedoc-default-themes/-/typedoc-default-themes-0.12.10.tgz"
   "version" "0.12.10"
 
-"typedoc@^0.21.4":
+"typedoc-plugin-markdown@^3.10.3":
+  "integrity" "sha512-CmNfHjiCc3ttJo3IYa7te+xOLJIn+jRVloSkM4j3It2rhJTeYp6OhZocnIHYIJIIqXuttoXAbFAbfJ2v7X+nbA=="
+  "resolved" "https://registry.npmjs.org/typedoc-plugin-markdown/-/typedoc-plugin-markdown-3.10.3.tgz"
+  "version" "3.10.3"
+  dependencies:
+    "handlebars" "^4.7.7"
+
+"typedoc@^0.21.4", "typedoc@>=0.21.2":
   "integrity" "sha512-slZQhvD9U0d9KacktYAyuNMMOXJRFNHy+Gd8xY2Qrqq3eTTTv3frv3N4au/cFnab9t3T5WA0Orb6QUjMc+1bDA=="
   "resolved" "https://registry.npmjs.org/typedoc/-/typedoc-0.21.4.tgz"
   "version" "0.21.4"

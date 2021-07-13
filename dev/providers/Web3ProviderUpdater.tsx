@@ -266,7 +266,6 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     setTokenBalance,
     setStakingBalance,
     setRate,
-    sendCmd,
     approvedCmd,
     depositCmd,
     retrieveCmd,
@@ -419,7 +418,6 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
   const __approvedCmd = useRef(approvedCmd)
   const __collectCmd = useRef(collectCmd)
   const __retrieveCmd = useRef(retrieveCmd)
-  const __sendCmd = useRef(sendCmd)
   const __erc20TokenContractWeb3 = useRef(erc20TokenContractWeb3)
   const __safeTransferContractWeb3 = useRef(safeTransferContractWeb3)
   const __web3 = useRef(web3)
@@ -484,7 +482,6 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     __depositCmd.current = depositCmd
     __collectCmd.current = collectCmd
     __retrieveCmd.current = retrieveCmd
-    __sendCmd.current = sendCmd
     __erc20TokenContractWeb3.current = erc20TokenContractWeb3
     __safeTransferContractWeb3.current = safeTransferContractWeb3
     __web3.current = web3
@@ -1086,36 +1083,6 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     }
   }, [collectCmd.is.ready])
 
-  // on account.send command
-  useEffect(() => {
-    const web3 = __web3.current
-    const address = __address.current
-    const sendCmd = __sendCmd.current
-    if (
-      address &&
-      sendCmd.to &&
-      sendCmd.value &&
-      !sendCmd.is.running &&
-      sendCmd.is.ready
-    ) {
-      sendCmd.start()
-      ;(async function runSendCmd() {
-        const address = __address.current
-        const sendCmd = __sendCmd.current
-        try {
-          await web3.eth.sendTransaction({
-            value: Web3.utils.toWei(sendCmd.value, 'ether'),
-            to: sendCmd.to,
-            from: address,
-          })
-          sendCmd.done()
-        } catch (e) {
-          const error = e as ErrorType
-          sendCmd.failed({ message: error.message || error.reason })
-        }
-      })()
-    }
-  }, [sendCmd.is.ready])
 
   const getDeviceInfo = async () => {
     const parser = new UAParser()

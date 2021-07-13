@@ -82,6 +82,7 @@
     "reactotron-react-js": "^3.3.7",
     "ts-jest": "^27.0.3",
     "typedoc": "^0.21.4",
+    "typedoc-plugin-markdown": "^3.10.3",
     "typescript": "4.2"
   },
   "author": "",

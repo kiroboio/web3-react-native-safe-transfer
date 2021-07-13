@@ -1,0 +1,4 @@
+{
+    "entryPoints": ["./dev/stores/account.ts"],
+    "out": "./doc/account"
+  }

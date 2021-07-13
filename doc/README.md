@@ -1,10 +1,8 @@
+@kiroboio/web3-react-safe-transfer / [Exports](modules.md)
+
 # Docs
 
-
-
 ## Getting Started
-
-
 
 ### Install
 
@@ -13,8 +11,6 @@ npx i --save @kiroboio/web3-react-safe-transfer
 # or
 yarn add @kiroboio/web3-react-safe-transfer
 ```
-
-
 
 #### Peer Dependencies
 
@@ -28,8 +24,6 @@ yarn add @kiroboio/web3-react-safe-transfer
     "typescript": "4.2"
 }
 ```
-
-
 
 ### Use
 
@@ -52,7 +46,6 @@ ReactDOM.render(
 import React from 'react'
 import { Wallet } from "./Wallet"
 import { useAccount, observer, Connectors } from '@kiroboio/web3-react-safe-transfer/lib'
-
 
 export const App = observer(() => {
   const {
@@ -87,8 +80,6 @@ export const Wallet = observer(() => {
 })
 ```
 
-
-
 ### Debugging
 
 For view `Safe Transfer` state & actions install and configure [Reactotron]: https://github.com/infinitered/reactotron
@@ -97,7 +88,6 @@ For view `Safe Transfer` state & actions install and configure [Reactotron]: htt
 import React, { useEffect } from 'react'
 import { configureReactotronDebugging, useAccount, observer, Connectors  } from '@kiroboio/web3-react-safe-transfer'
 import { Wallet } from "./Wallet"
-
 
 export const App = observer(() => {
   const {
@@ -117,8 +107,6 @@ export const App = observer(() => {
 ```
 
 Since our App component was observing everything, it was re-rendering whenever you changed something.![](![image-20210711155028840](/home/sergey/.config/Typora/typora-user-images/image-20210711155028840.png)
-
-
 
 ## Main concepts
 
@@ -208,8 +196,6 @@ const { deposit } = useAccount()
 return <Spinner isLoading={deposit.is.running} />
 ```
 
-
-
 ### Lists
 
  Lists of transactions 
@@ -222,13 +208,9 @@ const {
  = useAccount()
 ```
 
-
-
 ## Connect
 
 ## Disconnect
-
-
 
 ## Transactions
 
@@ -265,8 +247,6 @@ void
 After setting the values deposit transaction will be started
 ```
 
-
-
 ```typescript
 import { useAccount, etherToWei } from '@kiroboio/web3-react-safe-transfer
 
@@ -292,8 +272,6 @@ const setDeposit = ({
     })
 }
 ```
-
-
 
 #### Status
 
@@ -338,8 +316,6 @@ const setCollect = ({
    retrieve({ id: transfer.id })
 }
 ```
-
-
 
 #### Status
 
@@ -389,75 +365,24 @@ const setCollect = ({
 }
 ```
 
-
-
 #### Status
 
 [collect.is](#Web3 Action Status)
 
 ### Swap
 
-
-
 ## Lists
-
-### Transfers
-
-#### Transfer State
-
-```
-  | 'waiting-for-deposit'
-  | 'retrieving'
-  | 'retrieved'
-  | 'ready'
-  | 'collecting'
-  | 'collected'
-  | 'rejected'
-  | 'invalid'
-  | 'new'
-  | 'creating'
-  | 'unknown'
-```
-
-
-
-#### Transfer
-
-[transferState]: (#Transfer State)
-
-
-
-```typescript
-{
-    id: string,
-    txid: string,
-    from: string,
-    to: string,
-    value: string,
-    fees: string,
-    salt: string,
-    secretHash: string,
-    state: <pre><a href="my-url">Something</a></pre>,
-    updatedAt: Date | number,
-    confirmedBlock: number,
-    message: string,
-    token?: types.optional(Token, {}),
-}
-```
-
-
 
 ### Incoming
 
 ### Outgoing
 
+### Transfers
+
+[ITransfer](./account/interfaces/ITransfer.md)
+
 ### Swaps
 
 ### History
 
-
-
 ## Utils
-
-
-
