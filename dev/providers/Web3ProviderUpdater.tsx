@@ -5,7 +5,7 @@ import { useAccount, useWeb3Provider } from '../context/account'
 import { useWeb3 } from '../hooks/useWeb3'
 import KiroboService from '@kiroboio/safe-transfer-lib-lite'
 import { observer } from 'mobx-react-lite'
-import { ERC20TokenItem, ITransferItem, ITransferItems } from '../stores/account'
+import { IERC20TokenItem, ITransferItem, ITransferItems } from '../stores/account'
 import safeTransferABI from '../abi/safeTransfer.json'
 import erc20ABI from '../abi/erc20.json'
 import { EthTokenInfo, EthTransferResponseDto, EthTransferState } from '../dto/EthTransfersDto'
@@ -1234,7 +1234,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
             }
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const tokens = (((await erc20Service.find({})) as any)
-              .data as EthErc20ResponseDto[]).map<ERC20TokenItem>((token) => ({
+              .data as EthErc20ResponseDto[]).map<IERC20TokenItem>((token) => ({
               address: token.address,
               symbol: token.symbol,
               decimals: token.decimals,
@@ -1244,7 +1244,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
                 ({ symbol }: { symbol: string }) => symbol === token.symbol
               )?.usd,
             }))
-            const eth: ERC20TokenItem = {
+            const eth: IERC20TokenItem = {
               address: '0x000000000000',
               symbol: 'ETH',
               decimals: 18,

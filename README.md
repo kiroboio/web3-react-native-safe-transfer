@@ -116,10 +116,6 @@ export const App = observer(() => {
 })
 ```
 
-Since our App component was observing everything, it was re-rendering whenever you changed something.![](![image-20210711155028840](/home/sergey/.config/Typora/typora-user-images/image-20210711155028840.png)
-
-
-
 ## Main concepts
 
 ### State

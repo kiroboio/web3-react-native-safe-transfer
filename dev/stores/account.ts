@@ -1,18 +1,17 @@
 import { values } from "mobx";
 import { EthTransferResponseDto, EthTokenInfo } from "../dto/EthTransfersDto";
-import { IAnyType } from "mobx-state-tree";
 import { generateMnemonic } from "bip39";
 
 import { isPlatform } from "@ionic/react";
 
-import { castToSnapshot, getSnapshot, Instance, types} from "mobx-state-tree";
+import { castToSnapshot, getSnapshot, Instance, types } from "mobx-state-tree";
 
 import { sha3, toBN } from "web3-utils";
 
 import Web3 from "web3";
 import { Connectors } from "../hooks/useWeb3";
 
-type MobxClearInstance<T> = Omit<Instance<T>, symbol>
+type MobxClearInstance<T> = Omit<Instance<T>, symbol>;
 
 const getChainName = (chainId: number | undefined) => {
   if (chainId === 1) return "main";
@@ -135,9 +134,7 @@ export const CmdStatus = types
       self.done = false;
       self.failed = false;
     },
-    finished(err?: {
-      err: { message: string };
-    }) {
+    finished(err?: { err: { message: string } }) {
       self.ready = false;
       self.running = false;
       if (err) {
@@ -180,6 +177,10 @@ export interface ICmdActions extends MobxClearInstance<typeof CmdActions> {}
 
 const CmdBase = types.model("CMDBase", CmdModel).actions(CmdActions);
 
+export interface ICmdBase extends MobxClearInstance<typeof CmdBase> {
+  is: ICmdStatus;
+}
+
 export const ConnectCmd = CmdBase.named("ConnectCmd")
   .props({
     connector: types.optional(types.string, ""),
@@ -200,7 +201,9 @@ export const ConnectCmd = CmdBase.named("ConnectCmd")
     },
   }));
 
-export interface IConnectCmd extends MobxClearInstance<typeof ConnectCmd> {}
+export interface IConnectCmd extends MobxClearInstance<typeof ConnectCmd> {
+  is: ICmdStatus;
+}
 
 export const DisconnectCmd = CmdBase.named("DisconnectCmd").actions((self) => ({
   prepare() {
@@ -210,7 +213,10 @@ export const DisconnectCmd = CmdBase.named("DisconnectCmd").actions((self) => ({
   },
 }));
 
-export interface IDisconnectCmd extends MobxClearInstance<typeof DisconnectCmd> {}
+export interface IDisconnectCmd
+  extends MobxClearInstance<typeof DisconnectCmd> {
+  is: ICmdStatus;
+}
 
 export interface ISafeTransferItem {
   address: string;
@@ -300,7 +306,7 @@ export const KiroToken = types
 
 export interface IKiroToken extends MobxClearInstance<typeof KiroToken> {}
 
-export interface ERC20TokenItem {
+export interface IERC20TokenItem {
   address: string;
   name: string;
   symbol: string;
@@ -324,7 +330,7 @@ export const ERC20Token = types
     },
   }))
   .actions((self) => ({
-    setData({ address, name, symbol, decimals, balance }: ERC20TokenItem) {
+    setData({ address, name, symbol, decimals, balance }: IERC20TokenItem) {
       self.address = address;
       self.name = name;
       self.symbol = symbol;
@@ -359,7 +365,7 @@ export const ERC20Tokens = types
       decimals,
       balance,
       rate,
-    }: ERC20TokenItem) {
+    }: IERC20TokenItem) {
       self.map.set(
         address,
         ERC20Token.create({ address, name, symbol, decimals, balance, rate })
@@ -376,7 +382,11 @@ export const ERC20Tokens = types
     },
   }));
 
-export interface IERC20Tokens extends MobxClearInstance<typeof ERC20Tokens> {}
+type MobxClearERC20Tokens = Omit<Instance<typeof ERC20Tokens>, "map">;
+
+export interface IERC20Tokens extends MobxClearInstance<MobxClearERC20Tokens> {
+  map: Map<string, IERC20TokenItem>;
+}
 
 export interface DeviceInfoData {
   isMobile: boolean;
@@ -477,7 +487,9 @@ export const DepositCmd = CmdBase.named("DepositCmd")
     },
   }));
 
-export interface IDepositCmd extends MobxClearInstance<typeof DepositCmd> {}
+export interface IDepositCmd extends MobxClearInstance<typeof DepositCmd> {
+  is: ICmdStatus;
+}
 export interface FetchCmdParams {
   list: string;
   amount: number;
@@ -498,7 +510,9 @@ export const FetchCmd = CmdBase.named("FetchCmd")
     },
   }));
 
-export interface IFetchCmd extends MobxClearInstance<typeof FetchCmd> {}
+export interface IFetchCmd extends MobxClearInstance<typeof FetchCmd> {
+  is: ICmdStatus;
+}
 export interface RetrieveCmdParams {
   id: string;
 }
@@ -515,7 +529,9 @@ export const RetrieveCmd = CmdBase.named("RetrieveCmd")
       }
     },
   }));
-
+export interface IRetrieveCmd extends MobxClearInstance<typeof RetrieveCmd> {
+  is: ICmdStatus;
+}
 export interface CollectCmdParams {
   id: string;
   key: string;
@@ -536,7 +552,9 @@ export const CollectCmd = CmdBase.named("CollectCmd")
     },
   }));
 
-export interface ICollectCmd extends MobxClearInstance<typeof CollectCmd> {}
+export interface ICollectCmd extends MobxClearInstance<typeof CollectCmd> {
+  is: ICmdStatus;
+}
 export const Transfers = types
   .model("Transfers", {
     name: types.string,
@@ -692,6 +710,12 @@ const Mnemonic = types
     },
   }));
 
+export interface IMnemonic extends MobxClearInstance<typeof Mnemonic> {
+  clearCmd: ICmdBase;
+  removeCmd: ICmdBase;
+  restoreCmd: ICmdBase;
+}
+
 const WalletAddressCmd = CmdBase.named("WalletAddressCmd")
   .props({
     address: types.optional(types.string, ""),
@@ -704,11 +728,15 @@ const WalletAddressCmd = CmdBase.named("WalletAddressCmd")
     },
   }));
 
+export interface IWalletAddressCmd
+  extends MobxClearInstance<typeof WalletAddressCmd> {
+  is: ICmdStatus;
+}
 const Wallet = types
   .model("Wallet", {
     mnemonic: types.optional(Mnemonic, {}),
     activeAccount: types.optional(types.string, ""),
-    accounts: types.array(types.string) as IAnyType,
+    accounts: types.array(types.string),
     addAddressCmd: types.optional(WalletAddressCmd, {}),
     removeAddressCmd: types.optional(WalletAddressCmd, {}),
   })
@@ -720,7 +748,9 @@ const Wallet = types
       self.addAddressCmd.prepare();
     },
     setAccounts(accounts: string[]) {
-      self.accounts = accounts;
+      accounts.forEach((account) => {
+        self.accounts.push(account);
+      });
     },
     setActiveAccount(activeAccount: string | undefined) {
       self.activeAccount = activeAccount || "";
@@ -747,7 +777,13 @@ const Wallet = types
       self.mnemonic.set(mnemonic);
     },
   }));
-export interface IWallet extends MobxClearInstance<typeof Wallet> {}
+
+export interface IWallet extends MobxClearInstance<typeof Wallet> {
+  mnemonic: IMnemonic;
+  addAddressCmd: IWalletAddressCmd;
+  removeAddressCmd: IWalletAddressCmd;
+}
+
 export const Account = types
   .model("Account", {
     allowance: types.optional(types.string, "-1"),
@@ -934,7 +970,7 @@ export const Account = types
     setRate(newRate: number) {
       self.rate = newRate;
     },
-    setCurrency(currency: ERC20TokenItem) {
+    setCurrency(currency: IERC20TokenItem) {
       self.currency.setData(currency);
     },
     setCurrencyBalance(balance: string) {
@@ -979,7 +1015,7 @@ export const Account = types
       const { address = "" } = data;
       self.kiroTokenMap.get(chainName)?.setData({ address });
     },
-    setERC20TokenContract(chainName: string, data: Array<ERC20TokenItem>) {
+    setERC20TokenContract(chainName: string, data: Array<IERC20TokenItem>) {
       if (!chainName || !data) return;
       self.ERC20TokensMap.set(chainName, {});
       for (const { address, name, symbol, decimals, balance, rate } of data) {
@@ -1019,13 +1055,49 @@ export const Account = types
 export const accountStore = Account.create();
 export const web3ProviderStore = Web3Provider.create();
 
-
 export interface IWeb3Provider extends MobxClearInstance<typeof Web3Provider> {}
-export interface IAccount extends MobxClearInstance<typeof Account> {}
 
+type MobxClearAccount = Omit<
+  Instance<typeof Account>,
+  | symbol
+  | "safeTransferMap"
+  | "stakingMap"
+  | "kiroTokenMap"
+  | "ERC20TokensMap"
+  | "currency"
+  | "ERC20TokensContract"
+  | "kiroTokenContract"
+  | "safeTransferContract"
+  | "stakingContract"
+  | "ERC20TokenList"
+>;
+
+export interface IAccount extends MobxClearAccount {
+  wallet: IWallet;
+  transfers: ITransferItems;
+  incoming: ITransferItems;
+  outgoing: ITransferItems;
+  approvedCmd: IApprovedCmd;
+  depositCmd: IDepositCmd;
+  retrieveCmd: IRetrieveCmd;
+  collectCmd: ICollectCmd;
+  connectCmd: IConnectCmd;
+  disconnectCmd: IDisconnectCmd;
+  safeTransferMap: Map<string, ISafeTransfer>;
+  safeTransferContract: ISafeTransfer | undefined;
+  stakingMap: Map<string, IStaking>;
+  stakingContract: IStaking | undefined;
+  kiroTokenMap: Map<string, IKiroToken>;
+  kiroTokenContract: IKiroToken | undefined;
+  ERC20TokensMap: Map<string, IERC20TokenItem>;
+  currency: IERC20TokenItem;
+  deviceInfo: IDeviceInfo;
+  ERC20TokensContract: IERC20TokenItem[];
+  ERC20TokenList:  (chainName: string) => IERC20TokenItem[]
+}
 
 //onSnapshot(accountStore, (snapshot) => console.log('zxc', snapshot))
-export interface ITransferItems extends MobxClearInstance<typeof Transfers>{}
+export interface ITransferItems extends MobxClearInstance<typeof Transfers> {}
 /*
     Transfer
     API: v1/eth/networks ==> SafeTransfer Address, Fees & Reward formula

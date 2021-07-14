@@ -1,4 +1,4 @@
 {
     "entryPoints": ["./dev/hooks/index.ts"],
-    "out": "./doc/hooks"
+    "out": "./WebLib/docs/hooks"
 }
