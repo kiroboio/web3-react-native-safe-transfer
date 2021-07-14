@@ -1,0 +1,27 @@
+---
+id: "CollectCmdParams"
+title: "Interface: CollectCmdParams"
+sidebar_label: "CollectCmdParams"
+sidebar_position: 0
+custom_edit_url: null
+---
+
+## Properties
+
+### id
+
+• **id**: `string`
+
+#### Defined in
+
+dev/stores/account.ts:536
+
+___
+
+### key
+
+• **key**: `string`
+
+#### Defined in
+
+dev/stores/account.ts:537
