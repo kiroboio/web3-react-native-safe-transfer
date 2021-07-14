@@ -71,7 +71,3 @@ MobxClearInstance.loggedIn
 #### Inherited from
 
 MobxClearInstance.setData
-
-#### Defined in
-
-dev/stores/account.ts:406

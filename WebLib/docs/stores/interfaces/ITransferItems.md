@@ -115,10 +115,6 @@ MobxClearInstance.name
 
 MobxClearInstance.add
 
-#### Defined in
-
-dev/stores/account.ts:576
-
 ___
 
 ### clear
@@ -132,10 +128,6 @@ ___
 #### Inherited from
 
 MobxClearInstance.clear
-
-#### Defined in
-
-dev/stores/account.ts:641
 
 ___
 
@@ -158,10 +150,6 @@ ___
 
 MobxClearInstance.delete
 
-#### Defined in
-
-dev/stores/account.ts:617
-
 ___
 
 ### fetch
@@ -181,10 +169,6 @@ ___
 #### Inherited from
 
 MobxClearInstance.fetch
-
-#### Defined in
-
-dev/stores/account.ts:649
 
 ___
 
@@ -207,10 +191,6 @@ ___
 
 MobxClearInstance.remove
 
-#### Defined in
-
-dev/stores/account.ts:624
-
 ___
 
 ### setFetched
@@ -230,10 +210,6 @@ ___
 #### Inherited from
 
 MobxClearInstance.setFetched
-
-#### Defined in
-
-dev/stores/account.ts:573
 
 ___
 
@@ -259,10 +235,6 @@ ___
 
 MobxClearInstance.update
 
-#### Defined in
-
-dev/stores/account.ts:604
-
 ___
 
 ### upsert
@@ -283,7 +255,3 @@ ___
 #### Inherited from
 
 MobxClearInstance.upsert
-
-#### Defined in
-
-dev/stores/account.ts:595

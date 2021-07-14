@@ -22,10 +22,6 @@ custom_edit_url: null
 
 MobxClearInstance.clearCmd
 
-#### Defined in
-
-dev/stores/account.ts:714
-
 ___
 
 ### data
@@ -46,10 +42,6 @@ ___
 
 MobxClearInstance.removeCmd
 
-#### Defined in
-
-dev/stores/account.ts:715
-
 ___
 
 ### restoreCmd
@@ -59,10 +51,6 @@ ___
 #### Overrides
 
 MobxClearInstance.restoreCmd
-
-#### Defined in
-
-dev/stores/account.ts:716
 
 ## Methods
 
@@ -78,10 +66,6 @@ dev/stores/account.ts:716
 
 MobxClearInstance.clear
 
-#### Defined in
-
-dev/stores/account.ts:702
-
 ___
 
 ### remove
@@ -96,10 +80,6 @@ ___
 
 MobxClearInstance.remove
 
-#### Defined in
-
-dev/stores/account.ts:705
-
 ___
 
 ### restore
@@ -113,10 +93,6 @@ ___
 #### Inherited from
 
 MobxClearInstance.restore
-
-#### Defined in
-
-dev/stores/account.ts:708
 
 ___
 
@@ -137,7 +113,3 @@ ___
 #### Inherited from
 
 MobxClearInstance.set
-
-#### Defined in
-
-dev/stores/account.ts:699

@@ -12,19 +12,11 @@ custom_edit_url: null
 
 • **ethereumProvider**: `boolean`
 
-#### Defined in
-
-dev/stores/account.ts:394
-
 ___
 
 ### haveMetaMask
 
 • **haveMetaMask**: `boolean`
-
-#### Defined in
-
-dev/stores/account.ts:393
 
 ___
 
@@ -32,16 +24,8 @@ ___
 
 • **isMobile**: `boolean`
 
-#### Defined in
-
-dev/stores/account.ts:392
-
 ___
 
 ### loggedIn
 
 • **loggedIn**: `boolean`
-
-#### Defined in
-
-dev/stores/account.ts:395

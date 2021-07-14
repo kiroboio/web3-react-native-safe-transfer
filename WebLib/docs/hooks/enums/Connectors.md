@@ -12,19 +12,11 @@ custom_edit_url: null
 
 • **Frame** = `"Frame"`
 
-#### Defined in
-
-useWeb3.ts:29
-
 ___
 
 ### InAppWallet
 
 • **InAppWallet** = `"InAppWallet"`
-
-#### Defined in
-
-useWeb3.ts:24
 
 ___
 
@@ -32,19 +24,11 @@ ___
 
 • **Injected** = `"Injected"`
 
-#### Defined in
-
-useWeb3.ts:25
-
 ___
 
 ### MyEtherWallet
 
 • **MyEtherWallet** = `"MyEtherWallet"`
-
-#### Defined in
-
-useWeb3.ts:28
 
 ___
 
@@ -52,16 +36,8 @@ ___
 
 • **WalletConnect** = `"WalletConnect"`
 
-#### Defined in
-
-useWeb3.ts:26
-
 ___
 
 ### WalletLink
 
 • **WalletLink** = `"WalletLink"`
-
-#### Defined in
-
-useWeb3.ts:27

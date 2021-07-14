@@ -51,7 +51,3 @@ MobxClearInstance.balance
 #### Inherited from
 
 MobxClearInstance.setData
-
-#### Defined in
-
-dev/stores/account.ts:287

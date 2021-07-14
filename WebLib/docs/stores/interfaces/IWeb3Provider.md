@@ -52,10 +52,6 @@ MobxClearInstance.block
 
 MobxClearInstance.setBalance
 
-#### Defined in
-
-dev/stores/account.ts:686
-
 ___
 
 ### setBlock
@@ -75,7 +71,3 @@ ___
 #### Inherited from
 
 MobxClearInstance.setBlock
-
-#### Defined in
-
-dev/stores/account.ts:683

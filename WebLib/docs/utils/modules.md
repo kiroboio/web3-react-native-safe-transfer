@@ -23,10 +23,6 @@ custom_edit_url: null
 
 `string`
 
-#### Defined in
-
-ethereum.ts:4
-
 ___
 
 ### formatEther
@@ -44,10 +40,6 @@ ___
 
 `string`
 
-#### Defined in
-
-ethereum.ts:40
-
 ___
 
 ### weiToEther
@@ -64,7 +56,3 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-ethereum.ts:23

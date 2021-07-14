@@ -86,10 +86,6 @@ MobxClearInstance.withId
 
 MobxClearInstance.clear
 
-#### Defined in
-
-dev/stores/account.ts:116
-
 ___
 
 ### finished
@@ -112,10 +108,6 @@ ___
 
 MobxClearInstance.finished
 
-#### Defined in
-
-dev/stores/account.ts:137
-
 ___
 
 ### prepared
@@ -130,10 +122,6 @@ ___
 
 MobxClearInstance.prepared
 
-#### Defined in
-
-dev/stores/account.ts:124
-
 ___
 
 ### started
@@ -147,7 +135,3 @@ ___
 #### Inherited from
 
 MobxClearInstance.started
-
-#### Defined in
-
-dev/stores/account.ts:132

@@ -1,4 +1,5 @@
 {
     "entryPoints": ["./dev/hooks/index.ts"],
+    "disableSources": true,
     "out": "./WebLib/docs/hooks"
 }

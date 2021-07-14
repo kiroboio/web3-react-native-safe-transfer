@@ -18,19 +18,11 @@ custom_edit_url: null
 
 • **active**: `boolean`
 
-#### Defined in
-
-useWeb3.ts:49
-
 ___
 
 ### address
 
 • `Optional` **address**: ``null`` \| `string`
-
-#### Defined in
-
-useWeb3.ts:48
 
 ___
 
@@ -38,19 +30,11 @@ ___
 
 • `Optional` **chainId**: `number`
 
-#### Defined in
-
-useWeb3.ts:47
-
 ___
 
 ### connector
 
 • `Optional` **connector**: `ConnectorType`
-
-#### Defined in
-
-useWeb3.ts:45
 
 ___
 
@@ -58,19 +42,11 @@ ___
 
 • `Optional` **error**: `Error`
 
-#### Defined in
-
-useWeb3.ts:50
-
 ___
 
 ### library
 
 • **library**: `T`
-
-#### Defined in
-
-useWeb3.ts:46
 
 ## Methods
 
@@ -90,10 +66,6 @@ useWeb3.ts:46
 
 `Promise`<`void`\>
 
-#### Defined in
-
-useWeb3.ts:51
-
 ___
 
 ### connect
@@ -111,10 +83,6 @@ ___
 
 `Promise`<`void`\>
 
-#### Defined in
-
-useWeb3.ts:43
-
 ___
 
 ### disconnect
@@ -124,7 +92,3 @@ ___
 #### Returns
 
 `void`
-
-#### Defined in
-
-useWeb3.ts:44

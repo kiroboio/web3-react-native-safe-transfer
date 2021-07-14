@@ -121,7 +121,3 @@ MobxClearInstance.synced
 #### Inherited from
 
 MobxClearInstance.setData
-
-#### Defined in
-
-dev/stores/account.ts:240

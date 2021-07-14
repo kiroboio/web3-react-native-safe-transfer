@@ -12,19 +12,11 @@ custom_edit_url: null
 
 • **address**: `string`
 
-#### Defined in
-
-dev/stores/account.ts:222
-
 ___
 
 ### feesFormula
 
 • **feesFormula**: `string`
-
-#### Defined in
-
-dev/stores/account.ts:224
 
 ___
 
@@ -32,16 +24,8 @@ ___
 
 • **rewardFormula**: `string`
 
-#### Defined in
-
-dev/stores/account.ts:225
-
 ___
 
 ### synced
 
 • **synced**: `boolean`
-
-#### Defined in
-
-dev/stores/account.ts:223

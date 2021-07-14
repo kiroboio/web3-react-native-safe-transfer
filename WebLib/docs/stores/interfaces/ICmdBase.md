@@ -22,10 +22,6 @@ custom_edit_url: null
 
 MobxClearInstance.is
 
-#### Defined in
-
-dev/stores/account.ts:181
-
 ## Methods
 
 ### clear
@@ -39,10 +35,6 @@ dev/stores/account.ts:181
 #### Inherited from
 
 MobxClearInstance.clear
-
-#### Defined in
-
-dev/stores/account.ts:171
 
 ___
 
@@ -58,10 +50,6 @@ ___
 
 MobxClearInstance.clearErrors
 
-#### Defined in
-
-dev/stores/account.ts:167
-
 ___
 
 ### done
@@ -75,10 +63,6 @@ ___
 #### Inherited from
 
 MobxClearInstance.done
-
-#### Defined in
-
-dev/stores/account.ts:161
 
 ___
 
@@ -101,10 +85,6 @@ ___
 
 MobxClearInstance.failed
 
-#### Defined in
-
-dev/stores/account.ts:164
-
 ___
 
 ### start
@@ -118,7 +98,3 @@ ___
 #### Inherited from
 
 MobxClearInstance.start
-
-#### Defined in
-
-dev/stores/account.ts:158

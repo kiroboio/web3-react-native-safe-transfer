@@ -12,19 +12,11 @@ custom_edit_url: null
 
 • **confirmedBlock**: `number`
 
-#### Defined in
-
-dev/stores/account.ts:33
-
 ___
 
 ### fees
 
 • **fees**: `string`
-
-#### Defined in
-
-dev/stores/account.ts:27
 
 ___
 
@@ -32,19 +24,11 @@ ___
 
 • **from**: `string`
 
-#### Defined in
-
-dev/stores/account.ts:24
-
 ___
 
 ### id
 
 • **id**: `string`
-
-#### Defined in
-
-dev/stores/account.ts:23
 
 ___
 
@@ -52,19 +36,11 @@ ___
 
 • **message**: `string`
 
-#### Defined in
-
-dev/stores/account.ts:34
-
 ___
 
 ### salt
 
 • **salt**: `string`
-
-#### Defined in
-
-dev/stores/account.ts:28
 
 ___
 
@@ -72,19 +48,11 @@ ___
 
 • **secretHash**: `string`
 
-#### Defined in
-
-dev/stores/account.ts:29
-
 ___
 
 ### state
 
 • **state**: `EthTransferState`
-
-#### Defined in
-
-dev/stores/account.ts:30
 
 ___
 
@@ -92,19 +60,11 @@ ___
 
 • **to**: `string`
 
-#### Defined in
-
-dev/stores/account.ts:25
-
 ___
 
 ### token
 
 • `Optional` **token**: `EthTokenInfo`
-
-#### Defined in
-
-dev/stores/account.ts:35
 
 ___
 
@@ -112,26 +72,14 @@ ___
 
 • **txid**: `string`
 
-#### Defined in
-
-dev/stores/account.ts:31
-
 ___
 
 ### updatedAt
 
 • **updatedAt**: `Date`
 
-#### Defined in
-
-dev/stores/account.ts:32
-
 ___
 
 ### value
 
 • **value**: `string`
-
-#### Defined in
-
-dev/stores/account.ts:26

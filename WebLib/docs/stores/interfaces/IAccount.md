@@ -18,19 +18,11 @@ custom_edit_url: null
 
 • **ERC20TokensContract**: [`IERC20TokenItem`](IERC20TokenItem.md)[]
 
-#### Defined in
-
-dev/stores/account.ts:1094
-
 ___
 
 ### ERC20TokensMap
 
 • **ERC20TokensMap**: `Map`<`string`, [`IERC20TokenItem`](IERC20TokenItem.md)\>
-
-#### Defined in
-
-dev/stores/account.ts:1091
 
 ___
 
@@ -72,10 +64,6 @@ ___
 
 MobxClearAccount.approvedCmd
 
-#### Defined in
-
-dev/stores/account.ts:1079
-
 ___
 
 ### balance
@@ -116,10 +104,6 @@ ___
 
 MobxClearAccount.collectCmd
 
-#### Defined in
-
-dev/stores/account.ts:1082
-
 ___
 
 ### connectCmd
@@ -130,19 +114,11 @@ ___
 
 MobxClearAccount.connectCmd
 
-#### Defined in
-
-dev/stores/account.ts:1083
-
 ___
 
 ### currency
 
 • **currency**: [`IERC20TokenItem`](IERC20TokenItem.md)
-
-#### Defined in
-
-dev/stores/account.ts:1092
 
 ___
 
@@ -154,10 +130,6 @@ ___
 
 MobxClearAccount.depositCmd
 
-#### Defined in
-
-dev/stores/account.ts:1080
-
 ___
 
 ### deviceInfo
@@ -168,10 +140,6 @@ ___
 
 MobxClearAccount.deviceInfo
 
-#### Defined in
-
-dev/stores/account.ts:1093
-
 ___
 
 ### disconnectCmd
@@ -181,10 +149,6 @@ ___
 #### Overrides
 
 MobxClearAccount.disconnectCmd
-
-#### Defined in
-
-dev/stores/account.ts:1084
 
 ___
 
@@ -226,29 +190,17 @@ ___
 
 MobxClearAccount.incoming
 
-#### Defined in
-
-dev/stores/account.ts:1077
-
 ___
 
 ### kiroTokenContract
 
 • **kiroTokenContract**: `undefined` \| [`IKiroToken`](IKiroToken.md)
 
-#### Defined in
-
-dev/stores/account.ts:1090
-
 ___
 
 ### kiroTokenMap
 
 • **kiroTokenMap**: `Map`<`string`, [`IKiroToken`](IKiroToken.md)\>
-
-#### Defined in
-
-dev/stores/account.ts:1089
 
 ___
 
@@ -280,10 +232,6 @@ ___
 
 MobxClearAccount.outgoing
 
-#### Defined in
-
-dev/stores/account.ts:1078
-
 ___
 
 ### rate
@@ -304,29 +252,17 @@ ___
 
 MobxClearAccount.retrieveCmd
 
-#### Defined in
-
-dev/stores/account.ts:1081
-
 ___
 
 ### safeTransferContract
 
 • **safeTransferContract**: `undefined` \| [`ISafeTransfer`](ISafeTransfer.md)
 
-#### Defined in
-
-dev/stores/account.ts:1086
-
 ___
 
 ### safeTransferMap
 
 • **safeTransferMap**: `Map`<`string`, [`ISafeTransfer`](ISafeTransfer.md)\>
-
-#### Defined in
-
-dev/stores/account.ts:1085
 
 ___
 
@@ -344,19 +280,11 @@ ___
 
 • **stakingContract**: `undefined` \| [`IStaking`](IStaking.md)
 
-#### Defined in
-
-dev/stores/account.ts:1088
-
 ___
 
 ### stakingMap
 
 • **stakingMap**: `Map`<`string`, [`IStaking`](IStaking.md)\>
-
-#### Defined in
-
-dev/stores/account.ts:1087
 
 ___
 
@@ -378,10 +306,6 @@ ___
 
 MobxClearAccount.transfers
 
-#### Defined in
-
-dev/stores/account.ts:1076
-
 ___
 
 ### wallet
@@ -391,10 +315,6 @@ ___
 #### Overrides
 
 MobxClearAccount.wallet
-
-#### Defined in
-
-dev/stores/account.ts:1075
 
 ## Methods
 
@@ -412,10 +332,6 @@ dev/stores/account.ts:1075
 
 [`IERC20TokenItem`](IERC20TokenItem.md)[]
 
-#### Defined in
-
-dev/stores/account.ts:1095
-
 ___
 
 ### approve
@@ -429,10 +345,6 @@ ___
 #### Inherited from
 
 MobxClearAccount.approve
-
-#### Defined in
-
-dev/stores/account.ts:888
 
 ___
 
@@ -455,10 +367,6 @@ ___
 
 MobxClearAccount.approvedToken
 
-#### Defined in
-
-dev/stores/account.ts:849
-
 ___
 
 ### clearERC20TokenBalances
@@ -478,10 +386,6 @@ ___
 #### Inherited from
 
 MobxClearAccount.clearERC20TokenBalances
-
-#### Defined in
-
-dev/stores/account.ts:1037
 
 ___
 
@@ -505,10 +409,6 @@ ___
 
 MobxClearAccount.collect
 
-#### Defined in
-
-dev/stores/account.ts:935
-
 ___
 
 ### connect
@@ -528,10 +428,6 @@ ___
 #### Inherited from
 
 MobxClearAccount.connect
-
-#### Defined in
-
-dev/stores/account.ts:942
 
 ___
 
@@ -557,10 +453,6 @@ ___
 
 MobxClearAccount.deposit
 
-#### Defined in
-
-dev/stores/account.ts:900
-
 ___
 
 ### disconnect
@@ -574,10 +466,6 @@ ___
 #### Inherited from
 
 MobxClearAccount.disconnect
-
-#### Defined in
-
-dev/stores/account.ts:945
 
 ___
 
@@ -600,10 +488,6 @@ ___
 
 MobxClearAccount.retrieve
 
-#### Defined in
-
-dev/stores/account.ts:932
-
 ___
 
 ### setActive
@@ -623,10 +507,6 @@ ___
 #### Inherited from
 
 MobxClearAccount.setActive
-
-#### Defined in
-
-dev/stores/account.ts:951
 
 ___
 
@@ -648,10 +528,6 @@ ___
 
 MobxClearAccount.setAddress
 
-#### Defined in
-
-dev/stores/account.ts:948
-
 ___
 
 ### setAllowance
@@ -671,10 +547,6 @@ ___
 #### Inherited from
 
 MobxClearAccount.setAllowance
-
-#### Defined in
-
-dev/stores/account.ts:978
 
 ___
 
@@ -696,10 +568,6 @@ ___
 
 MobxClearAccount.setBalance
 
-#### Defined in
-
-dev/stores/account.ts:957
-
 ___
 
 ### setBlock
@@ -719,10 +587,6 @@ ___
 #### Inherited from
 
 MobxClearAccount.setBlock
-
-#### Defined in
-
-dev/stores/account.ts:966
 
 ___
 
@@ -744,10 +608,6 @@ ___
 
 MobxClearAccount.setChainId
 
-#### Defined in
-
-dev/stores/account.ts:954
-
 ___
 
 ### setCurrency
@@ -767,10 +627,6 @@ ___
 #### Inherited from
 
 MobxClearAccount.setCurrency
-
-#### Defined in
-
-dev/stores/account.ts:972
 
 ___
 
@@ -792,10 +648,6 @@ ___
 
 MobxClearAccount.setCurrencyBalance
 
-#### Defined in
-
-dev/stores/account.ts:975
-
 ___
 
 ### setDeviceInfo
@@ -815,10 +667,6 @@ ___
 #### Inherited from
 
 MobxClearAccount.setDeviceInfo
-
-#### Defined in
-
-dev/stores/account.ts:981
 
 ___
 
@@ -842,10 +690,6 @@ ___
 
 MobxClearAccount.setERC20TokenBalance
 
-#### Defined in
-
-dev/stores/account.ts:1031
-
 ___
 
 ### setERC20TokenContract
@@ -866,10 +710,6 @@ ___
 #### Inherited from
 
 MobxClearAccount.setERC20TokenContract
-
-#### Defined in
-
-dev/stores/account.ts:1017
 
 ___
 
@@ -893,10 +733,6 @@ ___
 
 MobxClearAccount.setErc20TokenRate
 
-#### Defined in
-
-dev/stores/account.ts:1034
-
 ___
 
 ### setGasPrice
@@ -917,10 +753,6 @@ ___
 #### Inherited from
 
 MobxClearAccount.setGasPrice
-
-#### Defined in
-
-dev/stores/account.ts:1049
 
 ___
 
@@ -943,10 +775,6 @@ ___
 
 MobxClearAccount.setKiroTokenContract
 
-#### Defined in
-
-dev/stores/account.ts:1009
-
 ___
 
 ### setMaxRewards
@@ -967,10 +795,6 @@ ___
 
 MobxClearAccount.setMaxRewards
 
-#### Defined in
-
-dev/stores/account.ts:1046
-
 ___
 
 ### setRate
@@ -990,10 +814,6 @@ ___
 #### Inherited from
 
 MobxClearAccount.setRate
-
-#### Defined in
-
-dev/stores/account.ts:969
 
 ___
 
@@ -1016,10 +836,6 @@ ___
 
 MobxClearAccount.setRewardsParams
 
-#### Defined in
-
-dev/stores/account.ts:1042
-
 ___
 
 ### setSafeTransferContract
@@ -1041,10 +857,6 @@ ___
 
 MobxClearAccount.setSafeTransferContract
 
-#### Defined in
-
-dev/stores/account.ts:984
-
 ___
 
 ### setStakingBalance
@@ -1064,10 +876,6 @@ ___
 #### Inherited from
 
 MobxClearAccount.setStakingBalance
-
-#### Defined in
-
-dev/stores/account.ts:963
 
 ___
 
@@ -1090,10 +898,6 @@ ___
 
 MobxClearAccount.setStakingContract
 
-#### Defined in
-
-dev/stores/account.ts:1001
-
 ___
 
 ### setTokenBalance
@@ -1113,10 +917,6 @@ ___
 #### Inherited from
 
 MobxClearAccount.setTokenBalance
-
-#### Defined in
-
-dev/stores/account.ts:960
 
 ___
 
@@ -1138,10 +938,6 @@ ___
 
 MobxClearAccount.transferFees
 
-#### Defined in
-
-dev/stores/account.ts:857
-
 ___
 
 ### transferReward
@@ -1162,7 +958,3 @@ ___
 #### Inherited from
 
 MobxClearAccount.transferReward
-
-#### Defined in
-
-dev/stores/account.ts:865

@@ -11,7 +11,3 @@ custom_edit_url: null
 ### supportedChainIds
 
 • `Optional` `Readonly` **supportedChainIds**: `number`[]
-
-#### Defined in
-
-useWeb3.ts:33

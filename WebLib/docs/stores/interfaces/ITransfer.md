@@ -162,7 +162,3 @@ MobxClearInstance.value
 #### Inherited from
 
 MobxClearInstance.update
-
-#### Defined in
-
-dev/stores/account.ts:97

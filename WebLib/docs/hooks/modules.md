@@ -29,29 +29,17 @@ custom_edit_url: null
 | `isError` | `boolean` |
 | `isLocalStorageExist` | `boolean` |
 
-#### Defined in
-
-useSecureStorage.ts:4
-
 ___
 
 ### UseLocalStorageType
 
 Ƭ **UseLocalStorageType**: typeof [`useLocalStorage`](modules.md#uselocalstorage)
 
-#### Defined in
-
-useLocaleStorage.ts:18
-
 ___
 
 ### UseSecureStorageEmptyRes
 
 Ƭ **UseSecureStorageEmptyRes**: typeof `useSecureStorageEmptyRes`
-
-#### Defined in
-
-useSecureStorage.ts:22
 
 ___
 
@@ -79,10 +67,6 @@ ___
 | `setItem` | (`itemName`: `string`, `item`: `unknown`) => `void` |
 | `setNewSecureStorageConfig` | (`encryptionSecret`: `string`, `encodingType?`: `string`) => `void` |
 
-#### Defined in
-
-useSecureStorage.ts:24
-
 ## Functions
 
 ### useLocalStorage
@@ -105,10 +89,6 @@ useSecureStorage.ts:24
 #### Returns
 
 readonly [`T`, (`value`: `T`) => `void`]
-
-#### Defined in
-
-useLocaleStorage.ts:3
 
 ___
 
@@ -134,10 +114,6 @@ ___
 
 [`UseSecureStorageRes`](modules.md#usesecurestorageres)<`T` & `SecureLS`\> \| { `clear`: `undefined` ; `error`: { `content`: `undefined` ; `isError`: `boolean` = true; `isLocalStorageExist`: `boolean` = false } ; `getAllKeys`: `undefined` ; `getItem`: `undefined` ; `removeAll`: `undefined` ; `removeItem`: `undefined` ; `secureStorage`: `undefined` ; `setItem`: `undefined` ; `setNewSecureStorageConfig`: `undefined`  }
 
-#### Defined in
-
-useSecureStorage.ts:42
-
 ___
 
 ### useWallet
@@ -162,10 +138,6 @@ ___
 | `setNewMnemonic` | (`mnemonic`: `undefined` \| `string`) => `void` |
 | `setProvider` | `Dispatch`<`SetStateAction`<`undefined` \| `string`\>\> |
 
-#### Defined in
-
-useWallet.ts:13
-
 ___
 
 ### useWeb3
@@ -175,7 +147,3 @@ ___
 #### Returns
 
 [`IWeb3ReactContext`](interfaces/IWeb3ReactContext.md)<`default`\>
-
-#### Defined in
-
-useWeb3.ts:58

@@ -12,16 +12,8 @@ custom_edit_url: null
 
 • **id**: `string`
 
-#### Defined in
-
-dev/stores/account.ts:536
-
 ___
 
 ### key
 
 • **key**: `string`
-
-#### Defined in
-
-dev/stores/account.ts:537

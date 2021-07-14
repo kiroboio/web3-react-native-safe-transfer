@@ -91,6 +91,7 @@ module.exports = {
         id:'stores',
         entryPoints: ['../dev/stores/index.ts'],
         out: 'stores',
+        disableSources: true,
         tsconfig: '../tsconfig.json',
         sidebar: {
           categoryLabel: 'Stores',
@@ -106,6 +107,7 @@ module.exports = {
         id:'hooks',
         entryPoints: ['../dev/hooks/index.ts'],
         out: 'hooks',
+        disableSources: true,
         sidebar: {
           categoryLabel: 'Hooks',
           position: 2,
@@ -119,6 +121,7 @@ module.exports = {
         id:'utils',
         entryPoints: ['../dev/utils/index.ts'],
         out: 'utils',
+        disableSources: true,
         sidebar: {
           categoryLabel: 'Utils',
           position: 3,

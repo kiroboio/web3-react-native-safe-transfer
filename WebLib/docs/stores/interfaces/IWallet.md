@@ -42,10 +42,6 @@ ___
 
 MobxClearInstance.addAddressCmd
 
-#### Defined in
-
-dev/stores/account.ts:783
-
 ___
 
 ### mnemonic
@@ -56,10 +52,6 @@ ___
 
 MobxClearInstance.mnemonic
 
-#### Defined in
-
-dev/stores/account.ts:782
-
 ___
 
 ### removeAddressCmd
@@ -69,10 +61,6 @@ ___
 #### Overrides
 
 MobxClearInstance.removeAddressCmd
-
-#### Defined in
-
-dev/stores/account.ts:784
 
 ## Methods
 
@@ -87,10 +75,6 @@ dev/stores/account.ts:784
 #### Inherited from
 
 MobxClearInstance.addWalletAddress
-
-#### Defined in
-
-dev/stores/account.ts:747
 
 ___
 
@@ -112,10 +96,6 @@ ___
 
 MobxClearInstance.changeMnemonic
 
-#### Defined in
-
-dev/stores/account.ts:776
-
 ___
 
 ### clearMnemonic
@@ -129,10 +109,6 @@ ___
 #### Inherited from
 
 MobxClearInstance.clearMnemonic
-
-#### Defined in
-
-dev/stores/account.ts:770
 
 ___
 
@@ -148,10 +124,6 @@ ___
 
 MobxClearInstance.generateMnemonic
 
-#### Defined in
-
-dev/stores/account.ts:758
-
 ___
 
 ### getMnemonic
@@ -166,10 +138,6 @@ ___
 
 MobxClearInstance.getMnemonic
 
-#### Defined in
-
-dev/stores/account.ts:764
-
 ___
 
 ### removeMnemonic
@@ -183,10 +151,6 @@ ___
 #### Inherited from
 
 MobxClearInstance.removeMnemonic
-
-#### Defined in
-
-dev/stores/account.ts:773
 
 ___
 
@@ -208,10 +172,6 @@ ___
 
 MobxClearInstance.removeWalletAddress
 
-#### Defined in
-
-dev/stores/account.ts:744
-
 ___
 
 ### setAccounts
@@ -231,10 +191,6 @@ ___
 #### Inherited from
 
 MobxClearInstance.setAccounts
-
-#### Defined in
-
-dev/stores/account.ts:750
 
 ___
 
@@ -256,10 +212,6 @@ ___
 
 MobxClearInstance.setActiveAccount
 
-#### Defined in
-
-dev/stores/account.ts:755
-
 ___
 
 ### setMnemonic
@@ -280,10 +232,6 @@ ___
 
 MobxClearInstance.setMnemonic
 
-#### Defined in
-
-dev/stores/account.ts:761
-
 ___
 
 ### tryRestoreMnemonicFromStorage
@@ -297,7 +245,3 @@ ___
 #### Inherited from
 
 MobxClearInstance.tryRestoreMnemonicFromStorage
-
-#### Defined in
-
-dev/stores/account.ts:767

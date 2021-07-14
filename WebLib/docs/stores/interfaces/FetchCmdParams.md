@@ -12,16 +12,8 @@ custom_edit_url: null
 
 • **amount**: `number`
 
-#### Defined in
-
-dev/stores/account.ts:495
-
 ___
 
 ### list
 
 • **list**: `string`
-
-#### Defined in
-
-dev/stores/account.ts:494

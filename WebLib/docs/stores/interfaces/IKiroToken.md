@@ -41,7 +41,3 @@ MobxClearInstance.address
 #### Inherited from
 
 MobxClearInstance.setData
-
-#### Defined in
-
-dev/stores/account.ts:302

@@ -28,10 +28,6 @@ ___
 
 • **map**: `Map`<`string`, [`IERC20TokenItem`](IERC20TokenItem.md)\>
 
-#### Defined in
-
-dev/stores/account.ts:388
-
 ## Methods
 
 ### addToken
@@ -52,10 +48,6 @@ dev/stores/account.ts:388
 
 MobxClearInstance.addToken
 
-#### Defined in
-
-dev/stores/account.ts:361
-
 ___
 
 ### clearBalances
@@ -69,10 +61,6 @@ ___
 #### Inherited from
 
 MobxClearInstance.clearBalances
-
-#### Defined in
-
-dev/stores/account.ts:377
 
 ___
 
@@ -95,10 +83,6 @@ ___
 
 MobxClearInstance.setBalance
 
-#### Defined in
-
-dev/stores/account.ts:374
-
 ___
 
 ### setRate
@@ -119,7 +103,3 @@ ___
 #### Inherited from
 
 MobxClearInstance.setRate
-
-#### Defined in
-
-dev/stores/account.ts:380

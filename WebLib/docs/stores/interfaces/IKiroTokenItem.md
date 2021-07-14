@@ -11,7 +11,3 @@ custom_edit_url: null
 ### address
 
 • **address**: `string`
-
-#### Defined in
-
-dev/stores/account.ts:294

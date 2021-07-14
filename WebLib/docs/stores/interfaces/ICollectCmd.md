@@ -32,10 +32,6 @@ ___
 
 MobxClearInstance.is
 
-#### Defined in
-
-dev/stores/account.ts:556
-
 ___
 
 ### key
@@ -60,10 +56,6 @@ MobxClearInstance.key
 
 MobxClearInstance.clear
 
-#### Defined in
-
-dev/stores/account.ts:171
-
 ___
 
 ### clearErrors
@@ -78,10 +70,6 @@ ___
 
 MobxClearInstance.clearErrors
 
-#### Defined in
-
-dev/stores/account.ts:167
-
 ___
 
 ### done
@@ -95,10 +83,6 @@ ___
 #### Inherited from
 
 MobxClearInstance.done
-
-#### Defined in
-
-dev/stores/account.ts:161
 
 ___
 
@@ -121,10 +105,6 @@ ___
 
 MobxClearInstance.failed
 
-#### Defined in
-
-dev/stores/account.ts:164
-
 ___
 
 ### prepare
@@ -145,10 +125,6 @@ ___
 
 MobxClearInstance.prepare
 
-#### Defined in
-
-dev/stores/account.ts:546
-
 ___
 
 ### start
@@ -162,7 +138,3 @@ ___
 #### Inherited from
 
 MobxClearInstance.start
-
-#### Defined in
-
-dev/stores/account.ts:158
