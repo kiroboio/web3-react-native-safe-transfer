@@ -8,9 +8,9 @@ custom_edit_url: null
 
 ## Functions
 
-### etherToWei
+### currencyValueToWei
 
-▸ `Const` **etherToWei**(`value`, `decimals?`): `string`
+▸ `Const` **currencyValueToWei**(`value`, `decimals?`): `string`
 
 #### Parameters
 
@@ -25,9 +25,9 @@ custom_edit_url: null
 
 ___
 
-### formatEther
+### formatCurrencyValue
 
-▸ `Const` **formatEther**(`value`, `format?`): `string`
+▸ `Const` **formatCurrencyValue**(`value`, `format?`): `string`
 
 #### Parameters
 
@@ -42,9 +42,9 @@ ___
 
 ___
 
-### weiToEther
+### weiToCurrencyValue
 
-▸ `Const` **weiToEther**(`value`, `decimals?`): `string`
+▸ `Const` **weiToCurrencyValue**(`value`, `decimals?`): `string`
 
 #### Parameters
 

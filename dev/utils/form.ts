@@ -3,7 +3,7 @@ import Web3 from 'web3'
 import { Maybe } from 'yup/lib/types'
 import { AnyObject } from 'yup/lib/object'
 import { useAccount } from '../context/account'
-import { etherToWei } from './ethereum'
+import { currencyValueToWei } from './ethereum'
 
 import {
   StringSchema,
@@ -46,7 +46,7 @@ addMethod<StringSchema>(
       const decimal = value.indexOf('.')
       if (decimal > 0) value = value.substr(0, decimal + 19)
       const weiValue = Web3.utils.toBN(
-        etherToWei(value, currency.decimals || 18)
+        currencyValueToWei(value, currency.decimals || 18)
       )
       const weiMin = Web3.utils.toBN(min)
       const weiMax = Web3.utils.toBN(

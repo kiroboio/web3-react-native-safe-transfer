@@ -7,12 +7,12 @@ sidebar_position: 0
 custom_edit_url: null
 ---
 
-# Utils
+# Web3 utils
 
-Web3 utils
+## Ethereum 
 
-## ethereum
+#### Currency Value To Wei
 
-```console
-yarn install
-```
+<a href="./utils/modules#currencyValueToWei">currencyValueToWei</a>
+
+[currencyValueToWei]: (./utils/modules#currencyValueToWei)

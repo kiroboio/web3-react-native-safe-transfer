@@ -174,21 +174,13 @@ ___
 
 ### gasPriceMap
 
-• **gasPriceMap**: `IMSTMap`<`ISimpleType`<`string`\>\> & `IStateTreeNode`<`IMapType`<`ISimpleType`<`string`\>\>\>
-
-#### Inherited from
-
-MobxClearAccount.gasPriceMap
+• **gasPriceMap**: `Map`<`string`, `string`\>
 
 ___
 
 ### incoming
 
 • **incoming**: [`ITransferItems`](ITransferItems.md)
-
-#### Overrides
-
-MobxClearAccount.incoming
 
 ___
 
@@ -227,10 +219,6 @@ ___
 ### outgoing
 
 • **outgoing**: [`ITransferItems`](ITransferItems.md)
-
-#### Overrides
-
-MobxClearAccount.outgoing
 
 ___
 
@@ -302,19 +290,11 @@ ___
 
 • **transfers**: [`ITransferItems`](ITransferItems.md)
 
-#### Overrides
-
-MobxClearAccount.transfers
-
 ___
 
 ### wallet
 
 • **wallet**: [`IWallet`](IWallet.md)
-
-#### Overrides
-
-MobxClearAccount.wallet
 
 ## Methods
 

@@ -8,7 +8,7 @@ custom_edit_url: null
 
 ## Hierarchy
 
-- `MobxClearInstance`<typeof `Wallet`\>
+- `MobxClearWallet`
 
   ↳ **`IWallet`**
 
@@ -16,11 +16,7 @@ custom_edit_url: null
 
 ### accounts
 
-• **accounts**: `IMSTArray`<`ISimpleType`<`string`\>\> & `IStateTreeNode`<`IArrayType`<`ISimpleType`<`string`\>\>\>
-
-#### Inherited from
-
-MobxClearInstance.accounts
+• **accounts**: `string`[]
 
 ___
 
@@ -30,7 +26,7 @@ ___
 
 #### Inherited from
 
-MobxClearInstance.activeAccount
+MobxClearWallet.activeAccount
 
 ___
 
@@ -40,7 +36,7 @@ ___
 
 #### Overrides
 
-MobxClearInstance.addAddressCmd
+MobxClearWallet.addAddressCmd
 
 ___
 
@@ -50,7 +46,7 @@ ___
 
 #### Overrides
 
-MobxClearInstance.mnemonic
+MobxClearWallet.mnemonic
 
 ___
 
@@ -60,7 +56,7 @@ ___
 
 #### Overrides
 
-MobxClearInstance.removeAddressCmd
+MobxClearWallet.removeAddressCmd
 
 ## Methods
 
@@ -74,7 +70,7 @@ MobxClearInstance.removeAddressCmd
 
 #### Inherited from
 
-MobxClearInstance.addWalletAddress
+MobxClearWallet.addWalletAddress
 
 ___
 
@@ -94,7 +90,7 @@ ___
 
 #### Inherited from
 
-MobxClearInstance.changeMnemonic
+MobxClearWallet.changeMnemonic
 
 ___
 
@@ -108,7 +104,7 @@ ___
 
 #### Inherited from
 
-MobxClearInstance.clearMnemonic
+MobxClearWallet.clearMnemonic
 
 ___
 
@@ -122,7 +118,7 @@ ___
 
 #### Inherited from
 
-MobxClearInstance.generateMnemonic
+MobxClearWallet.generateMnemonic
 
 ___
 
@@ -136,7 +132,7 @@ ___
 
 #### Inherited from
 
-MobxClearInstance.getMnemonic
+MobxClearWallet.getMnemonic
 
 ___
 
@@ -150,7 +146,7 @@ ___
 
 #### Inherited from
 
-MobxClearInstance.removeMnemonic
+MobxClearWallet.removeMnemonic
 
 ___
 
@@ -170,7 +166,7 @@ ___
 
 #### Inherited from
 
-MobxClearInstance.removeWalletAddress
+MobxClearWallet.removeWalletAddress
 
 ___
 
@@ -190,7 +186,7 @@ ___
 
 #### Inherited from
 
-MobxClearInstance.setAccounts
+MobxClearWallet.setAccounts
 
 ___
 
@@ -210,7 +206,7 @@ ___
 
 #### Inherited from
 
-MobxClearInstance.setActiveAccount
+MobxClearWallet.setActiveAccount
 
 ___
 
@@ -230,7 +226,7 @@ ___
 
 #### Inherited from
 
-MobxClearInstance.setMnemonic
+MobxClearWallet.setMnemonic
 
 ___
 
@@ -244,4 +240,4 @@ ___
 
 #### Inherited from
 
-MobxClearInstance.tryRestoreMnemonicFromStorage
+MobxClearWallet.tryRestoreMnemonicFromStorage

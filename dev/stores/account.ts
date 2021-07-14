@@ -382,10 +382,11 @@ export const ERC20Tokens = types
     },
   }));
 
-type MobxClearERC20Tokens = Omit<Instance<typeof ERC20Tokens>, "map">;
+type MobxClearERC20Tokens = Omit<Instance<typeof ERC20Tokens>, symbol | "map" | "list">;
 
 export interface IERC20Tokens extends MobxClearInstance<MobxClearERC20Tokens> {
   map: Map<string, IERC20TokenItem>;
+  list: IERC20TokenItem[];
 }
 
 export interface DeviceInfoData {
@@ -451,7 +452,9 @@ export const ApprovedCmd = CmdBase.named("ApprovedCmd")
     },
   }));
 
-export interface IApprovedCmd extends MobxClearInstance<typeof ApprovedCmd> {}
+export interface IApprovedCmd extends MobxClearInstance<typeof ApprovedCmd> {
+  is: ICmdStatus;
+}
 export interface DepositCmdParams {
   from: string;
   to: string;
@@ -778,7 +781,13 @@ const Wallet = types
     },
   }));
 
-export interface IWallet extends MobxClearInstance<typeof Wallet> {
+type MobxClearWallet = Omit<
+  Instance<typeof Wallet>,
+  symbol | "accounts"
+>;
+
+export interface IWallet extends MobxClearWallet {
+  accounts: string[];
   mnemonic: IMnemonic;
   addAddressCmd: IWalletAddressCmd;
   removeAddressCmd: IWalletAddressCmd;
@@ -1069,6 +1078,11 @@ type MobxClearAccount = Omit<
   | "safeTransferContract"
   | "stakingContract"
   | "ERC20TokenList"
+  | "transfers"
+  | "incoming"
+  | "outgoing"
+  | "wallet"
+  | "gasPriceMap"
 >;
 
 export interface IAccount extends MobxClearAccount {
@@ -1092,11 +1106,19 @@ export interface IAccount extends MobxClearAccount {
   currency: IERC20TokenItem;
   deviceInfo: IDeviceInfo;
   ERC20TokensContract: IERC20TokenItem[];
-  ERC20TokenList:  (chainName: string) => IERC20TokenItem[]
+  ERC20TokenList: (chainName: string) => IERC20TokenItem[];
+  gasPriceMap: Map<string, string>
 }
 
-//onSnapshot(accountStore, (snapshot) => console.log('zxc', snapshot))
-export interface ITransferItems extends MobxClearInstance<typeof Transfers> {}
+type MobxClearTransferItems = Omit<
+  Instance<typeof Transfers>,
+  symbol | "list" | "fetchCmd" | "map"
+>;
+export interface ITransferItems extends MobxClearTransferItems {
+  list: ITransfer[];
+  fetchCmd: IFetchCmd;
+  map: Map<string, ITransfer>;
+}
 /*
     Transfer
     API: v1/eth/networks ==> SafeTransfer Address, Fees & Reward formula
