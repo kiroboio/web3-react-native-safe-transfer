@@ -163,5 +163,5 @@ export const useWeb3 = (): IWeb3ReactContext<Web3> => {
   }
 }
 
-export interface IUseWeb3State extends ReturnType<typeof useWeb3> {}
-export type UseWeb3Hook = () => IUseWeb3State
+// export interface IUseWeb3State extends ReturnType<typeof useWeb3> {}
+// export type UseWeb3Hook = () => IUseWeb3State

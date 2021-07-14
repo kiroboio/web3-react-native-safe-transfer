@@ -1,17 +1,10 @@
-[@kiroboio/web3-react-safe-transfer](../README.md) / [Exports](../modules.md) / Connectors
-
-# Enumeration: Connectors
-
-## Table of contents
-
-### Enumeration members
-
-- [Frame](Connectors.md#frame)
-- [InAppWallet](Connectors.md#inappwallet)
-- [Injected](Connectors.md#injected)
-- [MyEtherWallet](Connectors.md#myetherwallet)
-- [WalletConnect](Connectors.md#walletconnect)
-- [WalletLink](Connectors.md#walletlink)
+---
+id: "Connectors"
+title: "Enumeration: Connectors"
+sidebar_label: "Connectors"
+sidebar_position: 0
+custom_edit_url: null
+---
 
 ## Enumeration members
 

@@ -941,7 +941,6 @@ export const Account = types
     },
     connect(connector: Connectors) {
       self.connectCmd.prepare(connector);
-      console.log("connect preparee");
     },
     disconnect() {
       self.disconnectCmd.prepare();

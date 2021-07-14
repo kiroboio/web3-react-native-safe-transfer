@@ -1,29 +1,16 @@
-[@kiroboio/web3-react-safe-transfer](../README.md) / [Exports](../modules.md) / IWeb3ReactContext
-
-# Interface: IWeb3ReactContext<T\>
+---
+id: "IWeb3ReactContext"
+title: "Interface: IWeb3ReactContext<T>"
+sidebar_label: "IWeb3ReactContext"
+sidebar_position: 0
+custom_edit_url: null
+---
 
 ## Type parameters
 
 | Name |
 | :------ |
 | `T` |
-
-## Table of contents
-
-### Properties
-
-- [active](IWeb3ReactContext.md#active)
-- [address](IWeb3ReactContext.md#address)
-- [chainId](IWeb3ReactContext.md#chainid)
-- [connector](IWeb3ReactContext.md#connector)
-- [error](IWeb3ReactContext.md#error)
-- [library](IWeb3ReactContext.md#library)
-
-### Methods
-
-- [activate](IWeb3ReactContext.md#activate)
-- [connect](IWeb3ReactContext.md#connect)
-- [disconnect](IWeb3ReactContext.md#disconnect)
 
 ## Properties
 

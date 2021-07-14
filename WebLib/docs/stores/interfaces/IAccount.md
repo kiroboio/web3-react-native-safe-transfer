@@ -16,11 +16,11 @@ custom_edit_url: null
 
 ### ERC20TokensContract
 
-• **ERC20TokensContract**: { `address`: `string` ; `balance`: `string` ; `decimals`: `number` ; `name`: `string` ; `rate`: `number` ; `symbol`: `string`  } & `NonEmptyObject` & { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`IERC20TokenItem`](IERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`IERC20TokenItem`](IERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>[]
+• **ERC20TokensContract**: [`IERC20TokenItem`](IERC20TokenItem.md)[]
 
-#### Inherited from
+#### Defined in
 
-MobxClearAccount.ERC20TokensContract
+dev/stores/account.ts:1094
 
 ___
 
@@ -30,35 +30,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:1076
-
-___
-
-### [$nonEmptyObject]
-
-• `Optional` **[$nonEmptyObject]**: `any`
-
-#### Inherited from
-
-MobxClearAccount.\_\_@$nonEmptyObject@1625
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/types/complex-types/model.d.ts:46
-
-___
-
-### [$stateTreeNodeType]
-
-• `Optional` `Readonly` **[$stateTreeNodeType]**: [`any`] \| [`IModelType`<`Object`, { `ERC20TokensContract`:  ; `gasPrice`:  ; `kiroTokenContract`:  ; `safeTransferContract`:  ; `stakingContract`:  ; `ERC20TokenList`: (`chainName`: `string`) => { `address`: `string` ; `balance`: `string` ; `decimals`: `number` ; `name`: `string` ; `rate`: `number` ; `symbol`: `string`  } & `NonEmptyObject` & { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`IERC20TokenItem`](IERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`IERC20TokenItem`](IERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>[] ; `approvedToken`: (`symbol`: `string`, `amount`: `string`) => `boolean` ; `transferFees`: (`amount`: `string`) => ``""`` \| ``"0"`` ; `transferReward`: (`amount`: `string`, `fees`: `string`) => `number` \| ``""``  } & { `approve`: () => `void` ; `clearERC20TokenBalances`: (`chainName?`: `string`) => `void` ; `collect`: (`__namedParameters`: { `id`: `string` ; `passcode`: `string`  }) => `void` ; `connect`: (`connector`: `Connectors`) => `void` ; `deposit`: (`__namedParameters`: { `message?`: `string` ; `passcode`: `string` ; `to`: `string` ; `value`: `string`  }) => `void` ; `disconnect`: () => `void` ; `retrieve`: (`__namedParameters`: { `id`: `string`  }) => `void` ; `setActive`: (`newActive`: `boolean`) => `void` ; `setAddress`: (`address`: `string`) => `void` ; `setAllowance`: (`allowance`: `string`) => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setBlock`: (`block`: `number`) => `void` ; `setChainId`: (`chainId`: `number`) => `void` ; `setCurrency`: (`currency`: [`IERC20TokenItem`](IERC20TokenItem.md)) => `void` ; `setCurrencyBalance`: (`balance`: `string`) => `void` ; `setDeviceInfo`: (`deviceInfo`: [`DeviceInfoData`](DeviceInfoData.md)) => `void` ; `setERC20TokenBalance`: (`chainName`: `string`, `address`: `string`, `balance`: `string`) => `void` ; `setERC20TokenContract`: (`chainName`: `string`, `data`: [`IERC20TokenItem`](IERC20TokenItem.md)[]) => `void` ; `setErc20TokenRate`: (`chainName`: `string`, `address`: `string`, `rate`: `number`) => `void` ; `setGasPrice`: (`chainName`: `string`, `gasPrice`: `string`) => `void` ; `setKiroTokenContract`: (`chainName`: `string`, `data`: [`IKiroTokenItem`](IKiroTokenItem.md)) => `void` ; `setMaxRewards`: (`maxRewards`: `number`) => `void` ; `setRate`: (`newRate`: `number`) => `void` ; `setRewardsParams`: (`factor`: `number`, `left`: `number`) => `void` ; `setSafeTransferContract`: (`chainName`: `string`, `data`: [`ISafeTransferItem`](ISafeTransferItem.md)) => `void` ; `setStakingBalance`: (`balance`: `string`) => `void` ; `setStakingContract`: (`chainName`: `string`, `data`: [`IStakingItem`](IStakingItem.md)) => `void` ; `setTokenBalance`: (`balance`: `string`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>]
-
-#### Inherited from
-
-MobxClearAccount.\_\_@$stateTreeNodeType@1628
-
-#### Defined in
-
-node_modules/mobx-state-tree/dist/core/node/node-utils.d.ts:9
+dev/stores/account.ts:1091
 
 ___
 
@@ -102,7 +74,7 @@ MobxClearAccount.approvedCmd
 
 #### Defined in
 
-dev/stores/account.ts:1067
+dev/stores/account.ts:1079
 
 ___
 
@@ -146,7 +118,7 @@ MobxClearAccount.collectCmd
 
 #### Defined in
 
-dev/stores/account.ts:1070
+dev/stores/account.ts:1082
 
 ___
 
@@ -160,7 +132,7 @@ MobxClearAccount.connectCmd
 
 #### Defined in
 
-dev/stores/account.ts:1071
+dev/stores/account.ts:1083
 
 ___
 
@@ -170,7 +142,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:1077
+dev/stores/account.ts:1092
 
 ___
 
@@ -184,7 +156,7 @@ MobxClearAccount.depositCmd
 
 #### Defined in
 
-dev/stores/account.ts:1068
+dev/stores/account.ts:1080
 
 ___
 
@@ -198,7 +170,7 @@ MobxClearAccount.deviceInfo
 
 #### Defined in
 
-dev/stores/account.ts:1078
+dev/stores/account.ts:1093
 
 ___
 
@@ -212,7 +184,7 @@ MobxClearAccount.disconnectCmd
 
 #### Defined in
 
-dev/stores/account.ts:1072
+dev/stores/account.ts:1084
 
 ___
 
@@ -256,17 +228,17 @@ MobxClearAccount.incoming
 
 #### Defined in
 
-dev/stores/account.ts:1065
+dev/stores/account.ts:1077
 
 ___
 
 ### kiroTokenContract
 
-• **kiroTokenContract**: `undefined` \| { `address`: `string`  } & `NonEmptyObject` & { `setData`: (`__namedParameters`: [`IKiroTokenItem`](IKiroTokenItem.md)) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>\>
+• **kiroTokenContract**: `undefined` \| [`IKiroToken`](IKiroToken.md)
 
-#### Inherited from
+#### Defined in
 
-MobxClearAccount.kiroTokenContract
+dev/stores/account.ts:1090
 
 ___
 
@@ -276,7 +248,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:1075
+dev/stores/account.ts:1089
 
 ___
 
@@ -310,7 +282,7 @@ MobxClearAccount.outgoing
 
 #### Defined in
 
-dev/stores/account.ts:1066
+dev/stores/account.ts:1078
 
 ___
 
@@ -334,17 +306,17 @@ MobxClearAccount.retrieveCmd
 
 #### Defined in
 
-dev/stores/account.ts:1069
+dev/stores/account.ts:1081
 
 ___
 
 ### safeTransferContract
 
-• **safeTransferContract**: `undefined` \| { `address`: `string` ; `feesFormula`: `string` ; `rewardFormula`: `string` ; `synced`: `boolean`  } & `NonEmptyObject` & { `fees`: (`_value`: `string`) => ``"0"`` ; `reward`: (`_value`: `string`, `_stakingValue`: `string`, `_fees`: `string`) => ``"0"``  } & { `setData`: (`data`: [`ISafeTransferItem`](ISafeTransferItem.md)) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `fees`: (`_value`: `string`) => ``"0"`` ; `reward`: (`_value`: `string`, `_stakingValue`: `string`, `_fees`: `string`) => ``"0"``  } & { `setData`: (`data`: [`ISafeTransferItem`](ISafeTransferItem.md)) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>
+• **safeTransferContract**: `undefined` \| [`ISafeTransfer`](ISafeTransfer.md)
 
-#### Inherited from
+#### Defined in
 
-MobxClearAccount.safeTransferContract
+dev/stores/account.ts:1086
 
 ___
 
@@ -354,7 +326,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:1073
+dev/stores/account.ts:1085
 
 ___
 
@@ -370,11 +342,11 @@ ___
 
 ### stakingContract
 
-• **stakingContract**: `undefined` \| { `address`: `string` ; `balance`: `string`  } & `NonEmptyObject` & { `setData`: (`__namedParameters`: [`IStakingItem`](IStakingItem.md)) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>\>
+• **stakingContract**: `undefined` \| [`IStaking`](IStaking.md)
 
-#### Inherited from
+#### Defined in
 
-MobxClearAccount.stakingContract
+dev/stores/account.ts:1088
 
 ___
 
@@ -384,7 +356,7 @@ ___
 
 #### Defined in
 
-dev/stores/account.ts:1074
+dev/stores/account.ts:1087
 
 ___
 
@@ -408,7 +380,7 @@ MobxClearAccount.transfers
 
 #### Defined in
 
-dev/stores/account.ts:1064
+dev/stores/account.ts:1076
 
 ___
 
@@ -422,13 +394,13 @@ MobxClearAccount.wallet
 
 #### Defined in
 
-dev/stores/account.ts:1063
+dev/stores/account.ts:1075
 
 ## Methods
 
 ### ERC20TokenList
 
-▸ **ERC20TokenList**(`chainName`): { `address`: `string` ; `balance`: `string` ; `decimals`: `number` ; `name`: `string` ; `rate`: `number` ; `symbol`: `string`  } & `NonEmptyObject` & { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`IERC20TokenItem`](IERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`IERC20TokenItem`](IERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>[]
+▸ **ERC20TokenList**(`chainName`): [`IERC20TokenItem`](IERC20TokenItem.md)[]
 
 #### Parameters
 
@@ -438,15 +410,11 @@ dev/stores/account.ts:1063
 
 #### Returns
 
-{ `address`: `string` ; `balance`: `string` ; `decimals`: `number` ; `name`: `string` ; `rate`: `number` ; `symbol`: `string`  } & `NonEmptyObject` & { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`IERC20TokenItem`](IERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: [`IERC20TokenItem`](IERC20TokenItem.md)) => `void` ; `setRate`: (`rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>[]
-
-#### Inherited from
-
-MobxClearAccount.ERC20TokenList
+[`IERC20TokenItem`](IERC20TokenItem.md)[]
 
 #### Defined in
 
-dev/stores/account.ts:882
+dev/stores/account.ts:1095
 
 ___
 
@@ -513,7 +481,7 @@ MobxClearAccount.clearERC20TokenBalances
 
 #### Defined in
 
-dev/stores/account.ts:1038
+dev/stores/account.ts:1037
 
 ___
 
@@ -609,7 +577,7 @@ MobxClearAccount.disconnect
 
 #### Defined in
 
-dev/stores/account.ts:946
+dev/stores/account.ts:945
 
 ___
 
@@ -658,7 +626,7 @@ MobxClearAccount.setActive
 
 #### Defined in
 
-dev/stores/account.ts:952
+dev/stores/account.ts:951
 
 ___
 
@@ -682,7 +650,7 @@ MobxClearAccount.setAddress
 
 #### Defined in
 
-dev/stores/account.ts:949
+dev/stores/account.ts:948
 
 ___
 
@@ -706,7 +674,7 @@ MobxClearAccount.setAllowance
 
 #### Defined in
 
-dev/stores/account.ts:979
+dev/stores/account.ts:978
 
 ___
 
@@ -730,7 +698,7 @@ MobxClearAccount.setBalance
 
 #### Defined in
 
-dev/stores/account.ts:958
+dev/stores/account.ts:957
 
 ___
 
@@ -754,7 +722,7 @@ MobxClearAccount.setBlock
 
 #### Defined in
 
-dev/stores/account.ts:967
+dev/stores/account.ts:966
 
 ___
 
@@ -778,7 +746,7 @@ MobxClearAccount.setChainId
 
 #### Defined in
 
-dev/stores/account.ts:955
+dev/stores/account.ts:954
 
 ___
 
@@ -802,7 +770,7 @@ MobxClearAccount.setCurrency
 
 #### Defined in
 
-dev/stores/account.ts:973
+dev/stores/account.ts:972
 
 ___
 
@@ -826,7 +794,7 @@ MobxClearAccount.setCurrencyBalance
 
 #### Defined in
 
-dev/stores/account.ts:976
+dev/stores/account.ts:975
 
 ___
 
@@ -850,7 +818,7 @@ MobxClearAccount.setDeviceInfo
 
 #### Defined in
 
-dev/stores/account.ts:982
+dev/stores/account.ts:981
 
 ___
 
@@ -876,7 +844,7 @@ MobxClearAccount.setERC20TokenBalance
 
 #### Defined in
 
-dev/stores/account.ts:1032
+dev/stores/account.ts:1031
 
 ___
 
@@ -901,7 +869,7 @@ MobxClearAccount.setERC20TokenContract
 
 #### Defined in
 
-dev/stores/account.ts:1018
+dev/stores/account.ts:1017
 
 ___
 
@@ -927,7 +895,7 @@ MobxClearAccount.setErc20TokenRate
 
 #### Defined in
 
-dev/stores/account.ts:1035
+dev/stores/account.ts:1034
 
 ___
 
@@ -952,7 +920,7 @@ MobxClearAccount.setGasPrice
 
 #### Defined in
 
-dev/stores/account.ts:1050
+dev/stores/account.ts:1049
 
 ___
 
@@ -977,7 +945,7 @@ MobxClearAccount.setKiroTokenContract
 
 #### Defined in
 
-dev/stores/account.ts:1010
+dev/stores/account.ts:1009
 
 ___
 
@@ -1001,7 +969,7 @@ MobxClearAccount.setMaxRewards
 
 #### Defined in
 
-dev/stores/account.ts:1047
+dev/stores/account.ts:1046
 
 ___
 
@@ -1025,7 +993,7 @@ MobxClearAccount.setRate
 
 #### Defined in
 
-dev/stores/account.ts:970
+dev/stores/account.ts:969
 
 ___
 
@@ -1050,7 +1018,7 @@ MobxClearAccount.setRewardsParams
 
 #### Defined in
 
-dev/stores/account.ts:1043
+dev/stores/account.ts:1042
 
 ___
 
@@ -1075,7 +1043,7 @@ MobxClearAccount.setSafeTransferContract
 
 #### Defined in
 
-dev/stores/account.ts:985
+dev/stores/account.ts:984
 
 ___
 
@@ -1099,7 +1067,7 @@ MobxClearAccount.setStakingBalance
 
 #### Defined in
 
-dev/stores/account.ts:964
+dev/stores/account.ts:963
 
 ___
 
@@ -1124,7 +1092,7 @@ MobxClearAccount.setStakingContract
 
 #### Defined in
 
-dev/stores/account.ts:1002
+dev/stores/account.ts:1001
 
 ___
 
@@ -1148,7 +1116,7 @@ MobxClearAccount.setTokenBalance
 
 #### Defined in
 
-dev/stores/account.ts:961
+dev/stores/account.ts:960
 
 ___
 

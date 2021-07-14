@@ -94,10 +94,11 @@ module.exports = {
         tsconfig: '../tsconfig.json',
         sidebar: {
           categoryLabel: 'Stores',
-          position: 0,
+          position: 1,
           fullNames: true
         },
       },
+      
     ],
     [
       'docusaurus-plugin-typedoc',
@@ -107,7 +108,20 @@ module.exports = {
         out: 'hooks',
         sidebar: {
           categoryLabel: 'Hooks',
-          position: 1,
+          position: 2,
+          fullNames: true
+        },
+      },
+    ],
+    [
+      'docusaurus-plugin-typedoc',
+      {
+        id:'utils',
+        entryPoints: ['../dev/utils/index.ts'],
+        out: 'utils',
+        sidebar: {
+          categoryLabel: 'Utils',
+          position: 3,
           fullNames: true
         },
       },

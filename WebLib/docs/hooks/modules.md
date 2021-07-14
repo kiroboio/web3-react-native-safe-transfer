@@ -1,34 +1,19 @@
-[@kiroboio/web3-react-safe-transfer](README.md) / Exports
+---
+id: "modules"
+title: "@kiroboio/web3-react-safe-transfer"
+sidebar_label: "Exports"
+sidebar_position: 0.5
+custom_edit_url: null
+---
 
-# @kiroboio/web3-react-safe-transfer
-
-## Table of contents
-
-### Enumerations
+## Enumerations
 
 - [Connectors](enums/Connectors.md)
 
-### Interfaces
+## Interfaces
 
 - [IConnectParams](interfaces/IConnectParams.md)
-- [IUseWalletState](interfaces/IUseWalletState.md)
-- [IUseWeb3State](interfaces/IUseWeb3State.md)
 - [IWeb3ReactContext](interfaces/IWeb3ReactContext.md)
-
-### Type aliases
-
-- [Error](modules.md#error)
-- [UseLocalStorageType](modules.md#uselocalstoragetype)
-- [UseSecureStorage](modules.md#usesecurestorage)
-- [UseSecureStorageEmptyRes](modules.md#usesecurestorageemptyres)
-- [UseSecureStorageRes](modules.md#usesecurestorageres)
-- [UseWalletHook](modules.md#usewallethook)
-- [UseWeb3Hook](modules.md#useweb3hook)
-
-### Functions
-
-- [useLocalStorage](modules.md#uselocalstorage)
-- [useWeb3](modules.md#useweb3)
 
 ## Type aliases
 
@@ -57,16 +42,6 @@ ___
 #### Defined in
 
 useLocaleStorage.ts:18
-
-___
-
-### UseSecureStorage
-
-Ƭ **UseSecureStorage**: typeof `useSecureStorage`
-
-#### Defined in
-
-useSecureStorage.ts:184
 
 ___
 
@@ -108,42 +83,6 @@ ___
 
 useSecureStorage.ts:24
 
-___
-
-### UseWalletHook
-
-Ƭ **UseWalletHook**: () => [`IUseWalletState`](interfaces/IUseWalletState.md)
-
-#### Type declaration
-
-▸ (): [`IUseWalletState`](interfaces/IUseWalletState.md)
-
-##### Returns
-
-[`IUseWalletState`](interfaces/IUseWalletState.md)
-
-#### Defined in
-
-useWallet.ts:153
-
-___
-
-### UseWeb3Hook
-
-Ƭ **UseWeb3Hook**: () => [`IUseWeb3State`](interfaces/IUseWeb3State.md)
-
-#### Type declaration
-
-▸ (): [`IUseWeb3State`](interfaces/IUseWeb3State.md)
-
-##### Returns
-
-[`IUseWeb3State`](interfaces/IUseWeb3State.md)
-
-#### Defined in
-
-useWeb3.ts:167
-
 ## Functions
 
 ### useLocalStorage
@@ -170,6 +109,62 @@ readonly [`T`, (`value`: `T`) => `void`]
 #### Defined in
 
 useLocaleStorage.ts:3
+
+___
+
+### useSecureStorage
+
+▸ `Const` **useSecureStorage**<`T`\>(`encryptionSecret?`, `encodingType?`, `encryptionNamespace?`): [`UseSecureStorageRes`](modules.md#usesecurestorageres)<`T` & `SecureLS`\> \| { `clear`: `undefined` ; `error`: { `content`: `undefined` ; `isError`: `boolean` = true; `isLocalStorageExist`: `boolean` = false } ; `getAllKeys`: `undefined` ; `getItem`: `undefined` ; `removeAll`: `undefined` ; `removeItem`: `undefined` ; `secureStorage`: `undefined` ; `setItem`: `undefined` ; `setNewSecureStorageConfig`: `undefined`  }
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `encryptionSecret?` | `string` | `undefined` |
+| `encodingType` | `string` | `'aes'` |
+| `encryptionNamespace?` | `string` | `undefined` |
+
+#### Returns
+
+[`UseSecureStorageRes`](modules.md#usesecurestorageres)<`T` & `SecureLS`\> \| { `clear`: `undefined` ; `error`: { `content`: `undefined` ; `isError`: `boolean` = true; `isLocalStorageExist`: `boolean` = false } ; `getAllKeys`: `undefined` ; `getItem`: `undefined` ; `removeAll`: `undefined` ; `removeItem`: `undefined` ; `secureStorage`: `undefined` ; `setItem`: `undefined` ; `setNewSecureStorageConfig`: `undefined`  }
+
+#### Defined in
+
+useSecureStorage.ts:42
+
+___
+
+### useWallet
+
+▸ `Const` **useWallet**(): `Object`
+
+#### Returns
+
+`Object`
+
+| Name | Type |
+| :------ | :------ |
+| `error` | `Error` |
+| `generateNewMnemonic` | () => `void` |
+| `getActiveAccountFromStorage` | () => `undefined` \| `string` |
+| `getCredentialsFromStorage` | () => { `mnemonic`: `undefined` \| `string` ; `rpc`: `undefined` \| `string`  } |
+| `getMnemonic` | () => `undefined` \| `string` |
+| `mnemonic` | `undefined` \| `string` |
+| `provider` | `undefined` \| `string` |
+| `setActiveAccount` | (`account`: `string`) => `void` |
+| `setCredentialsToStorage` | (`rpc`: `string`, `mnemonic`: `string`) => `void` |
+| `setNewMnemonic` | (`mnemonic`: `undefined` \| `string`) => `void` |
+| `setProvider` | `Dispatch`<`SetStateAction`<`undefined` \| `string`\>\> |
+
+#### Defined in
+
+useWallet.ts:13
 
 ___
 

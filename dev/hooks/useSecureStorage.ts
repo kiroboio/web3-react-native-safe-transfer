@@ -39,7 +39,7 @@ export type UseSecureStorageRes<T> = {
   ) => void
 }
 
-const useSecureStorage =
+export const useSecureStorage =
   !window || !window.localStorage
     ? () => useSecureStorageEmptyRes
     : <T>(
@@ -179,6 +179,5 @@ const useSecureStorage =
         }
       }
 
-export default useSecureStorage
 
-export type UseSecureStorage = typeof useSecureStorage
+// export type UseSecureStorage = typeof useSecureStorage

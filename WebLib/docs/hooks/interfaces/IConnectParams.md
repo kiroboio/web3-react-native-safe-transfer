@@ -1,12 +1,10 @@
-[@kiroboio/web3-react-safe-transfer](../README.md) / [Exports](../modules.md) / IConnectParams
-
-# Interface: IConnectParams
-
-## Table of contents
-
-### Properties
-
-- [supportedChainIds](IConnectParams.md#supportedchainids)
+---
+id: "IConnectParams"
+title: "Interface: IConnectParams"
+sidebar_label: "IConnectParams"
+sidebar_position: 0
+custom_edit_url: null
+---
 
 ## Properties
 
