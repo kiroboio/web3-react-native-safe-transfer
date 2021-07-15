@@ -106,6 +106,7 @@ module.exports = {
           position: 2,
           fullNames: true
         },
+        includes: ['../dev/stores']
       },
     ],
     [
@@ -149,6 +150,7 @@ module.exports = {
           position: 5,
           fullNames: true
         },
+        includes: ['../dev/hooks']
       },
       
     ],

@@ -11,7 +11,7 @@ custom_edit_url: null
 
 #### Kirobo Provider
 
-`KiroboProvider ` wrap all children with `AccountContext`
+`KiroboProvider `  wrap all children with `AccountContext`
 
 ```typescript
 import React from 'react'
@@ -58,6 +58,25 @@ ReactDOM.render(
 Account store use `mobx-state-tree` lib for  [reactive state management ](https://mobx-state-tree.js.org/intro/welcome). To re-render react component on account state change use [observer](https://mobx-state-tree.js.org/intro/getting-started#getting-to-the-ui)
 
 *Each `observer` declaration will enable the React component to only re-render if any of it's observed data changes.*
+
+##### Example 
+------
+
+*Connect with metamask*
+
+```typescript
+export const App = observer(() => {
+  const {
+    connect,
+  } = useAccount()
+  
+  const handleLogin = () => {
+      connect(Connectors.Injected)
+  }
+  
+  return <Wallet onLogin={handleLogin} />
+})
+```
 
 ##### Example 
 ------

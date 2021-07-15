@@ -33,7 +33,15 @@ yarn add @kiroboio/web3-react-safe-transfer
 
 ### State
 
-Get `Safe Transfer` current state with `useAccount` hook
+*<a href="./stores/interfaces/IAccount#properties">Account States</a>*
+
+
+
+##### Example
+
+------
+
+*Get `Safe Transfer` current state with `useAccount` hook*
 
 ```typescript
 const {
@@ -44,33 +52,15 @@ const {
 
 ### Actions
 
-Change `Safe Transfer`  state with **actions**
+*<a href="./stores/interfaces/IAccount#methods">Account Actions</a>*
 
-```typescript
-const {
-    connect,
-    disconnect,
-  } = useAccount(
-```
-### Observer
 
-Use `observer` for enabling the React component to re-render if any of it's observed data changes. 
 
-```typescript
-import { observer } from '@kiroboio/web3-react-safe-transfer'
+##### Example
 
-export const Address = observer(() => {
-    const {
-    	address,
-  	} = useAccount()
-    
-    return address
-})
-```
+------
 
-### Web3 Actions
-
-Run `web3` actions with `name.set()`
+*Change `Safe Transfer`  state with **actions***
 
 ```typescript
 const {
@@ -86,7 +76,7 @@ const setDeposit = ({
         message,
     }: DepositParams) => {
     
-    deposit.set({
+    deposit({
         from: address,
         to,
         value: etherToWei(value, currency.decimals),
@@ -96,88 +86,109 @@ const setDeposit = ({
 }
 ```
 
-### Web3 Action Status
 
-Check `web3` action status `name.is`
+### Transfers
 
-```typescript
-is: {  
- 	ready: boolean;
-    running: boolean;
-    done: boolean;
-    failed: boolean;
-    withFailMessage: string;
-    withId: number;
-}
-```
+*<a href="./stores/interfaces/ITransferItems">Transfers Interface</a>*
+
+#### Example
+
+------
+
+*Get all Safe Transfers related to current address (limit 40)*
 
 ```typescript
-const { deposit } = useAccount()
-
-return <Spinner isLoading={deposit.is.running} />
+const { transfers } = useAccount()
 ```
 
+*Get next `limit` transfers*
 
+```typescript
+const limit = 100
 
-### Lists
-
- Lists of transactions 
-
-```
-const {
-  transfers,
-  incoming,
-  outgoing,
- = useAccount()
+transfers.fetch(limit)
 ```
 
+*Get outgoing, incoming and swap Transfers*
 
+```typescript
+const { incoming, outgoing, swaps } = useAccount()
+```
+
+### Observer
+
+##### Example
+
+------
+
+*Use `observer` for enabling the React component to re-render if any of it's observed data changes.*
+
+```typescript
+import { observer } from '@kiroboio/web3-react-safe-transfer'
+
+export const Address = observer(() => {
+    const {
+    	address,
+  	} = useAccount()
+    
+    return address
+})
+```
 
 ## Connect
 
-## Disconnect
+Before start to use `web3` you have to `connect`
 
+<a href="./stores/interfaces/IAccount#connect">Connect</a>
 
+##### Example 
+
+------
+
+*Connect with MetaMask*
+
+```typescript
+export const App = observer(() => {
+  const {
+    connect,
+  } = useAccount()
+  
+  const handleLogin = () => {
+      connect(Connectors.Injected)
+  }
+  
+  return <Wallet onLogin={handleLogin} />
+})
+```
+
+##### Status
+
+```typescript
+const {
+    connectCmd,
+  } = useAccount()
+```
+
+<a href="./stores/interfaces/ICmdStatus">connectCmd.is</a>
 
 ## Transactions
 
 ### Deposit
 
+<a href="./stores/interfaces/IAccount#deposit">Deposit</a>
+
 To create a retrievable transfer that can be collected use:
 
 `const { deposit } = useAccount()`
 
-#### Set
+##### Example
 
-```typescript
-deposit.set: ({ from, to, value, passcode, message, }: {
-    from: string;
-    to: string;
-    value: string;
-    passcode: string;
-    message?: string | undefined;
-}) => void
-
-@param from — ethereum address from
-
-@param to — ethereum address to
-
-@param value — value to send in wei
-
-@param passcode — secure code to collect transaction
-
-@param message — optional message to send
-
-@returns
-void
-
-After setting the values deposit transaction will be started
-```
+------
 
 
 
 ```typescript
-import { useAccount, etherToWei } from '@kiroboio/web3-react-safe-transfer
+import { useAccount, currencyValueToWei } from '@kiroboio/web3-react-safe-transfer
 
 const {
     address,
@@ -195,41 +206,33 @@ const setDeposit = ({
     deposit.set({
         from: address,
         to,
-        value: etherToWei(value, currency.decimals),
+        value: currencyValueToWei(value, currency.decimals),
         passcode,
         message,
     })
 }
 ```
 
+##### Status
+
+```typescript
+const {
+    depositCmd,
+  } = useAccount()
+```
+
+<a href="./stores/interfaces/ICmdStatus">depositCmd.is</a>
 
 
-#### Status
-
-[deposit.is](#Web3 Action Status)
 
 ### Retrieve
+
+<a href="./stores/interfaces/IAccount#retrieve">Retrieve</a>
 
 To retrieve transfer use: 
 
 `const { retrieve } = useAccount()`
 
-#### Set
-
-id: [transfer.id](#Transfers)
-
-```typescript
-retrieve.set: ({ id }: {
-    id: string;
-}) => void
-
-@param id — id of retrievable transfer
-
-@returns
-void
-
-After setting the values retrieve transaction will be started
-```
 
 ```typescript
 import { useAccount } from '@kiroboio/web3-react-safe-transfer
@@ -248,37 +251,26 @@ const setCollect = ({
 }
 ```
 
+##### Status
+
+```typescript
+const {
+    retrieveCmd,
+  } = useAccount()
+```
+
+<a href="./stores/interfaces/ICmdStatus">retrieveCmd.is</a>
 
 
-#### Status
-
-[retrieve.is](#Web3 Action Status)
 
 ### Collect
+
+<a href="./stores/interfaces/IAccount#collect">Collect</a>
 
 To collect transfer use:
 
 `const { collect } = useAccount()`
 
-#### Set
-
-id: [transfer.id](#Transfers)
-
-```typescript
-collect.set: ({ id }: {
-    id: string;
-    passcode: string;
-}) => void
-
-@param id — id of retrievable transfer
-
-@param passcode — secure code to collect transaction
-
-@returns
-void
-
-After setting the values collect transaction will be started
-```
 
 ```typescript
 import { useAccount } from '@kiroboio/web3-react-safe-transfer
@@ -297,76 +289,17 @@ const setCollect = ({
    collect({ id: transfer.id, passcode })
 }
 ```
-
-
-
-#### Status
-
-[collect.is](#Web3 Action Status)
-
-### Swap
-
-
-
-## Lists
-
-### Transfers
-
-#### Transfer State
-
-```
-  | 'waiting-for-deposit'
-  | 'retrieving'
-  | 'retrieved'
-  | 'ready'
-  | 'collecting'
-  | 'collected'
-  | 'rejected'
-  | 'invalid'
-  | 'new'
-  | 'creating'
-  | 'unknown'
-```
-
-
-
-#### Transfer
-
-[transferState]: (#Transfer State)
-
-
+##### Status
 
 ```typescript
-{
-    id: string,
-    txid: string,
-    from: string,
-    to: string,
-    value: string,
-    fees: string,
-    salt: string,
-    secretHash: string,
-    state: <pre><a href="my-url">Something</a></pre>,
-    updatedAt: Date | number,
-    confirmedBlock: number,
-    message: string,
-    token?: types.optional(Token, {}),
-}
+const {
+    collectCmd,
+  } = useAccount()
 ```
 
-
-
-### Incoming
-
-### Outgoing
-
-### Swaps
-
-### History
+<a href="./stores/interfaces/ICmdStatus">collectCmd.is</a>
 
 
 
-## Utils
-
-
+{@include: ../../dev/utils/README.md}
 

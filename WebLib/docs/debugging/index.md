@@ -9,7 +9,13 @@ custom_edit_url: null
 
 ### Debugging
 
-For view `Safe Transfer` state & actions install and configure [Reactotron]: https://github.com/infinitered/reactotron
+For view `Safe Transfer` state & actions install and configure [Reactotron](https://github.com/infinitered/reactotron)
+
+##### Example
+
+------
+
+*Configure reactotron on app component did mount*
 
 ```typescript
 import React, { useEffect } from 'react'

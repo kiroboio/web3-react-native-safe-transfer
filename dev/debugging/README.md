@@ -6,7 +6,7 @@ For view `Safe Transfer` state & actions install and configure [Reactotron](http
 
 ------
 
-*Configure reactotron after app component did mount*
+*Configure reactotron on app component did mount*
 
 ```typescript
 import React, { useEffect } from 'react'
