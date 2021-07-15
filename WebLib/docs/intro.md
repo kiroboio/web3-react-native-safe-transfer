@@ -37,8 +37,6 @@ yarn add @kiroboio/web3-react-safe-transfer
 
 
 
-##### Example
-
 ------
 
 *Get `Safe Transfer` current state with `useAccount` hook*
@@ -56,11 +54,9 @@ const {
 
 
 
-##### Example
-
 ------
 
-*Change `Safe Transfer`  state with **actions***
+*Change `Safe Transfer`  state with actions*
 
 ```typescript
 const {
@@ -91,8 +87,6 @@ const setDeposit = ({
 
 *<a href="./stores/interfaces/ITransferItems">Transfers Interface</a>*
 
-#### Example
-
 ------
 
 *Get all Safe Transfers related to current address (limit 40)*
@@ -117,8 +111,6 @@ const { incoming, outgoing, swaps } = useAccount()
 
 ### Observer
 
-##### Example
-
 ------
 
 *Use `observer` for enabling the React component to re-render if any of it's observed data changes.*
@@ -140,8 +132,6 @@ export const Address = observer(() => {
 Before start to use `web3` you have to `connect`
 
 <a href="./stores/interfaces/IAccount#connect">Connect</a>
-
-##### Example 
 
 ------
 
@@ -171,6 +161,8 @@ const {
 
 <a href="./stores/interfaces/ICmdStatus">connectCmd.is</a>
 
+
+
 ## Transactions
 
 ### Deposit
@@ -180,8 +172,6 @@ const {
 To create a retrievable transfer that can be collected use:
 
 `const { deposit } = useAccount()`
-
-##### Example
 
 ------
 
