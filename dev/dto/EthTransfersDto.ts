@@ -11,7 +11,7 @@ export type EthTransferState =
   | 'creating'
   | 'unknown'
 
-interface EthCollectInfo {
+export interface EthCollectInfo {
   /**
    * blockchain height
    *
@@ -32,7 +32,7 @@ interface EthCollectInfo {
   txid: string
 }
 
-interface EthRetrieveInfo {
+export interface EthRetrieveInfo {
   /**
    * blockchain height
    *
@@ -53,7 +53,7 @@ interface EthRetrieveInfo {
   txid: string
 }
 
-interface EthDepositInfo {
+export interface EthDepositInfo {
   /**
    * blockchain height
    *
@@ -74,7 +74,7 @@ interface EthDepositInfo {
   txid: string
 }
 
-interface EthTransactionInfo {
+export interface EthTransactionInfo {
   inputs: { txid: string; vout: number }[]
   coins: { value: number; address: string }[]
   txid: string

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Web3 from 'web3'
 import { toBN } from 'web3-utils'
-import { useAccount, useWeb3Provider } from '../context/account'
+import { useAccount } from '../context/account'
 import { useWeb3 } from '../hooks/useWeb3'
 import KiroboService from '@kiroboio/safe-transfer-lib-lite'
 import { observer } from 'mobx-react-lite'
@@ -291,10 +291,6 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     gasPriceMap,
   } = useAccount()
 
-  const {
-    setBalance: setWeb3Balance,
-    setBlock: setWeb3Block,
-  } = useWeb3Provider()
 
   const {
     getMnemonic,
@@ -442,8 +438,6 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
   const __setActive = useRef(setActive)
   const __setAddress = useRef(setAddress)
   const __setChainId = useRef(setChainId)
-  const __setWeb3Balance = useRef(setWeb3Balance)
-  const __setWeb3Block = useRef(setWeb3Block)
   const __setNewMnemonic = useRef(setNewMnemonic)
   const __getMnemonic = useRef(getMnemonic)
   const __generateNewMnemonic = useRef(generateNewMnemonic)
@@ -509,8 +503,6 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     __setActive.current = setActive
     __setAddress.current = setAddress
     __setChainId.current = setChainId
-    __setWeb3Balance.current = setWeb3Balance
-    __setWeb3Block.current = setWeb3Block
     __setNewMnemonic.current = setNewMnemonic
     __generateNewMnemonic.current = generateNewMnemonic
     __getMnemonic.current = getMnemonic
@@ -1345,43 +1337,6 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     transfers.clear()
     outgoing.clear()
     incoming.clear()
-
-    /*;(async () => {
-      if (web3Address) {
-        const balance = await web3.eth.getBalance(web3Address)
-        const blockNumber = await web3.eth.getBlockNumber()
-        __setWeb3Balance.current(balance)
-        __setWeb3Block.current(blockNumber)
-      } else {
-        __setWeb3Balance.current('')
-        __setWeb3Block.current(0)
-      }
-    })()
-
-    if (web3 && web3Address) {
-      web3.eth
-        .subscribe('newBlockHeaders')
-        .on('connected', async () => {
-          const blockNumber = await web3.eth.getBlockNumber()
-          const balance = await web3.eth.getBalance(web3Address)
-          __setWeb3Block.current(blockNumber)
-          __setWeb3Balance.current(balance)
-        })
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .on('error', (error: any) => {
-          __setWeb3Block.current(0)
-          __setWeb3Balance.current('')
-        }) 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .on('data', async (block: any) => {
-          const balance = await web3.eth.getBalance(web3Address)
-          __setWeb3Block.current(block.number)
-          __setWeb3Balance.current(balance)
-        })
-    }
-    return () => {
-      web3?.eth.clearSubscriptions(console.log)
-    }*/
   }, [web3Address, web3ChainId, web3Active])
 
   useEffect(() => {

@@ -121,7 +121,7 @@ class InAppWalletConnector
       InAppWalletConnector.DEFAULT_PATH
     ).address
 
-    const setNewAddres = (privateKey: string) => {
+    const setNewAddress = (privateKey: string) => {
       const { address } = this.web3.eth.accounts.privateKeyToAccount(privateKey)
       this.web3.eth.accounts.wallet.add({
         privateKey,
@@ -140,7 +140,7 @@ class InAppWalletConnector
       this.paths[walletFirstAddress][keysAmount] = walletAccount.address
       const privateKey = walletAccount.privateKey
 
-      setNewAddres(privateKey)
+      setNewAddress(privateKey)
     }
 
     let index = 0
@@ -150,7 +150,7 @@ class InAppWalletConnector
         this.paths[walletFirstAddress][index] = walletAccount.address
         const privateKey = walletAccount.privateKey
 
-        setNewAddres(privateKey)
+        setNewAddress(privateKey)
         break
       } else if (
         index ===

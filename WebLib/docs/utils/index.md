@@ -7,12 +7,12 @@ sidebar_position: 0
 custom_edit_url: null
 ---
 
-# Web3 utils
+# Utils
 
-## Ethereum 
+### Web3 Methods
 
-#### Currency Value To Wei
+Helpers for convert & format currency values
 
-<a href="./utils/modules#currencyValueToWei">currencyValueToWei</a>
-
-[currencyValueToWei]: (./utils/modules#currencyValueToWei)
+- *<a href="./utils/modules#currencyvaluetowei">Currency Value To Wei</a>*
+- *<a href="./utils/modules#weitocurrencyvalue">Wei To Currency Value</a>*
+- *<a href="./utils/modules#formatcurrencyvalue">Format Currency Value</a>*

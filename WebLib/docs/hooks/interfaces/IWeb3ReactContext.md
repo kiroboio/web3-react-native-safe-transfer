@@ -1,16 +1,10 @@
 ---
 id: "IWeb3ReactContext"
-title: "Interface: IWeb3ReactContext<T>"
+title: "Interface: IWeb3ReactContext"
 sidebar_label: "IWeb3ReactContext"
 sidebar_position: 0
 custom_edit_url: null
 ---
-
-## Type parameters
-
-| Name |
-| :------ |
-| `T` |
 
 ## Properties
 
@@ -46,7 +40,7 @@ ___
 
 ### library
 
-• **library**: `T`
+• **library**: `default`
 
 ## Methods
 

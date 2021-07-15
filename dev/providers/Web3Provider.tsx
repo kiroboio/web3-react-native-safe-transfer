@@ -11,12 +11,6 @@ const getLibrary = (
   provider: any,
   connector?: AbstractConnector | IInAppWalletConnector
 ) => {
-  // const chainId = (provider as any).chainId
-  // const chain: any = { 1: 'mainnet', 4: 'rinkeby' }
-  // const chainName = chain[+chainId]
-  // console.log('get library:', +chainId)
-  // if (chainName) {
-  //   return new Web3(`wss://${chainName}.infura.io/ws/v3/14c73ecdbcaa464585aa7c438fdf6a77`)
   if (connector) {
     const appConnector = connector as IInAppWalletConnector
     if (appConnector.name === Connectors.InAppWallet) {

@@ -178,6 +178,3 @@ export const useSecureStorage =
           setNewSecureStorageConfig,
         }
       }
-
-
-// export type UseSecureStorage = typeof useSecureStorage

@@ -39,11 +39,11 @@ type ConnectorType = Required<Web3ReactContextInterface>['connector'] & {
   handleAccountChanged?: (a: string) => void
 }
 
-export interface IWeb3ReactContext<T> {
+export interface IWeb3ReactContext {
   connect: (connectorName: Connectors, params?: IConnectParams) => Promise<void>
   disconnect: () => void
   connector?: ConnectorType
-  library: T
+  library: Web3
   chainId?: number
   address?: null | string
   active: boolean
@@ -55,7 +55,7 @@ export interface IWeb3ReactContext<T> {
   ) => Promise<void>
 }
 
-export const useWeb3 = (): IWeb3ReactContext<Web3> => {
+export const useWeb3 = (): IWeb3ReactContext => {
   const {
     connector,
     library,

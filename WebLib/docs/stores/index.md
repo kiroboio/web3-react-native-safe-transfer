@@ -7,8 +7,6 @@ sidebar_position: 0
 custom_edit_url: null
 ---
 
-# Docs
-
 ## Getting Started
 
 ### Install
@@ -32,40 +30,9 @@ yarn add @kiroboio/web3-react-safe-transfer
 }
 ```
 
-### Use
+### Kirobo Context
 
-```typescript
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { App } from './App'
-import { KiroboProvider } from '@kiroboio/web3-react-safe-transfer'
-
-ReactDOM.render(
-  <KiroboProvider>
-    <App />
-  </KiroboProvider>,
-  document.getElementById('root')
-)
-
-```
-
-```typescript
-import React from 'react'
-import { Wallet } from "./Wallet"
-import { useAccount, observer, Connectors } from '@kiroboio/web3-react-safe-transfer/lib'
-
-export const App = observer(() => {
-  const {
-    connect,
-  } = useAccount()
-  
-  const handleLogin = () => {
-      connect(Connectors.Injected)
-  }
-    
-  return <Wallet onLogin={handleLogin} />
-})
-```
+{@include: ../../dev/context/README.md}
 
 ```typescript
 import React from 'react'

@@ -677,19 +677,6 @@ export const Transfers = types
     },
   }));
 
-export const Web3Provider = types
-  .model("Web3Provider", {
-    block: types.optional(types.number, -1),
-    balance: types.optional(types.string, ""),
-  })
-  .actions((self) => ({
-    setBlock(block: number) {
-      self.block = block;
-    },
-    setBalance(balance: string) {
-      self.balance = balance;
-    },
-  }));
 
 const Mnemonic = types
   .model("Mnemonic", {
@@ -1060,10 +1047,7 @@ export const Account = types
     },
   }));
 
-export const accountStore = Account.create();
-export const web3ProviderStore = Web3Provider.create();
-
-export interface IWeb3Provider extends MobxClearInstance<typeof Web3Provider> {}
+export const accountStore = Account.create() as unknown as IAccount
 
 type MobxClearAccount = Omit<
   Instance<typeof Account>,

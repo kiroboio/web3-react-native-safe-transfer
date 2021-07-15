@@ -19,11 +19,16 @@
     "@mdx-js/react": "^1.6.21",
     "@svgr/webpack": "^5.5.0",
     "clsx": "^1.1.1",
+    "docusaurus-plugin-includes": "^1.1.1",
+    "eth-crypto": "^2.0.0",
     "file-loader": "^6.2.0",
+    "numeral": "^2.0.6",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "url-loader": "^4.1.1"
+    "stream": "^0.0.2",
+    "url-loader": "^4.1.1",
+    "web3": "^1.4.0"
   },
   "browserslist": {
     "production": [

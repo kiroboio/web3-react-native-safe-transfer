@@ -142,8 +142,8 @@ ___
 
 ### useWeb3
 
-▸ `Const` **useWeb3**(): [`IWeb3ReactContext`](interfaces/IWeb3ReactContext.md)<`default`\>
+▸ `Const` **useWeb3**(): [`IWeb3ReactContext`](interfaces/IWeb3ReactContext.md)
 
 #### Returns
 
-[`IWeb3ReactContext`](interfaces/IWeb3ReactContext.md)<`default`\>
+[`IWeb3ReactContext`](interfaces/IWeb3ReactContext.md)

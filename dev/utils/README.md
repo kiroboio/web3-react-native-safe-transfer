@@ -1,8 +1,12 @@
-# Web3 utils
 
-## Ethereum 
 
-#### Currency Value To Wei
+# Utils
 
-<a href="./utils/modules#currencyValueToWei">Currency Value To Wei</a>
+### Web3 Methods
+
+Helpers for convert & format currency values
+
+- *<a href="./utils/modules#currencyvaluetowei">Currency Value To Wei</a>*
+- *<a href="./utils/modules#weitocurrencyvalue">Wei To Currency Value</a>*
+- *<a href="./utils/modules#formatcurrencyvalue">Format Currency Value</a>*
 

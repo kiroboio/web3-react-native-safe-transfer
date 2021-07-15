@@ -1,6 +1,13 @@
 import numeral from "numeral";
 import Web3 from "web3";
 
+/** 
+ * convert crypto `value`(ethereum coin or token) to wei depends on `decimals` amount (default 18)
+ * ```
+ * const { currency } = useAccount()
+ * currencyValueToWei(value, currency.decimals)
+ * ```
+*/
 export const currencyValueToWei = (
   value: number | string,
   decimals?: number
@@ -20,6 +27,10 @@ export const currencyValueToWei = (
   return Web3.utils.toWei(value?.toString() || "0", "ether");
 };
 
+
+/** 
+ * wei `value` to crypto (ethereum coin or token) depends on `decimals` amount (default 18)
+*/
 export const weiToCurrencyValue = (
   value: number | string,
   decimals?: number
@@ -35,6 +46,12 @@ export const weiToCurrencyValue = (
   }`;
 };
 
+/** 
+ * format currency value to readable format
+ * ```
+ * formatCurrencyValue(value, '0,0.[00000]' )
+ * ``` 
+*/
 export const formatCurrencyValue = (
   value: number | string,
   format?: string // '0,0.0[00000]'

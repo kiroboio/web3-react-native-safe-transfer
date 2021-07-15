@@ -12,6 +12,12 @@ custom_edit_url: null
 
 ▸ `Const` **currencyValueToWei**(`value`, `decimals?`): `string`
 
+convert crypto `value`(ethereum coin or token) to wei depends on `decimals` amount (default 18)
+```
+const { currency } = useAccount()
+currencyValueToWei(value, currency.decimals)
+```
+
 #### Parameters
 
 | Name | Type |
@@ -29,6 +35,11 @@ ___
 
 ▸ `Const` **formatCurrencyValue**(`value`, `format?`): `string`
 
+format currency value to readable format
+```
+formatCurrencyValue(value, '0,0.[00000]' )
+```
+
 #### Parameters
 
 | Name | Type |
@@ -45,6 +56,8 @@ ___
 ### weiToCurrencyValue
 
 ▸ `Const` **weiToCurrencyValue**(`value`, `decimals?`): `string`
+
+wei `value` to crypto (ethereum coin or token) depends on `decimals` amount (default 18)
 
 #### Parameters
 

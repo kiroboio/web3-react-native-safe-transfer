@@ -86,20 +86,41 @@ module.exports = {
   },
   plugins: [
     [
+      'docusaurus-plugin-includes',
+      {
+        sharedFolders: [
+          { source: '../dev', target: './docs/shared'},
+        ],
+        postBuildDeletedFolders: ['shared'],
+      }
+    ],
+    [
       'docusaurus-plugin-typedoc',
       {
-        id:'stores',
-        entryPoints: ['../dev/stores/index.ts'],
-        out: 'stores',
+        id:'context',
+        entryPoints: ['../dev/context/index.ts'],
+        out: 'context',
         disableSources: true,
-        tsconfig: '../tsconfig.json',
         sidebar: {
-          categoryLabel: 'Stores',
-          position: 1,
+          categoryLabel: 'context',
+          position: 2,
           fullNames: true
         },
       },
-      
+    ],
+    [
+      'docusaurus-plugin-typedoc',
+      {
+        id:'debugging',
+        entryPoints: ['../dev/debugging/index.ts'],
+        out: 'debugging',
+        disableSources: true,
+        sidebar: {
+          categoryLabel: 'debugging',
+          position: 3,
+          fullNames: true
+        },
+      },
     ],
     [
       'docusaurus-plugin-typedoc',
@@ -110,10 +131,26 @@ module.exports = {
         disableSources: true,
         sidebar: {
           categoryLabel: 'Hooks',
-          position: 2,
+          position: 4,
           fullNames: true
         },
       },
+    ],
+    [
+      'docusaurus-plugin-typedoc',
+      {
+        id:'stores',
+        entryPoints: ['../dev/stores/index.ts'],
+        out: 'stores',
+        disableSources: true,
+        tsconfig: '../tsconfig.json',
+        sidebar: {
+          categoryLabel: 'Stores',
+          position: 5,
+          fullNames: true
+        },
+      },
+      
     ],
     [
       'docusaurus-plugin-typedoc',
@@ -124,7 +161,35 @@ module.exports = {
         disableSources: true,
         sidebar: {
           categoryLabel: 'Utils',
-          position: 3,
+          position: 6,
+          fullNames: true
+        },
+      },
+    ],
+    [
+      'docusaurus-plugin-typedoc',
+      {
+        id:'dto',
+        entryPoints: ['../dev/dto/index.ts'],
+        out: 'dto',
+        disableSources: true,
+        sidebar: {
+          categoryLabel: 'dto',
+          position: 7,
+          fullNames: true
+        },
+      },
+    ],
+    [
+      'docusaurus-plugin-typedoc',
+      {
+        id:'customConnectors',
+        entryPoints: ['../dev/customConnectors/index.ts'],
+        out: 'customConnectors',
+        disableSources: true,
+        sidebar: {
+          categoryLabel: 'Custom Connectors',
+          position: 8,
           fullNames: true
         },
       },
