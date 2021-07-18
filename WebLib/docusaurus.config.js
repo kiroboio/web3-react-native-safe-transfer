@@ -102,7 +102,7 @@ module.exports = {
         out: 'context',
         disableSources: true,
         sidebar: {
-          categoryLabel: 'context',
+          categoryLabel: 'Context',
           position: 2,
           fullNames: true
         },
@@ -117,7 +117,7 @@ module.exports = {
         out: 'debugging',
         disableSources: true,
         sidebar: {
-          categoryLabel: 'debugging',
+          categoryLabel: 'Debugging',
           position: 3,
           fullNames: true
         },
@@ -176,7 +176,7 @@ module.exports = {
         out: 'dto',
         disableSources: true,
         sidebar: {
-          categoryLabel: 'dto',
+          categoryLabel: 'DTO',
           position: 7,
           fullNames: true
         },

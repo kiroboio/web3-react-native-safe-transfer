@@ -50,7 +50,7 @@ const {
 
 ### Methods
 
-*<a href="./stores/interfaces/IAccount#methods">Account Actions</a>*
+*<a href="./stores/interfaces/IAccount#methods">Account Methods</a>*
 
 
 ------
