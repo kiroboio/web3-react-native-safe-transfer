@@ -1,7 +1,3 @@
----
-sidebar_position: 1
-sidebar_label: "How To Use"
----
 ## Getting Started
 
 ### Install
@@ -25,23 +21,64 @@ yarn add @kiroboio/web3-react-safe-transfer
 }
 ```
 
+### Kirobo Context
+
 {@include: ../../dev/context/README.md}
 
-{@include: ../../dev/debugging/README.md}
+```typescript
+import React from 'react'
+import { Wallet } from "./Wallet"
+import { useAccount, observer } from '@kiroboio/web3-react-safe-transfer/lib'
+
+export const Wallet = observer(() => {
+  const {
+    address,
+    balance,
+  } = useAccount()
+    
+  return (
+      <div className="wallet">
+      	address: { address }
+        balance: { balance }                 
+      </div>
+   	)
+})
+```
+
+
+
+### Debugging
+
+For view `Safe Transfer` state & actions install and configure [Reactotron]: https://github.com/infinitered/reactotron
+
+```typescript
+import React, { useEffect } from 'react'
+import { configureReactotronDebugging, useAccount, observer, Connectors  } from '@kiroboio/web3-react-safe-transfer'
+import { Wallet } from "./Wallet"
+
+
+export const App = observer(() => {
+  const {
+    connect,
+  } = useAccount()
+  
+  const handleLogin = () => {
+      connect(Connectors.Injected)
+  }
+  
+  useEffect(() => {
+      configureReactotronDebugging()
+  }, [])
+    
+  return <Wallet onLogin={handleLogin} />
+})
+```
 
 ## Main concepts
 
 ### State
 
-*<a href="./stores/interfaces/IAccount#properties">Account States</a>*
-
-
-
-##### Example
-
-------
-
-*Get `Safe Transfer` current state with `useAccount` hook*
+Get `Safe Transfer` current state with `useAccount` hook
 
 ```typescript
 const {
@@ -52,15 +89,33 @@ const {
 
 ### Actions
 
-*<a href="./stores/interfaces/IAccount#methods">Account Actions</a>*
+Change `Safe Transfer`  state with **actions**
 
+```typescript
+const {
+    connect,
+    disconnect,
+  } = useAccount(
+```
+### Observer
 
+Use `observer` for enabling the React component to re-render if any of it's observed data changes. 
 
-##### Example
+```typescript
+import { observer } from '@kiroboio/web3-react-safe-transfer'
 
-------
+export const Address = observer(() => {
+    const {
+    	address,
+  	} = useAccount()
+    
+    return address
+})
+```
 
-*Change `Safe Transfer`  state with **actions***
+### Web3 Actions
+
+Run `web3` actions with `name.set()`
 
 ```typescript
 const {
@@ -76,7 +131,7 @@ const setDeposit = ({
         message,
     }: DepositParams) => {
     
-    deposit({
+    deposit.set({
         from: address,
         to,
         value: etherToWei(value, currency.decimals),
@@ -86,109 +141,88 @@ const setDeposit = ({
 }
 ```
 
+### Web3 Action Status
 
-### Transfers
-
-*<a href="./stores/interfaces/ITransferItems">Transfers Interface</a>*
-
-#### Example
-
-------
-
-*Get all Safe Transfers related to current address (limit 40)*
+Check `web3` action status `name.is`
 
 ```typescript
-const { transfers } = useAccount()
+is: {  
+ 	ready: boolean;
+    running: boolean;
+    done: boolean;
+    failed: boolean;
+    withFailMessage: string;
+    withId: number;
+}
 ```
-
-*Get next `limit` transfers*
 
 ```typescript
-const limit = 100
+const { deposit } = useAccount()
 
-transfers.fetch(limit)
+return <Spinner isLoading={deposit.is.running} />
 ```
 
-*Get outgoing, incoming and swap Transfers*
 
-```typescript
-const { incoming, outgoing, swaps } = useAccount()
+
+### Lists
+
+ Lists of transactions 
+
+```
+const {
+  transfers,
+  incoming,
+  outgoing,
+ = useAccount()
 ```
 
-### Observer
 
-##### Example
-
-------
-
-*Use `observer` for enabling the React component to re-render if any of it's observed data changes.*
-
-```typescript
-import { observer } from '@kiroboio/web3-react-safe-transfer'
-
-export const Address = observer(() => {
-    const {
-    	address,
-  	} = useAccount()
-    
-    return address
-})
-```
 
 ## Connect
 
-Before start to use `web3` you have to `connect`
+## Disconnect
 
-<a href="./stores/interfaces/IAccount#connect">Connect</a>
 
-##### Example 
-
-------
-
-*Connect with MetaMask*
-
-```typescript
-export const App = observer(() => {
-  const {
-    connect,
-  } = useAccount()
-  
-  const handleLogin = () => {
-      connect(Connectors.Injected)
-  }
-  
-  return <Wallet onLogin={handleLogin} />
-})
-```
-
-##### Status
-
-```typescript
-const {
-    connectCmd,
-  } = useAccount()
-```
-
-<a href="./stores/interfaces/ICmdStatus">connectCmd.is</a>
 
 ## Transactions
 
 ### Deposit
 
-<a href="./stores/interfaces/IAccount#deposit">Deposit</a>
-
 To create a retrievable transfer that can be collected use:
 
 `const { deposit } = useAccount()`
 
-##### Example
+#### Set
 
-------
+```typescript
+deposit.set: ({ from, to, value, passcode, message, }: {
+    from: string;
+    to: string;
+    value: string;
+    passcode: string;
+    message?: string | undefined;
+}) => void
+
+@param from — ethereum address from
+
+@param to — ethereum address to
+
+@param value — value to send in wei
+
+@param passcode — secure code to collect transaction
+
+@param message — optional message to send
+
+@returns
+void
+
+After setting the values deposit transaction will be started
+```
 
 
 
 ```typescript
-import { useAccount, currencyValueToWei } from '@kiroboio/web3-react-safe-transfer
+import { useAccount, etherToWei } from '@kiroboio/web3-react-safe-transfer
 
 const {
     address,
@@ -206,33 +240,41 @@ const setDeposit = ({
     deposit.set({
         from: address,
         to,
-        value: currencyValueToWei(value, currency.decimals),
+        value: etherToWei(value, currency.decimals),
         passcode,
         message,
     })
 }
 ```
 
-##### Status
-
-```typescript
-const {
-    depositCmd,
-  } = useAccount()
-```
-
-<a href="./stores/interfaces/ICmdStatus">depositCmd.is</a>
 
 
+#### Status
+
+[deposit.is](#Web3 Action Status)
 
 ### Retrieve
-
-<a href="./stores/interfaces/IAccount#retrieve">Retrieve</a>
 
 To retrieve transfer use: 
 
 `const { retrieve } = useAccount()`
 
+#### Set
+
+id: [transfer.id](#Transfers)
+
+```typescript
+retrieve.set: ({ id }: {
+    id: string;
+}) => void
+
+@param id — id of retrievable transfer
+
+@returns
+void
+
+After setting the values retrieve transaction will be started
+```
 
 ```typescript
 import { useAccount } from '@kiroboio/web3-react-safe-transfer
@@ -251,26 +293,37 @@ const setCollect = ({
 }
 ```
 
-##### Status
-
-```typescript
-const {
-    retrieveCmd,
-  } = useAccount()
-```
-
-<a href="./stores/interfaces/ICmdStatus">retrieveCmd.is</a>
 
 
+#### Status
+
+[retrieve.is](#Web3 Action Status)
 
 ### Collect
-
-<a href="./stores/interfaces/IAccount#collect">Collect</a>
 
 To collect transfer use:
 
 `const { collect } = useAccount()`
 
+#### Set
+
+id: [transfer.id](#Transfers)
+
+```typescript
+collect.set: ({ id }: {
+    id: string;
+    passcode: string;
+}) => void
+
+@param id — id of retrievable transfer
+
+@param passcode — secure code to collect transaction
+
+@returns
+void
+
+After setting the values collect transaction will be started
+```
 
 ```typescript
 import { useAccount } from '@kiroboio/web3-react-safe-transfer
@@ -289,17 +342,76 @@ const setCollect = ({
    collect({ id: transfer.id, passcode })
 }
 ```
-##### Status
 
-```typescript
-const {
-    collectCmd,
-  } = useAccount()
+
+
+#### Status
+
+[collect.is](#Web3 Action Status)
+
+### Swap
+
+
+
+## Lists
+
+### Transfers
+
+#### Transfer State
+
+```
+  | 'waiting-for-deposit'
+  | 'retrieving'
+  | 'retrieved'
+  | 'ready'
+  | 'collecting'
+  | 'collected'
+  | 'rejected'
+  | 'invalid'
+  | 'new'
+  | 'creating'
+  | 'unknown'
 ```
 
-<a href="./stores/interfaces/ICmdStatus">collectCmd.is</a>
+
+
+#### Transfer
+
+[transferState]: (#Transfer State)
 
 
 
-{@include: ../../dev/utils/README.md}
+```typescript
+{
+    id: string,
+    txid: string,
+    from: string,
+    to: string,
+    value: string,
+    fees: string,
+    salt: string,
+    secretHash: string,
+    state: <pre><a href="my-url">Something</a></pre>,
+    updatedAt: Date | number,
+    confirmedBlock: number,
+    message: string,
+    token?: types.optional(Token, {}),
+}
+```
+
+
+
+### Incoming
+
+### Outgoing
+
+### Swaps
+
+### History
+
+
+
+## Utils
+
+
 

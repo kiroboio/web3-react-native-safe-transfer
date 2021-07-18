@@ -818,6 +818,9 @@ export const Account = types
     maxRewards: types.optional(types.number, 10),
     gasPriceMap: types.map(types.string),
   })
+  /**
+   * views
+   */
   .views((self) => ({
     get safeTransferContract() {
       return self.safeTransferMap.get(getChainName(self.chainId));
@@ -842,7 +845,7 @@ export const Account = types
         ) || ""
       );
     },
-    approvedToken(symbol: string, amount: string) {
+    approveToken(symbol: string, amount: string) {
       const { toBN } = Web3.utils;
       const isApproved = !(
         symbol !== "ETH" && toBN(self.allowance).cmp(toBN(amount)) === -1
@@ -875,11 +878,14 @@ export const Account = types
       }
       return "";
     },
-    ERC20TokenList(chainName: string) {
+    getERC20TokenList(chainName: string) {
       const tokens = self.ERC20TokensMap.get(chainName);
       return tokens ? tokens.list : [];
     },
   }))
+   /**
+   * actions
+   */
   .actions((self) => ({
     approve() {
       self.approvedCmd.prepare();
@@ -1052,47 +1058,53 @@ export const accountStore = Account.create() as unknown as IAccount
 type MobxClearAccount = Omit<
   Instance<typeof Account>,
   | symbol
-  | "safeTransferMap"
-  | "stakingMap"
-  | "kiroTokenMap"
-  | "ERC20TokensMap"
   | "currency"
-  | "ERC20TokensContract"
-  | "kiroTokenContract"
-  | "safeTransferContract"
-  | "stakingContract"
-  | "ERC20TokenList"
-  | "transfers"
-  | "incoming"
-  | "outgoing"
   | "wallet"
-  | "gasPriceMap"
+  | "deviceInfo"
+  | "ERC20TokensMap"
+  | "safeTransferMap"
+  | "kiroTokenMap"
+  | "stakingMap"
+  | keyof ICommands
+  | keyof ILists
+  | keyof IViews
 >;
 
-export interface IAccount extends MobxClearAccount {
-  wallet: IWallet;
+export interface ILists {
   transfers: ITransferItems;
   incoming: ITransferItems;
   outgoing: ITransferItems;
+}
+
+export interface ICommands {
   approvedCmd: IApprovedCmd;
   depositCmd: IDepositCmd;
   retrieveCmd: IRetrieveCmd;
   collectCmd: ICollectCmd;
   connectCmd: IConnectCmd;
   disconnectCmd: IDisconnectCmd;
-  safeTransferMap: Map<string, ISafeTransfer>;
+}
+
+export interface IViews {
   safeTransferContract: ISafeTransfer | undefined;
-  stakingMap: Map<string, IStaking>;
   stakingContract: IStaking | undefined;
-  kiroTokenMap: Map<string, IKiroToken>;
   kiroTokenContract: IKiroToken | undefined;
-  ERC20TokensMap: Map<string, IERC20TokenItem>;
-  currency: IERC20TokenItem;
-  deviceInfo: IDeviceInfo;
   ERC20TokensContract: IERC20TokenItem[];
-  ERC20TokenList: (chainName: string) => IERC20TokenItem[];
+  getERC20TokenList: (chainName: string) => IERC20TokenItem[];
   gasPriceMap: Map<string, string>
 }
+
+
+export interface IAccount extends MobxClearAccount, ILists, ICommands, IViews {
+  wallet: IWallet;
+  currency: IERC20TokenItem;
+  deviceInfo: IDeviceInfo;
+  safeTransferMap: Map<string, ISafeTransfer>;
+  stakingMap: Map<string, IStaking>;
+  kiroTokenMap: Map<string, IKiroToken>;
+  ERC20TokensMap: Map<string, IERC20TokenItem>;
+}
+
 
 type MobxClearTransferItems = Omit<
   Instance<typeof Transfers>,

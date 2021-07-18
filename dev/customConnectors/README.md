@@ -1,12 +1,3 @@
----
-id: "index"
-title: "@kiroboio/web3-react-safe-transfer"
-slug: "/customConnectors"
-sidebar_label: "Readme"
-sidebar_position: 0
-custom_edit_url: null
----
-
 # Custom Web3-React connector
 
 [web3-react connectos](https://github.com/NoahZinsmeister/web3-react/tree/v6/docs/connectors) 
@@ -39,3 +30,4 @@ With custom connector you can use [web3-react library](https://github.com/NoahZi
  ```
 
 - *<a href="./customConnectors/interfaces/IInAppWalletConnector">In App Wallet Connector Interface</a>*
+

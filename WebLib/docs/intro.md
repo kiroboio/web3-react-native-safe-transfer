@@ -48,15 +48,12 @@ const {
   } = useAccount()
 ```
 
-### Actions
+### Methods
 
 *<a href="./stores/interfaces/IAccount#methods">Account Actions</a>*
 
 
-
 ------
-
-*Change `Safe Transfer`  state with actions*
 
 ```typescript
 const {
@@ -82,10 +79,21 @@ const setDeposit = ({
 }
 ```
 
+### Commands
 
-### Transfers
+*<a href="./stores/interfaces/ICommands">Account Commands Interface</a>*
 
-*<a href="./stores/interfaces/ITransferItems">Transfers Interface</a>*
+
+### Views
+
+[mobx-state-tree views concept](https://mobx-state-tree.js.org/concepts/views)
+
+*<a href="./stores/interfaces/IViews">Account Views Interface</a>*
+
+
+### Lists
+
+*<a href="./stores/interfaces/ILists">Account Lists Interface</a>*
 
 ------
 
@@ -102,6 +110,14 @@ const limit = 100
 
 transfers.fetch(limit)
 ```
+
+*<a href="./stores/interfaces/ITransferItems#list">Get list values</a>*
+
+```
+transfers.list
+```
+
+
 
 *Get outgoing, incoming and swap Transfers*
 

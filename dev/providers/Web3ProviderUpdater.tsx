@@ -281,7 +281,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     setERC20TokenBalance,
     setErc20TokenRate,
     clearERC20TokenBalances,
-    ERC20TokenList,
+    getERC20TokenList,
     setCurrencyBalance,
     currency,
     setCurrency,
@@ -430,7 +430,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
   const __setCurrencyBalance = useRef(setCurrencyBalance)
 
   const __clearERC20TokenBalances = useRef(clearERC20TokenBalances)
-  const __ERC20TokenList = useRef(ERC20TokenList)
+  const __ERC20TokenList = useRef(getERC20TokenList)
   const __gasPriceMap = useRef(gasPriceMap)
   const __web3Connect = useRef(web3Connect)
   const __web3Connector = useRef(web3Connector)
@@ -494,7 +494,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     __setCurrencyBalance.current = setCurrencyBalance
     __currency.current = currency
     __clearERC20TokenBalances.current = clearERC20TokenBalances
-    __ERC20TokenList.current = ERC20TokenList
+    __ERC20TokenList.current = getERC20TokenList
     __gasPriceMap.current = gasPriceMap
     __web3Connect.current = web3Connect
     __web3Disconnect.current = web3Disconnect

@@ -31,9 +31,6 @@ export const KiroboProvider: React.FC = (props) => (
 To use `account` store wrap application `components` with `KiroboProvider` context
 
 
-
-##### Example
-
 ------
 
 *KiroboProvider Application Wrapper*
@@ -55,7 +52,7 @@ Account store use `mobx-state-tree` lib for  [reactive state management ](https:
 
 *Each `observer` declaration will enable the React component to only re-render if any of it's observed data changes.*
 
-##### Example 
+
 ------
 
 *Connect with metamask*
@@ -74,7 +71,6 @@ export const App = observer(() => {
 })
 ```
 
-##### Example 
 ------
 
 *Account Store States*
@@ -99,8 +95,6 @@ export const Wallet = observer(() => {
 })
 ```
 
-
-##### Example
 
 ------
 

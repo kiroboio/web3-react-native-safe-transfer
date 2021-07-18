@@ -11,7 +11,7 @@ custom_edit_url: null
 
 For view `Safe Transfer` state & actions install and configure [Reactotron](https://github.com/infinitered/reactotron)
 
-##### Example
+
 
 ------
 

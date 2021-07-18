@@ -10,6 +10,12 @@ custom_edit_url: null
 
 - `MobxClearAccount`
 
+- `ILists`
+
+- `ICommands`
+
+- `IViews`
+
   ↳ **`IAccount`**
 
 ## Properties
@@ -17,6 +23,10 @@ custom_edit_url: null
 ### ERC20TokensContract
 
 • **ERC20TokensContract**: `IERC20TokenItem`[]
+
+#### Inherited from
+
+IViews.ERC20TokensContract
 
 ___
 
@@ -60,9 +70,9 @@ ___
 
 • **approvedCmd**: `IApprovedCmd`
 
-#### Overrides
+#### Inherited from
 
-MobxClearAccount.approvedCmd
+ICommands.approvedCmd
 
 ___
 
@@ -100,9 +110,9 @@ ___
 
 • **collectCmd**: `ICollectCmd`
 
-#### Overrides
+#### Inherited from
 
-MobxClearAccount.collectCmd
+ICommands.collectCmd
 
 ___
 
@@ -110,9 +120,9 @@ ___
 
 • **connectCmd**: `IConnectCmd`
 
-#### Overrides
+#### Inherited from
 
-MobxClearAccount.connectCmd
+ICommands.connectCmd
 
 ___
 
@@ -126,9 +136,9 @@ ___
 
 • **depositCmd**: `IDepositCmd`
 
-#### Overrides
+#### Inherited from
 
-MobxClearAccount.depositCmd
+ICommands.depositCmd
 
 ___
 
@@ -136,19 +146,15 @@ ___
 
 • **deviceInfo**: `IDeviceInfo`
 
-#### Overrides
-
-MobxClearAccount.deviceInfo
-
 ___
 
 ### disconnectCmd
 
 • **disconnectCmd**: `IDisconnectCmd`
 
-#### Overrides
+#### Inherited from
 
-MobxClearAccount.disconnectCmd
+ICommands.disconnectCmd
 
 ___
 
@@ -176,17 +182,29 @@ ___
 
 • **gasPriceMap**: `Map`<`string`, `string`\>
 
+#### Inherited from
+
+IViews.gasPriceMap
+
 ___
 
 ### incoming
 
 • **incoming**: `ITransferItems`
 
+#### Inherited from
+
+ILists.incoming
+
 ___
 
 ### kiroTokenContract
 
 • **kiroTokenContract**: `undefined` \| `IKiroToken`
+
+#### Inherited from
+
+IViews.kiroTokenContract
 
 ___
 
@@ -220,6 +238,10 @@ ___
 
 • **outgoing**: `ITransferItems`
 
+#### Inherited from
+
+ILists.outgoing
+
 ___
 
 ### rate
@@ -236,15 +258,19 @@ ___
 
 • **retrieveCmd**: `IRetrieveCmd`
 
-#### Overrides
+#### Inherited from
 
-MobxClearAccount.retrieveCmd
+ICommands.retrieveCmd
 
 ___
 
 ### safeTransferContract
 
 • **safeTransferContract**: `undefined` \| `ISafeTransfer`
+
+#### Inherited from
+
+IViews.safeTransferContract
 
 ___
 
@@ -268,6 +294,10 @@ ___
 
 • **stakingContract**: `undefined` \| `IStaking`
 
+#### Inherited from
+
+IViews.stakingContract
+
 ___
 
 ### stakingMap
@@ -290,6 +320,10 @@ ___
 
 • **transfers**: `ITransferItems`
 
+#### Inherited from
+
+ILists.transfers
+
 ___
 
 ### wallet
@@ -297,22 +331,6 @@ ___
 • **wallet**: `IWallet`
 
 ## Methods
-
-### ERC20TokenList
-
-▸ **ERC20TokenList**(`chainName`): `IERC20TokenItem`[]
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `chainName` | `string` |
-
-#### Returns
-
-`IERC20TokenItem`[]
-
-___
 
 ### approve
 
@@ -328,9 +346,9 @@ MobxClearAccount.approve
 
 ___
 
-### approvedToken
+### approveToken
 
-▸ **approvedToken**(`symbol`, `amount`): `boolean`
+▸ **approveToken**(`symbol`, `amount`): `boolean`
 
 #### Parameters
 
@@ -345,7 +363,7 @@ ___
 
 #### Inherited from
 
-MobxClearAccount.approvedToken
+MobxClearAccount.approveToken
 
 ___
 
@@ -446,6 +464,26 @@ ___
 #### Inherited from
 
 MobxClearAccount.disconnect
+
+___
+
+### getERC20TokenList
+
+▸ **getERC20TokenList**(`chainName`): `IERC20TokenItem`[]
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `chainName` | `string` |
+
+#### Returns
+
+`IERC20TokenItem`[]
+
+#### Inherited from
+
+IViews.getERC20TokenList
 
 ___
 

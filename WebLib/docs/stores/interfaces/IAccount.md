@@ -10,6 +10,12 @@ custom_edit_url: null
 
 - `MobxClearAccount`
 
+- [`ILists`](ILists.md)
+
+- [`ICommands`](ICommands.md)
+
+- [`IViews`](IViews.md)
+
   ↳ **`IAccount`**
 
 ## Properties
@@ -17,6 +23,10 @@ custom_edit_url: null
 ### ERC20TokensContract
 
 • **ERC20TokensContract**: [`IERC20TokenItem`](IERC20TokenItem.md)[]
+
+#### Inherited from
+
+[IViews](IViews.md).[ERC20TokensContract](IViews.md#erc20tokenscontract)
 
 ___
 
@@ -60,9 +70,9 @@ ___
 
 • **approvedCmd**: [`IApprovedCmd`](IApprovedCmd.md)
 
-#### Overrides
+#### Inherited from
 
-MobxClearAccount.approvedCmd
+[ICommands](ICommands.md).[approvedCmd](ICommands.md#approvedcmd)
 
 ___
 
@@ -100,9 +110,9 @@ ___
 
 • **collectCmd**: [`ICollectCmd`](ICollectCmd.md)
 
-#### Overrides
+#### Inherited from
 
-MobxClearAccount.collectCmd
+[ICommands](ICommands.md).[collectCmd](ICommands.md#collectcmd)
 
 ___
 
@@ -110,9 +120,9 @@ ___
 
 • **connectCmd**: [`IConnectCmd`](IConnectCmd.md)
 
-#### Overrides
+#### Inherited from
 
-MobxClearAccount.connectCmd
+[ICommands](ICommands.md).[connectCmd](ICommands.md#connectcmd)
 
 ___
 
@@ -126,9 +136,9 @@ ___
 
 • **depositCmd**: [`IDepositCmd`](IDepositCmd.md)
 
-#### Overrides
+#### Inherited from
 
-MobxClearAccount.depositCmd
+[ICommands](ICommands.md).[depositCmd](ICommands.md#depositcmd)
 
 ___
 
@@ -136,19 +146,15 @@ ___
 
 • **deviceInfo**: [`IDeviceInfo`](IDeviceInfo.md)
 
-#### Overrides
-
-MobxClearAccount.deviceInfo
-
 ___
 
 ### disconnectCmd
 
 • **disconnectCmd**: [`IDisconnectCmd`](IDisconnectCmd.md)
 
-#### Overrides
+#### Inherited from
 
-MobxClearAccount.disconnectCmd
+[ICommands](ICommands.md).[disconnectCmd](ICommands.md#disconnectcmd)
 
 ___
 
@@ -176,17 +182,29 @@ ___
 
 • **gasPriceMap**: `Map`<`string`, `string`\>
 
+#### Inherited from
+
+[IViews](IViews.md).[gasPriceMap](IViews.md#gaspricemap)
+
 ___
 
 ### incoming
 
 • **incoming**: [`ITransferItems`](ITransferItems.md)
 
+#### Inherited from
+
+[ILists](ILists.md).[incoming](ILists.md#incoming)
+
 ___
 
 ### kiroTokenContract
 
 • **kiroTokenContract**: `undefined` \| [`IKiroToken`](IKiroToken.md)
+
+#### Inherited from
+
+[IViews](IViews.md).[kiroTokenContract](IViews.md#kirotokencontract)
 
 ___
 
@@ -220,6 +238,10 @@ ___
 
 • **outgoing**: [`ITransferItems`](ITransferItems.md)
 
+#### Inherited from
+
+[ILists](ILists.md).[outgoing](ILists.md#outgoing)
+
 ___
 
 ### rate
@@ -236,15 +258,19 @@ ___
 
 • **retrieveCmd**: [`IRetrieveCmd`](IRetrieveCmd.md)
 
-#### Overrides
+#### Inherited from
 
-MobxClearAccount.retrieveCmd
+[ICommands](ICommands.md).[retrieveCmd](ICommands.md#retrievecmd)
 
 ___
 
 ### safeTransferContract
 
 • **safeTransferContract**: `undefined` \| [`ISafeTransfer`](ISafeTransfer.md)
+
+#### Inherited from
+
+[IViews](IViews.md).[safeTransferContract](IViews.md#safetransfercontract)
 
 ___
 
@@ -268,6 +294,10 @@ ___
 
 • **stakingContract**: `undefined` \| [`IStaking`](IStaking.md)
 
+#### Inherited from
+
+[IViews](IViews.md).[stakingContract](IViews.md#stakingcontract)
+
 ___
 
 ### stakingMap
@@ -290,6 +320,10 @@ ___
 
 • **transfers**: [`ITransferItems`](ITransferItems.md)
 
+#### Inherited from
+
+[ILists](ILists.md).[transfers](ILists.md#transfers)
+
 ___
 
 ### wallet
@@ -297,22 +331,6 @@ ___
 • **wallet**: [`IWallet`](IWallet.md)
 
 ## Methods
-
-### ERC20TokenList
-
-▸ **ERC20TokenList**(`chainName`): [`IERC20TokenItem`](IERC20TokenItem.md)[]
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `chainName` | `string` |
-
-#### Returns
-
-[`IERC20TokenItem`](IERC20TokenItem.md)[]
-
-___
 
 ### approve
 
@@ -328,9 +346,9 @@ MobxClearAccount.approve
 
 ___
 
-### approvedToken
+### approveToken
 
-▸ **approvedToken**(`symbol`, `amount`): `boolean`
+▸ **approveToken**(`symbol`, `amount`): `boolean`
 
 #### Parameters
 
@@ -345,7 +363,7 @@ ___
 
 #### Inherited from
 
-MobxClearAccount.approvedToken
+MobxClearAccount.approveToken
 
 ___
 
@@ -446,6 +464,26 @@ ___
 #### Inherited from
 
 MobxClearAccount.disconnect
+
+___
+
+### getERC20TokenList
+
+▸ **getERC20TokenList**(`chainName`): [`IERC20TokenItem`](IERC20TokenItem.md)[]
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `chainName` | `string` |
+
+#### Returns
+
+[`IERC20TokenItem`](IERC20TokenItem.md)[]
+
+#### Inherited from
+
+[IViews](IViews.md).[getERC20TokenList](IViews.md#geterc20tokenlist)
 
 ___
 

@@ -5,16 +5,16 @@ import Web3 from 'web3'
 import { Web3ProviderUpdater } from './Web3ProviderUpdater'
 import { IInAppWalletConnector } from '../customConnectors/InAppWalletConnector'
 import { Connectors } from '..'
+import { provider } from 'web3/node_modules/web3-core';
 
 const getLibrary = (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  provider: any,
+  provider: provider,
   connector?: AbstractConnector | IInAppWalletConnector
 ) => {
   if (connector) {
     const appConnector = connector as IInAppWalletConnector
     if (appConnector.name === Connectors.InAppWallet) {
-      const web3 = appConnector?.web3
+      const web3 = appConnector.web3
       return web3
     }
   }

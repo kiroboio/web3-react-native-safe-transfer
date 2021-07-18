@@ -1,12 +1,3 @@
----
-id: "index"
-title: "@kiroboio/web3-react-safe-transfer"
-slug: "/hooks"
-sidebar_label: "Readme"
-sidebar_position: 0
-custom_edit_url: null
----
-
 # Kirobo hooks
 
 - *<a href="./hooks/modules#uselocalstorage">Use Local Storage</a>*

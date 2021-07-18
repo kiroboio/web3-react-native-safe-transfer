@@ -44,7 +44,7 @@ yarn add @kiroboio/web3-react-safe-transfer
 
 *<a href="./stores/interfaces/IAccount#properties">Account States</a>*
 
-##### Example
+
 
 ------
 
@@ -61,7 +61,7 @@ const {
 
 *<a href="./stores/interfaces/IAccount#methods">Account Actions</a>*
 
-##### Example
+
 
 ------
 
@@ -121,7 +121,7 @@ const { incoming, outgoing, swaps } = useAccount()
 
 ### Observer
 
-##### Example
+
 
 ------
 
@@ -145,7 +145,7 @@ Before start to use `web3` you have to `connect`
 
 <a href="./stores/interfaces/IAccount#connect">Connect</a>
 
-##### Example 
+ 
 
 ------
 
@@ -185,7 +185,7 @@ To create a retrievable transfer that can be collected use:
 
 `const { deposit } = useAccount()`
 
-##### Example
+
 
 ------
 
