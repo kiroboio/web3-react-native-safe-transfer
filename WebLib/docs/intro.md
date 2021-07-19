@@ -1,8 +1,8 @@
 ---
+title: Getting Started
 sidebar_position: 1
 sidebar_label: "How To Use"
 ---
-## Getting Started
 
 ### Install
 
