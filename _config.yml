@@ -5,5 +5,7 @@ relative_links:
   collections: true
 site: 
   - WebLib/docs
+includes:
+  - Readme.md
 
 theme: jekyll-theme-merlot
