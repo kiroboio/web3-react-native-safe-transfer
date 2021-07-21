@@ -1,7 +1,7 @@
 ---
 id: "index"
 title: "@kiroboio/web3-react-safe-transfer"
-slug: "/dto"
+slug: "/api/dto"
 sidebar_label: "Readme"
 sidebar_position: 0
 custom_edit_url: null

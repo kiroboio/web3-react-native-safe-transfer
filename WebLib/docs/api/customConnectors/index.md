@@ -1,7 +1,7 @@
 ---
 id: "index"
 title: "@kiroboio/web3-react-safe-transfer"
-slug: "/customConnectors"
+slug: "/api/customConnectors"
 sidebar_label: "Readme"
 sidebar_position: 0
 custom_edit_url: null

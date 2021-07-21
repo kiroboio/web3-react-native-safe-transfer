@@ -6,6 +6,10 @@ sidebar_position: 0.5
 custom_edit_url: null
 ---
 
+## Namespaces
+
+- [yup](modules/yup.md)
+
 ## Functions
 
 ### currencyValueToWei

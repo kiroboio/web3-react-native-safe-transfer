@@ -1,7 +1,7 @@
 ---
 id: "index"
 title: "@kiroboio/web3-react-safe-transfer"
-slug: "/hooks"
+slug: "/api/hooks"
 sidebar_label: "Readme"
 sidebar_position: 0
 custom_edit_url: null

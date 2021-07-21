@@ -75,16 +75,29 @@ module.exports = {
         postBuildDeletedFolders: ['shared'],
       }
     ],
+    // {
+    //   type: 'category',
+    //   label: 'Guides',
+    //   collapsed: false,
+    //   items: [
+    //     'creating-pages',
+    //     {
+    //       type: 'category',
+    //       label: 'Docs',
+    //       items: ['introduction', 'sidebar', 'markdown-features', 'versioning'],
+    //     },
+    //   ],
+    // },
     [
       'docusaurus-plugin-typedoc',
       {
         id:'context',
         entryPoints: ['../dev/context/index.ts'],
-        out: 'context',
+        out: "api/context",
         disableSources: true,
         sidebar: {
           categoryLabel: 'Context',
-          position: 2,
+          position: 1,
           fullNames: true
         },
         includes: ['../dev/stores']
@@ -109,11 +122,11 @@ module.exports = {
       {
         id:'hooks',
         entryPoints: ['../dev/hooks/index.ts'],
-        out: 'hooks',
+        out: "api/hooks",
         disableSources: true,
         sidebar: {
           categoryLabel: 'Hooks',
-          position: 4,
+          position: 2,
           fullNames: true
         },
       },
@@ -123,7 +136,7 @@ module.exports = {
       {
         id:'stores',
         entryPoints: ['../dev/stores/index.ts'],
-        out: 'stores',
+        out: 'api/stores',
         disableSources: true,
         tsconfig: '../tsconfig.json',
         sidebar: {
@@ -140,7 +153,7 @@ module.exports = {
       {
         id:'utils',
         entryPoints: ['../dev/utils/index.ts'],
-        out: 'utils',
+        out: 'api/utils',
         disableSources: true,
         sidebar: {
           categoryLabel: 'Utils',
@@ -154,7 +167,7 @@ module.exports = {
       {
         id:'dto',
         entryPoints: ['../dev/dto/index.ts'],
-        out: 'dto',
+        out: 'api/dto',
         disableSources: true,
         sidebar: {
           categoryLabel: 'DTO',
@@ -168,7 +181,7 @@ module.exports = {
       {
         id:'customConnectors',
         entryPoints: ['../dev/customConnectors/index.ts'],
-        out: 'customConnectors',
+        out: 'api/customConnectors',
         disableSources: true,
         sidebar: {
           categoryLabel: 'Custom Connectors',

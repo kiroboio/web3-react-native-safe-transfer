@@ -1,84 +1,96 @@
-import Web3 from 'web3'
+import Web3 from "web3";
 
-import { Maybe } from 'yup/lib/types'
-import { AnyObject } from 'yup/lib/object'
-import { useAccount } from '../context/account'
-import { currencyValueToWei } from './ethereum'
+import { Maybe } from "yup/lib/types";
+import { AnyObject } from "yup/lib/object";
+import { useAccount } from "../context/account";
+import { currencyValueToWei } from "./ethereum";
 
-import {
+import yup, {
   StringSchema,
-  addMethod,
   NumberSchema,
   BaseSchema,
   string as yupString,
   number as yupNumber,
-} from 'yup'
+} from "yup";
 
-addMethod<StringSchema>(yupString, 'emptyAsUndefined', function () {
-  return this.transform((value) => (value ? value : undefined))
-})
+yup.addMethod<StringSchema>(yupString, "emptyAsUndefined", function () {
+  return this.transform((value) => (value ? value : undefined));
+});
 
-addMethod<NumberSchema>(yupNumber, 'emptyAsUndefined', function () {
+yup.addMethod<NumberSchema>(yupNumber, "emptyAsUndefined", function () {
   return this.transform((value, originalValue) =>
     String(originalValue)?.trim() ? value : undefined
-  )
-})
+  );
+});
 
-addMethod<StringSchema>(yupString, 'ethereumAddress', function (errorMessage) {
-  return this.test(`test-ethereum-address`, errorMessage, function (value) {
-    const { path, createError } = this
-
-    return (
-      (value && Web3.utils.isAddress(value)) ||
-      createError({ path, message: errorMessage })
-    )
-  })
-})
-
-addMethod<StringSchema>(
+/**
+ * ```
+ * const validationSchema = object().shape({
+    to: yupString()
+      .trim()
+      .required(t('required'))
+      .ethereumAddress(t('validEthereumAddressErr'))
+  })```
+ */
+yup.addMethod<StringSchema>(
   yupString,
-  'ether',
+  "ethereumAddress",
+  function (errorMessage) {
+    return this.test(`test-ethereum-address`, errorMessage, function (value) {
+      const { path, createError } = this;
+
+      return (
+        (value && Web3.utils.isAddress(value)) ||
+        createError({ path, message: errorMessage })
+      );
+    });
+  }
+);
+
+yup.addMethod<StringSchema>(
+  yupString,
+  "ether",
   function (min, minErrorMessage, maxErrorMessage) {
-    const { currency, balance, tokenBalance } = useAccount()
-    return this.test(`test-ether`, 'ether failed', function (value) {
-      const { path, createError } = this
-      value = value || '0'
-      const decimal = value.indexOf('.')
-      if (decimal > 0) value = value.substr(0, decimal + 19)
+    const { currency, balance, tokenBalance } = useAccount();
+    return this.test(`test-ether`, "ether failed", function (value) {
+      const { path, createError } = this;
+      value = value || "0";
+      const decimal = value.indexOf(".");
+      if (decimal > 0) value = value.substr(0, decimal + 19);
       const weiValue = Web3.utils.toBN(
         currencyValueToWei(value, currency.decimals || 18)
-      )
-      const weiMin = Web3.utils.toBN(min)
+      );
+      const weiMin = Web3.utils.toBN(min);
       const weiMax = Web3.utils.toBN(
-        currency.symbol === 'ETH' ? balance : tokenBalance
-      )
+        currency.symbol === "ETH" ? balance : tokenBalance
+      );
       if (value && weiValue.gt(weiMax)) {
         return createError({
           path,
           message: `${maxErrorMessage} ${currency.symbol}`,
-        })
+        });
       }
       if (value && weiValue.lt(weiMin)) {
-        return createError({ path, message: minErrorMessage })
+        return createError({ path, message: minErrorMessage });
       }
-      return true
-    })
+      return true;
+    });
   }
-)
+);
 
-declare module 'yup' {
+declare module "yup" {
   interface StringSchema<
     TType extends Maybe<string> = string | undefined,
     TContext extends AnyObject = AnyObject,
     TOut extends TType = TType
   > extends BaseSchema<TType, TContext, TOut> {
-    emptyAsUndefined(): StringSchema<TType, TContext>
-    ethereumAddress(message: string): StringSchema<TType, TContext>
+    emptyAsUndefined(): StringSchema<TType, TContext>;
+    ethereumAddress(message: string): StringSchema<TType, TContext>;
     ether(
       min: string,
       minMessage: string,
       maxMessage: string
-    ): StringSchema<TType, TContext>
+    ): StringSchema<TType, TContext>;
   }
 
   interface NumberSchema<
@@ -86,8 +98,8 @@ declare module 'yup' {
     TContext extends AnyObject = AnyObject,
     TOut extends TType = TType
   > extends BaseSchema<TType, TContext, TOut> {
-    emptyAsUndefined(): NumberSchema<TType, TContext>
+    emptyAsUndefined(): NumberSchema<TType, TContext>;
   }
 }
 
-export * from 'yup';
+export { yup };
