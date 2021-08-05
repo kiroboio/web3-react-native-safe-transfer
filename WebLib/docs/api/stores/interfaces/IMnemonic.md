@@ -14,6 +14,16 @@ custom_edit_url: null
 
 ## Properties
 
+### clear
+
+• **clear**: { `is`:  ; `run`: () => `void`  } & () => `void`
+
+#### Inherited from
+
+MobxClearInstance.clear
+
+___
+
 ### clearCmd
 
 • **clearCmd**: [`ICmdBase`](ICmdBase.md)
@@ -34,6 +44,16 @@ MobxClearInstance.data
 
 ___
 
+### remove
+
+• **remove**: { `is`:  ; `run`: () => `void`  } & () => `void`
+
+#### Inherited from
+
+MobxClearInstance.remove
+
+___
+
 ### removeCmd
 
 • **removeCmd**: [`ICmdBase`](ICmdBase.md)
@@ -41,6 +61,16 @@ ___
 #### Overrides
 
 MobxClearInstance.removeCmd
+
+___
+
+### restore
+
+• **restore**: { `is`:  ; `run`: () => `void`  } & () => `void`
+
+#### Inherited from
+
+MobxClearInstance.restore
 
 ___
 
@@ -53,48 +83,6 @@ ___
 MobxClearInstance.restoreCmd
 
 ## Methods
-
-### clear
-
-▸ **clear**(): `void`
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-MobxClearInstance.clear
-
-___
-
-### remove
-
-▸ **remove**(): `void`
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-MobxClearInstance.remove
-
-___
-
-### restore
-
-▸ **restore**(): `void`
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-MobxClearInstance.restore
-
-___
 
 ### set
 

@@ -1,36 +1,36 @@
 ---
-id: "IApprovedCmd"
-title: "Interface: IApprovedCmd"
-sidebar_label: "IApprovedCmd"
+id: "ISwapDepositCmd"
+title: "Interface: ISwapDepositCmd"
+sidebar_label: "ISwapDepositCmd"
 sidebar_position: 0
 custom_edit_url: null
 ---
 
 ## Hierarchy
 
-- `MobxClearInstance`<typeof [`ApprovedCmd`](../modules.md#approvedcmd)\>
+- `MobxClearInstance`<typeof [`swapDepositCmd`](../modules.md#swapdepositcmd)\>
 
-  ↳ **`IApprovedCmd`**
+  ↳ **`ISwapDepositCmd`**
 
 ## Properties
 
-### amount
+### desiredValue
 
-• **amount**: `string`
+• **desiredValue**: `string`
 
 #### Inherited from
 
-MobxClearInstance.amount
+MobxClearInstance.desiredValue
 
 ___
 
-### contractAddress
+### from
 
-• **contractAddress**: `string`
+• **from**: `string`
 
 #### Inherited from
 
-MobxClearInstance.contractAddress
+MobxClearInstance.from
 
 ___
 
@@ -41,6 +41,66 @@ ___
 #### Overrides
 
 MobxClearInstance.is
+
+___
+
+### message
+
+• **message**: `string`
+
+#### Inherited from
+
+MobxClearInstance.message
+
+___
+
+### privateSalt
+
+• **privateSalt**: `string`
+
+#### Inherited from
+
+MobxClearInstance.privateSalt
+
+___
+
+### publicSalt
+
+• **publicSalt**: `string`
+
+#### Inherited from
+
+MobxClearInstance.publicSalt
+
+___
+
+### secretHash
+
+• **secretHash**: `string`
+
+#### Inherited from
+
+MobxClearInstance.secretHash
+
+___
+
+### to
+
+• **to**: `string`
+
+#### Inherited from
+
+MobxClearInstance.to
+
+___
+
+### value
+
+• **value**: `string`
+
+#### Inherited from
+
+MobxClearInstance.value
 
 ## Methods
 
@@ -109,13 +169,13 @@ ___
 
 ### prepare
 
-▸ **prepare**(`contractAddress`): `void`
+▸ **prepare**(`params`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `contractAddress` | `string` |
+| `params` | [`swapDepositCmdParams`](swapDepositCmdParams.md) |
 
 #### Returns
 

@@ -14,6 +14,12 @@ custom_edit_url: null
 
 ## Properties
 
+### history
+
+• **history**: [`ITransferItems`](ITransferItems.md)
+
+___
+
 ### incoming
 
 • **incoming**: [`ITransferItems`](ITransferItems.md)
@@ -23,6 +29,12 @@ ___
 ### outgoing
 
 • **outgoing**: [`ITransferItems`](ITransferItems.md)
+
+___
+
+### swaps
+
+• **swaps**: [`ITransferItems`](ITransferItems.md)
 
 ___
 

@@ -1,17 +1,19 @@
-export type EthTransferState =
+type EthTransferState =
   | 'waiting-for-deposit'
   | 'retrieving'
   | 'retrieved'
   | 'ready'
   | 'collecting'
   | 'collected'
+  | 'swapping'
+  | 'swapped'
   | 'rejected'
   | 'invalid'
   | 'new'
   | 'creating'
   | 'unknown'
 
-export interface EthCollectInfo {
+interface EthCollectInfo {
   /**
    * blockchain height
    *
@@ -32,7 +34,7 @@ export interface EthCollectInfo {
   txid: string
 }
 
-export interface EthRetrieveInfo {
+interface EthRetrieveInfo {
   /**
    * blockchain height
    *
@@ -53,7 +55,7 @@ export interface EthRetrieveInfo {
   txid: string
 }
 
-export interface EthDepositInfo {
+interface EthDepositInfo {
   /**
    * blockchain height
    *
@@ -74,7 +76,7 @@ export interface EthDepositInfo {
   txid: string
 }
 
-export interface EthTransactionInfo {
+interface EthTransactionInfo {
   inputs: { txid: string; vout: number }[]
   coins: { value: number; address: string }[]
   txid: string
@@ -86,6 +88,12 @@ export interface EthTokenInfo {
   decimals: number
   symbol: string
   type: 'ERC20'
+}
+
+export interface EthSwapInfo {
+  value: string
+  token?: EthTokenInfo
+  fees: string
 }
 
 export interface PaymentRequest {
@@ -136,6 +144,8 @@ export interface EthTransferCreateRequestDto {
   value: string
 
   token?: EthTokenInfo
+
+  swap?: EthSwapInfo
 
   /**
    * the transfer fees in wei
@@ -273,6 +283,8 @@ export interface EthTransferResponseDto {
    */
   token?: EthTokenInfo
 
+  interchange?: EthSwapInfo
+
   /**
    * the transfer fees in wei
    *
@@ -325,6 +337,7 @@ export interface EthTransferResponseDto {
   deposit: EthDepositInfo
   collect: EthCollectInfo
   retrieve: EthRetrieveInfo
+  swap: EthCollectInfo
 
   expires: {
     at?: Date

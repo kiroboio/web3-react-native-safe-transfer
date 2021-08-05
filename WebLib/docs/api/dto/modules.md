@@ -8,12 +8,9 @@ custom_edit_url: null
 
 ## Interfaces
 
-- [EthCollectInfo](interfaces/EthCollectInfo.md)
-- [EthDepositInfo](interfaces/EthDepositInfo.md)
 - [EthErc20ResponseDto](interfaces/EthErc20ResponseDto.md)
-- [EthRetrieveInfo](interfaces/EthRetrieveInfo.md)
+- [EthSwapInfo](interfaces/EthSwapInfo.md)
 - [EthTokenInfo](interfaces/EthTokenInfo.md)
-- [EthTransactionInfo](interfaces/EthTransactionInfo.md)
 - [EthTransferCreateDto](interfaces/EthTransferCreateDto.md)
 - [EthTransferCreateRequestDto](interfaces/EthTransferCreateRequestDto.md)
 - [EthTransferData](interfaces/EthTransferData.md)
@@ -29,10 +26,4 @@ custom_edit_url: null
 
 ### EthTransactionInformation
 
-Ƭ **EthTransactionInformation**: [`EthTransactionInfo`](interfaces/EthTransactionInfo.md)
-
-___
-
-### EthTransferState
-
-Ƭ **EthTransferState**: ``"waiting-for-deposit"`` \| ``"retrieving"`` \| ``"retrieved"`` \| ``"ready"`` \| ``"collecting"`` \| ``"collected"`` \| ``"rejected"`` \| ``"invalid"`` \| ``"new"`` \| ``"creating"`` \| ``"unknown"``
+Ƭ **EthTransactionInformation**: `EthTransactionInfo`

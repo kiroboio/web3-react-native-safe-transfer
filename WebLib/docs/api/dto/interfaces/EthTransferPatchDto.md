@@ -10,13 +10,13 @@ custom_edit_url: null
 
 ### collect
 
-• `Optional` **collect**: [`EthCollectInfo`](EthCollectInfo.md)
+• `Optional` **collect**: `EthCollectInfo`
 
 ___
 
 ### deposit
 
-• `Optional` **deposit**: [`EthDepositInfo`](EthDepositInfo.md)
+• `Optional` **deposit**: `EthDepositInfo`
 
 ___
 
@@ -35,13 +35,13 @@ ___
 
 ### retrieve
 
-• `Optional` **retrieve**: [`EthRetrieveInfo`](EthRetrieveInfo.md)
+• `Optional` **retrieve**: `EthRetrieveInfo`
 
 ___
 
 ### state
 
-• **state**: [`EthTransferState`](../modules.md#ethtransferstate)
+• **state**: `EthTransferState`
 
 ___
 

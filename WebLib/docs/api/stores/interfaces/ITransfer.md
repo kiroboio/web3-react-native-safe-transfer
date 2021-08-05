@@ -94,6 +94,16 @@ MobxClearInstance.state
 
 ___
 
+### swap
+
+• **swap**: { `fees`: `string` ; `token`: { address: string; decimals: number; symbol: string; type: string; } & `NonEmptyObject` & `IStateTreeNode`<`IOptionalIType`<`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>, [`undefined`]\>\> ; `value`: `string`  } & `NonEmptyObject` & `IStateTreeNode`<`IOptionalIType`<`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>, [`undefined`]\>\>
+
+#### Inherited from
+
+MobxClearInstance.swap
+
+___
+
 ### to
 
 • **to**: `string`

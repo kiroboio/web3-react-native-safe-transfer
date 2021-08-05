@@ -28,7 +28,7 @@ ___
 
 ### deposit
 
-• **deposit**: [`EthDepositInfo`](EthDepositInfo.md)
+• **deposit**: `EthDepositInfo`
 
 #### Inherited from
 
@@ -117,11 +117,21 @@ ___
 
 ### state
 
-• **state**: [`EthTransferState`](../modules.md#ethtransferstate)
+• **state**: `EthTransferState`
 
 #### Inherited from
 
 [EthTransferCreateRequestDto](EthTransferCreateRequestDto.md).[state](EthTransferCreateRequestDto.md#state)
+
+___
+
+### swap
+
+• `Optional` **swap**: [`EthSwapInfo`](EthSwapInfo.md)
+
+#### Inherited from
+
+[EthTransferCreateRequestDto](EthTransferCreateRequestDto.md).[swap](EthTransferCreateRequestDto.md#swap)
 
 ___
 

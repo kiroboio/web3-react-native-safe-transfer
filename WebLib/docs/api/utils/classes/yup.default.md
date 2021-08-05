@@ -509,6 +509,23 @@ ___
 
 ___
 
+### desiredCurrency
+
+▸ **desiredCurrency**(`min`, `minMessage`): [`default`](yup.default.md)<`TType`, `TContext`, `TType`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `min` | `string` |
+| `minMessage` | `string` |
+
+#### Returns
+
+[`default`](yup.default.md)<`TType`, `TContext`, `TType`\>
+
+___
+
 ### email
 
 ▸ **email**(`message?`): [`default`](yup.default.md)<`TType`, `TContext`, `TOut`\>

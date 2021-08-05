@@ -56,6 +56,12 @@ ___
 
 ___
 
+### swap
+
+• `Optional` **swap**: `EthSwapInfo`
+
+___
+
 ### to
 
 • **to**: `string`

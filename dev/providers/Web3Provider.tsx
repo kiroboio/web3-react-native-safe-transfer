@@ -28,3 +28,5 @@ export const Web3Provider: React.FC = () => {
     </Web3ReactProvider>
   )
 }
+
+

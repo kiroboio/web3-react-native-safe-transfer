@@ -47,3 +47,21 @@ ___
 ### retrieveCmd
 
 • **retrieveCmd**: [`IRetrieveCmd`](IRetrieveCmd.md)
+
+___
+
+### swapCmd
+
+• **swapCmd**: [`ICollectCmd`](ICollectCmd.md)
+
+___
+
+### swapDepositCmd
+
+• **swapDepositCmd**: [`ISwapDepositCmd`](ISwapDepositCmd.md)
+
+___
+
+### swapRetrieveCmd
+
+• **swapRetrieveCmd**: [`IRetrieveCmd`](IRetrieveCmd.md)

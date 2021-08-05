@@ -5,17 +5,17 @@ import { useAccount } from '../context/account'
 import { useWeb3 } from '../hooks/useWeb3'
 import KiroboService from '@kiroboio/safe-transfer-lib-lite'
 import { observer } from 'mobx-react-lite'
-import { IERC20TokenItem, ITransferItem, ITransferItems } from '../stores/account'
+import { ERC20TokenItem, ITransferItem, ITransferItems } from '../stores/account'
 import safeTransferABI from '../abi/safeTransfer.json'
 import erc20ABI from '../abi/erc20.json'
-import { EthTokenInfo, EthTransferResponseDto, EthTransferState } from '../dto/EthTransfersDto'
+import safeSwapABI from '../abi/safeSwap.json'
+import { EthTokenInfo, EthTransferResponseDto } from '../dto/EthTransfersDto'
 import { Connectors } from '../hooks/useWeb3'
-import { EthErc20ResponseDto,  } from '../dto/EthErc20Dto'
+import { EthErc20ResponseDto } from '../dto/EthErc20Dto'
 import { useWallet } from '../hooks/useWallet'
 import '@metamask/detect-provider'
 import InAppWalletConnector from '../customConnectors/InAppWalletConnector'
 import { UAParser } from 'ua-parser-js'
-
 
 const MAX_CONFIRMS = 30
 
@@ -41,10 +41,16 @@ const SERVICE = {
   COLLECT(network: string) {
     return `v1/eth/${network}/action/collect`
   },
+  SWAP(network: string) {
+    return `v1/eth/${network}/action/swap`
+  },
   ERC20(network: string) {
     return `v1/eth/${network}/erc20`
   },
 }
+
+
+export type ErrorType = { message?: string; reason: string }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const usePrevious = (value: any) => {
@@ -90,9 +96,16 @@ const responseToTransferItem = (
       ? item.collect.confirmed
       : item.state === 'retrieved'
       ? item.retrieve.confirmed
+      : item.state === 'swapped'
+      ? item.swap.confirmed
       : -1
 
-  const txid = item.collect.txid || item.retrieve.txid || item.deposit.txid
+  const txid =
+    item.swap?.txid ||
+    item.collect.txid ||
+    item.retrieve.txid ||
+    item.deposit.txid ||
+    item.swap.txid
 
   return {
     id: item.id,
@@ -108,6 +121,7 @@ const responseToTransferItem = (
     confirmedBlock,
     message: item.message,
     token: item.token,
+    swap: item.interchange,
   }
 }
 
@@ -196,6 +210,68 @@ const outboxQuery = ({
   watch,
 })
 
+const transfersQuery = ({
+  address,
+  thresholdBlock,
+  $skip,
+  $limit,
+  watch,
+}: FetchQueryParams) => ({
+  address,
+  service: 'transfer',
+  state: {
+    $in: [
+      'new',
+      'creating',
+      'retrieved',
+      'retrieving',
+      'collected',
+      'collecting',
+      'unknown',
+    ],
+  },
+  $or: [
+    { 'collect.confirmed': -1, 'retrieve.confirmed': -1 },
+    { 'collect.confirmed': { $gt: thresholdBlock } },
+    { 'retrieve.confirmed': { $gt: thresholdBlock } },
+  ],
+  $sort: { updatedAt: -1 },
+  $skip,
+  $limit,
+  watch,
+})
+
+const swapsQuery = ({
+  address,
+  thresholdBlock,
+  $skip,
+  $limit,
+  watch,
+}: FetchQueryParams) => ({
+  address,
+  service: 'swap',
+  state: {
+    $in: [
+      'new',
+      'creating',
+      'retrieved',
+      'retrieving',
+      'swapped',
+      'swapping',
+      'unknown',
+    ],
+  },
+  $or: [
+    { 'swap.confirmed': -1, 'retrieve.confirmed': -1 },
+    { 'swap.confirmed': { $gt: thresholdBlock } },
+    { 'retrieve.confirmed': { $gt: thresholdBlock } },
+  ],
+  $sort: { updatedAt: -1 },
+  $skip,
+  $limit,
+  watch,
+})
+
 const historyQuery = ({
   address,
   thresholdBlock,
@@ -207,6 +283,7 @@ const historyQuery = ({
   $or: [
     { 'collect.confirmed': { $gt: -1, $lte: thresholdBlock } },
     { 'retrieve.confirmed': { $gt: -1, $lte: thresholdBlock } },
+    { 'swap.confirmed': { $gt: -1, $lte: thresholdBlock } },
   ],
   $sort: { updatedAt: -1 },
   $skip,
@@ -234,8 +311,6 @@ const removeFromStore = ({ store, address, filter }: RemoveFromStoreParams) => {
   return store.remove(address, filter)
 }
 
-export type ErrorType = { message?: string; reason: string }
-
 export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
   const {
     connect: web3Connect,
@@ -254,7 +329,10 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     connectCmd,
     disconnectCmd,
     address,
+    swapperAddress,
+    setSwapperBalance,
     setAddress,
+    setCanGetRewards,
     chainId,
     setChainId,
     block,
@@ -268,29 +346,38 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     setRate,
     approvedCmd,
     depositCmd,
+    swapDepositCmd,
     retrieveCmd,
+    swapRetrieveCmd,
     collectCmd,
+    swapCmd,
+    history,
+    swaps,
     transfers,
     incoming,
     outgoing,
     safeTransferContract,
     setSafeTransferContract,
+    safeSwapContract,
+    setSafeSwapContract,
     setStakingContract,
     setKiroTokenContract,
     setERC20TokenContract,
     setERC20TokenBalance,
     setErc20TokenRate,
     clearERC20TokenBalances,
-    getERC20TokenList,
+    ERC20TokenList,
     setCurrencyBalance,
     currency,
+    desiredCurrency,
     setCurrency,
+    setDesiredCurrency,
     setAllowance,
+    formType,
     setDeviceInfo,
     wallet,
     gasPriceMap,
   } = useAccount()
-
 
   const {
     getMnemonic,
@@ -316,6 +403,10 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
   const [safeTransferContractWeb3, setSafeTransferContractWeb3] = useState(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     new new Web3().eth.Contract(safeTransferABI as any)
+  )
+  const [safeSwapContractWeb3, setSafeSwapContractWeb3] = useState(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    new new Web3().eth.Contract(safeSwapABI as any)
   )
 
   interface FetchTransferParams {
@@ -344,7 +435,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           store.fetchCmd.done()
           return
         }
-        const network = getChainName(chainId)
+        const network = getChainName(chainId < 1 ? 1 : chainId)
         if (network && block) {
           service
             ?.getService(SERVICE.TRANSFERS(network))
@@ -367,7 +458,6 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           store.fetchCmd.done()
         }
       }
-
       if (store.fetchCmd.is.ready && !store.fetchCmd.is.running) {
         store.fetchCmd.start()
         if (store.fetched === 0 || store.fetched < store.count) {
@@ -393,6 +483,8 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
   const __transfers = useRef(transfers)
   const __incoming = useRef(incoming)
   const __outgoing = useRef(outgoing)
+  const __history = useRef(history)
+  const __swaps = useRef(swaps)
   const __fetchNextTransfers = useRef(fetchNextTransfers)
   const __prevAddress = useRef(prevAddress)
   const __prevChainId = useRef(prevChainId)
@@ -407,19 +499,27 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
   const __setBlock = useRef(setBlock)
   const __active = useRef(active)
   const __address = useRef(address)
+  const __swapperAddress = useRef(swapperAddress)
+  const __setSwapperBalance = useRef(setSwapperBalance)
   const __chainId = useRef(chainId)
   const __connectCmd = useRef(connectCmd)
   const __disconnectCmd = useRef(disconnectCmd)
   const __depositCmd = useRef(depositCmd)
+  const __swapDepositCmd = useRef(swapDepositCmd)
   const __approvedCmd = useRef(approvedCmd)
   const __collectCmd = useRef(collectCmd)
+  const __swapCmd = useRef(swapCmd)
   const __retrieveCmd = useRef(retrieveCmd)
+  const __swapRetrieveCmd = useRef(swapRetrieveCmd)
   const __erc20TokenContractWeb3 = useRef(erc20TokenContractWeb3)
   const __safeTransferContractWeb3 = useRef(safeTransferContractWeb3)
+  const __safeSwapContractWeb3 = useRef(safeSwapContractWeb3)
   const __web3 = useRef(web3)
   const __setRate = useRef(setRate)
   const __setSafeTransferContract = useRef(setSafeTransferContract)
   const __safeTransferContract = useRef(safeTransferContract)
+  const __setSafeSwapContract = useRef(setSafeSwapContract)
+  const __safeSwapContract = useRef(safeSwapContract)
   const __setStakingContract = useRef(setStakingContract)
   const __setDeviceInfo = useRef(setDeviceInfo)
   const __setKiroTokenContract = useRef(setKiroTokenContract)
@@ -430,13 +530,14 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
   const __setCurrencyBalance = useRef(setCurrencyBalance)
 
   const __clearERC20TokenBalances = useRef(clearERC20TokenBalances)
-  const __ERC20TokenList = useRef(getERC20TokenList)
+  const __ERC20TokenList = useRef(ERC20TokenList)
   const __gasPriceMap = useRef(gasPriceMap)
   const __web3Connect = useRef(web3Connect)
   const __web3Connector = useRef(web3Connector)
   const __web3Disconnect = useRef(web3Disconnect)
   const __setActive = useRef(setActive)
   const __setAddress = useRef(setAddress)
+  const __setCanGetRewards = useRef(setCanGetRewards)
   const __setChainId = useRef(setChainId)
   const __setNewMnemonic = useRef(setNewMnemonic)
   const __getMnemonic = useRef(getMnemonic)
@@ -447,14 +548,21 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
   const __setActiveAccount = useRef(setActiveAccount)
 
   const __currency = useRef(currency)
+  const __desiredCurrency = useRef(desiredCurrency)
   const __setCurrency = useRef(setCurrency)
+  const __setDesiredCurrency = useRef(setDesiredCurrency)
   const __setAllowance = useRef(setAllowance)
+  const __formType = useRef(formType)
 
   useEffect(() => {
     __block.current = block
+    __swapperAddress.current = swapperAddress
+    __setSwapperBalance.current = setSwapperBalance
     __transfers.current = transfers
     __incoming.current = incoming
     __outgoing.current = outgoing
+    __history.current = history
+    __swaps.current = swaps
     __fetchNextTransfers.current = fetchNextTransfers
     __prevAddress.current = prevAddress
     __prevChainId.current = prevChainId
@@ -474,17 +582,25 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     __disconnectCmd.current = disconnectCmd
     __approvedCmd.current = approvedCmd
     __depositCmd.current = depositCmd
+    __swapDepositCmd.current = swapDepositCmd
     __collectCmd.current = collectCmd
+    __swapCmd.current = swapCmd
     __retrieveCmd.current = retrieveCmd
+    __swapRetrieveCmd.current = swapRetrieveCmd
     __erc20TokenContractWeb3.current = erc20TokenContractWeb3
     __safeTransferContractWeb3.current = safeTransferContractWeb3
+    __safeSwapContractWeb3.current = safeSwapContractWeb3
     __web3.current = web3
     __setRate.current = setRate
     __setSafeTransferContract.current = setSafeTransferContract
     __safeTransferContract.current = safeTransferContract
+    __setSafeSwapContract.current = setSafeSwapContract
+    __safeSwapContract.current = safeSwapContract
 
     __setCurrency.current = setCurrency
+    __setDesiredCurrency.current = setDesiredCurrency
     __setAllowance.current = setAllowance
+    __formType.current = formType
     __setStakingContract.current = setStakingContract
     __setDeviceInfo.current = setDeviceInfo
     __setKiroTokenContract.current = setKiroTokenContract
@@ -493,8 +609,9 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     __setErc20TokenRate.current = setErc20TokenRate
     __setCurrencyBalance.current = setCurrencyBalance
     __currency.current = currency
+    __desiredCurrency.current = desiredCurrency
     __clearERC20TokenBalances.current = clearERC20TokenBalances
-    __ERC20TokenList.current = getERC20TokenList
+    __ERC20TokenList.current = ERC20TokenList
     __gasPriceMap.current = gasPriceMap
     __web3Connect.current = web3Connect
     __web3Disconnect.current = web3Disconnect
@@ -502,6 +619,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     __web3Activate.current = web3Activate
     __setActive.current = setActive
     __setAddress.current = setAddress
+    __setCanGetRewards.current = setCanGetRewards
     __setChainId.current = setChainId
     __setNewMnemonic.current = setNewMnemonic
     __generateNewMnemonic.current = generateNewMnemonic
@@ -532,8 +650,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
 
       wallet.addAddressCmd.done()
     } catch (e) {
-      const error = e as ErrorType
-      wallet.addAddressCmd.failed({ message: error.message || error.reason })
+      wallet.addAddressCmd.failed({ message: e.message || e.reason })
     }
   }, [wallet.addAddressCmd.is.ready])
 
@@ -554,8 +671,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
 
       wallet.removeAddressCmd.done()
     } catch (e) {
-      const error = e as ErrorType
-      wallet.removeAddressCmd.failed({ message: error.message || error.reason })
+      wallet.removeAddressCmd.failed({ message: e.message || e.reason })
     }
   }, [wallet.removeAddressCmd.is.ready])
 
@@ -579,10 +695,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
       setNewMnemonic(mnemonic)
       wallet.mnemonic.restoreCmd.done()
     } catch (e) {
-      const error = e as ErrorType
-      wallet.mnemonic.restoreCmd.failed({
-        message: error.message || error.reason,
-      })
+      wallet.mnemonic.restoreCmd.failed({ message: e.message || e.reason })
     }
   }, [wallet.mnemonic.restoreCmd.is.ready])
 
@@ -637,9 +750,9 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
   useEffect(() => {
     const web3 = __web3.current
     const chainId = __chainId.current
-    const address = __address.current
-    const safeTransferContract = __safeTransferContract.current
     const currency = __currency.current
+    const safeSwapContract = __safeSwapContract.current
+    const safeTransferContract = __safeTransferContract.current
     const setTokenBalance = __setTokenBalance.current
 
     if (currency.symbol !== 'ETH') {
@@ -648,7 +761,6 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           const service = KiroboService.getInstance()
           const network = getChainName(chainId)
           setTokenBalance(currency.balance)
-
           await setErc20TokenContractWeb3(
             new web3.eth.Contract(
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -662,19 +774,26 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           if (!network) throw new Error('chain is not supported')
           if (!erc20TokenContractWeb3)
             throw new Error('erc20Token contract not found')
-          const allowance = await erc20TokenContractWeb3.methods
-            .allowance(address, safeTransferContract?.address)
+          const contract =
+            formType === 'swap' ? safeSwapContract : safeTransferContract
+
+            const allowance = await erc20TokenContractWeb3.methods
+            .allowance(address, contract?.address)
             .call()
-          __setAllowance.current(allowance)
+  
+            __setAllowance.current(allowance)
         } catch (e) {
-          const error = e as ErrorType
-          console.log(
-            `check allowance failed: ${error.message || error.reason}`
-          )
+          console.log(`check allowance failed: ${e.message || e.reason}`)
         }
       })()
+    } else {
+      const network = getChainName(chainId)
+      const kiroToken = __ERC20TokenList
+        .current(network)
+        .find((token) => token?.symbol === 'KIRO')
+      if (kiroToken?.balance) setTokenBalance(kiroToken?.balance)
     }
-  }, [currency.symbol, currency.address, connectCmd.is.done])
+  }, [currency.symbol, currency.address, connectCmd.is.done, formType, address])
 
   useEffect(() => {
     const web3 = __web3.current
@@ -684,8 +803,6 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     const approvedCmd = __approvedCmd.current
     const erc20TokenContractWeb3 = __erc20TokenContractWeb3.current
     const currency = __currency.current
-    const safeTransferContract = __safeTransferContract.current
-    const gasPriceMap = __gasPriceMap.current
     if (
       approvedCmd.is.ready &&
       !approvedCmd.is.running &&
@@ -697,7 +814,6 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           const service = KiroboService.getInstance()
           const network = getChainName(chainId)
           const { amount } = approvedCmd
-
           if (!service) throw new Error('service not started')
           if (!active) throw new Error('web3 not connected')
           if (!network) throw new Error('chain is not supported')
@@ -708,7 +824,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
 
           const gas = toBN(
             await erc20TokenContractWeb3.methods
-              .approve(safeTransferContract?.address, web3.utils.toBN(amount))
+              .approve(approvedCmd.contractAddress, web3.utils.toBN(amount))
               .estimateGas({ from: address })
           )
             .mul(toBN(11))
@@ -716,25 +832,23 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
             .toString()
 
           const approve = await erc20TokenContractWeb3.methods
-            .approve(safeTransferContract?.address, web3.utils.toBN(amount))
+            .approve(approvedCmd.contractAddress, web3.utils.toBN(amount))
             .send({ from: address, gasPrice, gas })
           if (approve) {
             const allowance = await erc20TokenContractWeb3.methods
-              .allowance(address, safeTransferContract?.address)
+              .allowance(address, approvedCmd.contractAddress)
               .call()
             __setAllowance.current(allowance)
           }
           approvedCmd.done()
         } catch (e) {
-          const error = e as ErrorType
-          approvedCmd.failed({ message: error.message || error.reason })
+          approvedCmd.failed({ message: e.message || e.reason })
         }
       })()
     }
   }, [approvedCmd.is.ready])
 
   // on account.deposit command
- type SendPayloadType = { from: string; gasPrice?: string; gas: string, nonce?: number } ;
 
   useEffect(() => {
     const active = __active.current
@@ -742,9 +856,6 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     const chainId = __chainId.current
     const depositCmd = __depositCmd.current
     const safeTransferContractWeb3 = __safeTransferContractWeb3.current
-    const gasPriceMap = __gasPriceMap.current;
-    const connectCmd = __connectCmd.current;
-
     if (depositCmd.is.ready && !depositCmd.is.running) {
       depositCmd.start()
       ;(async function runDepositCmd() {
@@ -824,7 +935,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
             .div(toBN(10))
             .toString()
 
-          const sendPayload: SendPayloadType = {
+          const sendPayload: any = {
             from,
             gasPrice,
             gas,
@@ -851,14 +962,16 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
                     )
                     .send({ ...sendPayload, value: request.fees })
                     .on('transactionHash', (hash: string) => resolve(hash))
-                    .on('error', (err: ErrorType) => reject(err))
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    .on('error', (err: any) => reject(err))
                 })
               : await new Promise((resolve, reject) => {
                   safeTransferContractWeb3.methods
                     .deposit(to, value, request.fees, secretHash)
                     .send({ ...sendPayload, value: total })
                     .on('transactionHash', (hash: string) => resolve(hash))
-                    .on('error', (err: ErrorType) => reject(err))
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    .on('error', (err: any) => reject(err))
                 })
 
           const hex =
@@ -882,14 +995,208 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
             hex,
           })
 
+          const item = {
+            ...request,
+            collect: { broadcasted: -1, confirmed: -1, txid: '' },
+            deposit: { txid, broadcasted: -1, confirmed: -1 },
+            expires: { at: request.expiresAt },
+            state: 'creating',
+            retrieve: { broadcasted: -1, confirmed: -1, txid: '' },
+            message,
+            txid,
+            salt: request.publicSalt,
+            updatedAt: request.createdAt,
+            token:
+              currency.symbol !== 'ETH'
+                ? {
+                    address: currency.address,
+                    decimals: currency.decimals,
+                    symbol: currency.symbol,
+                    type: 'ERC20',
+                  }
+                : undefined,
+          }
           depositCmd.done()
           putInStore({
             store: __outgoing.current,
+            address,
+            item,
+          })
+          putInStore({
+            store: __transfers.current,
+            address,
+            item,
+          })
+        } catch (e) {
+          console.error('fees: error', 4, e)
+          depositCmd.failed({ message: e.message || e.reason })
+        }
+      })()
+    }
+  }, [depositCmd.is.ready])
+
+  useEffect(() => {
+    const active = __active.current
+    const address = __address.current
+    const chainId = __chainId.current
+    const swapDepositCmd = __swapDepositCmd.current
+    const safeSwapContractWeb3 = __safeSwapContractWeb3.current
+    if (swapDepositCmd.is.ready && !swapDepositCmd.is.running) {
+      swapDepositCmd.start()
+      ;(async function runDepositCmd() {
+        try {
+          const service = KiroboService.getInstance()
+          const network = getChainName(chainId)
+          const {
+            from,
+            to,
+            value,
+            desiredValue,
+            publicSalt,
+            privateSalt,
+            secretHash,
+            message,
+          } = swapDepositCmd
+
+          if (!service) throw new Error('service not started')
+          if (!active) throw new Error('web3 not connected')
+          if (!network) throw new Error('chain is not supported')
+          if (!safeSwapContractWeb3)
+            throw new Error('safeSwap contract not found')
+          if (from !== address) throw new Error('from does not match address')
+
+          interface EthInterchangeInfo {
+            value: string
+            token?: EthTokenInfo
+          }
+          interface ServiceRequestParams {
+            from: string
+            to: string
+            value: string
+            publicSalt: string
+            privateSalt: string
+            secretHash: string
+            message: string
+            token?: EthTokenInfo
+            interchange: EthInterchangeInfo
+          }
+
+          const serviceRequestParams: ServiceRequestParams = {
+            from,
+            to,
+            value,
+            publicSalt,
+            privateSalt,
+            secretHash,
+            message,
+            interchange: {
+              value: desiredValue,
+            },
+          }
+
+          if (__currency.current.symbol !== 'ETH') {
+            serviceRequestParams.token = {
+              address: __currency.current.address,
+              decimals: __currency.current.decimals,
+              symbol: __currency.current.symbol,
+              type: 'ERC20',
+            }
+          } else if (__desiredCurrency.current.symbol !== 'ETH') {
+            serviceRequestParams.interchange.token = {
+              address: __desiredCurrency.current.address,
+              decimals: __desiredCurrency.current.decimals,
+              symbol: __desiredCurrency.current.symbol,
+              type: 'ERC20',
+            }
+          }
+
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const request: any = await service
+            .getService(SERVICE.TRANSFER_REQUEST(network))
+            .create(serviceRequestParams)
+
+          const total = toBN(value).add(toBN(request.fees))
+          const gasPrice = gasPriceMap.get(network)
+          const sendValue = currency.symbol === 'ETH' ? total : request.fees
+
+          const gas = toBN(
+            await safeSwapContractWeb3.methods
+              .deposit(
+                to,
+                currency.address,
+                value,
+                request.fees,
+                desiredCurrency.address,
+                desiredValue,
+                request.swap.fees,
+                secretHash
+              )
+              .estimateGas({ from: address, value: sendValue })
+          )
+            .mul(toBN(11))
+            .div(toBN(10))
+            .toString()
+
+          const sendPayload: any = {
+            from,
+            gasPrice,
+            gas,
+            value: sendValue,
+          }
+
+          if (connectCmd.connector !== Connectors.InAppWallet) {
+            sendPayload.nonce = await __web3.current.eth.getTransactionCount(
+              address,
+              'pending'
+            )
+          }
+
+          const txid: string = await new Promise((resolve, reject) => {
+            safeSwapContractWeb3.methods
+              .deposit(
+                to,
+                currency.address,
+                value,
+                request.fees,
+                desiredCurrency.address,
+                desiredValue,
+                request.swap.fees,
+                secretHash
+              )
+              .send(sendPayload)
+              .on('transactionHash', (hash: string) => resolve(hash))
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              .on('error', (err: any) => reject(err))
+          })
+
+          const hex = safeSwapContractWeb3.methods
+            .deposit(
+              to,
+              currency.address,
+              value,
+              request.fees,
+              desiredCurrency.address,
+              desiredValue,
+              request.swap.fees,
+              secretHash
+            )
+            .encodeABI()
+
+          await service.getService(SERVICE.FOLLOW(network)).create({
+            txid,
+            hex,
+          })
+
+          swapDepositCmd.done()
+
+          putInStore({
+            store: __swaps.current,
             address,
             item: {
               ...request,
               collect: { broadcasted: -1, confirmed: -1, txid: '' },
               deposit: { txid, broadcasted: -1, confirmed: -1 },
+              swap: { txid: '', broadcasted: -1, confirmed: -1 },
               expires: { at: request.expiresAt },
               state: 'creating',
               retrieve: { broadcasted: -1, confirmed: -1, txid: '' },
@@ -906,16 +1213,25 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
                       type: 'ERC20',
                     }
                   : undefined,
+              interchange: {
+                value: desiredValue,
+                token: {
+                  address: __desiredCurrency.current.address,
+                  decimals: __desiredCurrency.current.decimals,
+                  symbol: __desiredCurrency.current.symbol,
+                  type: 'ERC20',
+                },
+                fees: request.swap.fees,
+              },
             },
           })
         } catch (e) {
-          console.error('fees: error', 4, e)
-          const error = e as ErrorType
-          depositCmd.failed({ message: error.message || error.reason })
+          console.error('fees: error swapDepositCmd', 4, e)
+          swapDepositCmd.failed({ message: e.message || e.reason })
         }
       })()
     }
-  }, [depositCmd.is.ready])
+  }, [swapDepositCmd.is.ready])
 
   // on account.retrieve command
   useEffect(() => {
@@ -925,9 +1241,6 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     const outgoing = __outgoing.current
     const retrieveCmd = __retrieveCmd.current
     const safeTransferContractWeb3 = __safeTransferContractWeb3.current
-    const gasPriceMap = __gasPriceMap.current;
-    const connectCmd = __connectCmd.current;
-
     if (retrieveCmd.is.ready && !retrieveCmd.is.running) {
       retrieveCmd.start()
       ;(async function runRetrieveCmd() {
@@ -968,7 +1281,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
             .div(toBN(10))
             .toString()
 
-          const sendPayload:SendPayloadType = {
+          const sendPayload: any = {
             from,
             gasPrice,
             gas,
@@ -1027,24 +1340,134 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
             hex,
           })
 
-          const payload: { id: string, state: EthTransferState, txid?: string} = {
+          const payload: any = {
             id: transfer.id,
             state: 'retrieving',
           }
-          if (txid) payload.txid = txid as string
+          if (txid) payload.txid = txid
           __outgoing.current.update(address, payload)
+          __transfers.current.update(address, payload)
           retrieveCmd.done()
         } catch (e) {
-          const error = e as ErrorType
-          retrieveCmd.failed({ message: error.message || error.reason })
+          console.error('fees: error undo', 4, e)
+          retrieveCmd.failed({ message: e.message || e.reason })
         }
       })()
     }
   }, [retrieveCmd.is.ready])
 
-  // on account.collect command
+  // on account.swapRetrieve command
   useEffect(() => {
     const active = __active.current
+    const address = __address.current
+    const chainId = __chainId.current
+    const swaps = __swaps.current
+    const swapRetrieveCmd = __swapRetrieveCmd.current
+    const safeSwapContractWeb3 = __safeSwapContractWeb3.current
+    if (swapRetrieveCmd.is.ready && !swapRetrieveCmd.is.running) {
+      swapRetrieveCmd.start()
+      ;(async function runSwapRetrieveCmd() {
+        try {
+          const service = KiroboService.getInstance()
+          const network = getChainName(chainId)
+          if (!service) throw new Error('service not started')
+          if (!active) throw new Error('web3 not connected')
+          if (!network) throw new Error('chain is not supported')
+          if (!safeSwapContractWeb3)
+            throw new Error('safeSwap contract not found')
+          const transfer = swaps.map.get(swapRetrieveCmd.id)
+          if (!transfer) throw new Error('transfer not found')
+
+          const { from, to, fees, value, secretHash, token, swap } = transfer
+
+          if (from !== address)
+            throw new Error('from address does not match connected address')
+          const gasPrice = gasPriceMap.get(network)
+
+          const gas = toBN(
+            await safeSwapContractWeb3.methods
+              .retrieve(
+                to,
+                token.address || '0x0000000000000000000000000000000000000000',
+                value,
+                fees,
+                swap.token.address || '0x0000000000000000000000000000000000000000',
+                swap.value,
+                swap.fees,
+                secretHash
+              )
+              .estimateGas({ from: address })
+          )
+            .mul(toBN(11))
+            .div(toBN(10))
+            .toString()
+
+          const sendPayload: any = {
+            from,
+            gasPrice,
+            gas,
+          }
+
+          if (connectCmd.connector !== Connectors.InAppWallet) {
+            sendPayload.nonce = await __web3.current.eth.getTransactionCount(
+              address,
+              'pending'
+            )
+          }
+
+          const txid = await new Promise((resolve, reject) => {
+            safeSwapContractWeb3.methods
+              .retrieve(
+                to,
+                token.address || '0x0000000000000000000000000000000000000000',
+                value,
+                fees,
+                swap.token.address || '0x0000000000000000000000000000000000000000',
+                swap.value,
+                swap.fees,
+                secretHash
+              )
+              .send(sendPayload)
+              .on('transactionHash', (hash: string) => resolve(hash))
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              .on('error', (err: any) => reject(err))
+          })
+
+          const hex = await safeSwapContractWeb3.methods
+            .retrieve(
+              to,
+              token.address || '0x0000000000000000000000000000000000000000',
+              value,
+              fees,
+              swap.token.address || '0x0000000000000000000000000000000000000000',
+              swap.value,
+              swap.fees,
+              secretHash
+            )
+            .encodeABI()
+
+          await service.getService(SERVICE.FOLLOW(network)).create({
+            txid,
+            hex,
+          })
+
+          const payload: any = {
+            id: transfer.id,
+            state: 'retrieving',
+          }
+          if (txid) payload.txid = txid
+          __swaps.current.update(address, payload)
+          swapRetrieveCmd.done()
+        } catch (e) {
+          console.error('fees: error undo swap', 4, e)
+          swapRetrieveCmd.failed({ message: e.message || e.reason })
+        }
+      })()
+    }
+  }, [swapRetrieveCmd.is.ready])
+
+  // on account.collect command
+  useEffect(() => {
     const chainId = __chainId.current
     const collectCmd = __collectCmd.current
     const safeTransferContractWeb3 = __safeTransferContractWeb3.current
@@ -1055,26 +1478,146 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
       ;(async function runCollectCmd() {
         try {
           const service = KiroboService.getInstance()
-          const network = getChainName(chainId)
+          const network = getChainName(chainId < 1 ? 1 : chainId)
           const { id, key } = collectCmd
 
           if (!service) throw new Error('service not started')
-          if (!active) throw new Error('web3 not connected')
           if (!network) throw new Error('chain is not supported')
           if (!safeTransferContractWeb3)
             throw new Error('safeTransfer contract not found')
 
           await service.getService(SERVICE.COLLECT(network)).create({ id, key })
           __incoming.current.update(address, { id, state: 'collecting' })
+          __transfers.current.update(address, { id, state: 'collecting' })
           collectCmd.done()
         } catch (e) {
-          const error = e as ErrorType
-          collectCmd.failed({ message: error.message || error.reason })
+          collectCmd.failed({ message: e.name || e.message || e.reason })
         }
       })()
     }
   }, [collectCmd.is.ready])
 
+  // on account.swap command
+  useEffect(() => {
+    const chainId = __chainId.current
+    const swapCmd = __swapCmd.current
+    const safeSwapContractWeb3 = __safeSwapContractWeb3.current
+    const address = __address.current
+
+    if (swapCmd.is.ready && !swapCmd.is.running) {
+      swapCmd.start()
+      ;(async function runswapCmdCmd() {
+        try {
+          const service = KiroboService.getInstance()
+          const network = getChainName(chainId < 1 ? 1 : chainId)
+          const { id, key } = swapCmd
+
+          if (!service) throw new Error('service not started')
+          if (!network) throw new Error('chain is not supported')
+          if (!safeSwapContractWeb3)
+            throw new Error('safeTransfer contract not found')
+
+          const request: any = await service
+            .getService(SERVICE.SWAP(network))
+            .create({ id, key })
+          const transfer = swaps.map.get(swapCmd.id)
+
+          if (!transfer) throw new Error('transfer not found')
+
+          const { from, to, fees, value, secretHash, token, swap } = transfer
+          const gasPrice = gasPriceMap.get(network)
+
+          const ethValue =
+            !swap.token.symbol || swap.token.symbol === 'ETH'
+              ? toBN(swap.value).add(toBN(swap.fees)).toString()
+              : swap.fees
+
+          const gas = toBN(
+            await safeSwapContractWeb3.methods
+              .swap(
+                from,
+                token.address || '0x0000000000000000000000000000000000000000',
+                value,
+                fees,
+                swap.token.address ||
+                  '0x0000000000000000000000000000000000000000',
+                swap.value,
+                swap.fees,
+                secretHash,
+                request.secret
+              )
+              .estimateGas({ from: to, value: ethValue })
+          )
+            .mul(toBN(11))
+            .div(toBN(10))
+            .toString()
+
+          const sendPayload: any = {
+            from: to,
+            gasPrice,
+            gas,
+            value: ethValue,
+          }
+
+          if (connectCmd.connector !== Connectors.InAppWallet) {
+            sendPayload.nonce = await __web3.current.eth.getTransactionCount(
+              address,
+              'pending'
+            )
+          }
+
+          const txid = await new Promise((resolve, reject) => {
+            safeSwapContractWeb3.methods
+              .swap(
+                from,
+                token.address || '0x0000000000000000000000000000000000000000',
+                value,
+                fees,
+                swap.token.address ||
+                  '0x0000000000000000000000000000000000000000',
+                swap.value,
+                swap.fees,
+                secretHash,
+                request.secret
+              )
+              .send(sendPayload)
+              .on('transactionHash', (hash: string) => resolve(hash))
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              .on('error', (err: any) => reject(err))
+          })
+
+           const hex = await safeSwapContractWeb3.methods.swap(
+                  from,
+                  token.address || '0x0000000000000000000000000000000000000000',
+                  value,
+                  fees,
+                  swap.token.address || '0x0000000000000000000000000000000000000000',
+                  swap.value,
+                  swap.fees,
+                  secretHash,
+                  request.secret
+                ).encodeABI()
+                  
+            await service.getService(SERVICE.FOLLOW(network)).create({
+              txid,
+              hex
+            })
+
+          const payload: any = {
+            id: transfer.id,
+            state: 'swapping',
+          }
+
+          if (txid) payload.txid = txid
+          __swaps.current.update(address, payload)
+          swapCmd.done()
+        } catch (e) {
+          console.log('swapcmd err', e)
+          swapCmd.failed({ message: e.name || e.message || e.reason })
+        }
+      })()
+    }
+  }, [swapCmd.is.ready])
 
   const getDeviceInfo = async () => {
     const parser = new UAParser()
@@ -1091,14 +1634,13 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
       })
       setTimeout(handleEthereum, 3000)
     }
-
     async function handleEthereum() {
-      const { ethereum } = window as unknown as { ethereum: { isMetaMask: boolean, request: (m: { method: string}) => Promise<string[]> }}
+      const { ethereum } = window
       let loggedIn = false
       if (ethereum && ethereum.isMetaMask) {
         try {
           loggedIn = !!(
-            await (ethereum)?.request({ method: 'eth_accounts' })
+            await (ethereum as any)?.request({ method: 'eth_accounts' })
           )?.length
         } catch {
           loggedIn = false
@@ -1125,11 +1667,14 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
         key: authDetails.key,
         secret: authDetails.secret,
       },
-      (message: string) => {
+      (message: string, payload: any) => {
+        const setCanGetRewards = __setCanGetRewards.current
         if (message === 'authorized') {
+          setCanGetRewards(!!payload?.rewards)
           setStatus(true)
         }
         if (message === 'disconnected') {
+          setCanGetRewards(!!payload?.rewards)
           setStatus(false)
         }
       }
@@ -1203,6 +1748,12 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
                 network.contracts.safeTransfer
               )
             }
+            if (network?.contracts?.safeSwap) {
+              __setSafeSwapContract.current(
+                network.netId,
+                network.contracts.safeSwap
+              )
+            }
             if (network?.contracts?.staking) {
               __setStakingContract.current(
                 network.netId,
@@ -1226,7 +1777,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
             }
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const tokens = (((await erc20Service.find({})) as any)
-              .data as EthErc20ResponseDto[]).map<IERC20TokenItem>((token) => ({
+              .data as EthErc20ResponseDto[]).map<ERC20TokenItem>((token) => ({
               address: token.address,
               symbol: token.symbol,
               decimals: token.decimals,
@@ -1236,14 +1787,24 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
                 ({ symbol }: { symbol: string }) => symbol === token.symbol
               )?.usd,
             }))
-            const eth: IERC20TokenItem = {
-              address: '0x000000000000',
+
+            const eth: ERC20TokenItem = {
+              address: '0x0000000000000000000000000000000000000000',
               symbol: 'ETH',
               decimals: 18,
               name: 'Ethereum',
               balance: '',
               rate,
             }
+
+            
+            const kiroToken = tokens.find((token) => token.symbol === 'KIRO')
+            if (kiroToken && network.netId === getChainName(__chainId.current)) {
+              setCurrency(eth)
+              setDesiredCurrency(kiroToken)
+            }
+            
+
             tokens.unshift(eth)
             __setERC20TokenContract.current(network.netId, tokens)
           }
@@ -1256,6 +1817,12 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           __setSafeTransferContract.current(
             network.netId,
             network.contracts.safeTransfer
+          )
+        }
+        if (network?.contracts?.safeSwap) {
+          __setSafeSwapContract.current(
+            network.netId,
+            network.contracts.safeSwap
           )
         }
       })
@@ -1281,6 +1848,26 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     }
     setSafeTransferAsync()
   }, [safeTransferContract, connectCmd.is.done])
+
+  useEffect(() => {
+    const web3 = __web3.current
+    const chainId = __chainId.current
+    if (!web3) return
+    const setSafeSwapAsync = async () => {
+      const gasPrice = await web3.eth.getGasPrice()
+      if (web3 && chainId && safeSwapContract) {
+        setSafeSwapContractWeb3(
+          new web3.eth.Contract(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            safeSwapABI as any,
+            safeSwapContract.address,
+            { gasPrice, gas: 120000 }
+          )
+        )
+      }
+    }
+    setSafeSwapAsync()
+  }, [safeSwapContract, connectCmd.is.done])
 
   // on web3 connect command
   useEffect(() => {
@@ -1320,6 +1907,8 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     const transfers = __transfers.current
     const incoming = __incoming.current
     const outgoing = __outgoing.current
+    const history = __history.current
+    const swaps = __swaps.current
     const setActive = __setActive.current
     const setAddress = __setAddress.current
     const setChainId = __setChainId.current
@@ -1337,11 +1926,13 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     transfers.clear()
     outgoing.clear()
     incoming.clear()
+    history.clear()
+    swaps.clear()
   }, [web3Address, web3ChainId, web3Active])
 
   useEffect(() => {
     const setBlock = __setBlock.current
-    if (chainId === 1) {
+    if (chainId <= 1) {
       setBlock(heightMain)
     } else if (chainId === 4) {
       setBlock(heightRinkeby)
@@ -1353,7 +1944,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
   useEffect(() => {
     const service = KiroboService.getInstance()
     if (address && status) {
-      const network = getChainName(chainId)
+      const network = getChainName(chainId < 1 ? 1 : chainId)
       if (network) {
         service
           ?.getService(SERVICE.BALANCE(network))
@@ -1362,7 +1953,11 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
               address,
               erc20: __ERC20TokenList
                 .current(network)
-                ?.filter((item) => item.address !== '0x000000000000')
+                ?.filter(
+                  (item) =>
+                    item.address !==
+                    '0x0000000000000000000000000000000000000000'
+                )
                 ?.map((item) => item.address)
                 .join(';'),
             },
@@ -1374,7 +1969,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
             __setStakingBalance.current(balance?.stakingBalance || '')
             __setERC20TokenBalance.current(
               network,
-              '0x000000000000',
+              '0x0000000000000000000000000000000000000000',
               balance?.balance || ''
             )
             __setMaxRewards.current(balance?.maxRewards || 10)
@@ -1389,22 +1984,29 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
             }
             for (const entry of Object.entries<string>(balance?.erc20 || {})) {
               __setERC20TokenBalance.current(network, entry[0], entry[1])
-              if (__currency.current.address === entry[0])
+              if (__currency.current.address === entry[0]) {
                 __setTokenBalance.current(entry[1])
+              }
             }
           })
-          .catch((reason: JSON) => console.warn(`error: ${JSON.stringify(reason)}`))
+          .catch((reason) => console.log(`error`, { reason }))
 
         if (
           __currency.current.symbol !== 'ETH' &&
-          __safeTransferContract.current?.address
+          __safeTransferContract.current?.address &&
+          __safeSwapContract.current?.address &&
+          (__erc20TokenContractWeb3.current as any).currentProvider
         ) {
+          const contractAddress =
+            formType === 'swap'
+              ? __safeSwapContract.current?.address
+              : __safeTransferContract.current?.address
+            
           __erc20TokenContractWeb3.current.methods
-            .allowance(address, __safeTransferContract.current?.address)
+            .allowance(address, contractAddress)
             .call()
             .then((allowance: string) => __setAllowance.current(allowance))
         }
-
         service
           ?.getService(SERVICE.REWARDS(network))
           .find({
@@ -1417,7 +2019,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
               __setRewardsParams.current(rewardParams.factor, rewardParams.left)
             } else __setRewardsParams.current(1, 10)
           })
-          .catch((reason: JSON) => {
+          .catch((reason) => {
             console.warn(`error: ${JSON.stringify(reason)}`)
           })
       } else {
@@ -1441,18 +2043,59 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
   }, [status, chainId, address, heightMain, heightRinkeby])
 
   useEffect(() => {
+    if (swapperAddress && desiredCurrency?.symbol) {
+      ;(async function setBalance() {
+        if (desiredCurrency.symbol === 'ETH') {
+          const balance = await web3.eth.getBalance(swapperAddress)
+          setSwapperBalance(balance)
+        } else {
+          const networkName = getChainName(chainId)
+          const validDesiredCurrency = !!ERC20TokenList(networkName).find(
+            (token) =>
+              token.address === desiredCurrency.address &&
+              token.symbol === desiredCurrency.symbol
+          )
+          if (validDesiredCurrency) {
+            const desiredCurrencyContract = new web3.eth.Contract(
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              erc20ABI as any,
+              desiredCurrency.address
+            )
+            const balance = await desiredCurrencyContract.methods
+              .balanceOf(swapperAddress)
+              .call()
+            setSwapperBalance(balance)
+          }
+        }
+      })()
+    } else setSwapperBalance('')
+  }, [
+    desiredCurrency.symbol,
+    desiredCurrency.address,
+    swapperAddress,
+    ERC20TokenList,
+    chainId,
+  ])
+
+  useEffect(() => {
     const transfers = __transfers.current
     const incoming = __incoming.current
     const outgoing = __outgoing.current
+    const history = __history.current
+    const swaps = __swaps.current
     const prevAddress = __prevAddress.current
     const prevChainId = __prevChainId.current
     const prevBlock = __prevBlock.current
     const prevStatus = __prevStatus.current
     const setCurrency = __setCurrency.current
+    const setDesiredCurrency = __setDesiredCurrency.current
+    
     if (!block) {
       transfers.clear()
       incoming.clear()
       outgoing.clear()
+      history.clear()
+      swaps.clear()
     }
 
     if (status && address && block) {
@@ -1463,7 +2106,9 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           filter: (item) =>
             item.confirmedBlock > 0 &&
             item.confirmedBlock <= block - MAX_CONFIRMS &&
-            (item.state === 'collected' || item.state === 'retrieved'),
+            (item.state === 'collected' ||
+              item.state === 'retrieved' ||
+              item.state === 'swapped'),
         }),
         ...removeFromStore({
           address,
@@ -1471,19 +2116,54 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           filter: (item) =>
             item.confirmedBlock > 0 &&
             item.confirmedBlock <= block - MAX_CONFIRMS &&
-            (item.state === 'collected' || item.state === 'retrieved'),
+            (item.state === 'collected' ||
+              item.state === 'retrieved' ||
+              item.state === 'swapped'),
+        }),
+        ...removeFromStore({
+          address,
+          store: transfers,
+          filter: (item) =>
+            item.confirmedBlock > 0 &&
+            item.confirmedBlock <= block - MAX_CONFIRMS &&
+            (item.state === 'collected' ||
+              item.state === 'retrieved' ||
+              item.state === 'swapped'),
+        }),
+        ...removeFromStore({
+          address,
+          store: swaps,
+          filter: (item) =>
+            item.confirmedBlock > 0 &&
+            item.confirmedBlock <= block - MAX_CONFIRMS &&
+            (item.state === 'collected' ||
+              item.state === 'retrieved' ||
+              item.state === 'swapped'),
         }),
       ]
       for (const historyItem of historyItems) {
-        moveToStore({ store: transfers, address, item: historyItem })
+        moveToStore({ store: history, address, item: historyItem })
       }
     }
     if (status && address && prevChainId !== chainId) {
       setCurrency({
-        address: '0x000000000000',
+        address: '0x0000000000000000000000000000000000000000',
         symbol: 'ETH',
         decimals: 18,
         name: 'Ethereum',
+        balance: '',
+      })
+      const getKiroAddress = () => {
+        const networkName = getChainName(chainId)
+        if(networkName === 'main') return '0xb1191f691a355b43542bea9b8847bc73e7abb137'
+        else if(networkName === 'rinkeby') return '0xB678E95F83aF08E7598EC21533F7585E83272799'
+        else return '0x0000000000000000000000000000000000000000'
+      }
+      setDesiredCurrency({
+        address: getKiroAddress(),
+        symbol: 'KIRO',
+        decimals: 18,
+        name: 'Kiro Token',
         balance: '',
       })
     }
@@ -1500,12 +2180,17 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
       transfers.clear()
       incoming.clear()
       outgoing.clear()
-      const network = getChainName(chainId)
+      history.clear()
+      swaps.clear()
+
+      const network = getChainName(chainId < 1 ? 1 : chainId)
       const service = KiroboService.getInstance()
       if (network && service) {
-        transfers.fetch(40)
-        incoming.fetch(40)
-        outgoing.fetch(40)
+        transfers.fetch.run(40)
+        incoming.fetch.run(40)
+        outgoing.fetch.run(40)
+        history.fetch.run(40)
+        swaps.fetch.run(40)
 
         service
           ?.getService(SERVICE.TRANSFERS(network))
@@ -1523,11 +2208,14 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
         service
           ?.getService(SERVICE.TRANSFERS(network))
           .on('created', (item: EthTransferResponseDto) => {
-            if (item.from === address) {
+            if (!item.interchange?.value)
+              putInStore({ store: __transfers.current, address, item })
+            else if (item.interchange?.value)
+              putInStore({ store: __swaps.current, address, item })
+            if (item.from === address)
               putInStore({ store: __outgoing.current, address, item })
-            } else if (item.to === address) {
+            else if (item.to === address)
               putInStore({ store: __incoming.current, address, item })
-            }
           })
         service
           ?.getService(SERVICE.TRANSFERS(network))
@@ -1538,38 +2226,60 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
               (item.retrieve.confirmed > 0 &&
                 item.retrieve.confirmed <= block - MAX_CONFIRMS)
             ) {
-              putInStore({ store: __transfers.current, address, item })
+              putInStore({ store: __history.current, address, item })
             }
-            if (item.from === address) {
-              if (
-                (item.collect.confirmed > 0 &&
-                  item.collect.confirmed <= block - MAX_CONFIRMS) ||
-                (item.retrieve.confirmed > 0 &&
-                  item.retrieve.confirmed <= block - MAX_CONFIRMS)
-              ) {
-                deleteFromStore({
-                  store: __outgoing.current,
-                  address,
-                  id: item.id,
-                })
-              } else {
-                putInStore({ store: __outgoing.current, address, item })
-              }
-            } else if (item.to === address) {
-              if (
-                (item.collect.confirmed > 0 &&
-                  item.collect.confirmed <= block - MAX_CONFIRMS) ||
-                (item.retrieve.confirmed > 0 &&
-                  item.retrieve.confirmed <= block - MAX_CONFIRMS)
-              ) {
-                deleteFromStore({
-                  store: __incoming.current,
-                  address,
-                  id: item.id,
-                })
-              } else {
-                putInStore({ store: __incoming.current, address, item })
-              }
+            if (
+              (item.collect.confirmed > 0 &&
+                item.collect.confirmed <= block - MAX_CONFIRMS) ||
+              (item.retrieve.confirmed > 0 &&
+                item.retrieve.confirmed <= block - MAX_CONFIRMS) ||
+              (item.swap &&
+                item.swap.confirmed > 0 &&
+                item.swap.confirmed <= block - MAX_CONFIRMS)
+            ) {
+              deleteFromStore({
+                store: !item.interchange?.value
+                  ? __transfers.current
+                  : __swaps.current,
+                address,
+                id: item.id,
+              })
+            } else {
+              putInStore({
+                store: !item.interchange?.value
+                  ? __transfers.current
+                  : __swaps.current,
+                address,
+                item,
+              })
+            }
+
+            if (
+              (item.collect.confirmed > 0 &&
+                item.collect.confirmed <= block - MAX_CONFIRMS) ||
+              (item.retrieve.confirmed > 0 &&
+                item.retrieve.confirmed <= block - MAX_CONFIRMS) ||
+              (item.swap &&
+                item.swap.confirmed > 0 &&
+                item.swap.confirmed <= block - MAX_CONFIRMS)
+            ) {
+              deleteFromStore({
+                store:
+                  item.from === address
+                    ? __outgoing.current
+                    : __incoming.current,
+                address,
+                id: item.id,
+              })
+            } else {
+              putInStore({
+                store:
+                  item.from === address
+                    ? __outgoing.current
+                    : __incoming.current,
+                address,
+                item,
+              })
             }
           })
 
@@ -1583,37 +2293,43 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
             })
             deleteFromStore({ store: __outgoing.current, address, id: item.id })
             deleteFromStore({ store: __incoming.current, address, id: item.id })
+            deleteFromStore({ store: __swaps.current, address, id: item.id })
+            deleteFromStore({ store: __history.current, address, id: item.id })
           })
       }
     }
   }, [status, address, chainId, block])
 
   // on transfers.fetch done
+  /*
   useEffect(() => {
-    const _transfers = __transfers.current
-
-    if (transfers.fetched > 0 && transfers.fetched < 60) {
-      _transfers.fetch(40)
-    }
-  }, [transfers.fetched])
+    const _history = __history.current
+    if (history.fetched > 0 && history.fetched < 60) _history.fetch.run(40)
+  }, [history.fetched])
+  */
 
   // on incoming.fetch done
   useEffect(() => {
     const _incoming = __incoming.current
-
-    if (incoming.fetched > 0) {
-      _incoming.fetch(40)
-    }
+    if (incoming.fetched > 0) _incoming.fetch.run(40)
   }, [incoming.fetched])
 
   // on outgoing.fetch done
   useEffect(() => {
     const _outgoing = __outgoing.current
-
-    if (outgoing.fetched > 0) {
-      _outgoing.fetch(40)
-    }
+    if (outgoing.fetched > 0) _outgoing.fetch.run(40)
   }, [outgoing.fetched])
+
+  useEffect(() => {
+    const _transfers = __transfers.current
+    if (transfers.fetched > 0) _transfers.fetch.run(40)
+  }, [transfers.fetched])
+
+  // on outgoing.fetch done
+  useEffect(() => {
+    const _swaps = __swaps.current
+    if (swaps.fetched > 0) _swaps.fetch.run(40)
+  }, [swaps.fetched])
 
   // on transfers.fetch command
   useEffect(() => {
@@ -1621,15 +2337,40 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
     const block = __block.current
     const fetchNextTransfers = __fetchNextTransfers.current
 
-    const watch = transfers.count > 0 ? 'ignore' : 'replace'
-
     fetchNextTransfers({
       store: transfers,
+      queryBuilder: transfersQuery,
+      thresholdBlock: block - MAX_CONFIRMS,
+    })
+  }, [transfers.fetchCmd.is.ready])
+
+  // on swaps.fetch command
+  useEffect(() => {
+    const swaps = __swaps.current
+    const block = __block.current
+    const fetchNextTransfers = __fetchNextTransfers.current
+
+    fetchNextTransfers({
+      store: swaps,
+      queryBuilder: swapsQuery,
+      thresholdBlock: block - MAX_CONFIRMS,
+    })
+  }, [swaps.fetchCmd.is.ready])
+
+  // on history.fetch command
+  useEffect(() => {
+    const history = __history.current
+    const block = __block.current
+    const fetchNextTransfers = __fetchNextTransfers.current
+
+    const watch = history.count > 0 ? 'ignore' : 'replace'
+    fetchNextTransfers({
+      store: history,
       queryBuilder: historyQuery,
       thresholdBlock: block - MAX_CONFIRMS,
       watch,
     })
-  }, [transfers.fetchCmd.is.ready])
+  }, [history.fetchCmd.is.ready])
 
   // on incoming.fetch command
   useEffect(() => {

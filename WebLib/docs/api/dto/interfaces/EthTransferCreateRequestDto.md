@@ -16,7 +16,7 @@ custom_edit_url: null
 
 ### deposit
 
-• **deposit**: [`EthDepositInfo`](EthDepositInfo.md)
+• **deposit**: `EthDepositInfo`
 
 ___
 
@@ -68,7 +68,13 @@ ___
 
 ### state
 
-• **state**: [`EthTransferState`](../modules.md#ethtransferstate)
+• **state**: `EthTransferState`
+
+___
+
+### swap
+
+• `Optional` **swap**: [`EthSwapInfo`](EthSwapInfo.md)
 
 ___
 

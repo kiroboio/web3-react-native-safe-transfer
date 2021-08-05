@@ -66,6 +66,24 @@ MobxClearAccount.allowance
 
 ___
 
+### approve
+
+• **approve**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| ``get` **data**(): `Object`` | `Object` |
+| ``get` **is**(): `Object`` | `Object` |
+| `run` | (`contractAddress`: `string`) => `void` |
+
+#### Inherited from
+
+MobxClearAccount.approve
+
+___
+
 ### approvedCmd
 
 • **approvedCmd**: `IApprovedCmd`
@@ -96,6 +114,16 @@ MobxClearAccount.block
 
 ___
 
+### canGetRewards
+
+• **canGetRewards**: `boolean`
+
+#### Inherited from
+
+MobxClearAccount.canGetRewards
+
+___
+
 ### chainId
 
 • **chainId**: `number`
@@ -106,6 +134,24 @@ MobxClearAccount.chainId
 
 ___
 
+### collect
+
+• **collect**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| ``get` **data**(): `Object`` | `Object` |
+| ``get` **is**(): `Object`` | `Object` |
+| `run` | (`__namedParameters`: { `id`: `string` ; `passcode`: `string`  }) => `void` |
+
+#### Inherited from
+
+MobxClearAccount.collect
+
+___
+
 ### collectCmd
 
 • **collectCmd**: `ICollectCmd`
@@ -113,6 +159,24 @@ ___
 #### Inherited from
 
 ICommands.collectCmd
+
+___
+
+### connect
+
+• **connect**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| ``get` **data**(): `Object`` | `Object` |
+| ``get` **is**(): `Object`` | `Object` |
+| `run` | (`connector`: `Connectors`) => `void` |
+
+#### Inherited from
+
+MobxClearAccount.connect
 
 ___
 
@@ -132,6 +196,24 @@ ___
 
 ___
 
+### deposit
+
+• **deposit**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| ``get` **data**(): `Object`` | `Object` |
+| ``get` **is**(): `Object`` | `Object` |
+| `run` | (`__namedParameters`: { `message?`: `string` ; `passcode`: `string` ; `to`: `string` ; `value`: `string`  }) => `void` |
+
+#### Inherited from
+
+MobxClearAccount.deposit
+
+___
+
 ### depositCmd
 
 • **depositCmd**: `IDepositCmd`
@@ -142,9 +224,32 @@ ICommands.depositCmd
 
 ___
 
+### desiredCurrency
+
+• **desiredCurrency**: `IERC20TokenItem`
+
+___
+
 ### deviceInfo
 
 • **deviceInfo**: `IDeviceInfo`
+
+___
+
+### disconnect
+
+• **disconnect**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| ``get` **is**(): `Object`` | `Object` |
+| `run` | () => `void` |
+
+#### Inherited from
+
+MobxClearAccount.disconnect
 
 ___
 
@@ -168,6 +273,16 @@ MobxClearAccount.factor
 
 ___
 
+### formType
+
+• **formType**: `string`
+
+#### Inherited from
+
+MobxClearAccount.formType
+
+___
+
 ### gasPrice
 
 • **gasPrice**: `string`
@@ -185,6 +300,16 @@ ___
 #### Inherited from
 
 IViews.gasPriceMap
+
+___
+
+### history
+
+• **history**: `ITransferItems`
+
+#### Inherited from
+
+ILists.history
 
 ___
 
@@ -254,6 +379,24 @@ MobxClearAccount.rate
 
 ___
 
+### retrieve
+
+• **retrieve**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| ``get` **data**(): `Object`` | `Object` |
+| ``get` **is**(): `Object`` | `Object` |
+| `run` | (`__namedParameters`: { `id`: `string`  }) => `void` |
+
+#### Inherited from
+
+MobxClearAccount.retrieve
+
+___
+
 ### retrieveCmd
 
 • **retrieveCmd**: `IRetrieveCmd`
@@ -261,6 +404,26 @@ ___
 #### Inherited from
 
 ICommands.retrieveCmd
+
+___
+
+### safeSwapContract
+
+• **safeSwapContract**: `undefined` \| { `address`: `string` ; `feesFormula`: `string` ; `rewardFormula`: `string` ; `synced`: `boolean`  } & `NonEmptyObject` & { `fees`: (`_value`: `string`) => ``"0"`` ; `reward`: (`_value`: `string`, `_stakingValue`: `string`, `_fees`: `string`) => ``"0"``  } & { `setData`: (`data`: `ISafeTransferItem`) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `fees`: (`_value`: `string`) => ``"0"`` ; `reward`: (`_value`: `string`, `_stakingValue`: `string`, `_fees`: `string`) => ``"0"``  } & { `setData`: (`data`: `ISafeTransferItem`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>
+
+#### Inherited from
+
+MobxClearAccount.safeSwapContract
+
+___
+
+### safeSwapMap
+
+• **safeSwapMap**: `IMSTMap`<`IModelType`<`Object`, { `fees`: (`_value`: `string`) => ``"0"`` ; `reward`: (`_value`: `string`, `_stakingValue`: `string`, `_fees`: `string`) => ``"0"``  } & { `setData`: (`data`: `ISafeTransferItem`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\> & `IStateTreeNode`<`IMapType`<`IModelType`<`Object`, { `fees`: (`_value`: `string`) => ``"0"`` ; `reward`: (`_value`: `string`, `_stakingValue`: `string`, `_fees`: `string`) => ``"0"``  } & { `setData`: (`data`: `ISafeTransferItem`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>\>
+
+#### Inherited from
+
+MobxClearAccount.safeSwapMap
 
 ___
 
@@ -306,6 +469,120 @@ ___
 
 ___
 
+### swap
+
+• **swap**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| ``get` **data**(): `Object`` | `Object` |
+| ``get` **is**(): `Object`` | `Object` |
+| `run` | (`__namedParameters`: { `id`: `string` ; `passcode`: `string`  }) => `void` |
+
+#### Inherited from
+
+MobxClearAccount.swap
+
+___
+
+### swapCmd
+
+• **swapCmd**: `ICollectCmd`
+
+#### Inherited from
+
+ICommands.swapCmd
+
+___
+
+### swapDeposit
+
+• **swapDeposit**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| ``get` **data**(): `Object`` | `Object` |
+| ``get` **is**(): `Object`` | `Object` |
+| `run` | (`__namedParameters`: { `desiredValue`: `string` ; `message?`: `string` ; `passcode`: `string` ; `to`: `string` ; `value`: `string`  }) => `void` |
+
+#### Inherited from
+
+MobxClearAccount.swapDeposit
+
+___
+
+### swapDepositCmd
+
+• **swapDepositCmd**: `ISwapDepositCmd`
+
+#### Inherited from
+
+ICommands.swapDepositCmd
+
+___
+
+### swapRetrieve
+
+• **swapRetrieve**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| ``get` **data**(): `Object`` | `Object` |
+| ``get` **is**(): `Object`` | `Object` |
+| `run` | (`__namedParameters`: { `id`: `string`  }) => `void` |
+
+#### Inherited from
+
+MobxClearAccount.swapRetrieve
+
+___
+
+### swapRetrieveCmd
+
+• **swapRetrieveCmd**: `IRetrieveCmd`
+
+#### Inherited from
+
+ICommands.swapRetrieveCmd
+
+___
+
+### swapperAddress
+
+• **swapperAddress**: `string`
+
+#### Inherited from
+
+MobxClearAccount.swapperAddress
+
+___
+
+### swapperBalance
+
+• **swapperBalance**: `string`
+
+#### Inherited from
+
+MobxClearAccount.swapperBalance
+
+___
+
+### swaps
+
+• **swaps**: `ITransferItems`
+
+#### Inherited from
+
+ILists.swaps
+
+___
+
 ### tokenBalance
 
 • **tokenBalance**: `string`
@@ -332,23 +609,29 @@ ___
 
 ## Methods
 
-### approve
+### ERC20TokenList
 
-▸ **approve**(): `void`
+▸ **ERC20TokenList**(`chainName`): { `address`: `string` ; `balance`: `string` ; `decimals`: `number` ; `name`: `string` ; `rate`: `number` ; `symbol`: `string`  } & `NonEmptyObject` & { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: `IERC20TokenItem`) => `void` ; `setRate`: (`rate`: `number`) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: `IERC20TokenItem`) => `void` ; `setRate`: (`rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>[]
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `chainName` | `string` |
 
 #### Returns
 
-`void`
+{ `address`: `string` ; `balance`: `string` ; `decimals`: `number` ; `name`: `string` ; `rate`: `number` ; `symbol`: `string`  } & `NonEmptyObject` & { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: `IERC20TokenItem`) => `void` ; `setRate`: (`rate`: `number`) => `void`  } & `IStateTreeNode`<`IModelType`<`Object`, { `tokenBalance`:   } & { `clearBalance`: () => `void` ; `setBalance`: (`balance`: `string`) => `void` ; `setData`: (`__namedParameters`: `IERC20TokenItem`) => `void` ; `setRate`: (`rate`: `number`) => `void`  }, `_NotCustomized`, `_NotCustomized`\>\>[]
 
 #### Inherited from
 
-MobxClearAccount.approve
+MobxClearAccount.ERC20TokenList
 
 ___
 
-### approveToken
+### approvedToken
 
-▸ **approveToken**(`symbol`, `amount`): `boolean`
+▸ **approvedToken**(`symbol`, `amount`): `boolean`
 
 #### Parameters
 
@@ -363,7 +646,7 @@ ___
 
 #### Inherited from
 
-MobxClearAccount.approveToken
+MobxClearAccount.approvedToken
 
 ___
 
@@ -387,86 +670,6 @@ MobxClearAccount.clearERC20TokenBalances
 
 ___
 
-### collect
-
-▸ **collect**(`__namedParameters`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `__namedParameters` | `Object` |
-| `__namedParameters.id` | `string` |
-| `__namedParameters.passcode` | `string` |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-MobxClearAccount.collect
-
-___
-
-### connect
-
-▸ **connect**(`connector`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `connector` | `Connectors` |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-MobxClearAccount.connect
-
-___
-
-### deposit
-
-▸ **deposit**(`__namedParameters`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `__namedParameters` | `Object` |
-| `__namedParameters.message?` | `string` |
-| `__namedParameters.passcode` | `string` |
-| `__namedParameters.to` | `string` |
-| `__namedParameters.value` | `string` |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-MobxClearAccount.deposit
-
-___
-
-### disconnect
-
-▸ **disconnect**(): `void`
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-MobxClearAccount.disconnect
-
-___
-
 ### getERC20TokenList
 
 ▸ **getERC20TokenList**(`chainName`): `IERC20TokenItem`[]
@@ -484,27 +687,6 @@ ___
 #### Inherited from
 
 IViews.getERC20TokenList
-
-___
-
-### retrieve
-
-▸ **retrieve**(`__namedParameters`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `__namedParameters` | `Object` |
-| `__namedParameters.id` | `string` |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-MobxClearAccount.retrieve
 
 ___
 
@@ -608,6 +790,26 @@ MobxClearAccount.setBlock
 
 ___
 
+### setCanGetRewards
+
+▸ **setCanGetRewards**(`canGetRewards`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `canGetRewards` | `boolean` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+MobxClearAccount.setCanGetRewards
+
+___
+
 ### setChainId
 
 ▸ **setChainId**(`chainId`): `void`
@@ -636,7 +838,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `currency` | `IERC20TokenItem` |
+| `currency` | `ERC20TokenItem` |
 
 #### Returns
 
@@ -665,6 +867,26 @@ ___
 #### Inherited from
 
 MobxClearAccount.setCurrencyBalance
+
+___
+
+### setDesiredCurrency
+
+▸ **setDesiredCurrency**(`currency`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `currency` | `ERC20TokenItem` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+MobxClearAccount.setDesiredCurrency
 
 ___
 
@@ -719,7 +941,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `chainName` | `string` |
-| `data` | `IERC20TokenItem`[] |
+| `data` | `ERC20TokenItem`[] |
 
 #### Returns
 
@@ -750,6 +972,26 @@ ___
 #### Inherited from
 
 MobxClearAccount.setErc20TokenRate
+
+___
+
+### setFormType
+
+▸ **setFormType**(`formType`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `formType` | `string` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+MobxClearAccount.setFormType
 
 ___
 
@@ -856,6 +1098,27 @@ MobxClearAccount.setRewardsParams
 
 ___
 
+### setSafeSwapContract
+
+▸ **setSafeSwapContract**(`chainName`, `data`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `chainName` | `string` |
+| `data` | `ISafeTransferItem` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+MobxClearAccount.setSafeSwapContract
+
+___
+
 ### setSafeTransferContract
 
 ▸ **setSafeTransferContract**(`chainName`, `data`): `void`
@@ -915,6 +1178,46 @@ ___
 #### Inherited from
 
 MobxClearAccount.setStakingContract
+
+___
+
+### setSwapperAddress
+
+▸ **setSwapperAddress**(`address`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `address` | `string` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+MobxClearAccount.setSwapperAddress
+
+___
+
+### setSwapperBalance
+
+▸ **setSwapperBalance**(`balance`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `balance` | `string` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+MobxClearAccount.setSwapperBalance
 
 ___
 

@@ -24,7 +24,7 @@ ___
 
 ### collect
 
-• **collect**: [`EthCollectInfo`](EthCollectInfo.md)
+• **collect**: `EthCollectInfo`
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 ### deposit
 
-• **deposit**: [`EthDepositInfo`](EthDepositInfo.md)
+• **deposit**: `EthDepositInfo`
 
 #### Inherited from
 
@@ -111,7 +111,7 @@ ___
 
 ### retrieve
 
-• **retrieve**: [`EthRetrieveInfo`](EthRetrieveInfo.md)
+• **retrieve**: `EthRetrieveInfo`
 
 ___
 
@@ -141,7 +141,7 @@ ___
 
 ### state
 
-• **state**: [`EthTransferState`](../modules.md#ethtransferstate)
+• **state**: `EthTransferState`
 
 transfer state
 
@@ -150,6 +150,16 @@ transfer state
 #### Overrides
 
 [EthTransferCreateDto](EthTransferCreateDto.md).[state](EthTransferCreateDto.md#state)
+
+___
+
+### swap
+
+• `Optional` **swap**: [`EthSwapInfo`](EthSwapInfo.md)
+
+#### Inherited from
+
+[EthTransferCreateDto](EthTransferCreateDto.md).[swap](EthTransferCreateDto.md#swap)
 
 ___
 

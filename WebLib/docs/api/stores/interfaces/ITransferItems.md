@@ -44,6 +44,23 @@ MobxClearTransferItems.count
 
 ___
 
+### fetch
+
+• **fetch**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| ``get` **is**(): `Object`` | `Object` |
+| `run` | (`amount`: `number`) => `void` |
+
+#### Inherited from
+
+MobxClearTransferItems.fetch
+
+___
+
 ### fetchCmd
 
 • **fetchCmd**: [`IFetchCmd`](IFetchCmd.md)
@@ -137,26 +154,6 @@ ___
 #### Inherited from
 
 MobxClearTransferItems.delete
-
-___
-
-### fetch
-
-▸ **fetch**(`amount`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `amount` | `number` |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-MobxClearTransferItems.fetch
 
 ___
 

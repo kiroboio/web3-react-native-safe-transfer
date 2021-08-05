@@ -50,6 +50,23 @@ MobxClearWallet.mnemonic
 
 ___
 
+### removeAddress
+
+• **removeAddress**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| ``get` **is**(): `Object`` | `Object` |
+| `run` | (`address`: `string`) => `void` |
+
+#### Inherited from
+
+MobxClearWallet.removeAddress
+
+___
+
 ### removeAddressCmd
 
 • **removeAddressCmd**: [`IWalletAddressCmd`](IWalletAddressCmd.md)
@@ -147,26 +164,6 @@ ___
 #### Inherited from
 
 MobxClearWallet.removeMnemonic
-
-___
-
-### removeWalletAddress
-
-▸ **removeWalletAddress**(`address`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `address` | `string` |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-MobxClearWallet.removeWalletAddress
 
 ___
 
