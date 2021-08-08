@@ -66,6 +66,7 @@ module.exports = {
     },
   },
   plugins: [
+    ['./plugins/custom-webpack-plugin', {}],
     [
       'docusaurus-plugin-includes',
       {
@@ -155,6 +156,7 @@ module.exports = {
         entryPoints: ['../dev/utils/index.ts'],
         out: 'api/utils',
         disableSources: true,
+        readme: "../dev/utils/README.mdx",
         sidebar: {
           categoryLabel: 'Utils',
           position: 6,
