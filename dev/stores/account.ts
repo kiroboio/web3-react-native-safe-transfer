@@ -944,10 +944,17 @@ const createSecretHash = (passcode: string) => {
   return { privateSalt, publicSalt, secretHash };
 };
 
-export type IConnectData = {
+export interface IConnectData {
   isConnected: boolean;
   connector: Connectors;
 }
+export interface IApproveData {
+  contractAddress: string;
+}
+export interface IRetrieveData {
+  id: string;
+}
+
 export const Account = types
   .model("Account", {
     allowance: types.optional(types.string, "-1"),
@@ -1012,10 +1019,10 @@ export const Account = types
         get is(): ICommand {
           return createCommand(self.retrieveCmd.is);
         },
-        run({ id }: { id: string }) {
+        run({ id }: IRetrieveData) {
           self.retrieveCmd.prepare({ id: id });
         },
-        get data(): { id: string } {
+        get data(): IRetrieveData {
           return {
             get id() {
               return self.retrieveCmd.id;
@@ -1029,10 +1036,10 @@ export const Account = types
         get is(): ICommand {
           return createCommand(self.swapRetrieveCmd.is);
         },
-        run({ id }: { id: string }) {
+        run({ id }: IRetrieveData) {
           self.swapRetrieveCmd.prepare({ id: id });
         },
-        get data(): { id: string } {
+        get data(): IRetrieveData {
           return {
             get id() {
               return self.swapRetrieveCmd.id;
@@ -1217,7 +1224,7 @@ export const Account = types
         run(contractAddress: string) {
           self.approvedCmd.prepare(contractAddress);
         },
-        get data(): { contractAddress: string } {
+        get data(): IApproveData {
           return {
             get contractAddress() {
               return self.approvedCmd.contractAddress;
@@ -1234,10 +1241,7 @@ export const Account = types
         run(connector: Connectors) {
           self.connectCmd.prepare(connector);
         },
-        get data(): {
-          isConnected: boolean;
-          connector: Connectors;
-        } {
+        get data(): IConnectData {
           return {
             get isConnected() {
               return self.connectCmd.isConnected;
