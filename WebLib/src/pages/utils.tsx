@@ -20,11 +20,7 @@ const Utils = () => {
       setError(e.message);
     }
   };
-  
-  // useEffect(() => {
-  //   if(!weiToCurrencyValue) return;
-  //   setWeiToCurrencyValue(currencyValueToWei(weiToCurrency))
-  // }, [decimals])
+
 
   const setCurrencyToWeiValue = (value: string) => {
     try {

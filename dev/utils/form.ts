@@ -20,15 +20,6 @@ yup.addMethod<NumberSchema>(number, 'emptyAsUndefined', function () {
   )
 })
 
-/**
- * ```
- * const validationSchema = object().shape({
-    to: yupString()
-      .trim()
-      .required(t('required'))
-      .ethereumAddress(t('validEthereumAddressErr'))
-  })```
- */
 yup.addMethod<StringSchema>(string, 'ethereumAddress', function (errorMessage) {
   return this.test(`test-ethereum-address`, errorMessage, function (value) {
     const { path, createError } = this

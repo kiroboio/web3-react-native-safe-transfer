@@ -15,7 +15,8 @@ export const TransfersList = observer(() => {
 <a href="/docs/api/stores/interfaces/ITransfer">ITransfer</a>
 
 ##### Getting new Swaps
-```
+
+```typescript
 export const SwapsList = observer(() => {
   const {
     swaps,
@@ -26,7 +27,8 @@ export const SwapsList = observer(() => {
 ```
 
 ##### Getting transfers history (incoming & outgoing & swaps)
-```
+
+```typescript
 export const HistoryList = observer(() => {
   const {
     history,
@@ -38,7 +40,8 @@ export const HistoryList = observer(() => {
 
 
 ##### Getting incoming & outgoing
-```
+
+```typescript
 export const List = observer(() => {
   const {
     incoming,

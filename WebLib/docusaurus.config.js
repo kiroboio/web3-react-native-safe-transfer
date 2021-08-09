@@ -1,59 +1,57 @@
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require("prism-react-renderer/themes/github");
+const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'Web3-react-safe-transfer docs',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://github.com/kiroboio/web3-lib',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  title: "Web3-react-safe-transfer docs",
+  tagline: "Dinosaurs are cool",
+  url: "https://github.com/kiroboio/web3-lib",
+  baseUrl: "/",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
+  favicon: "img/favicon.ico",
+  organizationName: "facebook", // Usually your GitHub org/user name.
+  projectName: "docusaurus", // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'Safe-transfer docs',
+      title: "Safe-transfer docs",
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: "My Site Logo",
+        src: "img/logo.svg",
       },
       items: [
         {
-          type: 'doc',
-          docId: 'intro',
-          position: 'left',
-          label: 'Tutorial',
+          type: "doc",
+          docId: "intro",
+          position: "left",
+          label: "Tutorial",
         },
         {
-          href: 'https://github.com/kiroboio/web3-lib',
-          label: 'GitHub',
-          position: 'right',
+          href: "https://github.com/kiroboio/web3-lib",
+          label: "GitHub",
+          position: "right",
         },
       ],
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       links: [
         {
-          title: 'Docs',
+          title: "Docs",
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: "Tutorial",
+              to: "/docs/intro",
             },
           ],
         },
+        {},
         {
-          
-        },
-        {
-          title: 'More',
+          title: "More",
           items: [
             {
-              label: 'GitHub',
-              href: 'https://github.com/kiroboio/web3-lib',
+              label: "GitHub",
+              href: "https://github.com/kiroboio/web3-lib",
             },
           ],
         },
@@ -66,15 +64,13 @@ module.exports = {
     },
   },
   plugins: [
-    ['./plugins/custom-webpack-plugin', {}],
+    ["./plugins/custom-webpack-plugin", {}],
     [
-      'docusaurus-plugin-includes',
+      "docusaurus-plugin-includes",
       {
-        sharedFolders: [
-          { source: '../dev', target: './docs/shared'},
-        ],
-        postBuildDeletedFolders: ['shared'],
-      }
+        sharedFolders: [{ source: "../dev", target: "./docs/shared" }],
+        postBuildDeletedFolders: ["shared"],
+      },
     ],
     // {
     //   type: 'category',
@@ -90,166 +86,180 @@ module.exports = {
     //   ],
     // },
     [
-      'docusaurus-plugin-typedoc',
+      "docusaurus-plugin-typedoc",
       {
-        id:'connect',
-        out: 'guides/connect',
+        id: "connect",
+        out: "guides/connect",
         disableSources: true,
         readme: "../dev/context/CONNECT.md",
-        tsconfig: '../tsconfig.json',
+        tsconfig: "../tsconfig.json",
         sidebar: {
-          categoryLabel: 'Connect',
+          categoryLabel: "Connect",
           position: 1,
-          fullNames: true
+          fullNames: true,
         },
       },
     ],
     [
-      'docusaurus-plugin-typedoc',
+      "docusaurus-plugin-typedoc",
       {
-        id:'deposit',
-        out: 'guides/deposit',
+        id: "deposit",
+        out: "guides/deposit",
         disableSources: true,
         readme: "../dev/context/DEPOSIT.md",
-        tsconfig: '../tsconfig.json',
+        tsconfig: "../tsconfig.json",
         sidebar: {
-          categoryLabel: 'Deposit',
+          categoryLabel: "Deposit",
           position: 2,
-          fullNames: true
+          fullNames: true,
         },
       },
     ],
     [
-      'docusaurus-plugin-typedoc',
+      "docusaurus-plugin-typedoc",
       {
-        id:'transfers',
-        out: 'guides/transfers',
+        id: "transfers",
+        out: "guides/transfers",
         disableSources: true,
         readme: "../dev/context/LISTS.md",
-        tsconfig: '../tsconfig.json',
+        tsconfig: "../tsconfig.json",
         sidebar: {
-          categoryLabel: 'Transfers',
+          categoryLabel: "Transfers",
           position: 3,
-          fullNames: true
+          fullNames: true,
         },
       },
     ],
     [
-      'docusaurus-plugin-typedoc',
+      "docusaurus-plugin-typedoc",
       {
-        id:'context',
-        entryPoints: ['../dev/context/index.ts'],
+        id: "actions",
+        out: "guides/actions",
+        disableSources: true,
+        readme: "../dev/context/ACTIONS.md",
+        tsconfig: "../tsconfig.json",
+        sidebar: {
+          categoryLabel: "Actions",
+          position: 4,
+          fullNames: true,
+        },
+      },
+    ],
+    [
+      "docusaurus-plugin-typedoc",
+      {
+        id: "context",
+        entryPoints: ["../dev/context/index.ts"],
         out: "api/context",
         disableSources: true,
-        tsconfig: '../tsconfig.json',
+        tsconfig: "../tsconfig.json",
         sidebar: {
-          categoryLabel: 'Context',
+          categoryLabel: "Context",
           position: 1,
-          fullNames: true
+          fullNames: true,
         },
-        includes: ['../dev/stores']
+        includes: ["../dev/stores"],
       },
     ],
     [
-      'docusaurus-plugin-typedoc',
+      "docusaurus-plugin-typedoc",
       {
-        id:'hooks',
-        entryPoints: ['../dev/hooks/index.ts'],
+        id: "hooks",
+        entryPoints: ["../dev/hooks/index.ts"],
         out: "api/hooks",
         disableSources: true,
-        tsconfig: '../tsconfig.json',
+        tsconfig: "../tsconfig.json",
         sidebar: {
-          categoryLabel: 'Hooks',
+          categoryLabel: "Hooks",
           position: 2,
-          fullNames: true
+          fullNames: true,
         },
       },
     ],
     [
-      'docusaurus-plugin-typedoc',
+      "docusaurus-plugin-typedoc",
       {
-        id:'debugging',
-        entryPoints: ['../dev/debugging/index.ts'],
-        out: 'debugging',
+        id: "debugging",
+        entryPoints: ["../dev/debugging/index.ts"],
+        out: "debugging",
         disableSources: true,
         sidebar: {
-          categoryLabel: 'Debugging',
+          categoryLabel: "Debugging",
           position: 3,
-          fullNames: true
+          fullNames: true,
         },
       },
     ],
     [
-      'docusaurus-plugin-typedoc',
+      "docusaurus-plugin-typedoc",
       {
-        id:'stores',
-        entryPoints: ['../dev/stores/index.ts'],
-        out: 'api/stores',
+        id: "stores",
+        entryPoints: ["../dev/stores/index.ts"],
+        out: "api/stores",
         disableSources: true,
-        tsconfig: '../tsconfig.json',
+        tsconfig: "../tsconfig.json",
         sidebar: {
-          categoryLabel: 'Stores',
+          categoryLabel: "Stores",
           position: 4,
-          fullNames: true
+          fullNames: true,
         },
-        includes: ['../dev/hooks']
+        includes: ["../dev/hooks"],
       },
-      
     ],
     [
-      'docusaurus-plugin-typedoc',
+      "docusaurus-plugin-typedoc",
       {
-        id:'utils',
-        entryPoints: ['../dev/utils/index.ts'],
-        out: 'api/utils',
+        id: "utils",
+        entryPoints: ["../dev/utils/index.ts"],
+        out: "api/utils",
         disableSources: true,
         readme: "../dev/utils/README.mdx",
-        tsconfig: '../tsconfig.json',
+        tsconfig: "../tsconfig.json",
         sidebar: {
-          categoryLabel: 'Utils',
+          categoryLabel: "Utils",
           position: 5,
-          fullNames: true
+          fullNames: true,
         },
       },
     ],
     [
-      'docusaurus-plugin-typedoc',
+      "docusaurus-plugin-typedoc",
       {
-        id:'dto',
-        entryPoints: ['../dev/dto/index.ts'],
-        out: 'api/dto',
+        id: "dto",
+        entryPoints: ["../dev/dto/index.ts"],
+        out: "api/dto",
         disableSources: true,
         sidebar: {
-          categoryLabel: 'DTO',
+          categoryLabel: "DTO",
           position: 6,
-          fullNames: true
+          fullNames: true,
         },
       },
     ],
     [
-      'docusaurus-plugin-typedoc',
+      "docusaurus-plugin-typedoc",
       {
-        id:'customConnectors',
-        entryPoints: ['../dev/customConnectors/index.ts'],
-        out: 'api/customConnectors',
+        id: "customConnectors",
+        entryPoints: ["../dev/customConnectors/index.ts"],
+        out: "api/customConnectors",
         disableSources: true,
         sidebar: {
-          categoryLabel: 'Custom Connectors',
+          categoryLabel: "Custom Connectors",
           position: 7,
-          fullNames: true
+          fullNames: true,
         },
       },
     ],
   ],
   presets: [
     [
-      '@docusaurus/preset-classic',
+      "@docusaurus/preset-classic",
       {
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: require.resolve("./sidebars.js"),
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       },
     ],

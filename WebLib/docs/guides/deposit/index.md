@@ -41,12 +41,13 @@ export const DepositButton = observer(() => {
 
     const handleSwapDeposit = (data: FormInputs) => {
         const { to, amount, desiredAmount, passcode, message } = data
+
         swapDeposit.run({
-        to,
-        value: currencyValueToWei(amount, currency.decimals || 18),
-        desiredValue: currencyValueToWei(desiredAmount, currency.decimals || 18),
-        passcode,
-        message,
+            to,
+            value: currencyValueToWei(amount, currency.decimals || 18),
+            desiredValue: currencyValueToWei(desiredAmount, currency.decimals || 18),
+            passcode,
+            message,
         })
   }
     
@@ -58,6 +59,7 @@ export const DepositButton = observer(() => {
 })
 ```
 <a href="/docs/api/stores/interfaces/IAccount#deposit">IDeposit</a>
+<br />
 <a href="/docs/api/stores/interfaces/IAccount#swapdeposit">ISwapDeposit</a>
 
 ##### Status
