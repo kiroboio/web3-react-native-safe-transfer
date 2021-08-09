@@ -1,4 +1,11 @@
-
+---
+id: "index"
+title: "@kiroboio/web3-react-safe-transfer"
+slug: "/Api/context"
+sidebar_label: "Readme"
+sidebar_position: 0
+custom_edit_url: null
+---
 
 ### Context
 
@@ -30,7 +37,6 @@ export const KiroboProvider: React.FC = (props) => (
 
 To use `account` store wrap application `components` with `KiroboProvider` context
 
-
 ------
 
 *KiroboProvider Application Wrapper*
@@ -47,11 +53,9 @@ ReactDOM.render(
 
 ```
 
-
 Account store use `mobx-state-tree` lib for  [reactive state management ](https://mobx-state-tree.js.org/intro/welcome). To re-render react component on account state change use [observer](https://mobx-state-tree.js.org/intro/getting-started#getting-to-the-ui)
 
 *Each `observer` declaration will enable the React component to only re-render if any of it's observed data changes.*
-
 
 ------
 
@@ -95,7 +99,6 @@ export const Wallet = observer(() => {
 })
 ```
 
-
 ------
 
 *Account Store States & Deposit Action*
@@ -104,7 +107,6 @@ export const Wallet = observer(() => {
 import React from 'react'
 import { Button } from "./Button"
 import { useAccount, observer, Connectors, currencyValueToWei } from '@kiroboio/web3-react-safe-transfer'
-
 
 export const DepositButton = observer(() => {
     const {
@@ -131,4 +133,3 @@ export const DepositButton = observer(() => {
     return <Button title="Send" onClick={handleDeposit} />
 })
 ```
-

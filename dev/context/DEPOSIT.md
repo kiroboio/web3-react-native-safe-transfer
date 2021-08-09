@@ -64,4 +64,5 @@ const {
 ```
 
 <a href="/docs/api/stores/interfaces/ICmdStatus">deposit.is</a>
+<br />
 <a href="/docs/api/stores/interfaces/ICmdStatus">swapDeposit.is</a>

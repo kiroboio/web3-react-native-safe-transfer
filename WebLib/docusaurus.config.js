@@ -72,24 +72,24 @@ module.exports = {
         postBuildDeletedFolders: ["shared"],
       },
     ],
-    // {
-    //   type: 'category',
-    //   label: 'Guides',
-    //   collapsed: false,
-    //   items: [
-    //     'creating-pages',
-    //     {
-    //       type: 'category',
-    //       label: 'Docs',
-    //       items: ['introduction', 'sidebar', 'markdown-features', 'versioning'],
-    //     },
-    //   ],
-    // },
+    [
+      "docusaurus-plugin-typedoc",
+      {
+        id: "guides",
+        out: "Guides",
+        tsconfig: "../tsconfig.json",
+        sidebar: {
+          categoryLabel: "Guides",
+          position: 1,
+          fullNames: true,
+        },
+      },
+    ],
     [
       "docusaurus-plugin-typedoc",
       {
         id: "connect",
-        out: "guides/connect",
+        out: "Guides/connect",
         disableSources: true,
         readme: "../dev/context/CONNECT.md",
         tsconfig: "../tsconfig.json",
@@ -104,7 +104,7 @@ module.exports = {
       "docusaurus-plugin-typedoc",
       {
         id: "deposit",
-        out: "guides/deposit",
+        out: "Guides/deposit",
         disableSources: true,
         readme: "../dev/context/DEPOSIT.md",
         tsconfig: "../tsconfig.json",
@@ -119,7 +119,7 @@ module.exports = {
       "docusaurus-plugin-typedoc",
       {
         id: "transfers",
-        out: "guides/transfers",
+        out: "Guides/transfers",
         disableSources: true,
         readme: "../dev/context/LISTS.md",
         tsconfig: "../tsconfig.json",
@@ -134,7 +134,7 @@ module.exports = {
       "docusaurus-plugin-typedoc",
       {
         id: "actions",
-        out: "guides/actions",
+        out: "Guides/actions",
         disableSources: true,
         readme: "../dev/context/ACTIONS.md",
         tsconfig: "../tsconfig.json",
@@ -148,9 +148,24 @@ module.exports = {
     [
       "docusaurus-plugin-typedoc",
       {
+        id: "utils_guide",
+        out: "Guides/utils",
+        disableSources: true,
+        readme: "../dev/context/UTILS.md",
+        tsconfig: "../tsconfig.json",
+        sidebar: {
+          categoryLabel: "Utils",
+          position: 5,
+          fullNames: true,
+        },
+      },
+    ],
+    [
+      "docusaurus-plugin-typedoc",
+      {
         id: "context",
         entryPoints: ["../dev/context/index.ts"],
-        out: "api/context",
+        out: "Api/context",
         disableSources: true,
         tsconfig: "../tsconfig.json",
         sidebar: {
@@ -166,7 +181,7 @@ module.exports = {
       {
         id: "hooks",
         entryPoints: ["../dev/hooks/index.ts"],
-        out: "api/hooks",
+        out: "Api/hooks",
         disableSources: true,
         tsconfig: "../tsconfig.json",
         sidebar: {
@@ -179,23 +194,9 @@ module.exports = {
     [
       "docusaurus-plugin-typedoc",
       {
-        id: "debugging",
-        entryPoints: ["../dev/debugging/index.ts"],
-        out: "debugging",
-        disableSources: true,
-        sidebar: {
-          categoryLabel: "Debugging",
-          position: 3,
-          fullNames: true,
-        },
-      },
-    ],
-    [
-      "docusaurus-plugin-typedoc",
-      {
         id: "stores",
         entryPoints: ["../dev/stores/index.ts"],
-        out: "api/stores",
+        out: "Api/stores",
         disableSources: true,
         tsconfig: "../tsconfig.json",
         sidebar: {
@@ -211,7 +212,7 @@ module.exports = {
       {
         id: "utils",
         entryPoints: ["../dev/utils/index.ts"],
-        out: "api/utils",
+        out: "Api/utils",
         disableSources: true,
         readme: "../dev/utils/README.mdx",
         tsconfig: "../tsconfig.json",
@@ -227,7 +228,7 @@ module.exports = {
       {
         id: "dto",
         entryPoints: ["../dev/dto/index.ts"],
-        out: "api/dto",
+        out: "Api/dto",
         disableSources: true,
         sidebar: {
           categoryLabel: "DTO",
@@ -241,11 +242,25 @@ module.exports = {
       {
         id: "customConnectors",
         entryPoints: ["../dev/customConnectors/index.ts"],
-        out: "api/customConnectors",
+        out: "Api/customConnectors",
         disableSources: true,
         sidebar: {
           categoryLabel: "Custom Connectors",
           position: 7,
+          fullNames: true,
+        },
+      },
+    ],
+    [
+      "docusaurus-plugin-typedoc",
+      {
+        id: "debugging",
+        entryPoints: ["../dev/debugging/index.ts"],
+        out: "Debugging",
+        disableSources: true,
+        sidebar: {
+          categoryLabel: "Debugging",
+          position: 5,
           fullNames: true,
         },
       },

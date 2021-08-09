@@ -1,7 +1,7 @@
 ---
 id: "index"
 title: "web-lib"
-slug: "/guides/deposit"
+slug: "/Guides/deposit"
 sidebar_label: "Readme"
 sidebar_position: 0
 custom_edit_url: null
@@ -72,4 +72,5 @@ const {
 ```
 
 <a href="/docs/api/stores/interfaces/ICmdStatus">deposit.is</a>
+<br />
 <a href="/docs/api/stores/interfaces/ICmdStatus">swapDeposit.is</a>

@@ -1,7 +1,7 @@
 ---
 title: Getting Started
 sidebar_position: 1
-sidebar_label: "How To Use"
+sidebar_label: "Getting Started"
 ---
 
 ### Install
@@ -33,7 +33,7 @@ yarn add @kiroboio/web3-react-safe-transfer
 
 ### State
 
-*<a href="./stores/interfaces/IAccount#properties">Account States</a>*
+*<a href="/docs/Api/stores/interfaces/IAccount#properties">Account States</a>*
 
 
 
@@ -50,7 +50,7 @@ const {
 
 ### Methods
 
-*<a href="./stores/interfaces/IAccount#methods">Account Methods</a>*
+*<a href="/docs/Api/stores/interfaces/IAccount#methods">Account Methods</a>*
 
 
 ------
@@ -81,19 +81,19 @@ const setDeposit = ({
 
 ### Commands
 
-*<a href="./stores/interfaces/ICommands">Account Commands Interface</a>*
+*<a href="/docs/Api/stores/interfaces/ICommands">Account Commands Interface</a>*
 
 
 ### Views
 
 [mobx-state-tree views concept](https://mobx-state-tree.js.org/concepts/views)
 
-*<a href="./stores/interfaces/IViews">Account Views Interface</a>*
+*<a href="./stores/docs/Api/stores/interfaces/IViews">Account Views Interface</a>*
 
 
 ### Lists
 
-*<a href="./stores/interfaces/ILists">Account Lists Interface</a>*
+*<a href="/docs/Api/stores/interfaces/ILists">Account Lists Interface</a>*
 
 ------
 
@@ -111,7 +111,7 @@ const limit = 100
 transfers.fetch(limit)
 ```
 
-*<a href="./stores/interfaces/ITransferItems#list">Get list values</a>*
+*<a href="/docs/Api/stores/interfaces/ITransferItems#list">Get list values</a>*
 
 ```
 transfers.list
@@ -147,7 +147,7 @@ export const Address = observer(() => {
 
 Before start to use `web3` you have to `connect`
 
-<a href="./stores/interfaces/IAccount#connect">Connect</a>
+<a href="/docs/Api/stores/interfaces/IAccount#connect">Connect</a>
 
 ------
 
@@ -175,7 +175,7 @@ const {
   } = useAccount()
 ```
 
-<a href="./stores/interfaces/ICmdStatus">connectCmd.is</a>
+<a href="/docs/Api/stores/interfaces/ICmdStatus">connectCmd.is</a>
 
 
 
@@ -183,7 +183,7 @@ const {
 
 ### Deposit
 
-<a href="./stores/interfaces/IAccount#deposit">Deposit</a>
+<a href="/docs/Api/stores/interfaces/IAccount#deposit">Deposit</a>
 
 To create a retrievable transfer that can be collected use:
 
@@ -227,13 +227,13 @@ const {
   } = useAccount()
 ```
 
-<a href="./stores/interfaces/ICmdStatus">deposit.is</a>
+<a href="/docs/Api/stores/interfaces/ICmdStatus">deposit.is</a>
 
 
 
 ### Retrieve
 
-<a href="./stores/interfaces/IAccount#retrieve">Retrieve</a>
+<a href="/docs/Api/stores/interfaces/IAccount#retrieve">Retrieve</a>
 
 To retrieve transfer use: 
 
@@ -265,13 +265,13 @@ const {
   } = useAccount()
 ```
 
-<a href="./stores/interfaces/ICmdStatus">retrieveCmd.is</a>
+<a href="/docs/Api/stores/interfaces/ICmdStatus">retrieveCmd.is</a>
 
 
 
 ### Collect
 
-<a href="./stores/interfaces/IAccount#collect">Collect</a>
+<a href="/docs/Api/stores/interfaces/IAccount#collect">Collect</a>
 
 To collect transfer use:
 
@@ -303,7 +303,7 @@ const {
   } = useAccount()
 ```
 
-<a href="./stores/interfaces/ICmdStatus">collectCmd.is</a>
+<a href="/docs/Api/stores/interfaces/ICmdStatus">collectCmd.is</a>
 
 
 

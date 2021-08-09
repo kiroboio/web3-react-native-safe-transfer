@@ -1,7 +1,7 @@
 ---
 id: "index"
 title: "web-lib"
-slug: "/guides/connect"
+slug: "/Guides/connect"
 sidebar_label: "Readme"
 sidebar_position: 0
 custom_edit_url: null
