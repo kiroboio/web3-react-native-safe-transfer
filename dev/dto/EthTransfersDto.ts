@@ -1,4 +1,4 @@
-type EthTransferState =
+export type EthTransferState =
   | 'waiting-for-deposit'
   | 'retrieving'
   | 'retrieved'

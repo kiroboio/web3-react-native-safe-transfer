@@ -9,7 +9,7 @@ import { ERC20TokenItem, ITransferItem, ITransferItems } from '../stores/account
 import safeTransferABI from '../abi/safeTransfer.json'
 import erc20ABI from '../abi/erc20.json'
 import safeSwapABI from '../abi/safeSwap.json'
-import { EthTokenInfo, EthTransferResponseDto } from '../dto/EthTransfersDto'
+import { EthTokenInfo, EthTransferResponseDto, EthTransferState } from '../dto/EthTransfersDto'
 import { Connectors } from '../hooks/useWeb3'
 import { EthErc20ResponseDto } from '../dto/EthErc20Dto'
 import { useWallet } from '../hooks/useWallet'
@@ -1137,11 +1137,12 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
             .div(toBN(10))
             .toString()
 
-          const sendPayload: any = {
+          const sendPayload = {
             from,
             gasPrice,
             gas,
             value: sendValue,
+            nonce: undefined as number | undefined
           }
 
           if (connectCmd.connector !== Connectors.InAppWallet) {
@@ -1281,10 +1282,11 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
             .div(toBN(10))
             .toString()
 
-          const sendPayload: any = {
+          const sendPayload = {
             from,
             gasPrice,
             gas,
+            nonce: undefined as number | undefined
           }
 
           if (connectCmd.connector !== Connectors.InAppWallet) {
@@ -1451,11 +1453,12 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
             hex,
           })
 
-          const payload: any = {
+          const payload = {
             id: transfer.id,
-            state: 'retrieving',
+            state: 'retrieving' as EthTransferState,
+            txid: undefined as string | undefined
           }
-          if (txid) payload.txid = txid
+          if (txid) payload.txid = txid as string
           __swaps.current.update(address, payload)
           swapRetrieveCmd.done()
         } catch (e) {
@@ -1517,9 +1520,9 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
           if (!safeSwapContractWeb3)
             throw new Error('safeTransfer contract not found')
 
-          const request: any = await service
+          const request = await service
             .getService(SERVICE.SWAP(network))
-            .create({ id, key })
+            .create({ id, key }) as { secret: string }
           const transfer = swaps.map.get(swapCmd.id)
 
           if (!transfer) throw new Error('transfer not found')
@@ -1552,11 +1555,12 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
             .div(toBN(10))
             .toString()
 
-          const sendPayload: any = {
+          const sendPayload = {
             from: to,
             gasPrice,
             gas,
             value: ethValue,
+            nonce: undefined as number | undefined
           }
 
           if (connectCmd.connector !== Connectors.InAppWallet) {
@@ -1603,12 +1607,13 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
               hex
             })
 
-          const payload: any = {
+          const payload = {
             id: transfer.id,
-            state: 'swapping',
+            state: 'swapping' as EthTransferState,
+            txid: undefined as string | undefined
           }
 
-          if (txid) payload.txid = txid
+          if (txid) payload.txid = txid as string
           __swaps.current.update(address, payload)
           swapCmd.done()
         } catch (e) {
@@ -1667,7 +1672,7 @@ export const Web3ProviderUpdater: React.FC = observer(({ children }) => {
         key: authDetails.key,
         secret: authDetails.secret,
       },
-      (message: string, payload: any) => {
+      (message: string, payload: { rewards?: number}) => {
         const setCanGetRewards = __setCanGetRewards.current
         if (message === 'authorized') {
           setCanGetRewards(!!payload?.rewards)
