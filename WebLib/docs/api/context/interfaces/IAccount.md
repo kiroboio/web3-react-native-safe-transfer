@@ -74,7 +74,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| ``get` **data**(): `Object`` | `Object` |
+| ``get` **data**(): `IApproveData`` | `Object` |
 | ``get` **is**(): `ICommand`` | `Object` |
 | `run` | (`contractAddress`: `string`) => `void` |
 
@@ -170,7 +170,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| ``get` **data**(): `Object`` | `Object` |
+| ``get` **data**(): `IConnectData`` | `Object` |
 | ``get` **is**(): `ICommand`` | `Object` |
 | `run` | (`connector`: `Connectors`) => `void` |
 
@@ -387,9 +387,9 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| ``get` **data**(): `Object`` | `Object` |
+| ``get` **data**(): `IRetrieveData`` | `Object` |
 | ``get` **is**(): `ICommand`` | `Object` |
-| `run` | (`__namedParameters`: { `id`: `string`  }) => `void` |
+| `run` | (`__namedParameters`: `IRetrieveData`) => `void` |
 
 #### Inherited from
 
@@ -533,9 +533,9 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| ``get` **data**(): `Object`` | `Object` |
+| ``get` **data**(): `IRetrieveData`` | `Object` |
 | ``get` **is**(): `ICommand`` | `Object` |
-| `run` | (`__namedParameters`: { `id`: `string`  }) => `void` |
+| `run` | (`__namedParameters`: `IRetrieveData`) => `void` |
 
 #### Inherited from
 

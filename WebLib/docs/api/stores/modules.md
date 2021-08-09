@@ -14,6 +14,7 @@ custom_edit_url: null
 - [ERC20TokenItem](interfaces/ERC20TokenItem.md)
 - [FetchCmdParams](interfaces/FetchCmdParams.md)
 - [IAccount](interfaces/IAccount.md)
+- [IApproveData](interfaces/IApproveData.md)
 - [IApprovedCmd](interfaces/IApprovedCmd.md)
 - [ICmdActions](interfaces/ICmdActions.md)
 - [ICmdBase](interfaces/ICmdBase.md)
@@ -22,6 +23,7 @@ custom_edit_url: null
 - [ICommand](interfaces/ICommand.md)
 - [ICommands](interfaces/ICommands.md)
 - [IConnectCmd](interfaces/IConnectCmd.md)
+- [IConnectData](interfaces/IConnectData.md)
 - [IDepositCmd](interfaces/IDepositCmd.md)
 - [IDeviceInfo](interfaces/IDeviceInfo.md)
 - [IDisconnectCmd](interfaces/IDisconnectCmd.md)
@@ -34,6 +36,7 @@ custom_edit_url: null
 - [ILists](interfaces/ILists.md)
 - [IMnemonic](interfaces/IMnemonic.md)
 - [IRetrieveCmd](interfaces/IRetrieveCmd.md)
+- [IRetrieveData](interfaces/IRetrieveData.md)
 - [ISafeTransfer](interfaces/ISafeTransfer.md)
 - [ISafeTransferItem](interfaces/ISafeTransferItem.md)
 - [IStaking](interfaces/IStaking.md)
@@ -54,19 +57,6 @@ custom_edit_url: null
 ### Currency
 
 Ƭ **Currency**: ``"ETH"`` \| ``"KIRO"`` \| ``"USDT"`` \| ``"BNB"`` \| ``"UNI"`` \| ``"LINK"`` \| ``"SUSHI"`` \| ``"USDC"`` \| ``"WBTC"`` \| ``"DAI"``
-
-___
-
-### IConnectData
-
-Ƭ **IConnectData**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `connector` | `Connectors` |
-| `isConnected` | `boolean` |
 
 ## Variables
 

@@ -74,7 +74,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| ``get` **data**(): `Object`` | `Object` |
+| ``get` **data**(): [`IApproveData`](IApproveData.md)` | `Object` |
 | ``get` **is**(): [`ICommand`](ICommand.md)` | `Object` |
 | `run` | (`contractAddress`: `string`) => `void` |
 
@@ -170,7 +170,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| ``get` **data**(): `Object`` | `Object` |
+| ``get` **data**(): [`IConnectData`](IConnectData.md)` | `Object` |
 | ``get` **is**(): [`ICommand`](ICommand.md)` | `Object` |
 | `run` | (`connector`: `Connectors`) => `void` |
 
@@ -387,9 +387,9 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| ``get` **data**(): `Object`` | `Object` |
+| ``get` **data**(): [`IRetrieveData`](IRetrieveData.md)` | `Object` |
 | ``get` **is**(): [`ICommand`](ICommand.md)` | `Object` |
-| `run` | (`__namedParameters`: { `id`: `string`  }) => `void` |
+| `run` | (`__namedParameters`: [`IRetrieveData`](IRetrieveData.md)) => `void` |
 
 #### Inherited from
 
@@ -533,9 +533,9 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| ``get` **data**(): `Object`` | `Object` |
+| ``get` **data**(): [`IRetrieveData`](IRetrieveData.md)` | `Object` |
 | ``get` **is**(): [`ICommand`](ICommand.md)` | `Object` |
-| `run` | (`__namedParameters`: { `id`: `string`  }) => `void` |
+| `run` | (`__namedParameters`: [`IRetrieveData`](IRetrieveData.md)) => `void` |
 
 #### Inherited from
 

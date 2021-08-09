@@ -39,7 +39,7 @@ export const HistoryList = observer(() => {
 
 ##### Getting incoming & outgoing
 ```
-export const HistoryList = observer(() => {
+export const List = observer(() => {
   const {
     incoming,
     outgoing,
