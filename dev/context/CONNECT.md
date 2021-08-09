@@ -1,6 +1,6 @@
 
 
-### Connect
+#### Connect
 
 ------
 
@@ -36,3 +36,14 @@ export const App = observer(() => {
 })
 ```
 
+<a href="/docs/api/stores/interfaces/IAccount#connect">connect</a>
+
+##### Status
+
+```typescript
+const {
+    depositCmd,
+  } = useAccount()
+```
+
+<a href="/docs/api/stores/interfaces/ICmdStatus">connect.is</a>

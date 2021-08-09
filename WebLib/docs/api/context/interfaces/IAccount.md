@@ -205,7 +205,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | ``get` **data**(): `DepositCmdParams`` | `Object` |
-| ``get` **is**(): `Object`` | `Object` |
+| ``get` **is**(): `ICommand`` | `Object` |
 | `run` | (`__namedParameters`: { `message?`: `string` ; `passcode`: `string` ; `to`: `string` ; `value`: `string`  }) => `void` |
 
 #### Inherited from

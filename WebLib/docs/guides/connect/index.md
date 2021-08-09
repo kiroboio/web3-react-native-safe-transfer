@@ -7,7 +7,7 @@ sidebar_position: 0
 custom_edit_url: null
 ---
 
-### Connect
+#### Connect
 
 ------
 
@@ -42,3 +42,15 @@ export const App = observer(() => {
   return <Wallet onLogin={handleLogin} />
 })
 ```
+
+<a href="/docs/api/stores/interfaces/IAccount#connect">connect</a>
+
+##### Status
+
+```typescript
+const {
+    depositCmd,
+  } = useAccount()
+```
+
+<a href="/docs/api/stores/interfaces/ICmdStatus">connect.is</a>

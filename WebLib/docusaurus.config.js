@@ -107,14 +107,29 @@ module.exports = {
     [
       'docusaurus-plugin-typedoc',
       {
-        id:'connect2',
-        out: 'guides/connect2',
+        id:'deposit',
+        out: 'guides/deposit',
         disableSources: true,
-        readme: "../dev/context/CONNECT.md",
+        readme: "../dev/context/DEPOSIT.md",
         tsconfig: '../tsconfig.json',
         sidebar: {
-          categoryLabel: 'Connect2',
+          categoryLabel: 'Deposit',
           position: 2,
+          fullNames: true
+        },
+      },
+    ],
+    [
+      'docusaurus-plugin-typedoc',
+      {
+        id:'transfers',
+        out: 'guides/transfers',
+        disableSources: true,
+        readme: "../dev/context/LISTS.md",
+        tsconfig: '../tsconfig.json',
+        sidebar: {
+          categoryLabel: 'Transfers',
+          position: 3,
           fullNames: true
         },
       },

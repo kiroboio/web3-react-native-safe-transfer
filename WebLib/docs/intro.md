@@ -227,7 +227,7 @@ const {
   } = useAccount()
 ```
 
-<a href="./stores/interfaces/ICmdStatus">depositCmd.is</a>
+<a href="./stores/interfaces/ICmdStatus">deposit.is</a>
 
 
 

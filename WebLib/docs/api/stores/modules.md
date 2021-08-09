@@ -55,6 +55,19 @@ custom_edit_url: null
 
 Ƭ **Currency**: ``"ETH"`` \| ``"KIRO"`` \| ``"USDT"`` \| ``"BNB"`` \| ``"UNI"`` \| ``"LINK"`` \| ``"SUSHI"`` \| ``"USDC"`` \| ``"WBTC"`` \| ``"DAI"``
 
+___
+
+### IConnectData
+
+Ƭ **IConnectData**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `connector` | `Connectors` |
+| `isConnected` | `boolean` |
+
 ## Variables
 
 ### Account

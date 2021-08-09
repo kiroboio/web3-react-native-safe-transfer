@@ -944,6 +944,10 @@ const createSecretHash = (passcode: string) => {
   return { privateSalt, publicSalt, secretHash };
 };
 
+export type IConnectData = {
+  isConnected: boolean;
+  connector: Connectors;
+}
 export const Account = types
   .model("Account", {
     allowance: types.optional(types.string, "-1"),
@@ -1039,7 +1043,7 @@ export const Account = types
     },
     get deposit() {
       return {
-        get is() {
+        get is(): ICommand {
           return createCommand(self.depositCmd.is);
         },
         run({
