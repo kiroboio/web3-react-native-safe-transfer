@@ -80,7 +80,7 @@ module.exports = {
         tsconfig: "../tsconfig.json",
         sidebar: {
           categoryLabel: "Guides",
-          position: 1,
+          position: 2,
           fullNames: true,
         },
       },

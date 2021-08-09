@@ -53,7 +53,7 @@ custom_edit_url: null
                 message: string().trim().max(50),
         })
 
-          const {
+          const {<br />
             control,
             handleSubmit,
             reset,

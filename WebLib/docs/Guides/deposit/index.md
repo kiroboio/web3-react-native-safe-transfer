@@ -58,9 +58,8 @@ export const DepositButton = observer(() => {
         </>
 })
 ```
-<a href="/docs/api/stores/interfaces/IAccount#deposit">IDeposit</a>
-<br />
-<a href="/docs/api/stores/interfaces/IAccount#swapdeposit">ISwapDeposit</a>
+- *<a href="/docs/api/stores/interfaces/IAccount#deposit">IDeposit</a>*
+- *<a href="/docs/api/stores/interfaces/IAccount#swapdeposit">ISwapDeposit</a>*
 
 ##### Status
 
@@ -71,6 +70,5 @@ const {
   } = useAccount()
 ```
 
-<a href="/docs/api/stores/interfaces/ICmdStatus">deposit.is</a>
-<br />
-<a href="/docs/api/stores/interfaces/ICmdStatus">swapDeposit.is</a>
+- *<a href="/docs/api/stores/interfaces/ICmdStatus">deposit.is</a>*
+- *<a href="/docs/api/stores/interfaces/ICmdStatus">swapDeposit.is</a>*

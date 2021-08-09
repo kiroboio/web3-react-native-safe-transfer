@@ -3,7 +3,7 @@
 <a href="/docs/api/stores/interfaces/ILists">ILists</a>
 
 ##### Getting new transfers (incoming & outgoing, swaps not included)
-```
+```typescript
 export const TransfersList = observer(() => {
   const {
     transfers,

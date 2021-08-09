@@ -45,7 +45,7 @@
                 message: string().trim().max(50),
         })
 
-          const {
+          const {<br />
             control,
             handleSubmit,
             reset,
