@@ -92,16 +92,62 @@ module.exports = {
     [
       'docusaurus-plugin-typedoc',
       {
+        id:'connect',
+        out: 'guides/connect',
+        disableSources: true,
+        readme: "../dev/context/CONNECT.md",
+        tsconfig: '../tsconfig.json',
+        sidebar: {
+          categoryLabel: 'Connect',
+          position: 1,
+          fullNames: true
+        },
+      },
+    ],
+    [
+      'docusaurus-plugin-typedoc',
+      {
+        id:'connect2',
+        out: 'guides/connect2',
+        disableSources: true,
+        readme: "../dev/context/CONNECT.md",
+        tsconfig: '../tsconfig.json',
+        sidebar: {
+          categoryLabel: 'Connect2',
+          position: 2,
+          fullNames: true
+        },
+      },
+    ],
+    [
+      'docusaurus-plugin-typedoc',
+      {
         id:'context',
         entryPoints: ['../dev/context/index.ts'],
         out: "api/context",
         disableSources: true,
+        tsconfig: '../tsconfig.json',
         sidebar: {
           categoryLabel: 'Context',
           position: 1,
           fullNames: true
         },
         includes: ['../dev/stores']
+      },
+    ],
+    [
+      'docusaurus-plugin-typedoc',
+      {
+        id:'hooks',
+        entryPoints: ['../dev/hooks/index.ts'],
+        out: "api/hooks",
+        disableSources: true,
+        tsconfig: '../tsconfig.json',
+        sidebar: {
+          categoryLabel: 'Hooks',
+          position: 2,
+          fullNames: true
+        },
       },
     ],
     [
@@ -121,20 +167,6 @@ module.exports = {
     [
       'docusaurus-plugin-typedoc',
       {
-        id:'hooks',
-        entryPoints: ['../dev/hooks/index.ts'],
-        out: "api/hooks",
-        disableSources: true,
-        sidebar: {
-          categoryLabel: 'Hooks',
-          position: 2,
-          fullNames: true
-        },
-      },
-    ],
-    [
-      'docusaurus-plugin-typedoc',
-      {
         id:'stores',
         entryPoints: ['../dev/stores/index.ts'],
         out: 'api/stores',
@@ -142,7 +174,7 @@ module.exports = {
         tsconfig: '../tsconfig.json',
         sidebar: {
           categoryLabel: 'Stores',
-          position: 5,
+          position: 4,
           fullNames: true
         },
         includes: ['../dev/hooks']
@@ -157,9 +189,10 @@ module.exports = {
         out: 'api/utils',
         disableSources: true,
         readme: "../dev/utils/README.mdx",
+        tsconfig: '../tsconfig.json',
         sidebar: {
           categoryLabel: 'Utils',
-          position: 6,
+          position: 5,
           fullNames: true
         },
       },
@@ -173,7 +206,7 @@ module.exports = {
         disableSources: true,
         sidebar: {
           categoryLabel: 'DTO',
-          position: 7,
+          position: 6,
           fullNames: true
         },
       },
@@ -187,7 +220,7 @@ module.exports = {
         disableSources: true,
         sidebar: {
           categoryLabel: 'Custom Connectors',
-          position: 8,
+          position: 7,
           fullNames: true
         },
       },

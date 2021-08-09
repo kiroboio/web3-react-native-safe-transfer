@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Layout from "@theme/Layout";
 import { weiToCurrencyValue, currencyValueToWei, formatCurrencyValue } from "../../../dev/utils/ethereum";
 
@@ -48,7 +48,7 @@ const Utils = () => {
 
   const importString = `import { weiToCurrencyValue, currencyValueToWei, formatCurrencyValue } from "@kiroboio/web3-react-safe-transfer";`
   return (
-    <Layout title="Hello">
+    <Layout title="Utils">
       <div
         style={{
           display: "flex",

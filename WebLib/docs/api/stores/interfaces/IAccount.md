@@ -75,7 +75,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | ``get` **data**(): `Object`` | `Object` |
-| ``get` **is**(): `Object`` | `Object` |
+| ``get` **is**(): [`ICommand`](ICommand.md)` | `Object` |
 | `run` | (`contractAddress`: `string`) => `void` |
 
 #### Inherited from
@@ -142,8 +142,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| ``get` **data**(): `Object`` | `Object` |
-| ``get` **is**(): `Object`` | `Object` |
+| ``get` **data**(): [`CollectCmdParams`](CollectCmdParams.md)` | `Object` |
+| ``get` **is**(): [`ICommand`](ICommand.md)` | `Object` |
 | `run` | (`__namedParameters`: { `id`: `string` ; `passcode`: `string`  }) => `void` |
 
 #### Inherited from
@@ -171,7 +171,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | ``get` **data**(): `Object`` | `Object` |
-| ``get` **is**(): `Object`` | `Object` |
+| ``get` **is**(): [`ICommand`](ICommand.md)` | `Object` |
 | `run` | (`connector`: `Connectors`) => `void` |
 
 #### Inherited from
@@ -204,7 +204,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| ``get` **data**(): `Object`` | `Object` |
+| ``get` **data**(): [`DepositCmdParams`](DepositCmdParams.md)` | `Object` |
 | ``get` **is**(): `Object`` | `Object` |
 | `run` | (`__namedParameters`: { `message?`: `string` ; `passcode`: `string` ; `to`: `string` ; `value`: `string`  }) => `void` |
 
@@ -244,7 +244,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| ``get` **is**(): `Object`` | `Object` |
+| ``get` **is**(): [`ICommand`](ICommand.md)` | `Object` |
 | `run` | () => `void` |
 
 #### Inherited from
@@ -388,7 +388,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | ``get` **data**(): `Object`` | `Object` |
-| ``get` **is**(): `Object`` | `Object` |
+| ``get` **is**(): [`ICommand`](ICommand.md)` | `Object` |
 | `run` | (`__namedParameters`: { `id`: `string`  }) => `void` |
 
 #### Inherited from
@@ -477,8 +477,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| ``get` **data**(): `Object`` | `Object` |
-| ``get` **is**(): `Object`` | `Object` |
+| ``get` **data**(): [`CollectCmdParams`](CollectCmdParams.md)` | `Object` |
+| ``get` **is**(): [`ICommand`](ICommand.md)` | `Object` |
 | `run` | (`__namedParameters`: { `id`: `string` ; `passcode`: `string`  }) => `void` |
 
 #### Inherited from
@@ -505,8 +505,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| ``get` **data**(): `Object`` | `Object` |
-| ``get` **is**(): `Object`` | `Object` |
+| ``get` **data**(): [`DepositCmdParams`](DepositCmdParams.md) & { `desiredValue`: `string`  }` | `Object` |
+| ``get` **is**(): [`ICommand`](ICommand.md)` | `Object` |
 | `run` | (`__namedParameters`: { `desiredValue`: `string` ; `message?`: `string` ; `passcode`: `string` ; `to`: `string` ; `value`: `string`  }) => `void` |
 
 #### Inherited from
@@ -534,7 +534,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | ``get` **data**(): `Object`` | `Object` |
-| ``get` **is**(): `Object`` | `Object` |
+| ``get` **is**(): [`ICommand`](ICommand.md)` | `Object` |
 | `run` | (`__namedParameters`: { `id`: `string`  }) => `void` |
 
 #### Inherited from

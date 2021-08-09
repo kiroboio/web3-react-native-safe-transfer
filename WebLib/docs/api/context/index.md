@@ -122,8 +122,7 @@ export const DepositButton = observer(() => {
             message,
         }: DepositParams) => {
 
-        deposit({
-            from: address,
+        deposit.run({
             to,
             value: currencyValueToWei(value, currency.decimals),
             passcode,

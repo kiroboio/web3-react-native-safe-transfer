@@ -453,25 +453,25 @@ const EthAddressPrimitive = types.custom<string, string>({
   },
 });
 
-export interface IEthAddressPrimitive extends MobxClearInstance<typeof EthAddressPrimitive> {}
+export interface IEthAddressPrimitive
+  extends MobxClearInstance<typeof EthAddressPrimitive> {}
 
-export const ApprovedCmd = CmdBase.named('ApprovedCmd')
+export const ApprovedCmd = CmdBase.named("ApprovedCmd")
   .props({
     amount: types.optional(
       types.string,
-      '115792089237316195423570985008687907853269984665640564039457584007913129639935'
+      "115792089237316195423570985008687907853269984665640564039457584007913129639935"
     ),
-    contractAddress: types.optional(types.string, ''),
+    contractAddress: types.optional(types.string, ""),
   })
   .actions((self) => ({
     prepare(contractAddress: string) {
       if (!self.is.running) {
-        self.contractAddress = contractAddress
-        self.is.prepared()
+        self.contractAddress = contractAddress;
+        self.is.prepared();
       }
     },
-  }))
-
+  }));
 
 export interface IApprovedCmd extends MobxClearInstance<typeof ApprovedCmd> {
   is: ICmdStatus;
@@ -583,20 +583,18 @@ export interface RetrieveCmdParams {
   id: string;
 }
 
-export const RetrieveCmd = CmdBase.named('RetrieveCmd')
+export const RetrieveCmd = CmdBase.named("RetrieveCmd")
   .props({
-    id: types.optional(types.string, ''),
+    id: types.optional(types.string, ""),
   })
   .actions((self) => ({
     prepare(params: RetrieveCmdParams) {
       if (!self.is.running) {
-        self.id = params.id
-        self.is.prepared()
+        self.id = params.id;
+        self.is.prepared();
       }
     },
-  }))
-
-
+  }));
 
 export interface IRetrieveCmd extends MobxClearInstance<typeof RetrieveCmd> {
   is: ICmdStatus;
@@ -626,51 +624,51 @@ export interface ICollectCmd extends MobxClearInstance<typeof CollectCmd> {
 }
 
 export const Transfers = types
-  .model('Transfers', {
+  .model("Transfers", {
     name: types.string,
     map: types.map(Transfer),
     count: types.optional(types.number, 0),
     fetched: types.optional(types.number, 0),
-    address: types.optional(types.string, ''),
+    address: types.optional(types.string, ""),
     fetchCmd: types.optional(FetchCmd, {}),
   })
   .views((self) => ({
     get list() {
-      return Array.from(self.map.values())
+      return Array.from(self.map.values());
     },
     get fetch() {
       return {
         get is() {
-          return createCommand(self.fetchCmd.is)
+          return createCommand(self.fetchCmd.is);
         },
-        run (amount: number) {
-          self.fetchCmd.prepare({ list: self.name, amount })
-        }
-      }
-    }
+        run(amount: number) {
+          self.fetchCmd.prepare({ list: self.name, amount });
+        },
+      };
+    },
   }))
   .actions((self) => ({
     setFetched(count: number) {
-      self.fetched = count
+      self.fetched = count;
     },
     add({
       address,
       transfers,
       count,
     }: {
-      address: string
-      transfers: ITransferItem[]
-      count: number
+      address: string;
+      transfers: ITransferItem[];
+      count: number;
     }) {
       if (!self.address) {
-        self.address = address
+        self.address = address;
       } else if (self.address !== address) {
-        return
+        return;
       }
       for (const transfer of transfers) {
-        self.map.put(Transfer.create(transfer))
+        self.map.put(Transfer.create(transfer));
       }
-      
+
       /*
         const newTransfers = new Map()
         transfers.map(transfer => {
@@ -679,34 +677,34 @@ export const Transfers = types
         self.map.merge(newTransfers)
       */
 
-      self.count = count
+      self.count = count;
     },
     upsert(address: string, transfer: ITransferItem) {
       if (!self.address) {
-        self.address = address
-      } else if (self.address !== address) return
+        self.address = address;
+      } else if (self.address !== address) return;
       if (!self.map.has(transfer.id)) {
-        self.count = self.count + 1
+        self.count = self.count + 1;
       }
-      self.map.set(transfer.id, Transfer.create(transfer))
+      self.map.set(transfer.id, Transfer.create(transfer));
     },
     update(
       address: string,
       transfer: {
-        id: string
-        state: EthTransferResponseDto['state']
-        txid?: string
+        id: string;
+        state: EthTransferResponseDto["state"];
+        txid?: string;
       }
     ) {
       if (!self.address) {
-        self.address = address
-      } else if (self.address !== address) return
-      self.map.get(transfer.id)?.update(transfer.state, transfer?.txid)
+        self.address = address;
+      } else if (self.address !== address) return;
+      self.map.get(transfer.id)?.update(transfer.state, transfer?.txid);
     },
     delete(address: string, id: string) {
       if (self.address === address) {
         if (self.map.delete(id)) {
-          self.count = self.count - 1
+          self.count = self.count - 1;
         }
       }
     },
@@ -714,26 +712,26 @@ export const Transfers = types
       address: string,
       filter: (item: ITransferItem) => boolean
     ): ITransferItem[] {
-      const res: ITransferItem[] = []
+      const res: ITransferItem[] = [];
       if (self.address === address) {
         self.map.forEach((transfer) => {
           if (filter(transfer as ITransferItem)) {
-            res.push(castToSnapshot(getSnapshot(transfer)))
+            res.push(castToSnapshot(getSnapshot(transfer)));
             if (self.map.delete(transfer.id)) {
-              self.count = self.count - 1
+              self.count = self.count - 1;
             }
           }
-        })
+        });
       }
-      return res
+      return res;
     },
     clear() {
-      self.map.clear()
-      self.fetched = 0
-      self.count = 0
+      self.map.clear();
+      self.fetched = 0;
+      self.count = 0;
       // self.fetchId = self.fetchId + 1
-      self.address = ''
-      self.fetchCmd.clear()
+      self.address = "";
+      self.fetchCmd.clear();
     },
   }))
   .views((self) => ({
@@ -747,18 +745,18 @@ export const Transfers = types
               ? 1
               : a.updatedAt.getTime() === b.updatedAt.getTime()
               ? 0
-              : -1
+              : -1;
           })
-      )
+      );
     },
     get activeCount() {
-      let count = 0
+      let count = 0;
       self.map.forEach((item) => {
-        if (item.state === 'new') count += 1
-      })
-      return count
+        if (item.state === "new") count += 1;
+      });
+      return count;
     },
-  }))
+  }));
 
 const Mnemonic = types
   .model("Mnemonic", {
@@ -766,38 +764,38 @@ const Mnemonic = types
     clearCmd: types.optional(CmdBase.named("ClearCmd"), {}),
     removeCmd: types.optional(CmdBase.named("RemoveCmd"), {}),
     restoreCmd: types.optional(CmdBase.named("RestoreCmd"), {}),
-  }) 
+  })
   .views((self) => ({
     get clear() {
       return {
         get is() {
-          return createCommand(self.clearCmd.is)
+          return createCommand(self.clearCmd.is);
         },
         run() {
-          self.clearCmd.is.prepared()
-        }
-      }
+          self.clearCmd.is.prepared();
+        },
+      };
     },
     get remove() {
       return {
         get is() {
-          return createCommand(self.removeCmd.is)
+          return createCommand(self.removeCmd.is);
         },
         run() {
-          self.removeCmd.is.prepared()
-        }
-      }
+          self.removeCmd.is.prepared();
+        },
+      };
     },
     get restore() {
       return {
         get is() {
-          return createCommand(self.restoreCmd.is)
+          return createCommand(self.restoreCmd.is);
         },
         run() {
-          self.restoreCmd.is.prepared()
-        }
-      }
-    }
+          self.restoreCmd.is.prepared();
+        },
+      };
+    },
   }))
   .actions((self) => ({
     set(mnemonic?: string) {
@@ -848,19 +846,17 @@ const Wallet = types
     get removeAddress() {
       return {
         get is() {
-          return createCommand(self.removeAddressCmd.is)
+          return createCommand(self.removeAddressCmd.is);
         },
         run(address: string) {
-          self.removeAddressCmd.prepare(address)
-
-        }
-      }
+          self.removeAddressCmd.prepare(address);
+        },
+      };
     },
   }))
   .actions((self) => ({
-
     addWalletAddress() {
-      self.addAddressCmd.prepare()
+      self.addAddressCmd.prepare();
     },
     setAccounts(accounts: string[]) {
       accounts.forEach((account) => {
@@ -868,32 +864,30 @@ const Wallet = types
       });
     },
     setActiveAccount(activeAccount: string | undefined) {
-      self.activeAccount = activeAccount || ''
+      self.activeAccount = activeAccount || "";
     },
     generateMnemonic() {
-      self.mnemonic.set(generateMnemonic())
+      self.mnemonic.set(generateMnemonic());
     },
     setMnemonic(mnemonic?: string) {
-      self.mnemonic.set(mnemonic)
+      self.mnemonic.set(mnemonic);
     },
     getMnemonic() {
-      return self.mnemonic.data
+      return self.mnemonic.data;
     },
     tryRestoreMnemonicFromStorage() {
-      self.mnemonic.restore.run()
+      self.mnemonic.restore.run();
     },
     clearMnemonic() {
-      self.mnemonic.clear.run()
+      self.mnemonic.clear.run();
     },
     removeMnemonic() {
-      self.mnemonic.remove.run()
+      self.mnemonic.remove.run();
     },
     changeMnemonic(mnemonic: string) {
-      self.mnemonic.set(mnemonic)
+      self.mnemonic.set(mnemonic);
     },
-  }))
-
-
+  }));
 
 type MobxClearWallet = Omit<Instance<typeof Wallet>, symbol | "accounts">;
 
@@ -905,46 +899,50 @@ export interface IWallet extends MobxClearWallet {
 }
 
 export interface ERC20TokenItem {
-  address: string
-  name: string
-  symbol: string
-  decimals: number
-  balance: string
-  rate?: number
+  address: string;
+  name: string;
+  symbol: string;
+  decimals: number;
+  balance: string;
+  rate?: number;
 }
 
 const createCommand = (is: Instance<typeof CmdStatus>) => ({
   get withFailMessage() {
-    return is.withFailMessage
+    return is.withFailMessage;
   },
   get withId() {
-    return is.withId
+    return is.withId;
   },
   get ready() {
-    return is.ready
+    return is.ready;
   },
   get done() {
-    return is.done
+    return is.done;
   },
   get failed() {
-    return is.failed
+    return is.failed;
   },
   get running() {
-    return is.running
+    return is.running;
   },
-})
+});
+
+export interface ICommand
+  extends MobxClearInstance<ReturnType<typeof createCommand>> {}
 
 const createSecretHash = (passcode: string) => {
-  const _publicSalt = new Uint16Array(10)
-  const _privateSalt = new Uint16Array(10)
-  window.crypto.getRandomValues(_publicSalt)
-  window.crypto.getRandomValues(_privateSalt)
-  const publicSalt = _publicSalt.join('')
-  const privateSalt = _privateSalt.join('')
-  const secretHash = sha3(sha3(privateSalt + sha3(publicSalt + passcode)) || "")
-  return { privateSalt, publicSalt, secretHash }
-}
-
+  const _publicSalt = new Uint16Array(10);
+  const _privateSalt = new Uint16Array(10);
+  window.crypto.getRandomValues(_publicSalt);
+  window.crypto.getRandomValues(_privateSalt);
+  const publicSalt = _publicSalt.join("");
+  const privateSalt = _privateSalt.join("");
+  const secretHash = sha3(
+    sha3(privateSalt + sha3(publicSalt + passcode)) || ""
+  );
+  return { privateSalt, publicSalt, secretHash };
+};
 
 export const Account = types
   .model("Account", {
@@ -958,7 +956,7 @@ export const Account = types
     tokenBalance: types.optional(types.string, ""),
     stakingBalance: types.optional(types.string, ""),
     rate: types.optional(types.number, 0),
-    history: types.optional(Transfers, { name: 'history' }),
+    history: types.optional(Transfers, { name: "history" }),
     transfers: types.optional(Transfers, { name: "transfers" }),
     incoming: types.optional(Transfers, { name: "incoming" }),
     outgoing: types.optional(Transfers, { name: "outgoing" }),
@@ -980,11 +978,11 @@ export const Account = types
       balance: "",
     }),
     desiredCurrency: types.optional(ERC20Token, {
-      address: '0xb1191f691a355b43542bea9b8847bc73e7abb137',
-      symbol: 'KIRO',
+      address: "0xb1191f691a355b43542bea9b8847bc73e7abb137",
+      symbol: "KIRO",
       decimals: 18,
-      name: 'Kirobo Token',
-      balance: '',
+      name: "Kirobo Token",
+      balance: "",
     }),
     deviceInfo: types.optional(DeviceInfo, {}),
     left: types.optional(types.number, 10),
@@ -996,457 +994,472 @@ export const Account = types
     swapDepositCmd: types.optional(swapDepositCmd, {}),
     swapRetrieveCmd: types.optional(RetrieveCmd, {}),
     swapCmd: types.optional(CollectCmd, {}),
-    swaps: types.optional(Transfers, { name: 'swaps' }),
-    swapperAddress: types.optional(EthAddressPrimitive, ''),
-    swapperBalance: types.optional(types.string, ''),
-    formType: types.optional(types.string, 'swap'),
+    swaps: types.optional(Transfers, { name: "swaps" }),
+    swapperAddress: types.optional(EthAddressPrimitive, ""),
+    swapperBalance: types.optional(types.string, ""),
+    formType: types.optional(types.string, "swap"),
   })
   /**
    * views
    */
   .views((self) => ({
-  get retrieve() {
-    return {
-      get is() {
-        return createCommand(self.retrieveCmd.is)
-      },
-      run({ id }: { id: string }) {
-        self.retrieveCmd.prepare({ id: id })
-      },
-      get data() {
-        return {
-          get id() {
-            return self.retrieveCmd.id
-          },
-        }
-      }
-    }
-  },
-  get swapRetrieve() {
-    return {
-      get is() {
-        return createCommand(self.swapRetrieveCmd.is)
-      },
-      run({ id }: { id: string }) {
-        self.swapRetrieveCmd.prepare({ id: id })
-      },
-      get data() {
-        return {
-          get id() {
-            return self.swapRetrieveCmd.id
-          },
-        }
-      }
-    }
-  },
-  get deposit() {
-    return {
-      get is() {
-        return createCommand(self.depositCmd.is)
-      },
-      run({
-        to,
-        value,
-        passcode,
-        message = '',
-      }: {
-        to: string
-        value: string
-        passcode: string
-        message?: string
-      }) {
-        const { secretHash, publicSalt, privateSalt } = createSecretHash(passcode)
-        if (secretHash) {
-          self.depositCmd.prepare({
-            from: self.address,
-            to,
-            value,
-            message,
-            publicSalt,
-            privateSalt,
-            secretHash,
-          })
-        }
-      },
-      get data() {
-        return {
-          get from() {
-            return self.depositCmd.from
-          },
-          get to() {
-            return self.depositCmd.to
-          },
-          get value() {
-            return self.depositCmd.value
-          },
-          get publicSalt() {
-            return self.depositCmd.publicSalt
-          },
-          get privateSalt() {
-            return self.depositCmd.privateSalt
-          },
-          get secretHash() {
-            return self.depositCmd.secretHash
-          },
-          get message() {
-            return self.depositCmd.message
+    get retrieve() {
+      return {
+        get is(): ICommand {
+          return createCommand(self.retrieveCmd.is);
+        },
+        run({ id }: { id: string }) {
+          self.retrieveCmd.prepare({ id: id });
+        },
+        get data(): { id: string } {
+          return {
+            get id() {
+              return self.retrieveCmd.id;
+            },
+          };
+        },
+      };
+    },
+    get swapRetrieve() {
+      return {
+        get is(): ICommand {
+          return createCommand(self.swapRetrieveCmd.is);
+        },
+        run({ id }: { id: string }) {
+          self.swapRetrieveCmd.prepare({ id: id });
+        },
+        get data(): { id: string } {
+          return {
+            get id() {
+              return self.swapRetrieveCmd.id;
+            },
+          };
+        },
+      };
+    },
+    get deposit() {
+      return {
+        get is() {
+          return createCommand(self.depositCmd.is);
+        },
+        run({
+          to,
+          value,
+          passcode,
+          message = "",
+        }: {
+          to: string;
+          value: string;
+          passcode: string;
+          message?: string;
+        }) {
+          const { secretHash, publicSalt, privateSalt } =
+            createSecretHash(passcode);
+          if (secretHash) {
+            self.depositCmd.prepare({
+              from: self.address,
+              to,
+              value,
+              message,
+              publicSalt,
+              privateSalt,
+              secretHash,
+            });
           }
-        }
-      }
-    }
-  },
-  get swapDeposit() {
-    return {
-      get is() {
-        return createCommand(self.swapDepositCmd.is)
-      },
-      run({
-        to,
-        value,
-        desiredValue,
-        passcode,
-        message = '',
-      }: {
-        to: string
-        value: string
-        desiredValue: string
-        passcode: string
-        message?: string
-      }) {
-        const { secretHash, publicSalt, privateSalt } = createSecretHash(passcode)
-        if (secretHash) {
-          self.swapDepositCmd.prepare({
-            from: self.address,
-            to,
-            value,
-            desiredValue,
-            message,
-            publicSalt,
-            privateSalt,
-            secretHash,
-          })
-        }
-      },
-      get data() {
-        return {
-          get from() {
-            return self.swapDepositCmd.from
-          },
-          get to() {
-            return self.swapDepositCmd.to
-          },
-          get value() {
-            return self.swapDepositCmd.value
-          },
-          get desiredValue() {
-            return self.swapDepositCmd.desiredValue
-          },
-          get publicSalt() {
-            return self.swapDepositCmd.publicSalt
-          },
-          get privateSalt() {
-            return self.swapDepositCmd.privateSalt
-          },
-          get secretHash() {
-            return self.swapDepositCmd.secretHash
-          },
-          get message() {
-            return self.swapDepositCmd.message
+        },
+        get data(): DepositCmdParams {
+          return {
+            get from() {
+              return self.depositCmd.from;
+            },
+            get to() {
+              return self.depositCmd.to;
+            },
+            get value() {
+              return self.depositCmd.value;
+            },
+            get publicSalt() {
+              return self.depositCmd.publicSalt;
+            },
+            get privateSalt() {
+              return self.depositCmd.privateSalt;
+            },
+            get secretHash() {
+              return self.depositCmd.secretHash;
+            },
+            get message() {
+              return self.depositCmd.message;
+            },
+          };
+        },
+      };
+    },
+    get swapDeposit() {
+      return {
+        get is(): ICommand {
+          return createCommand(self.swapDepositCmd.is);
+        },
+        run({
+          to,
+          value,
+          desiredValue,
+          passcode,
+          message = "",
+        }: {
+          to: string;
+          value: string;
+          desiredValue: string;
+          passcode: string;
+          message?: string;
+        }) {
+          const { secretHash, publicSalt, privateSalt } =
+            createSecretHash(passcode);
+          if (secretHash) {
+            self.swapDepositCmd.prepare({
+              from: self.address,
+              to,
+              value,
+              desiredValue,
+              message,
+              publicSalt,
+              privateSalt,
+              secretHash,
+            });
           }
-        }
-      }
-    }
-  },
-  get collect() {
-    return {
-      get is() {
-        return createCommand(self.collectCmd.is)
-      },
-      run({ id, passcode }: { id: string; passcode: string }) {
-        const item = self.incoming.map.get(id)
-        if (item && item.salt) {
-          const key = sha3(item.salt + passcode) || ''
-          self.collectCmd.prepare({ id, key })
-        }
-      },
-      get data() {
-        return {
-          get id() {
-            return self.collectCmd.id
-          },
-          get key() {
-            return self.collectCmd.key
+        },
+        get data(): DepositCmdParams & { desiredValue: string } {
+          return {
+            get from() {
+              return self.swapDepositCmd.from;
+            },
+            get to() {
+              return self.swapDepositCmd.to;
+            },
+            get value() {
+              return self.swapDepositCmd.value;
+            },
+            get desiredValue() {
+              return self.swapDepositCmd.desiredValue;
+            },
+            get publicSalt() {
+              return self.swapDepositCmd.publicSalt;
+            },
+            get privateSalt() {
+              return self.swapDepositCmd.privateSalt;
+            },
+            get secretHash() {
+              return self.swapDepositCmd.secretHash;
+            },
+            get message() {
+              return self.swapDepositCmd.message;
+            },
+          };
+        },
+      };
+    },
+    get collect() {
+      return {
+        get is(): ICommand {
+          return createCommand(self.collectCmd.is);
+        },
+        run({ id, passcode }: { id: string; passcode: string }) {
+          const item = self.incoming.map.get(id);
+          if (item && item.salt) {
+            const key = sha3(item.salt + passcode) || "";
+            self.collectCmd.prepare({ id, key });
           }
-        }
-      }
-    }
-  },
-  get swap() {
-    return {
-      get is() {
-        return createCommand(self.swapCmd.is)
-      },
-      run({ id, passcode }: { id: string; passcode: string }) {
-        const item = self.swaps.map.get(id)
-        if (item && item.salt) {
-          const key = sha3(item.salt + passcode) || ''
-          self.swapCmd.prepare({ id, key })
-        }
-      },
-      get data() {
-        return {
-          get id() {
-            return self.swapCmd.id
-          },
-          get key() {
-            return self.swapCmd.key
+        },
+        get data(): CollectCmdParams {
+          return {
+            get id() {
+              return self.collectCmd.id;
+            },
+            get key() {
+              return self.collectCmd.key;
+            },
+          };
+        },
+      };
+    },
+    get swap() {
+      return {
+        get is(): ICommand {
+          return createCommand(self.swapCmd.is);
+        },
+        run({ id, passcode }: { id: string; passcode: string }) {
+          const item = self.swaps.map.get(id);
+          if (item && item.salt) {
+            const key = sha3(item.salt + passcode) || "";
+            self.swapCmd.prepare({ id, key });
           }
-        }
-      }
-    }
-  },
-  get approve() {
-    return {
-      get is() {
-        return createCommand(self.approvedCmd.is)
-      },
-      run(contractAddress: string) {
-        self.approvedCmd.prepare(contractAddress)
-      },
-      get data() {
-        return {
-          get contractAddress() {
-            return self.approvedCmd.contractAddress
-          }
-        }
-      }
-    }
-  },
-  get connect() {
-    return {
-      get is() {
-        return createCommand(self.connectCmd.is)
-      },
-      run(connector: Connectors) {
-        self.connectCmd.prepare(connector)
-      },
-      get data() {
-        return {
-          get isConnected() {
-            return self.connectCmd.isConnected
-          },
-          get connector() {
-            return self.connectCmd.connector
-          }
-        }
-      }
-    }
-  },
-  get disconnect() {
-    return {
-      get is() {
-        return createCommand(self.disconnectCmd.is)
-      },
-      run() {
-        self.disconnectCmd.prepare()
-      },
-    }
-  },
-  get safeTransferContract() {
-    return self.safeTransferMap.get(getChainName(self.chainId))
-  },
-  get safeSwapContract() {
-    return self.safeSwapMap.get(getChainName(self.chainId))
-  },
-  get kiroTokenContract() {
-    return self.kiroTokenMap.get(getChainName(self.chainId))
-  },
-  get ERC20TokensContract() {
-    return (
-      self.ERC20TokensMap.get(
-        getChainName(self.chainId > 0 ? self.chainId : 1)
-      )?.list || []
-    )
-  },
-  get stakingContract() {
-    return self.stakingMap.get(getChainName(self.chainId))
-  },
-  get gasPrice() {
-    return (
-      self.gasPriceMap.get(
-        getChainName(self.chainId > 0 ? self.chainId : 1)
-      ) || ''
-    )
-  },
-  approvedToken(symbol: string, amount: string) {
-    const { toBN } = Web3.utils
-    const isApproved = !(
-      symbol !== 'ETH' && toBN(self.allowance).cmp(toBN(amount)) === -1
-    )
-    // if (isApproved && self.approvedCmd.is.running) self.approvedCmd.done()
-    return isApproved
-  },
-  transferFees(amount: string) {
-    const contract =
-      self.formType !== 'swap'
-        ? self.safeTransferMap.get(
-            getChainName(self.chainId > 0 ? self.chainId : 1)
-          )
-        : self.safeSwapMap.get(
-            getChainName(self.chainId > 0 ? self.chainId : 1)
-          )
-    if (contract) return contract.fees(parseFloat(amount) > 0 ? amount : '0')
-    return ''
-  },
-  transferReward(amount: string, fees: string) {
-    const contract =
-      self.formType !== 'swap'
-        ? self.safeTransferMap.get(
-            getChainName(self.chainId > 0 ? self.chainId : 1)
-          )
-        : self.safeSwapMap.get(
-            getChainName(self.chainId > 0 ? self.chainId : 1)
-          )
-    if (contract) {
-      if (self.left <= 0) return 0
+        },
+        get data(): CollectCmdParams {
+          return {
+            get id() {
+              return self.swapCmd.id;
+            },
+            get key() {
+              return self.swapCmd.key;
+            },
+          };
+        },
+      };
+    },
+    get approve() {
+      return {
+        get is(): ICommand {
+          return createCommand(self.approvedCmd.is);
+        },
+        run(contractAddress: string) {
+          self.approvedCmd.prepare(contractAddress);
+        },
+        get data(): { contractAddress: string } {
+          return {
+            get contractAddress() {
+              return self.approvedCmd.contractAddress;
+            },
+          };
+        },
+      };
+    },
+    get connect() {
+      return {
+        get is(): ICommand {
+          return createCommand(self.connectCmd.is);
+        },
+        run(connector: Connectors) {
+          self.connectCmd.prepare(connector);
+        },
+        get data(): {
+          isConnected: boolean;
+          connector: Connectors;
+        } {
+          return {
+            get isConnected() {
+              return self.connectCmd.isConnected;
+            },
+            get connector() {
+              return self.connectCmd.connector as Connectors;
+            },
+          };
+        },
+      };
+    },
+    get disconnect() {
+      return {
+        get is(): ICommand {
+          return createCommand(self.disconnectCmd.is);
+        },
+        run() {
+          self.disconnectCmd.prepare();
+        },
+      };
+    },
+    get safeTransferContract() {
+      return self.safeTransferMap.get(getChainName(self.chainId));
+    },
+    get safeSwapContract() {
+      return self.safeSwapMap.get(getChainName(self.chainId));
+    },
+    get kiroTokenContract() {
+      return self.kiroTokenMap.get(getChainName(self.chainId));
+    },
+    get ERC20TokensContract() {
       return (
-        self.factor *
-        +contract.reward(
-          parseFloat(amount) ? amount : '0',
-          self.stakingBalance || '0',
-          parseFloat(fees) ? fees : '0'
-        )
-      )
-    }
-    return ''
-  },
-  ERC20TokenList(chainName: string) {
-    const tokens = self.ERC20TokensMap.get(chainName)
-    return tokens ? tokens.list : []
-  },
-}))
+        self.ERC20TokensMap.get(
+          getChainName(self.chainId > 0 ? self.chainId : 1)
+        )?.list || []
+      );
+    },
+    get stakingContract() {
+      return self.stakingMap.get(getChainName(self.chainId));
+    },
+    get gasPrice() {
+      return (
+        self.gasPriceMap.get(
+          getChainName(self.chainId > 0 ? self.chainId : 1)
+        ) || ""
+      );
+    },
+    approvedToken(symbol: string, amount: string) {
+      const { toBN } = Web3.utils;
+      const isApproved = !(
+        symbol !== "ETH" && toBN(self.allowance).cmp(toBN(amount)) === -1
+      );
+      // if (isApproved && self.approvedCmd.is.running) self.approvedCmd.done()
+      return isApproved;
+    },
+    transferFees(amount: string) {
+      const contract =
+        self.formType !== "swap"
+          ? self.safeTransferMap.get(
+              getChainName(self.chainId > 0 ? self.chainId : 1)
+            )
+          : self.safeSwapMap.get(
+              getChainName(self.chainId > 0 ? self.chainId : 1)
+            );
+      if (contract) return contract.fees(parseFloat(amount) > 0 ? amount : "0");
+      return "";
+    },
+    transferReward(amount: string, fees: string) {
+      const contract =
+        self.formType !== "swap"
+          ? self.safeTransferMap.get(
+              getChainName(self.chainId > 0 ? self.chainId : 1)
+            )
+          : self.safeSwapMap.get(
+              getChainName(self.chainId > 0 ? self.chainId : 1)
+            );
+      if (contract) {
+        if (self.left <= 0) return 0;
+        return (
+          self.factor *
+          +contract.reward(
+            parseFloat(amount) ? amount : "0",
+            self.stakingBalance || "0",
+            parseFloat(fees) ? fees : "0"
+          )
+        );
+      }
+      return "";
+    },
+    ERC20TokenList(chainName: string) {
+      const tokens = self.ERC20TokensMap.get(chainName);
+      return tokens ? tokens.list : [];
+    },
+  }))
   /**
    * actions
    */
   .actions((self) => ({
     setCanGetRewards(canGetRewards: boolean) {
-      self.canGetRewards = canGetRewards
+      self.canGetRewards = canGetRewards;
     },
     setFormType(formType: string) {
-      self.formType = formType
+      self.formType = formType;
     },
     setAddress(address: string) {
-      self.address = address
+      self.address = address;
     },
     setActive(newActive: boolean) {
-      self.active = newActive
+      self.active = newActive;
     },
     setChainId(chainId: number) {
-      self.chainId = chainId
+      self.chainId = chainId;
     },
     setBalance(balance: string) {
-      self.balance = balance
+      self.balance = balance;
     },
     setTokenBalance(balance: string) {
-      self.tokenBalance = balance
+      self.tokenBalance = balance;
     },
     setStakingBalance(balance: string) {
-      self.stakingBalance = balance
+      self.stakingBalance = balance;
     },
     setBlock(block: number) {
-      self.block = block
+      self.block = block;
     },
     setRate(newRate: number) {
-      self.rate = newRate
+      self.rate = newRate;
     },
     setCurrency(currency: ERC20TokenItem) {
-      self.currency.setData(currency)
-      const token = self.ERC20TokensContract.find((token) => token?.symbol === self.desiredCurrency?.symbol)
+      self.currency.setData(currency);
+      const token = self.ERC20TokensContract.find(
+        (token) => token?.symbol === self.desiredCurrency?.symbol
+      );
       if (token?.symbol === currency.symbol) {
-        if(currency.symbol !== 'ETH') {
-          const ethToken = self.ERC20TokensContract.find((token) => token?.symbol === 'ETH')
-          if(ethToken) self.desiredCurrency.setData(ethToken)
-        }
-        else {
-          const kiroToken = self.ERC20TokensContract.find((token) => token?.symbol === 'KIRO')
-          if(kiroToken) self.desiredCurrency.setData(kiroToken)
+        if (currency.symbol !== "ETH") {
+          const ethToken = self.ERC20TokensContract.find(
+            (token) => token?.symbol === "ETH"
+          );
+          if (ethToken) self.desiredCurrency.setData(ethToken);
+        } else {
+          const kiroToken = self.ERC20TokensContract.find(
+            (token) => token?.symbol === "KIRO"
+          );
+          if (kiroToken) self.desiredCurrency.setData(kiroToken);
         }
       }
     },
     setDesiredCurrency(currency: ERC20TokenItem) {
-      self.desiredCurrency.setData(currency)
-      const token = self.ERC20TokensContract.find((token) => token?.symbol === self.currency?.symbol)
+      self.desiredCurrency.setData(currency);
+      const token = self.ERC20TokensContract.find(
+        (token) => token?.symbol === self.currency?.symbol
+      );
       if (token?.symbol === currency.symbol) {
-        if(currency.symbol !== 'ETH') {
-          const ethToken = self.ERC20TokensContract.find((token) => token?.symbol === 'ETH')
-          if(ethToken) self.currency.setData(ethToken)
-        }
-        else {
-          const kiroToken = self.ERC20TokensContract.find((token) => token?.symbol === 'KIRO')
-          if(kiroToken) self.currency.setData(kiroToken)
+        if (currency.symbol !== "ETH") {
+          const ethToken = self.ERC20TokensContract.find(
+            (token) => token?.symbol === "ETH"
+          );
+          if (ethToken) self.currency.setData(ethToken);
+        } else {
+          const kiroToken = self.ERC20TokensContract.find(
+            (token) => token?.symbol === "KIRO"
+          );
+          if (kiroToken) self.currency.setData(kiroToken);
         }
       }
     },
     setCurrencyBalance(balance: string) {
-      self.currency.setBalance(balance)
+      self.currency.setBalance(balance);
     },
     setAllowance(allowance: string) {
-      self.allowance = allowance
+      self.allowance = allowance;
     },
     setDeviceInfo(deviceInfo: DeviceInfoData) {
-      self.deviceInfo.setData(deviceInfo)
+      self.deviceInfo.setData(deviceInfo);
     },
     setSafeTransferContract(chainName: string, data: ISafeTransferItem) {
       if (!chainName || !data) {
-        return
+        return;
       }
       if (!self.safeTransferMap.has(chainName)) {
-        self.safeTransferMap.set(chainName, SafeTransfer.create())
+        self.safeTransferMap.set(chainName, SafeTransfer.create());
       }
       const {
-        address = '',
-        feesFormula = '',
-        rewardFormula = '',
+        address = "",
+        feesFormula = "",
+        rewardFormula = "",
         synced = false,
-      } = data
+      } = data;
       self.safeTransferMap
         .get(chainName)
-        ?.setData({ address, feesFormula, rewardFormula, synced })
+        ?.setData({ address, feesFormula, rewardFormula, synced });
     },
     setSafeSwapContract(chainName: string, data: ISafeTransferItem) {
-      if (!chainName || !data) return
+      if (!chainName || !data) return;
       if (!self.safeSwapMap.has(chainName)) {
-        self.safeSwapMap.set(chainName, SafeTransfer.create())
+        self.safeSwapMap.set(chainName, SafeTransfer.create());
       }
       const {
-        address = '',
-        feesFormula = '',
-        rewardFormula = '',
+        address = "",
+        feesFormula = "",
+        rewardFormula = "",
         synced = false,
-      } = data
+      } = data;
       self.safeSwapMap
         .get(chainName)
-        ?.setData({ address, feesFormula, rewardFormula, synced })
+        ?.setData({ address, feesFormula, rewardFormula, synced });
     },
     setStakingContract(chainName: string, data: IStakingItem) {
-      if (!chainName || !data) return
+      if (!chainName || !data) return;
       if (!self.stakingMap.has(chainName)) {
-        self.stakingMap.set(chainName, Staking.create())
+        self.stakingMap.set(chainName, Staking.create());
       }
-      const { address = '' } = data
-      self.stakingMap.get(chainName)?.setData({ address })
+      const { address = "" } = data;
+      self.stakingMap.get(chainName)?.setData({ address });
     },
     setKiroTokenContract(chainName: string, data: IKiroTokenItem) {
-      if (!chainName || !data) return
+      if (!chainName || !data) return;
       if (!self.kiroTokenMap.has(chainName)) {
-        self.kiroTokenMap.set(chainName, KiroToken.create())
+        self.kiroTokenMap.set(chainName, KiroToken.create());
       }
-      const { address = '' } = data
-      self.kiroTokenMap.get(chainName)?.setData({ address })
+      const { address = "" } = data;
+      self.kiroTokenMap.get(chainName)?.setData({ address });
     },
     setERC20TokenContract(chainName: string, data: Array<ERC20TokenItem>) {
-      if (!chainName || !data) return
-      self.ERC20TokensMap.set(chainName, {})
+      if (!chainName || !data) return;
+      self.ERC20TokensMap.set(chainName, {});
       for (const { address, name, symbol, decimals, balance, rate } of data) {
         self.ERC20TokensMap.get(chainName)?.addToken({
           address,
@@ -1455,35 +1468,35 @@ export const Account = types
           decimals,
           balance,
           rate,
-        })
+        });
       }
     },
     setERC20TokenBalance(chainName: string, address: string, balance: string) {
-      self.ERC20TokensMap.get(chainName)?.setBalance(address, balance)
+      self.ERC20TokensMap.get(chainName)?.setBalance(address, balance);
     },
     setErc20TokenRate(chainName: string, address: string, rate: number) {
-      self.ERC20TokensMap.get(chainName)?.setRate(address, rate)
+      self.ERC20TokensMap.get(chainName)?.setRate(address, rate);
     },
     clearERC20TokenBalances(chainName?: string) {
       chainName
         ? self.ERC20TokensMap.get(chainName)?.clearBalances()
-        : self.ERC20TokensMap.forEach((token) => token.clearBalances())
+        : self.ERC20TokensMap.forEach((token) => token.clearBalances());
     },
     setRewardsParams(factor: number, left: number) {
-      self.factor = factor
-      self.left = left
+      self.factor = factor;
+      self.left = left;
     },
     setMaxRewards(maxRewards: number) {
-      self.maxRewards = maxRewards
+      self.maxRewards = maxRewards;
     },
     setGasPrice(chainName: string, gasPrice: string) {
-      self.gasPriceMap.set(chainName, gasPrice)
+      self.gasPriceMap.set(chainName, gasPrice);
     },
     setSwapperAddress(address: string) {
-      self.swapperAddress = address
+      self.swapperAddress = address;
     },
     setSwapperBalance(balance: string) {
-      self.swapperBalance = balance
+      self.swapperBalance = balance;
     },
   }));
 

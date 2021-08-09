@@ -19,6 +19,7 @@ custom_edit_url: null
 - [ICmdBase](interfaces/ICmdBase.md)
 - [ICmdStatus](interfaces/ICmdStatus.md)
 - [ICollectCmd](interfaces/ICollectCmd.md)
+- [ICommand](interfaces/ICommand.md)
 - [ICommands](interfaces/ICommands.md)
 - [IConnectCmd](interfaces/IConnectCmd.md)
 - [IDepositCmd](interfaces/IDepositCmd.md)

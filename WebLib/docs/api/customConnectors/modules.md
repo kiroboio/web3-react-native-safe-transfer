@@ -6,7 +6,3 @@ sidebar_position: 0.5
 custom_edit_url: null
 ---
 
-## Interfaces
-
-- [IInAppWalletConnector](interfaces/IInAppWalletConnector.md)
-- [NetworkConnectorArguments](interfaces/NetworkConnectorArguments.md)
