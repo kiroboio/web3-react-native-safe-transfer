@@ -18,6 +18,8 @@ ReactDOM.render(
 
 ```
 
+<a href="/docs/api/stores/interfaces/IAccount">Account Store</a>
+
 ------
 
 *Connect with metamask*
@@ -36,14 +38,29 @@ export const App = observer(() => {
 })
 ```
 
-<a href="/docs/api/stores/interfaces/IAccount#connect">connect</a>
+<a href="/docs/api/stores/interfaces/IAccount#connect">IConnect</a>
 
-##### Status
+------
+
+*Wallet Information*
 
 ```typescript
-const {
-    depositCmd,
+import React from 'react'
+import { Wallet } from "./Wallet"
+import { useAccount, observer } from '@kiroboio/web3-react-safe-transfer/lib'
+
+export const Wallet = observer(() => {
+  const {
+    address,
+    balance,
   } = useAccount()
+    
+  return (
+      <div className="wallet">
+      	address: { address }
+        balance: { balance }                 
+      </div>
+   	)
+})
 ```
 
-<a href="/docs/api/stores/interfaces/ICmdStatus">connect.is</a>

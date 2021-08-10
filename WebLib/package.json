@@ -42,27 +42,14 @@
     "ethers": "^5.4.1",
     "file-loader": "^6.2.0",
     "https-browserify": "^1.0.0",
-    "ismobilejs": "1.1.1",
     "lodash.merge": "^4.6.2",
-    "mobx": "6.1.8",
-    "mobx-react-lite": "^3.2.0",
-    "mobx-state-tree": "^5.0.1",
-    "numeral": "^2.0.6",
     "os-browserify": "^0.3.0",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "secure-ls": "1.2.6",
     "source-map-js": "^0.6.2",
     "stream": "^0.0.2",
-    "stream-http": "^2.8.3",
-    "truffle-privatekey-provider": "^1.5.0",
-    "ua-parser-js": "^0.7.28",
-    "url-loader": "^4.1.1",
-    "uuid": "8.3.2",
-    "web3": "1.3.4",
-    "web3-utils": "1.3.4",
-    "yup": "0.32.9"
+    "stream-http": "^2.8.3"
   },
   "browserslist": {
     "production": [
