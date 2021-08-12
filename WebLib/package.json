@@ -17,8 +17,6 @@
     "@docusaurus/core": "2.0.0-beta.3",
     "@docusaurus/preset-classic": "2.0.0-beta.3",
     "@ionic/react": "^5.6.11",
-    "@kiroboio/safe-transfer-lib-lite": "github:kiroboio/ki-safe-transfer-lib#develop-lite",
-    "@kiroboio/web3-react-safe-transfer": "file:../../kiroboio-web3-react-safe-transfer-1.0.0.tgz",
     "@mdx-js/react": "^1.6.21",
     "@metamask/detect-provider": "1.2.0",
     "@myetherwallet/mewconnect-connector": "0.1.8",
