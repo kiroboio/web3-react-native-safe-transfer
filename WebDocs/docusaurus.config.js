@@ -72,94 +72,94 @@ module.exports = {
         postBuildDeletedFolders: ["shared"],
       },
     ],
-    [
-      "docusaurus-plugin-typedoc",
-      {
-        id: "guides",
-        out: "Guides",
-        tsconfig: "../tsconfig.json",
-        sidebar: {
-          categoryLabel: "Guides",
-          position: 2,
-          fullNames: true,
-        },
-      },
-    ],
-    [
-      "docusaurus-plugin-typedoc",
-      {
-        id: "connect",
-        out: "Guides/connect",
-        disableSources: true,
-        readme: "../dev/context/CONNECT.md",
-        tsconfig: "../tsconfig.json",
-        sidebar: {
-          categoryLabel: "Connect",
-          position: 1,
-          fullNames: true,
-        },
-      },
-    ],
-    [
-      "docusaurus-plugin-typedoc",
-      {
-        id: "deposit",
-        out: "Guides/deposit",
-        disableSources: true,
-        readme: "../dev/context/DEPOSIT.md",
-        tsconfig: "../tsconfig.json",
-        sidebar: {
-          categoryLabel: "Deposit",
-          position: 2,
-          fullNames: true,
-        },
-      },
-    ],
-    [
-      "docusaurus-plugin-typedoc",
-      {
-        id: "transfers",
-        out: "Guides/transfers",
-        disableSources: true,
-        readme: "../dev/context/LISTS.md",
-        tsconfig: "../tsconfig.json",
-        sidebar: {
-          categoryLabel: "Transfers",
-          position: 3,
-          fullNames: true,
-        },
-      },
-    ],
-    [
-      "docusaurus-plugin-typedoc",
-      {
-        id: "actions",
-        out: "Guides/actions",
-        disableSources: true,
-        readme: "../dev/context/ACTIONS.md",
-        tsconfig: "../tsconfig.json",
-        sidebar: {
-          categoryLabel: "Actions",
-          position: 4,
-          fullNames: true,
-        },
-      },
-    ],
-    [
-      "docusaurus-plugin-typedoc",
-      {
-        id: "utils_guide",
-        out: "Guides/utils",
-        disableSources: true,
-        readme: "../dev/context/UTILS.md",
-        tsconfig: "../tsconfig.json",
-        sidebar: {
-          categoryLabel: "Utils",
-          position: 5,
-          fullNames: true,
-        },
-      },
-    ],
+    // [
+    //   "docusaurus-plugin-typedoc",
+    //   {
+    //     id: "guides",
+    //     out: "Guides",
+    //     tsconfig: "../tsconfig.json",
+    //     sidebar: {
+    //       categoryLabel: "Guides",
+    //       position: 2,
+    //       fullNames: true,
+    //     },
+    //   },
+    // ],
+    // [
+    //   "docusaurus-plugin-typedoc",
+    //   {
+    //     id: "connect",
+    //     out: "Guides/connect",
+    //     disableSources: true,
+    //     readme: "../dev/context/CONNECT.md",
+    //     tsconfig: "../tsconfig.json",
+    //     sidebar: {
+    //       categoryLabel: "Connect",
+    //       position: 1,
+    //       fullNames: true,
+    //     },
+    //   },
+    // ],
+    // [
+    //   "docusaurus-plugin-typedoc",
+    //   {
+    //     id: "deposit",
+    //     out: "Guides/deposit",
+    //     disableSources: true,
+    //     readme: "../dev/context/DEPOSIT.md",
+    //     tsconfig: "../tsconfig.json",
+    //     sidebar: {
+    //       categoryLabel: "Deposit",
+    //       position: 2,
+    //       fullNames: true,
+    //     },
+    //   },
+    // ],
+    // [
+    //   "docusaurus-plugin-typedoc",
+    //   {
+    //     id: "transfers",
+    //     out: "Guides/transfers",
+    //     disableSources: true,
+    //     readme: "../dev/context/LISTS.md",
+    //     tsconfig: "../tsconfig.json",
+    //     sidebar: {
+    //       categoryLabel: "Transfers",
+    //       position: 3,
+    //       fullNames: true,
+    //     },
+    //   },
+    // ],
+    // [
+    //   "docusaurus-plugin-typedoc",
+    //   {
+    //     id: "actions",
+    //     out: "Guides/actions",
+    //     disableSources: true,
+    //     readme: "../dev/context/ACTIONS.md",
+    //     tsconfig: "../tsconfig.json",
+    //     sidebar: {
+    //       categoryLabel: "Actions",
+    //       position: 4,
+    //       fullNames: true,
+    //     },
+    //   },
+    // ],
+    // [
+    //   "docusaurus-plugin-typedoc",
+    //   {
+    //     id: "utils_guide",
+    //     out: "Guides/utils",
+    //     disableSources: true,
+    //     readme: "../dev/context/UTILS.md",
+    //     tsconfig: "../tsconfig.json",
+    //     sidebar: {
+    //       categoryLabel: "Utils",
+    //       position: 5,
+    //       fullNames: true,
+    //     },
+    //   },
+    // ],
     [
       "docusaurus-plugin-typedoc",
       {
