@@ -5,13 +5,13 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 module.exports = {
   title: "Web3-react-safe-transfer docs",
   tagline: "Dinosaurs are cool",
-  url: "https://github.com/kiroboio/web3-lib",
-  baseUrl: "/",
+  url: "https://kiroboio.github.io/",
+  baseUrl: "/web3-react-safe-transfer/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
-  organizationName: "facebook", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  organizationName: "kiroboio", // Usually your GitHub org/user name.
+  projectName: "web3-lib", // Usually your repo name.
   themeConfig: {
     navbar: {
       title: "Safe-transfer docs",
@@ -64,7 +64,7 @@ module.exports = {
     },
   },
   plugins: [
-    ["./plugins/custom-webpack-plugin", {}],
+    // ["./plugins/custom-webpack-plugin", {}],
     [
       "docusaurus-plugin-includes",
       {

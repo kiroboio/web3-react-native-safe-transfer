@@ -2278,7 +2278,8 @@
   dependencies:
     "@json-rpc-tools/types" "^1.6.1"
 
-"@kiroboio/safe-transfer-lib-lite@github:kiroboio/ki-safe-transfer-lib#develop-lite":
+"@kiroboio/safe-transfer-lib@git+https://github.com/kiroboio/ki-safe-transfer-lib#develop-lite":
+  "resolved" "git+ssh://git@github.com/kiroboio/ki-safe-transfer-lib.git#053d1f203573557ff9844e033f0814c421e72eff"
   "version" "3.0.0"
   dependencies:
     "@feathersjs/authentication-client" "4.5.4"
@@ -5821,9 +5822,9 @@
   "version" "3.3.0"
 
 "crypto-js@^4.0.0":
-  "integrity" "sha512-bzHZN8Pn+gS7DQA6n+iUmBfl0hO5DJq++QP3U6uTucDtk/0iGpXd/Gg7CGR0p8tJhofJyaKoWBuJI4eAO00BBg=="
-  "resolved" "https://registry.npmjs.org/crypto-js/-/crypto-js-4.0.0.tgz"
-  "version" "4.0.0"
+  "integrity" "sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw=="
+  "resolved" "https://registry.npmjs.org/crypto-js/-/crypto-js-4.1.1.tgz"
+  "version" "4.1.1"
 
 "crypto-random-string@^1.0.0":
   "integrity" "sha1-ojD2T1aDEOFJgAmUB5DsmVRbyn4="
