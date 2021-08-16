@@ -11,7 +11,7 @@ export interface NetworkConnectorArguments {
   defaultChainId?: number
 }
 
-interface IInAppWalletConnector extends AbstractConnector {
+export interface IInAppWalletConnector extends AbstractConnector {
   name: string
   web3: Web3
   activate(): Promise<{ provider: string; chainId: number; account: string }>
@@ -22,7 +22,7 @@ interface IInAppWalletConnector extends AbstractConnector {
   changeChainId(chainId: number): void
 }
 
-class InAppWalletConnector
+export class InAppWalletConnector
   extends AbstractConnector
   implements IInAppWalletConnector {
   private secureStorage = new SecureLS()
@@ -212,5 +212,4 @@ class InAppWalletConnector
   }
 }
 
-export default InAppWalletConnector
-export type { IInAppWalletConnector }
+

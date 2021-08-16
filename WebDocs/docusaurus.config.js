@@ -159,6 +159,67 @@ module.exports = {
     //       fullNames: true,
     //     },
     //   },
+    // ],},
+    // ],
+    // [
+    //   "docusaurus-plugin-typedoc",
+    //   {
+    //     id: "deposit",
+    //     out: "Guides/deposit",
+    //     disableSources: true,
+    //     readme: "../dev/context/DEPOSIT.md",
+    //     tsconfig: "../tsconfig.json",
+    //     sidebar: {
+    //       categoryLabel: "Deposit",
+    //       position: 2,
+    //       fullNames: true,
+    //     },
+    //   },
+    // ],
+    // [
+    //   "docusaurus-plugin-typedoc",
+    //   {
+    //     id: "transfers",
+    //     out: "Guides/transfers",
+    //     disableSources: true,
+    //     readme: "../dev/context/LISTS.md",
+    //     tsconfig: "../tsconfig.json",
+    //     sidebar: {
+    //       categoryLabel: "Transfers",
+    //       position: 3,
+    //       fullNames: true,
+    //     },
+    //   },
+    // ],
+    // [
+    //   "docusaurus-plugin-typedoc",
+    //   {
+    //     id: "actions",
+    //     out: "Guides/actions",
+    //     disableSources: true,
+    //     readme: "../dev/context/ACTIONS.md",
+    //     tsconfig: "../tsconfig.json",
+    //     sidebar: {
+    //       categoryLabel: "Actions",
+    //       position: 4,
+    //       fullNames: true,
+    //     },
+    //   },
+    // ],
+    // [
+    //   "docusaurus-plugin-typedoc",
+    //   {
+    //     id: "utils_guide",
+    //     out: "Guides/utils",
+    //     disableSources: true,
+    //     readme: "../dev/context/UTILS.md",
+    //     tsconfig: "../tsconfig.json",
+    //     sidebar: {
+    //       categoryLabel: "Utils",
+    //       position: 5,
+    //       fullNames: true,
+    //     },
+    //   },
     // ],
     [
       "docusaurus-plugin-typedoc",
@@ -214,7 +275,6 @@ module.exports = {
         entryPoints: ["../dev/utils/index.ts"],
         out: "Api/utils",
         disableSources: true,
-        readme: "../dev/utils/README.mdx",
         tsconfig: "../tsconfig.json",
         sidebar: {
           categoryLabel: "Utils",
@@ -230,6 +290,7 @@ module.exports = {
         entryPoints: ["../dev/dto/index.ts"],
         out: "Api/dto",
         disableSources: true,
+        tsconfig: "../tsconfig.json",
         sidebar: {
           categoryLabel: "DTO",
           position: 6,
@@ -243,6 +304,7 @@ module.exports = {
         id: "customConnectors",
         entryPoints: ["../dev/customConnectors/index.ts"],
         out: "Api/customConnectors",
+        tsconfig: "../tsconfig.json",
         disableSources: true,
         sidebar: {
           categoryLabel: "Custom Connectors",
@@ -258,6 +320,7 @@ module.exports = {
         entryPoints: ["../dev/debugging/index.ts"],
         out: "Debugging",
         disableSources: true,
+        tsconfig: "../tsconfig.json",
         sidebar: {
           categoryLabel: "Debugging",
           position: 5,

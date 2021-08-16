@@ -171,11 +171,11 @@ export const App = observer(() => {
 
 ```typescript
 const {
-    connectCmd,
+    connect,
   } = useAccount()
 ```
 
-<a href="/docs/Api/stores/interfaces/ICmdStatus">connectCmd.is</a>
+<a href="/docs/Api/stores/interfaces/ICmdStatus">connect.is</a>
 
 
 
@@ -223,7 +223,7 @@ const setDeposit = ({
 
 ```typescript
 const {
-    depositCmd,
+    deposit,
   } = useAccount()
 ```
 
@@ -261,11 +261,11 @@ const setCollect = ({
 
 ```typescript
 const {
-    retrieveCmd,
+    retrieve,
   } = useAccount()
 ```
 
-<a href="/docs/Api/stores/interfaces/ICmdStatus">retrieveCmd.is</a>
+<a href="/docs/Api/stores/interfaces/ICmdStatus">retrieve.is</a>
 
 
 
@@ -279,7 +279,7 @@ To collect transfer use:
 
 
 ```typescript
-import { useAccount } from '@kiroboio/web3-react-safe-transfer
+import { useAccount } from '@kiroboio/web3-react-safe-transfer'
 
 const {
     collect,
@@ -299,11 +299,11 @@ const setCollect = ({
 
 ```typescript
 const {
-    collectCmd,
+    collect,
   } = useAccount()
 ```
 
-<a href="/docs/Api/stores/interfaces/ICmdStatus">collectCmd.is</a>
+<a href="/docs/Api/stores/interfaces/ICmdStatus">collect.is</a>
 
 
 

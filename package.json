@@ -16,7 +16,8 @@
     "lint:check": "npm run eslint:check",
     "eslint": "tsc --noemit && eslint --max-warnings=0 --ext .ts,.tsx dev",
     "eslint:fix": "tsc --noemit && eslint --max-warnings=0 --fix --ext .ts,.tsx dev",
-    "eslint:check": "eslint-config-prettier src/index.tsx"
+    "eslint:check": "eslint-config-prettier src/index.tsx",
+    "postinstall": "cd ./WebDocs && npm i"
   },
   "dependencies": {
     "@ionic/react": "^5.6.11",

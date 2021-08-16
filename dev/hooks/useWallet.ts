@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useSecureStorage, UseSecureStorageRes } from './useSecureStorage'
-import InAppWalletConnector from '../customConnectors/InAppWalletConnector'
+import { InAppWalletConnector } from '../customConnectors/InAppWalletConnector'
 import { generateMnemonic } from 'bip39'
 
 type Error = {

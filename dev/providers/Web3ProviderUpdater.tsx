@@ -14,7 +14,7 @@ import { Connectors } from '../hooks/useWeb3'
 import { EthErc20ResponseDto } from '../dto/EthErc20Dto'
 import { useWallet } from '../hooks/useWallet'
 import '@metamask/detect-provider'
-import InAppWalletConnector from '../customConnectors/InAppWalletConnector'
+import { InAppWalletConnector } from '../customConnectors/InAppWalletConnector'
 import { UAParser } from 'ua-parser-js'
 
 const MAX_CONFIRMS = 30
