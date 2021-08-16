@@ -5,7 +5,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 module.exports = {
   title: "Web3-react-safe-transfer docs",
   tagline: "Dinosaurs are cool",
-  url: "https://kiroboio.github.io/",
+  url: "https://kiroboio.github.io",
   baseUrl: "/web3-react-safe-transfer/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
