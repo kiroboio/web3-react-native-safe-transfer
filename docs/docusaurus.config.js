@@ -6,7 +6,7 @@ module.exports = {
   title: "Web3-react-safe-transfer docs",
   tagline: "Dinosaurs are cool",
   url: "https://kiroboio.github.io",
-  baseUrl: "/web3-react-safe-transfer/",
+  baseUrl: "/web3-lib/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
