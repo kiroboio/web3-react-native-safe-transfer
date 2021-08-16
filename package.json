@@ -36,6 +36,12 @@
     "ethereum-input-data-decoder": "^0.3.2",
     "ethers": "^5.0.30",
     "ismobilejs": "1.1.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "reactotron-core-client": "^2.8.10",
+    "reactotron-mst": "^3.1.3",
+    "reactotron-react-js": "^3.3.7",
+    "typescript": "4.2",
     "lodash.merge": "^4.6.2",
     "mobx": "6.1.8",
     "mobx-react-lite": "^3.2.0",
@@ -49,14 +55,6 @@
     "web3": "1.3.4",
     "web3-utils": "1.3.4",
     "yup": "0.32.9"
-  },
-  "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "reactotron-core-client": "^2.8.10",
-    "reactotron-mst": "^3.1.3",
-    "reactotron-react-js": "^3.3.7",
-    "typescript": "4.2"
   },
   "devDependencies": {
     "@emotion/react": "^11.1.1",

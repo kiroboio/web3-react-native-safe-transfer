@@ -12,19 +12,6 @@ npx i --save @kiroboio/web3-react-safe-transfer
 yarn add @kiroboio/web3-react-safe-transfer
 ```
 
-#### Peer Dependencies
-
-```json
-{
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "reactotron-core-client": "^2.8.10",
-    "reactotron-mst": "^3.1.3",
-    "reactotron-react-js": "^3.3.7",
-    "typescript": "4.2"
-}
-```
-
 {@include: ../../dev/context/README.md}
 
 {@include: ../../dev/debugging/README.md}
