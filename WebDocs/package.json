@@ -6,7 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "prebuild": "find docs/Guides -name modules.md -delete && rm -f -- docs/Guides/index.md",
-    "build": "docusaurus build",
+    "build": "BUILD=true docusaurus build",
     "postbuild": "npm run deploy",
     "deploy": "rm -rf ../docs && cp -R build ../docs",
     "swizzle": "docusaurus swizzle",

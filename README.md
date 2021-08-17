@@ -134,7 +134,7 @@ const setDeposit = ({
     deposit.set({
         from: address,
         to,
-        value: etherToWei(value, currency.decimals),
+        value: currencyValueToWei(value, currency.decimals),
         passcode,
         message,
     })
@@ -222,7 +222,7 @@ After setting the values deposit transaction will be started
 
 
 ```typescript
-import { useAccount, etherToWei } from '@kiroboio/web3-react-safe-transfer
+import { useAccount, currencyValueToWei } from '@kiroboio/web3-react-safe-transfer
 
 const {
     address,
@@ -240,7 +240,7 @@ const setDeposit = ({
     deposit.set({
         from: address,
         to,
-        value: etherToWei(value, currency.decimals),
+        value: currencyValueToWei(value, currency.decimals),
         passcode,
         message,
     })

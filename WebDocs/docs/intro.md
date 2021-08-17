@@ -59,7 +59,7 @@ const setDeposit = ({
     deposit({
         from: address,
         to,
-        value: etherToWei(value, currency.decimals),
+        value: currencyValueToWei(value, currency.decimals),
         passcode,
         message,
     })

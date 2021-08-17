@@ -5,10 +5,10 @@ import Web3 from 'web3'
 import { Web3ProviderUpdater } from './Web3ProviderUpdater'
 import { IInAppWalletConnector } from '../customConnectors/InAppWalletConnector'
 import { Connectors } from '..'
-import { provider } from 'web3/node_modules/web3-core';
+
 
 const getLibrary = (
-  provider: provider,
+  provider: any,
   connector?: AbstractConnector | IInAppWalletConnector
 ) => {
   if (connector) {

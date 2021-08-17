@@ -4,25 +4,7 @@
 
 #### Kirobo Provider
 
-`KiroboProvider `  wrap all children with `AccountContext`
-
-```typescript
-import React from 'react'
-
-import { AccountContext } from '../context/account'
-import { accountStore } from '../stores/account'
-import { Web3Provider } from './Web3Provider'
-
-export const KiroboProvider: React.FC = (props) => (
-  <AccountContext.Provider value={accountStore}>
-    <Web3Provider />
-    {props.children}
-  </AccountContext.Provider>
-)
-
-```
-
-`Web3Provider` implement all actions related to `web3` like `deposit` ,`retrieve` , `collect` transaction after invoking appropriate action from `AccountProvider`
+`KiroboProvider`  wrap all children with `AccountContext` and implement all actions related to `web3` like `deposit` ,`retrieve` , `collect`, `swap` transaction after invoking appropriate action from `AccountProvider`
 
 #### Use Account
 
@@ -78,7 +60,7 @@ export const App = observer(() => {
 ```typescript
 import React from 'react'
 import { Wallet } from "./Wallet"
-import { useAccount, observer } from '@kiroboio/web3-react-safe-transfer/lib'
+import { useAccount, observer } from '@kiroboio/web3-react-safe-transfer'
 
 export const Wallet = observer(() => {
   const {
