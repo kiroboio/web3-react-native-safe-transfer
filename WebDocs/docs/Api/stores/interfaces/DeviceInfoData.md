@@ -20,6 +20,12 @@ ___
 
 ___
 
+### isApp
+
+• **isApp**: `boolean`
+
+___
+
 ### isMobile
 
 • **isMobile**: `boolean`

@@ -8,6 +8,6 @@ custom_edit_url: null
 
 ## Hierarchy
 
-- `MobxClearInstance`<typeof `CmdActions`\>
+- `MobxClearInstance`<typeof [`CmdActions`](../modules.md#cmdactions)\>
 
   ↳ **`ICmdActions`**

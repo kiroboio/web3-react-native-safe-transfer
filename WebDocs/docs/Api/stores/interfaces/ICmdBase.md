@@ -8,7 +8,7 @@ custom_edit_url: null
 
 ## Hierarchy
 
-- `MobxClearInstance`<typeof `CmdBase`\>
+- `MobxClearInstance`<typeof [`CmdBase`](../modules.md#cmdbase)\>
 
   ↳ **`ICmdBase`**
 

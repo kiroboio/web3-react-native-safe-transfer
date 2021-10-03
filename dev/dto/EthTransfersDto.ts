@@ -13,7 +13,7 @@ export type EthTransferState =
   | 'creating'
   | 'unknown'
 
-interface EthCollectInfo {
+export interface EthCollectInfo {
   /**
    * blockchain height
    *
@@ -34,7 +34,7 @@ interface EthCollectInfo {
   txid: string
 }
 
-interface EthRetrieveInfo {
+export interface EthRetrieveInfo {
   /**
    * blockchain height
    *
@@ -55,7 +55,7 @@ interface EthRetrieveInfo {
   txid: string
 }
 
-interface EthDepositInfo {
+export interface EthDepositInfo {
   /**
    * blockchain height
    *
@@ -76,7 +76,7 @@ interface EthDepositInfo {
   txid: string
 }
 
-interface EthTransactionInfo {
+export interface EthTransactionInfo {
   inputs: { txid: string; vout: number }[]
   coins: { value: number; address: string }[]
   txid: string
@@ -344,4 +344,23 @@ export interface EthTransferResponseDto {
     block?: number
   }
   txid: string
+}
+
+export interface EtherscanTransactionsResponseDto {
+  from: string
+  to: string
+  value: string
+  gas: string
+  gasPrice: string
+  hash: string
+  timeStamp: string
+  blockNumber: string
+  isError: string // '0' no error
+  cumulativeGasUsed: string
+  gasUsed: string
+  input: string
+  token?: EthTokenInfo
+  tokenDecimal?: "18"
+  tokenName?: "Kirobo"
+  tokenSymbol?: "KIRO"
 }

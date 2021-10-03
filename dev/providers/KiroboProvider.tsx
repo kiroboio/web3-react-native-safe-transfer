@@ -1,12 +1,13 @@
 import React from 'react'
-
-import { AccountContext } from '../context/account'
-import { accountStore } from '../stores/account'
+import { AppContext, appStore } from '../context/app'
 import { Web3Provider } from './Web3Provider'
 
+
+const { accountStore, uiStore, addressBookStore } = appStore
+
 export const KiroboProvider: React.FC = (props) => (
-  <AccountContext.Provider value={accountStore}>
+  <AppContext.Provider value={{ accountStore, uiStore, addressBookStore }}>
     <Web3Provider />
     {props.children}
-  </AccountContext.Provider>
+  </AppContext.Provider>
 )

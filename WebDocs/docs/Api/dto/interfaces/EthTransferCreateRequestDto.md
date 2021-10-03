@@ -16,7 +16,7 @@ custom_edit_url: null
 
 ### deposit
 
-• **deposit**: `EthDepositInfo`
+• **deposit**: [`EthDepositInfo`](EthDepositInfo.md)
 
 ___
 

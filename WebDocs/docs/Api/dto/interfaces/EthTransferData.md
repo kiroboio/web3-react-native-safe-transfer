@@ -22,7 +22,7 @@ ___
 
 ### collect
 
-• **collect**: `EthCollectInfo`
+• **collect**: [`EthCollectInfo`](EthCollectInfo.md)
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 ### deposit
 
-• **deposit**: `EthDepositInfo`
+• **deposit**: [`EthDepositInfo`](EthDepositInfo.md)
 
 #### Overrides
 
@@ -109,7 +109,7 @@ ___
 
 ### retrieve
 
-• **retrieve**: `EthRetrieveInfo`
+• **retrieve**: [`EthRetrieveInfo`](EthRetrieveInfo.md)
 
 ___
 

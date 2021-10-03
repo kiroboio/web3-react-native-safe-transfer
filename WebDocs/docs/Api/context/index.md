@@ -11,7 +11,7 @@ custom_edit_url: null
 
 #### Kirobo Provider
 
-`KiroboProvider`  wrap all children with `AccountContext` and implement all actions related to `web3` like `deposit` ,`retrieve` , `collect`, `swap` transaction after invoking appropriate action from `AccountProvider`
+`KiroboProvider`  wrap all children with `AccountContext` and implement all actions related to `web3` like `deposit` ,`retrieve`, `collect`, `swap` transaction after invoking appropriate action from `AccountProvider`
 
 #### Use Account
 

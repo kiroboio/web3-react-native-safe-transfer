@@ -26,7 +26,7 @@ ___
 
 ### collect
 
-• **collect**: `EthCollectInfo`
+• **collect**: [`EthCollectInfo`](EthCollectInfo.md)
 
 #### Inherited from
 
@@ -48,7 +48,7 @@ ___
 
 ### deposit
 
-• **deposit**: `EthDepositInfo`
+• **deposit**: [`EthDepositInfo`](EthDepositInfo.md)
 
 #### Inherited from
 
@@ -117,7 +117,7 @@ ___
 
 ### retrieve
 
-• **retrieve**: `EthRetrieveInfo`
+• **retrieve**: [`EthRetrieveInfo`](EthRetrieveInfo.md)
 
 #### Inherited from
 

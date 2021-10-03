@@ -8,7 +8,7 @@ custom_edit_url: null
 
 ## Hierarchy
 
-- `MobxClearInstance`<`ReturnType`<typeof `createCommand`\>\>
+- `MobxClearInstance`<`ReturnType`<typeof [`createCommand`](../modules.md#createcommand)\>\>
 
   ↳ **`ICommand`**
 

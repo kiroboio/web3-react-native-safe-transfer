@@ -44,6 +44,34 @@ MobxClearTransferItems.count
 
 ___
 
+### export
+
+• **export**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| ``get` **is**(): `Object`` | `Object` |
+| ``get` **progress**(): `number`` | `Object` |
+| `run` | () => `void` |
+
+#### Inherited from
+
+MobxClearTransferItems.export
+
+___
+
+### exportCmd
+
+• **exportCmd**: { `amount`: `number` ; `is`: { ready: boolean; running: boolean; done: boolean; failed: boolean; withFailMessage: string; withId: number; } & `NonEmptyObject` & { `clear`: () => `void` ; `finished`: (`err?`: { `err`: { `message`: `string`  }  }) => `void` ; `prepared`: () => `void` ; `started`: () => `void`  } & `IStateTreeNode`<`IOptionalIType`<`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>, [`undefined`]\>\> ; `list`: `string`  } & `NonEmptyObject` & { `clear`: () => `void` ; `clearErrors`: () => `void` ; `done`: () => `void` ; `failed`: (`__namedParameters`: { `message`: `string`  }) => `void` ; `start`: () => `void`  } & { `prepare`: (`params`: [`FetchCmdParams`](FetchCmdParams.md)) => `void`  } & `IStateTreeNode`<`IOptionalIType`<`IModelType`<{ `is`: `IOptionalIType`<`IModelType`<`Object`, `Object`, `_NotCustomized`, `_NotCustomized`\>, [`undefined`]\>  } & { `amount`: `IOptionalIType`<`ISimpleType`<`number`\>, [`undefined`]\> ; `list`: `IOptionalIType`<`ISimpleType`<`string`\>, [`undefined`]\>  }, { `clear`: () => `void` ; `clearErrors`: () => `void` ; `done`: () => `void` ; `failed`: (`__namedParameters`: { `message`: `string`  }) => `void` ; `start`: () => `void`  } & { `prepare`: (`params`: [`FetchCmdParams`](FetchCmdParams.md)) => `void`  }, `_NotCustomized`, `_NotCustomized`\>, [`undefined`]\>\>
+
+#### Inherited from
+
+MobxClearTransferItems.exportCmd
+
+___
+
 ### fetch
 
 • **fetch**: `Object`
@@ -74,6 +102,26 @@ ___
 #### Inherited from
 
 MobxClearTransferItems.fetched
+
+___
+
+### firstFetchedBlockNumber
+
+• **firstFetchedBlockNumber**: `number`
+
+#### Inherited from
+
+MobxClearTransferItems.firstFetchedBlockNumber
+
+___
+
+### lastFetchedBlockNumber
+
+• **lastFetchedBlockNumber**: `number`
+
+#### Inherited from
+
+MobxClearTransferItems.lastFetchedBlockNumber
 
 ___
 
@@ -119,6 +167,26 @@ MobxClearTransferItems.name
 #### Inherited from
 
 MobxClearTransferItems.add
+
+___
+
+### addFetchedAmount
+
+▸ **addFetchedAmount**(`amount`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `amount` | `number` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+MobxClearTransferItems.addFetchedAmount
 
 ___
 
@@ -178,6 +246,26 @@ MobxClearTransferItems.remove
 
 ___
 
+### setCount
+
+▸ **setCount**(`count`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `count` | `number` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+MobxClearTransferItems.setCount
+
+___
+
 ### setFetched
 
 ▸ **setFetched**(`count`): `void`
@@ -195,6 +283,67 @@ ___
 #### Inherited from
 
 MobxClearTransferItems.setFetched
+
+___
+
+### setFirstFetchedBlockNumber
+
+▸ **setFirstFetchedBlockNumber**(`blockNumber`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `blockNumber` | `string` \| `number` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+MobxClearTransferItems.setFirstFetchedBlockNumber
+
+___
+
+### setLastFetchedBlockNumber
+
+▸ **setLastFetchedBlockNumber**(`blockNumber`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `blockNumber` | `string` \| `number` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+MobxClearTransferItems.setLastFetchedBlockNumber
+
+___
+
+### setName
+
+▸ **setName**(`__namedParameters`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `__namedParameters` | `Object` |
+| `__namedParameters.name` | `string` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+MobxClearTransferItems.setName
 
 ___
 

@@ -34,6 +34,16 @@ MobxClearInstance.haveMetaMask
 
 ___
 
+### isApp
+
+• **isApp**: `boolean`
+
+#### Inherited from
+
+MobxClearInstance.isApp
+
+___
+
 ### isMobile
 
 • **isMobile**: `boolean`

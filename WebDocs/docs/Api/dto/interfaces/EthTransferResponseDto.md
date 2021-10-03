@@ -10,7 +10,7 @@ custom_edit_url: null
 
 ### collect
 
-• **collect**: `EthCollectInfo`
+• **collect**: [`EthCollectInfo`](EthCollectInfo.md)
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 ### deposit
 
-• **deposit**: `EthDepositInfo`
+• **deposit**: [`EthDepositInfo`](EthDepositInfo.md)
 
 ___
 
@@ -89,7 +89,7 @@ ___
 
 ### retrieve
 
-• **retrieve**: `EthRetrieveInfo`
+• **retrieve**: [`EthRetrieveInfo`](EthRetrieveInfo.md)
 
 ___
 
@@ -121,7 +121,7 @@ ___
 
 ### swap
 
-• **swap**: `EthCollectInfo`
+• **swap**: [`EthCollectInfo`](EthCollectInfo.md)
 
 ___
 

@@ -10,6 +10,28 @@ custom_edit_url: null
 
 - [yup](modules/yup.md)
 
+## Classes
+
+- [SecureStorage](classes/SecureStorage.md)
+
+## Interfaces
+
+- [ISecureStorage](interfaces/ISecureStorage.md)
+
+## Type aliases
+
+### SetSecureStorageParams
+
+Ƭ **SetSecureStorageParams**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `encodingType` | ``"aes"`` |
+| `encryptionNamespace` | `string` |
+| `encryptionSecret` | `string` |
+
 ## Functions
 
 ### currencyValueToWei
@@ -54,6 +76,22 @@ formatCurrencyValue(value, '0,0.[00000]' )
 #### Returns
 
 `string`
+
+___
+
+### wait
+
+▸ `Const` **wait**(`timeToWait`): `Promise`<`unknown`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `timeToWait` | `number` |
+
+#### Returns
+
+`Promise`<`unknown`\>
 
 ___
 

@@ -28,7 +28,7 @@ ___
 
 ### deposit
 
-• **deposit**: `EthDepositInfo`
+• **deposit**: [`EthDepositInfo`](EthDepositInfo.md)
 
 #### Inherited from
 
