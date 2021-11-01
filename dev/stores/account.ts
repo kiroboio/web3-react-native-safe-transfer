@@ -1872,7 +1872,6 @@ export const Account = types
     },
   }));
 
-console.log(Account.create(), "create account")
 export const accountStore = Account.create() as unknown as IAccount;
 
 type MobxClearAccount = Omit<

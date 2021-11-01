@@ -2236,7 +2236,7 @@
   dependencies:
     "@json-rpc-tools/types" "^1.6.1"
 
-"@kiroboio/safe-transfer-lib@npm:@kiroboio/safe-transfer-lib-lite@^3.0.0":
+"@kiroboio/safe-transfer-lib@git+https://github.com/kiroboio/ki-safe-transfer-lib#develop-lite":
   "resolved" "git+ssh://git@github.com/kiroboio/ki-safe-transfer-lib.git#053d1f203573557ff9844e033f0814c421e72eff"
   "version" "3.0.0"
   dependencies:
