@@ -1,4 +1,4 @@
 ## Docs
 
-[docs]: https://kiroboio.github.io/web3-lib/docs/intro
+[docs](https://kiroboio.github.io/web3-lib/docs/intro)
 
