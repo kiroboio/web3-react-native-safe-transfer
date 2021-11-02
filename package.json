@@ -1,13 +1,17 @@
 {
   "name": "@kiroboio/web3-react-safe-transfer",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Safe Transfer & Swap React Component",
+  "author": "Kirobo",
+  "license": "GPL-V3",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest --config jest.config.js",
     "format": "prettier --write ./dev",
     "prepare": "npm run build",
+    "xprepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
@@ -20,7 +24,7 @@
   },
   "dependencies": {
     "@ionic/react": "5.6.11",
-    "@kiroboio/safe-transfer-lib": "git+https://github.com/kiroboio/ki-safe-transfer-lib#develop-lite",
+    "@kiroboio/safe-transfer-lib": "3.0.0",
     "@metamask/detect-provider": "1.2.0",
     "@myetherwallet/mewconnect-connector": "0.1.8",
     "@simbathesailor/use-what-changed": "1.0.0",
@@ -88,8 +92,6 @@
     "typedoc-plugin-markdown": "3.10.3",
     "typescript": "4.2"
   },
-  "author": "",
-  "license": "ISC",
   "keywords": [
     "kirobo",
     "kiroboio",
