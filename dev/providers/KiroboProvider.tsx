@@ -1,13 +1,13 @@
-import React from 'react'
-import { AppContext, appStore } from '../context/app'
-import { Web3Provider } from './Web3Provider'
+import React from 'react';
+import { AppContext, appStore } from '../context/app';
+import { Web3Provider } from './Web3Provider';
 
+const { accountStore, addressBookStore } = appStore;
 
-const { accountStore, uiStore, addressBookStore } = appStore
-
-export const KiroboProvider: React.FC = (props) => (
-  <AppContext.Provider value={{ accountStore, uiStore, addressBookStore }}>
-    <Web3Provider />
-    {props.children}
+export type ProviderProps = { infuraKey: string, apiKey: string, apiSecret: string }
+export const KiroboProvider = ({ apiKey, apiSecret, infuraKey, children }:  ProviderProps & { children: JSX.Element | JSX.Element[] | null }) => (
+  <AppContext.Provider value={{ accountStore, addressBookStore }}>
+    <Web3Provider apiKey={apiKey} apiSecret={apiSecret} infuraKey={infuraKey} />
+    {children}
   </AppContext.Provider>
-)
+);
