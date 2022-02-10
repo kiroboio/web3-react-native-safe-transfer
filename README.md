@@ -1,8 +1,9 @@
-### rn-nodeify
+# rn-nodeify
 
-# To install react-native versions of node packages needed for web3 and @kiroboio/safe-transfer-lib libs use rn-nodeify
+### To install react-native versions of node packages needed for web3 and @kiroboio/safe-transfer-lib libs use rn-nodeify
 [rn-nodeify](https://github.com/tradle/rn-nodeify#readme)
-[tutorial](https://levelup.gitconnected.com/tutorial-how-to-set-up-web3js-1-x-with-react-native-0-6x-2021-467b2e0c94a4)
+
+[rn-nodeify tutorial](https://levelup.gitconnected.com/tutorial-how-to-set-up-web3js-1-x-with-react-native-0-6x-2021-467b2e0c94a4)
 
 ```
 npm i -D rn-nodeify
@@ -18,7 +19,7 @@ npm i base-64
 
 ```
 
-# Modify metro.config
+### Modify metro.config
 // metro.config.js
 ```
 const extraNodeModules = require('node-libs-browser');
@@ -37,7 +38,7 @@ module.exports = {
 };
 ```
 
-# Modify shim
+### Modify shim
 // shim.js
 ```
 import { decode, encode } from 'base-64';
@@ -101,12 +102,11 @@ if (typeof localStorage !== 'undefined') {
 require('crypto');
 initialize();
 ```
-# import shim in your App root component
+### import shim in your App root component
 
 ```
 import './shim'
 ```
 
-# You can use @kiroboio/web3-react-native-safe-transfer library now
-## Docs
+### You can use @kiroboio/web3-react-native-safe-transfer library now
 [docs](https://kiroboio.github.io/web3-lib/docs/intro)
