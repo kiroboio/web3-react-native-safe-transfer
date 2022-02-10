@@ -19,6 +19,7 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "skipLibCheck": true,
+    "typeRoots": ["./dev/types"],
     "baseUrl": "./"
   },
   "include": ["dev"],

@@ -14,7 +14,7 @@ import Web3 from 'web3';
 import { Connectors } from '../hooks/useWeb3';
 import { currencyValueToWei } from '../utils';
 import { isMobile } from '../utils/isMobile';
-import crypto from 'crypto'
+import crypto from 'react-native-crypto'
 
 type MobxClearInstance<T> = Omit<Instance<T>, symbol>;
 
@@ -1272,8 +1272,8 @@ export interface ICommand
   extends MobxClearInstance<ReturnType<typeof createCommand>> { }
 
 const createSecretHash = (passcode: string) => {
-  const publicSalt = crypto.randomBytes(10).toString();
-  const privateSalt = crypto.randomBytes(10).toString();
+  const publicSalt = crypto.randomBytes(10).toString('hex');
+  const privateSalt = crypto.randomBytes(10).toString('hex');
   const secretHash = sha3(
     sha3(privateSalt + sha3(publicSalt + passcode)) || '',
   );
@@ -1404,10 +1404,8 @@ export const Account = types
           passcode: string;
           message?: string;
         }) {
-          console.log('run deposit');
           const { secretHash, publicSalt, privateSalt } =
             createSecretHash(passcode);
-          console.log({ secretHash, publicSalt, privateSalt });
           if (secretHash) {
             self.depositCmd.prepare({
               from: self.address,

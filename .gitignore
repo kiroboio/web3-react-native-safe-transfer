@@ -8,6 +8,7 @@
 # lib
 /kirobo-web3*
 /lib
+/*.tgz
 
 # debug
 npm-debug.log*
