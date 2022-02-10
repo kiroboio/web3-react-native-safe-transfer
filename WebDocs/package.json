@@ -6,7 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "prebuild": "find docs/Guides -name modules.md -delete && rm -f -- docs/Guides/index.md",
-    "build": "BUILD=true docusaurus build",
+    "build": "docusaurus build",
     "postbuild": "npm run deploy",
     "deploy": "rm -rf ../docs && cp -R build ../docs",
     "swizzle": "docusaurus swizzle",
@@ -42,7 +42,8 @@
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "source-map-js": "^0.6.2"
+    "source-map-js": "^0.6.2",
+    "typedoc-github-wiki-theme": "^1.0.0"
   },
   "browserslist": {
     "production": [
@@ -67,7 +68,7 @@
     "docusaurus-plugin-typedoc": "^0.15.2",
     "ts-loader": "^9.2.5",
     "typedoc": "^0.21.4",
-    "typedoc-plugin-markdown": "^3.10.3",
+    "typedoc-plugin-markdown": "^3.11.13",
     "typescript": "^4.3.5"
   }
 }
