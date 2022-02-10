@@ -216,18 +216,18 @@ const getPlugins = () => {
 }
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: "Web3-react-safe-transfer docs",
+  title: "Web3-react-native-safe-transfer docs",
   tagline: "Dinosaurs are cool",
   url: "https://kiroboio.github.io",
-  baseUrl: "/web3-lib/",
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   organizationName: "kiroboio", // Usually your GitHub org/user name.
-  projectName: "web3-lib", // Usually your repo name.
+  projectName: "web3-react-native-safe-transfer", // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: "Safe-transfer docs",
+      title: "Safe-transfer docs react-native",
       logo: {
         alt: "My Site Logo",
         src: "img/logo.svg",
