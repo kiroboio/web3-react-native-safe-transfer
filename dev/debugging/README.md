@@ -10,7 +10,7 @@ For view `Safe Transfer` state & actions install and configure [Reactotron](http
 
 ```typescript
 import React, { useEffect } from 'react'
-import { configureReactotronDebugging, useAccount, observer, Connectors  } from '@kiroboio/web3-react-safe-transfer'
+import { configureReactotronDebugging, useAccount, observer, Connectors  } from '@kiroboio/web3-react-native-safe-transfer'
 import { Wallet } from "./Wallet"
 
 

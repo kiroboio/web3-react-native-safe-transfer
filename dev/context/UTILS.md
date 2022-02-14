@@ -10,7 +10,7 @@
 ##### Form validators
 
 ```typescript
-   import { yup } from '@kiroboio/web3-react-safe-transfer'
+   import { yup } from '@kiroboio/web3-react-native-safe-transfer'
    import { useForm } from 'react-hook-form'
    import { yupResolver } from '@hookform/resolvers/yup'
    import { useTranslation } from 'react-i18next'

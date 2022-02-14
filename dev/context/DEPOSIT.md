@@ -5,7 +5,7 @@
 ```typescript
 import React from 'react'
 import { Button } from "./Button"
-import { useAccount, observer, Connectors, currencyValueToWei } from '@kiroboio/web3-react-safe-transfer'
+import { useAccount, observer, Connectors, currencyValueToWei } from '@kiroboio/web3-react-native-safe-transfer'
 
 
 export const DepositButton = observer(() => {

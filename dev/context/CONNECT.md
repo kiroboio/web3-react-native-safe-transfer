@@ -47,7 +47,7 @@ export const App = observer(() => {
 ```typescript
 import React from 'react'
 import { Wallet } from "./Wallet"
-import { useAccount, observer } from '@kiroboio/web3-react-safe-transfer/lib'
+import { useAccount, observer } from '@kiroboio/web3-react-native-safe-transfer/lib'
 
 export const Wallet = observer(() => {
   const {

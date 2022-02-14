@@ -60,7 +60,7 @@ export const App = observer(() => {
 ```typescript
 import React from 'react'
 import { Wallet } from "./Wallet"
-import { useAccount, observer } from '@kiroboio/web3-react-safe-transfer'
+import { useAccount, observer } from '@kiroboio/web3-react-native-safe-transfer'
 
 export const Wallet = observer(() => {
   const {
@@ -85,7 +85,7 @@ export const Wallet = observer(() => {
 ```typescript
 import React from 'react'
 import { Button } from "./Button"
-import { useAccount, observer, Connectors, currencyValueToWei } from '@kiroboio/web3-react-safe-transfer'
+import { useAccount, observer, Connectors, currencyValueToWei } from '@kiroboio/web3-react-native-safe-transfer'
 
 
 export const DepositButton = observer(() => {
