@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs_app=self.webpackChunkdocs_app||[]).push([[8613],{1538:function(a){a.exports=JSON.parse('{"allTagsPath":"/web3-react-native-safe-transfer/blog/tags","slug":"/web3-react-native-safe-transfer/blog/tags/facebook","name":"facebook","count":1,"permalink":"/web3-react-native-safe-transfer/blog/tags/facebook"}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs_app=self.webpackChunkdocs_app||[]).push([[5668],{2326:function(a){a.exports=JSON.parse('{"allTagsPath":"/web3-react-native-safe-transfer/blog/tags","slug":"/web3-react-native-safe-transfer/blog/tags/docusaurus","name":"docusaurus","count":4,"permalink":"/web3-react-native-safe-transfer/blog/tags/docusaurus"}')}}]);
