@@ -109,4 +109,4 @@ import './shim'
 ```
 
 ### You can use @kiroboio/web3-react-native-safe-transfer library now
-[docs](https://kiroboio.github.io/web3-lib/docs/intro)
+[docs](https://kiroboio.github.io/web3-react-native-safe-transfer/docs/intro)

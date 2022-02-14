@@ -23,7 +23,7 @@
     "eslint:check": "eslint-config-prettier src/index.tsx"
   },
   "dependencies": {
-    "@kiroboio/safe-transfer-lib": "3.0.0",
+    "@kiroboio/safe-transfer-lib": "github:kiroboio/ki-safe-transfer-lib#develop-lite",
     "@simbathesailor/use-what-changed": "1.0.0",
     "@uniswap/sdk": "^3.0.3",
     "axios": "0.21.1",
