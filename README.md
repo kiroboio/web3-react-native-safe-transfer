@@ -1,4 +1,6 @@
-# rn-nodeify
+# @kiroboio/web3-react-native-safe-transfer
+
+## rn-nodeify
 
 ### To install react-native versions of node packages needed for web3 and @kiroboio/safe-transfer-lib libs use rn-nodeify
 [rn-nodeify](https://github.com/tradle/rn-nodeify#readme)
