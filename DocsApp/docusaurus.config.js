@@ -190,21 +190,6 @@ const mainPlugins = [
       },
     },
   ],
-  [
-    "docusaurus-plugin-typedoc",
-    {
-      id: "debugging",
-      entryPoints: ["../dev/debugging/index.ts"],
-      out: "Debugging",
-      disableSources: true,
-      tsconfig: "../tsconfig.json",
-      sidebar: {
-        categoryLabel: "Debugging",
-        position: 5,
-        fullNames: true,
-      },
-    },
-  ],
 ]
 const getPlugins = () => {
   const allPlugins = mainPlugins.concat(guidesPlugins)

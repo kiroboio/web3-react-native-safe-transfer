@@ -14,14 +14,11 @@ yarn add @kiroboio/web3-react-native-safe-transfer
 
 {@include: ../../dev/context/README.md}
 
-{@include: ../../dev/debugging/README.md}
-
 ## Main concepts
 
 ### State
 
 *<a href="/docs/Api/stores/interfaces/IAccount#properties">Account States</a>*
-
 
 
 ------
