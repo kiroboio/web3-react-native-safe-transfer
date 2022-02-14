@@ -219,7 +219,7 @@ module.exports = {
   title: "Web3-react-native-safe-transfer docs",
   tagline: "Dinosaurs are cool",
   url: "https://kiroboio.github.io",
-  baseUrl: "/",
+  baseUrl: "/web3-react-native-safe-transfer/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
