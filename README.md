@@ -27,7 +27,7 @@ npm i base-64
 cd ios/ && pod install && cd ..
 ```
 
-XCode > Pods > react-native-udp > Build Phases > remove the GCDAsyncSocket.m reference
+#### XCode > Pods > react-native-udp > Build Phases > remove the GCDAsyncSocket.m reference
 
 ### Modify metro.config
 // metro.config.js
