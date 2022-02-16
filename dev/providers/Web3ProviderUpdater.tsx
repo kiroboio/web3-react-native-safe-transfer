@@ -2285,22 +2285,6 @@ export const Web3ProviderUpdater = observer(({ children, apiKey, apiSecret, infu
           })
           .catch(reason => console.log(`error`, { reason }));
 
-        if (
-          __currency.current.symbol !== 'ETH' &&
-          __safeTransferContract.current?.address &&
-          __safeSwapContract.current?.address &&
-          (__erc20TokenContractWeb3.current as any).currentProvider
-        ) {
-          const contractAddress =
-            formType === 'swap'
-              ? __safeSwapContract.current?.address
-              : __safeTransferContract.current?.address;
-
-          __erc20TokenContractWeb3.current.methods
-            .allowance(address, contractAddress)
-            .call()
-            .then((allowance: string) => __setAllowance.current(allowance));
-        }
         service
           ?.getService(SERVICE.REWARDS(network))
           .find({
