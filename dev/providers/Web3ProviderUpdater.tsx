@@ -939,7 +939,6 @@ export const Web3ProviderUpdater = observer(({ children, apiKey, apiSecret, infu
     const web3 = __web3.current;
     const chainId = __chainId.current;
     const currency = __currency.current;
-    const safeSwapContract = __safeSwapContract.current;
     const safeTransferContract = __safeTransferContract.current;
     const setTokenBalance = __setTokenBalance.current;
 
@@ -963,11 +962,8 @@ export const Web3ProviderUpdater = observer(({ children, apiKey, apiSecret, infu
           const erc20TokenContractWeb3 = __erc20TokenContractWeb3.current;
           if (!erc20TokenContractWeb3)
             throw new Error('erc20Token contract not found');
-          const contract =
-            formType === 'swap' ? safeSwapContract : safeTransferContract;
-
           const allowance = await erc20TokenContractWeb3.methods
-            .allowance(address, contract?.address)
+            .allowance(address, safeTransferContract?.address)
             .call();
 
           __setAllowance.current(allowance);
