@@ -2,23 +2,26 @@
 
 [Example](https://github.com/kiroboio/web3-react-native)
 
-## rn-nodeify
+[Docs](https://kiroboio.github.io/web3-react-native-safe-transfer/docs/intro)
+
+## Install
 
 ### To install react-native versions of node packages needed for web3 and @kiroboio/safe-transfer-lib libs use rn-nodeify
+
 [rn-nodeify](https://github.com/tradle/rn-nodeify#readme)
 
 [rn-nodeify for web3 tutorial](https://levelup.gitconnected.com/tutorial-how-to-set-up-web3js-1-x-with-react-native-0-6x-2021-467b2e0c94a4)
 
 ```
 npm i -D rn-nodeify
-npm i --save react-native-crypto react-native-randombytes react-native-event-listeners react-native-securerandom react-native-sync-localstorage
+npm i --save react-native-crypto react-native-randombytes react-native-event-listeners react-native-securerandom react-native-sync-localstorage @kiroboio/web3-react-native-safe-transfer
 npx react-native link react-native-randombytes
 ```
 
 ```
-npm i --save-dev rn-nodeify@latest  
-./node_modules/.bin/rn-nodeify --install  
-npm i --save node-libs-browser  
+npm i --save-dev rn-nodeify@latest
+./node_modules/.bin/rn-nodeify --install
+npm i --save node-libs-browser
 npm i base-64
 
 ```
@@ -32,7 +35,9 @@ cd ios/ && pod install && cd ..
 #### XCode > Pods > react-native-udp > Build Phases > remove the GCDAsyncSocket.m reference
 
 ### Modify metro.config
+
 // metro.config.js
+
 ```
 const extraNodeModules = require('node-libs-browser');
 module.exports = {
@@ -51,7 +56,9 @@ module.exports = {
 ```
 
 ### Modify shim
+
 // shim.js
+
 ```
 import { decode, encode } from 'base-64';
 import localStorage from 'react-native-sync-localstorage';
@@ -114,6 +121,7 @@ if (typeof localStorage !== 'undefined') {
 require('crypto');
 initialize();
 ```
+
 ### import shim in your App root component
 
 ```
@@ -121,4 +129,5 @@ import './shim'
 ```
 
 ### You can use @kiroboio/web3-react-native-safe-transfer library now
+
 [docs](https://kiroboio.github.io/web3-react-native-safe-transfer/docs/intro)
