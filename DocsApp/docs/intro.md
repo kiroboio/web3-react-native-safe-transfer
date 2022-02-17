@@ -127,42 +127,6 @@ export const Address = observer(() => {
 })
 ```
 
-## Connect
-
-Before start to use `web3` you have to `connect`
-
-<a href="/docs/Api/stores/interfaces/IAccount#connect">Connect</a>
-
-------
-
-*Connect with MetaMask*
-
-```typescript
-export const App = observer(() => {
-  const {
-    connect,
-  } = useAccount()
-  
-  const handleLogin = () => {
-      connect(Connectors.Injected)
-  }
-  
-  return <Wallet onLogin={handleLogin} />
-})
-```
-
-##### Status
-
-```typescript
-const {
-    connect,
-  } = useAccount()
-```
-
-<a href="/docs/Api/stores/interfaces/ICmdStatus">connect.is</a>
-
-
-
 ## Transactions
 
 ### Deposit
